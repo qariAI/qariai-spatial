@@ -1,0 +1,34 @@
+name: QariAI Spatial — Production Build
+on:
+  push:
+    branches:
+      - quest-reliability-v1.2
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    name: TypeScript + Vite production build
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Production build
+        run: npm run build
+      - name: Preserve built output
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qariai-spatial-v12-dist
+          path: dist/
+          retention-days: 7
