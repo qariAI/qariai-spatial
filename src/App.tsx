@@ -88,6 +88,8 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
  const lastHover=useRef<number|null>(null);
  const lastReport=useRef('');
  const cooldown=useRef([0,0]);
+ const lastActionAt=useRef(0);
+ const lastActionLabel=useRef('');
  useEffect(()=>{
   gl.xr.enabled=true;
   const factory=new XRHandModelFactory();
@@ -136,18 +138,18 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
     const hits=ray.intersectObject(action,false);
     const direct=new THREE.Vector3();action.getWorldPosition(direct);
     const near=direct.distanceTo(finger)<.18;
-    if(hits.length||near){const score=hits.length?.09:direct.distanceTo(finger);if(score<targetScore){targetScore=score;targetIndex=null;targetAction=true}}
+    if(hits.length||near){const score=hits.length > 0 ? 0.09 : direct.distanceTo(finger);if(score<targetScore){targetScore=score;targetIndex=null;targetAction=true}}
    }
    if(targetIndex!==null&&targetScore<best){best=targetScore;hovered=targetIndex}
    if(isPinching&&!pinched.current[side]&&now>cooldown.current[side]&&targetScore<Infinity){
-    if(targetAction){onAction();lastReport.current='';onDiagnostics('Quest XR · pinch: spatial action activated')}
-    else if(targetIndex!==null){onPinch(targetIndex);lastReport.current='';onDiagnostics('Quest XR · pinch: selected '+LETTERS[targetIndex])}
+    if(targetAction){onAction();lastActionAt.current=now;lastActionLabel.current='spatial action activated'}
+    else if(targetIndex!==null){onPinch(targetIndex);lastActionAt.current=now;lastActionLabel.current='selected '+LETTERS[targetIndex]}
     cooldown.current[side]=now+.35;
    }
    pinched.current[side]=isPinching;
   });
   if(hovered!==lastHover.current){lastHover.current=hovered;onHover(hovered)}
-  const report='Quest XR · tracked hands: '+visible+' · hover: '+(hovered===null?'none':LETTERS[hovered]);
+  const report='Quest XR · tracked hands: '+visible+' · hover: '+(hovered===null?'none':LETTERS[hovered])+(now-lastActionAt.current<2.5?' · last pinch: '+lastActionLabel.current:'');
   if(report!==lastReport.current){lastReport.current=report;onDiagnostics(report)}
  });
  return null;
