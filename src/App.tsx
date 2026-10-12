@@ -22,9 +22,6 @@ const PLANETS: PlanetSpec[] = [
 const Y=-9;
 const ORBIT_X=81;
 const ORBIT_Z=60;
-const TMP=new THREE.Vector3();
-const V1=new THREE.Vector3();
-const V2=new THREE.Vector3();
 
 function makeGlowTexture():THREE.CanvasTexture {
  const canvas=document.createElement('canvas');canvas.width=canvas.height=128;
@@ -64,7 +61,7 @@ function LetterObject({letter,index,phase,selected,handTarget,onSelect}:{letter:
  const group=useRef<THREE.Group>(null);const angle=useRef(-Math.PI/2+index*Math.PI*2/7);const texture=useMemo(()=>arabicTexture(letter),[letter]);useEffect(()=>()=>texture.dispose(),[texture]);
  const active=selected===index||selected===6-index||handTarget===index||handTarget===6-index;
  useFrame((_,dt)=>{if(!group.current)return;if(phase===1)angle.current+=Math.min(dt,.04)*.22;else angle.current=THREE.MathUtils.damp(angle.current,-Math.PI/2+index*Math.PI*2/7,3,dt);const a=angle.current;const x=ORBIT_X*Math.cos(a),z=ORBIT_Z*Math.sin(a);group.current.position.set(x,Y+2+Math.sin(a*2)*.6,z);const target=active?1.32:1;const scale=THREE.MathUtils.damp(group.current.scale.x,target,5,dt);group.current.scale.setScalar(scale)});
- const select=(e:ThreeEvent<PointerEvent>)=>{e.stopPropagation();onSelect(index)};
+ const select=(e:ThreeEvent<MouseEvent>)=>{e.stopPropagation();onSelect(index)};
  return <group ref={group} name={`qari-letter-${index}`}><Billboard follow lockX={false} lockY={false} lockZ={false}><mesh onPointerOver={e=>{e.stopPropagation();document.body.style.cursor='pointer'}} onPointerOut={()=>{document.body.style.cursor='auto'}} onClick={select}><planeGeometry args={[14,14]}/><meshBasicMaterial map={texture} transparent opacity={active?1:.89} depthWrite={false} side={THREE.DoubleSide} /></mesh><mesh onClick={select}><planeGeometry args={[10,10]}/><meshBasicMaterial transparent opacity={0} depthWrite={false}/></mesh><sprite scale={[active?21:16,active?21:16,1]}><spriteMaterial map={texture} transparent opacity={active?.33:.11} blending={THREE.AdditiveBlending} depthWrite={false}/></sprite></Billboard></group>
 }
 function OrbitalScene(props:OrbitProps){return <><color attach="background" args={['#010611']}/><fog attach="fog" args={['#010611',180,650]}/><ambientLight intensity={1.1} color="#cdd9e5"/><directionalLight position={[-70,80,70]} intensity={2.4} color="#ffd28d"/><pointLight position={[-90,35,45]} intensity={20} distance={200} color="#4ac0a0"/><pointLight position={[85,40,-45]} intensity={15} distance={200} color="#5c8fff"/><Stars count={5200} radius={620} opacity={.83} size={.8} seed={184}/><Stars count={1400} radius={290} opacity={.45} size={.55} seed={603}/><Sun/><Belt/>{PLANETS.map(p=><group key={p.name}><OrbitLine radius={p.distance}/><Planet planet={p} paused={props.paused} speed={props.speed}/></group>)}<LivingRing/>{LETTERS.map((l,i)=><LetterObject key={i} letter={l} index={i} phase={props.phase} selected={props.selected} handTarget={props.handTarget} onSelect={props.onSelect}/>)}</>}
