@@ -65,20 +65,88 @@ function LetterObject({letter,index,phase,selected,handTarget,onSelect}:{letter:
  const active=selected===index||selected===6-index||handTarget===index||handTarget===6-index;
  useFrame((_,dt)=>{if(!group.current)return;if(phase===1)angle.current+=Math.min(dt,.04)*.22;else angle.current=THREE.MathUtils.damp(angle.current,-Math.PI/2+index*Math.PI*2/7,3,dt);const a=angle.current;const x=ORBIT_X*Math.cos(a),z=ORBIT_Z*Math.sin(a);group.current.position.set(x,Y+2+Math.sin(a*2)*.6,z);const target=active?1.32:1;const scale=THREE.MathUtils.damp(group.current.scale.x,target,5,dt);group.current.scale.setScalar(scale)});
  const select=(e:ThreeEvent<PointerEvent>)=>{e.stopPropagation();onSelect(index)};
- return <group ref={group}><Billboard follow lockX={false} lockY={false} lockZ={false}><mesh onPointerOver={e=>{e.stopPropagation();document.body.style.cursor='pointer'}} onPointerOut={()=>{document.body.style.cursor='auto'}} onClick={select}><planeGeometry args={[14,14]}/><meshBasicMaterial map={texture} transparent opacity={active?1:.89} depthWrite={false} side={THREE.DoubleSide} /></mesh><mesh onClick={select}><planeGeometry args={[10,10]}/><meshBasicMaterial transparent opacity={0} depthWrite={false}/></mesh><sprite scale={[active?21:16,active?21:16,1]}><spriteMaterial map={texture} transparent opacity={active?.33:.11} blending={THREE.AdditiveBlending} depthWrite={false}/></sprite></Billboard></group>
+ return <group ref={group} name={`qari-letter-${index}`}><Billboard follow lockX={false} lockY={false} lockZ={false}><mesh onPointerOver={e=>{e.stopPropagation();document.body.style.cursor='pointer'}} onPointerOut={()=>{document.body.style.cursor='auto'}} onClick={select}><planeGeometry args={[14,14]}/><meshBasicMaterial map={texture} transparent opacity={active?1:.89} depthWrite={false} side={THREE.DoubleSide} /></mesh><mesh onClick={select}><planeGeometry args={[10,10]}/><meshBasicMaterial transparent opacity={0} depthWrite={false}/></mesh><sprite scale={[active?21:16,active?21:16,1]}><spriteMaterial map={texture} transparent opacity={active?.33:.11} blending={THREE.AdditiveBlending} depthWrite={false}/></sprite></Billboard></group>
 }
 function OrbitalScene(props:OrbitProps){return <><color attach="background" args={['#010611']}/><fog attach="fog" args={['#010611',180,650]}/><ambientLight intensity={1.1} color="#cdd9e5"/><directionalLight position={[-70,80,70]} intensity={2.4} color="#ffd28d"/><pointLight position={[-90,35,45]} intensity={20} distance={200} color="#4ac0a0"/><pointLight position={[85,40,-45]} intensity={15} distance={200} color="#5c8fff"/><Stars count={5200} radius={620} opacity={.83} size={.8} seed={184}/><Stars count={1400} radius={290} opacity={.45} size={.55} seed={603}/><Sun/><Belt/>{PLANETS.map(p=><group key={p.name}><OrbitLine radius={p.distance}/><Planet planet={p} paused={props.paused} speed={props.speed}/></group>)}<LivingRing/>{LETTERS.map((l,i)=><LetterObject key={i} letter={l} index={i} phase={props.phase} selected={props.selected} handTarget={props.handTarget} onSelect={props.onSelect}/>)}</>}
 
 /** Actual WebXR hand joints, not desktop emulation. For WebXR-compatible Quest browser only. */
-function HandTracking({onHover,onPinch}:{onHover:(i:number|null)=>void;onPinch:(i:number)=>void}){
- const {gl,scene}=useThree();const groups=useRef<THREE.Group[]>([]);const pinched=useRef([false,false]);const lastTarget=useRef<number|null>(null);
- useEffect(()=>{gl.xr.enabled=true;const factory=new XRHandModelFactory();const left=gl.xr.getHand(0),right=gl.xr.getHand(1);[left,right].forEach(hand=>{hand.add(factory.createHandModel(hand,'mesh'));scene.add(hand)});groups.current=[left,right];return()=>{[left,right].forEach(hand=>{scene.remove(hand)})}},[gl,scene]);
- useFrame(()=>{if(!gl.xr.isPresenting)return;let closest:number|null=null,closestD=Infinity;groups.current.forEach((hand,side)=>{const joints=(hand as THREE.Group & {joints?:Record<string,THREE.Object3D>}).joints;const tip=joints?.['index-finger-tip'],thumb=joints?.['thumb-tip'];if(!tip||!thumb||!tip.visible||!thumb.visible)return;tip.getWorldPosition(V1);thumb.getWorldPosition(V2);const nearPinch=V1.distanceTo(V2)<.025;for(let i=0;i<7;i++){const a=-Math.PI/2+i*Math.PI*2/7;TMP.set(ORBIT_X*Math.cos(a)*.014,1.45+(Y+2)*.014,-2.4+ORBIT_Z*Math.sin(a)*.014);const d=TMP.distanceTo(V1);if(d<closestD&&d<.22){closest=i;closestD=d}}if(nearPinch&&!pinched.current[side]&&closest!==null)onPinch(closest);pinched.current[side]=nearPinch});if(closest!==lastTarget.current){lastTarget.current=closest;onHover(closest)}});
+/* World-space hit targets are resolved from the same transformed objects rendered by R3F. */
+function SpatialActions({phase,onAdvance,onBack}:{phase:Phase;onAdvance:()=>void;onBack:()=>void}){
+ const label=phase===0?'BRING LETTERS INTO ORBIT':'EXPLORE LETTERS AGAIN';
+ const texture=useMemo(()=>{const c=document.createElement('canvas');c.width=1024;c.height=256;const ctx=c.getContext('2d')!;ctx.fillStyle='#061724';ctx.fillRect(0,0,c.width,c.height);ctx.strokeStyle='#d9ae66';ctx.lineWidth=9;ctx.strokeRect(5,5,1014,246);ctx.fillStyle='#ffdf9b';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 53px sans-serif';ctx.fillText(label,512,128);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t},[label]);
+ useEffect(()=>()=>texture.dispose(),[texture]);
+ return <group position={[0,Y+35,-42]} name="qari-spatial-controls">
+   <mesh name="qari-action-primary" onClick={phase===0?onAdvance:onBack}>
+    <planeGeometry args={[52,13]}/><meshBasicMaterial map={texture} side={THREE.DoubleSide} transparent/>
+   </mesh>
+ </group>;
+}
+function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:number|null)=>void;onPinch:(i:number)=>void;onAction:()=>void;onDiagnostics:(state:string)=>void}){
+ const {gl,scene}=useThree();
+ const hands=useRef<THREE.Group[]>([]);
+ const markers=useRef<THREE.Mesh[]>([]);
+ const pinched=useRef([false,false]);
+ const lastHover=useRef<number|null>(null);
+ const lastReport=useRef('');
+ const cooldown=useRef([0,0]);
+ useEffect(()=>{
+  gl.xr.enabled=true;
+  const factory=new XRHandModelFactory();
+  const groups=[gl.xr.getHand(0),gl.xr.getHand(1)];
+  const mesh=groups.map(hand=>{
+   hand.add(factory.createHandModel(hand,'mesh'));scene.add(hand);
+   const m=new THREE.Mesh(new THREE.RingGeometry(.018,.028,32),new THREE.MeshBasicMaterial({color:'#ffcf79',side:THREE.DoubleSide,transparent:true,opacity:.95,depthTest:false}));
+   m.visible=false;scene.add(m);return m;
+  });
+  hands.current=groups;markers.current=mesh;
+  return()=>{groups.forEach(h=>scene.remove(h));mesh.forEach(m=>{scene.remove(m);m.geometry.dispose();(m.material as THREE.Material).dispose()})};
+ },[gl,scene]);
+ useFrame((state)=>{
+  if(!gl.xr.isPresenting){markers.current.forEach(m=>m.visible=false);return}
+  const now=state.clock.elapsedTime;
+  let hovered:number|null=null,best=Infinity,visible=0;
+  scene.updateMatrixWorld(true);
+  hands.current.forEach((hand,side)=>{
+   const joints=(hand as THREE.Group & {joints?:Record<string,THREE.Object3D>}).joints;
+   const tip=joints?.['index-finger-tip'],thumb=joints?.['thumb-tip'],wrist=joints?.['wrist'];
+   const marker=markers.current[side];
+   if(!tip||!thumb||!tip.visible||!thumb.visible){if(marker)marker.visible=false;pinched.current[side]=false;return}
+   visible++;
+   const finger=new THREE.Vector3(),thumbPos=new THREE.Vector3(),wristPos=new THREE.Vector3();
+   tip.getWorldPosition(finger);thumb.getWorldPosition(thumbPos);
+   const pinchDistance=finger.distanceTo(thumbPos);
+   const isPinching=pinched.current[side]?pinchDistance<.038:pinchDistance<.026;
+   if(marker){marker.visible=true;marker.position.copy(finger);marker.quaternion.copy(state.camera.quaternion);marker.scale.setScalar(isPinching?1.55:1)}
+   const aim=new THREE.Vector3(0,0,-1);
+   if(wrist){wrist.getWorldPosition(wristPos);aim.copy(finger).sub(wristPos).normalize()}
+   let targetIndex:number|null=null,targetAction=false,targetScore=Infinity;
+   const test=(obj:THREE.Object3D,index:number|null,radius:number)=>{
+    const p=new THREE.Vector3();obj.getWorldPosition(p);
+    const direct=p.distanceTo(finger);
+    const to=p.clone().sub(finger),along=to.dot(aim);
+    const lateral=along>0&&along<3?to.addScaledVector(aim,-along).length():Infinity;
+    const accepted=direct<radius?direct: lateral<radius*.75?lateral+.12:Infinity;
+    if(accepted<targetScore){targetScore=accepted;targetIndex=index;targetAction=index===null}
+   };
+   for(let i=0;i<7;i++){const obj=scene.getObjectByName('qari-letter-'+i);if(obj)test(obj,i,.20)}
+   const action=scene.getObjectByName('qari-action-primary');
+   if(action)test(action,null,.29);
+   if(targetIndex!==null&&targetScore<best){best=targetScore;hovered=targetIndex}
+   if(isPinching&&!pinched.current[side]&&now>cooldown.current[side]&&targetScore<Infinity){
+    if(targetAction)onAction();else if(targetIndex!==null)onPinch(targetIndex);
+    cooldown.current[side]=now+.35;
+   }
+   pinched.current[side]=isPinching;
+  });
+  if(hovered!==lastHover.current){lastHover.current=hovered;onHover(hovered)}
+  const report='Quest XR · tracked hands: '+visible+' · hover: '+(hovered===null?'none':LETTERS[hovered]);
+  if(report!==lastReport.current){lastReport.current=report;onDiagnostics(report)}
+ });
  return null;
 }
 function ImmersiveButton(){const {gl}=useThree();const [available,setAvailable]=useState(false);const [inSession,setInSession]=useState(false);useEffect(()=>{let on=true;const xr=(navigator as Navigator & {xr?:{isSessionSupported:(mode:string)=>Promise<boolean>;requestSession:(mode:string,options:object)=>Promise<any>}}).xr;if(!xr)return;xr.isSessionSupported('immersive-vr').then(v=>{if(on)setAvailable(v)}).catch(()=>{});const onStart=()=>setInSession(true),onEnd=()=>setInSession(false);gl.xr.addEventListener('sessionstart',onStart);gl.xr.addEventListener('sessionend',onEnd);return()=>{on=false;gl.xr.removeEventListener('sessionstart',onStart);gl.xr.removeEventListener('sessionend',onEnd)}},[gl]);useEffect(()=>{const btn=document.getElementById('enter-xr') as HTMLButtonElement|null;if(!btn)return;btn.hidden=!available;btn.textContent=inSession?'Exit VR':'Enter Quest VR';btn.onclick=async()=>{try{if(gl.xr.isPresenting){await gl.xr.getSession()?.end();return}const session=await (navigator as Navigator & {xr:{requestSession:(mode:string,options:object)=>Promise<any>}}).xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});await gl.xr.setSession(session)}catch(e){console.error('WebXR session failed',e);window.alert('Unable to enter VR. Use HTTPS in a supported Quest browser and enable hand tracking.')}};return()=>{btn.onclick=null}},[gl,available,inSession]);return null}
 function WorldAnchor({children}:{children:React.ReactNode}){const {gl}=useThree();const group=useRef<THREE.Group>(null);useFrame(()=>{if(!group.current)return;if(gl.xr.isPresenting){group.current.position.set(0,1.45,-2.4);group.current.scale.setScalar(.014)}else{group.current.position.set(0,15,0);group.current.scale.setScalar(1)}});return <group ref={group}>{children}</group>}
-function SceneRig({phase,speed,paused,selected,onSelect,handTarget,onHover}:{phase:Phase;speed:number;paused:boolean;selected:Selection;onSelect:(i:number)=>void;handTarget:number|null;onHover:(i:number|null)=>void}){return <><WorldAnchor><OrbitalScene phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/></WorldAnchor><HandTracking onHover={onHover} onPinch={onSelect}/><ImmersiveButton/><OrbitControls enableDamping dampingFactor={.06} minDistance={105} maxDistance={255} maxPolarAngle={1.28} minPolarAngle={.85} enablePan={false}/></>}
+function SceneRig({phase,speed,paused,selected,onSelect,handTarget,onHover,onAdvance,onBack,onDiagnostics}:{phase:Phase;speed:number;paused:boolean;selected:Selection;onSelect:(i:number)=>void;handTarget:number|null;onHover:(i:number|null)=>void;onAdvance:()=>void;onBack:()=>void;onDiagnostics:(s:string)=>void}){return <><WorldAnchor><OrbitalScene phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/><SpatialActions phase={phase} onAdvance={onAdvance} onBack={onBack}/></WorldAnchor><HandTracking onHover={onHover} onPinch={onSelect} onAction={phase===0?onAdvance:onBack} onDiagnostics={onDiagnostics}/><ImmersiveButton/><OrbitControls enableDamping dampingFactor={.06} minDistance={105} maxDistance={255} maxPolarAngle={1.28} minPolarAngle={.85} enablePan={false}/></>}
 
 const traceGuides:Record<Letter,{name:string;instruction:string}>= {
  'ك':{name:'Kāf',instruction:'Illustrative study guide. Verify the source stroke order before educational use.'},
@@ -87,7 +155,7 @@ const traceGuides:Record<Letter,{name:string;instruction:string}>= {
  'ي':{name:'Yāʼ',instruction:'Illustrative study guide. Verify the source stroke order before educational use.'},
 };
 function TracePanel({letter,onClose}:{letter:Letter;onClose:()=>void}){const [strokes,setStrokes]=useState<{x:number;y:number}[]>([]);const drawing=useRef(false);const svg=useRef<SVGSVGElement>(null);const guide=traceGuides[letter];const loc=(e:React.PointerEvent<SVGSVGElement>)=>{const r=svg.current!.getBoundingClientRect();return {x:(e.clientX-r.left)*320/r.width,y:(e.clientY-r.top)*280/r.height}};const move=(e:React.PointerEvent<SVGSVGElement>)=>{if(drawing.current)setStrokes(v=>[...v,loc(e)])};return <aside className="trace-panel"><header><div><small>HARF WRITER · SPATIAL STUDY</small><h2>Trace {guide.name} · <span lang="ar">{letter}</span></h2></div><button aria-label="Close tracing" onClick={onClose}>✕</button></header><p>{guide.instruction}</p><svg ref={svg} viewBox="0 0 320 280" onPointerDown={e=>{drawing.current=true;e.currentTarget.setPointerCapture(e.pointerId);setStrokes([loc(e)])}} onPointerMove={move} onPointerUp={()=>drawing.current=false} onPointerCancel={()=>drawing.current=false}><rect width="320" height="280" rx="20" fill="transparent"/><text x="160" y="178" textAnchor="middle" fontFamily="Amiri,serif" fontWeight="bold" fontSize="190" fill="#e2c58b" opacity=".17">{letter}</text>{strokes.length>1&&<polyline points={strokes.map(p=>`${p.x},${p.y}`).join(' ')} fill="none" stroke="#ffd183" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>}</svg><div className="trace-actions"><button onClick={()=>setStrokes([])}>↺ Try again</button><button onClick={onClose}>Return to orbit →</button></div><small className="trace-disclaimer">Free tracing prototype: not stroke-order graded. Import original verified Android Harf Writer geometry for teaching accuracy.</small></aside>}
-export default function App(){const fontReady=useLoadedArabicFont();const [phase,setPhase]=useState<Phase>(0);const [selected,setSelected]=useState<Selection>(null);const [handTarget,setHandTarget]=useState<number|null>(null);const [trace,setTrace]=useState<Letter|null>(null);const [paused,setPaused]=useState(false);const [speed,setSpeed]=useState(1);const [handMode,setHandMode]=useState(false);const [cursor,setCursor]=useState({x:-100,y:-100});const [resetKey,setResetKey]=useState(0);
+export default function App(){const fontReady=useLoadedArabicFont();const [phase,setPhase]=useState<Phase>(0);const [selected,setSelected]=useState<Selection>(null);const [handTarget,setHandTarget]=useState<number|null>(null);const [trace,setTrace]=useState<Letter|null>(null);const [paused,setPaused]=useState(false);const [speed,setSpeed]=useState(1);const [handMode,setHandMode]=useState(false);const [cursor,setCursor]=useState({x:-100,y:-100});const [resetKey,setResetKey]=useState(0);const [xrDiagnostics,setXrDiagnostics]=useState("Quest XR · awaiting headset");
  const select=useCallback((i:number)=>setSelected(i),[]);const closeTrace=()=>setTrace(null);const selectedLetter=selected===null?null:LETTERS[selected];const mirror=selected===null?null:LETTERS[6-selected];const caption=selectedLetter?(selected===3?'ي is the center of the mirrored sequence.':`Mirrored pair: ${selectedLetter} ↔ ${mirror}`):'Select a letter to illuminate its mirror.';
- return <main className="app" onPointerMove={e=>setCursor({x:e.clientX,y:e.clientY})}><div className="canvas"><Canvas camera={{position:[0,98,169],fov:43,near:.1,far:1000}} dpr={[1,1.7]} gl={{antialias:true,alpha:false}}><Suspense fallback={null}>{fontReady&&<SceneRig key={resetKey} phase={phase} speed={speed} paused={paused||trace!==null} selected={selected} onSelect={select} handTarget={handTarget} onHover={setHandTarget}/>}</Suspense></Canvas></div><div className="vignette"/><header className="top"><div><strong>QARI<span>AI</span> / SPATIAL</strong><small>THE LIVING ORBIT · REACT / WEBXR</small></div><div className="top-tag">✧ The letters lead · The universe responds</div></header><section className="stage-ui" aria-live="polite"><div className="step">✧ {phase===0?'MIRRORED LETTERS':'THE LIVING ORBIT'} &nbsp; {phase===0?'01':'02'} / 02</div><p>{phase===0?caption:'The letters awaken — a continuous, luminous celestial dance.'}</p><div className="primary-actions">{phase===0?<><button className="gold" onClick={()=>setPhase(1)}>◎ Bring the letters into orbit →</button>{selectedLetter&&<button onClick={()=>setTrace(selectedLetter)}>✎ Trace {selectedLetter} →</button>}</>:<><button className="gold" onClick={()=>{setPhase(0);setSelected(null)}}>↺ Explore letters again</button></>}</div></section><nav className="tools" aria-label="Scene controls"><button onClick={()=>setResetKey(n=>n+1)}>↺ Reset view</button><button onClick={()=>setPaused(v=>!v)}>{paused?'▶ Resume motion':'Ⅱ Pause motion'}</button><button onClick={()=>setSpeed(v=>v===1?2:v===2?.5:1)}>{speed}× Speed</button><button aria-pressed={handMode} onClick={()=>setHandMode(v=>!v)}>{handMode?'◉ Hand Mode On':'◎ Hand Mode'}</button><button id="enter-xr" hidden>Enter Quest VR</button></nav>{handMode&&<><div className="hand-hint">Desktop hand simulation · hover to target · click to select</div><div className="finger" style={{left:cursor.x,top:cursor.y}} /></>}{trace&&<><div className="trace-shade" onClick={closeTrace}/><TracePanel key={trace} letter={trace} onClose={closeTrace}/></>}<div className="build-note">Quest hand tracking requires HTTPS, a supported headset browser, and enabled hand input. Desktop mode is mouse simulation.</div></main>
+ return <main className="app" onPointerMove={e=>setCursor({x:e.clientX,y:e.clientY})}><div className="canvas"><Canvas camera={{position:[0,98,169],fov:43,near:.1,far:1000}} dpr={[1,1.7]} gl={{antialias:true,alpha:false}}><Suspense fallback={null}>{fontReady&&<SceneRig key={resetKey} phase={phase} speed={speed} paused={paused||trace!==null} selected={selected} onSelect={select} handTarget={handTarget} onHover={setHandTarget} onAdvance={()=>setPhase(1)} onBack={()=>{setPhase(0);setSelected(null)}} onDiagnostics={setXrDiagnostics}/>}</Suspense></Canvas></div><div className="vignette"/><header className="top"><div><strong>QARI<span>AI</span> / SPATIAL</strong><small>THE LIVING ORBIT · REACT / WEBXR</small></div><div className="top-tag">✧ The letters lead · The universe responds</div></header><section className="stage-ui" aria-live="polite"><div className="step">✧ {phase===0?'MIRRORED LETTERS':'THE LIVING ORBIT'} &nbsp; {phase===0?'01':'02'} / 02</div><p>{phase===0?caption:'The letters awaken — a continuous, luminous celestial dance.'}</p><div className="primary-actions">{phase===0?<><button className="gold" onClick={()=>setPhase(1)}>◎ Bring the letters into orbit →</button>{selectedLetter&&<button onClick={()=>setTrace(selectedLetter)}>✎ Trace {selectedLetter} →</button>}</>:<><button className="gold" onClick={()=>{setPhase(0);setSelected(null)}}>↺ Explore letters again</button></>}</div></section><nav className="tools" aria-label="Scene controls"><button onClick={()=>setResetKey(n=>n+1)}>↺ Reset view</button><button onClick={()=>setPaused(v=>!v)}>{paused?'▶ Resume motion':'Ⅱ Pause motion'}</button><button onClick={()=>setSpeed(v=>v===1?2:v===2?.5:1)}>{speed}× Speed</button><button aria-pressed={handMode} onClick={()=>setHandMode(v=>!v)}>{handMode?'◉ Hand Mode On':'◎ Hand Mode'}</button><button id="enter-xr" hidden>Enter Quest VR</button></nav>{handMode&&<><div className="hand-hint">Desktop hand simulation · hover to target · click to select</div><div className="finger" style={{left:cursor.x,top:cursor.y}} /></>}{trace&&<><div className="trace-shade" onClick={closeTrace}/><TracePanel key={trace} letter={trace} onClose={closeTrace}/></>}<div className="xr-diagnostics" aria-live="off">{xrDiagnostics}</div><div className="build-note">Quest hand tracking requires HTTPS, a supported headset browser, and enabled hand input. Desktop mode is mouse simulation.</div></main>
 }
