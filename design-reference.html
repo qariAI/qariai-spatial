@@ -1,0 +1,262 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QariAI Spatial — The Living Calligraphy v0.9.1</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+:root{color-scheme:dark;--edge:rgba(255,223,155,.23);--gold:#ffdf9b}*{box-sizing:border-box}body{margin:0;background:#010611;color:#f7eedb;font-family:'DM Sans',sans-serif;overflow:hidden}#scene{position:fixed;inset:0}#scene canvas{display:block}.shade{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,transparent 18%,rgba(1,6,17,.22) 68%,rgba(0,2,9,.65))}.top{position:fixed;z-index:3;top:clamp(18px,4vh,38px);left:clamp(18px,4vw,64px);right:clamp(18px,4vw,64px);display:flex;justify-content:space-between;gap:16px;align-items:center;pointer-events:none}.brand{font-size:13px;letter-spacing:.25em;font-weight:700}.brand b{color:#d7a45b}.sub{margin-top:10px;color:#9babb7;font-size:10px;letter-spacing:.3em}.tag{border:1px solid var(--edge);border-radius:40px;padding:13px 20px;background:rgba(7,16,28,.72);backdrop-filter:blur(20px);font-size:12px;color:#ead8b7}.center{position:fixed;left:50%;transform:translateX(-50%);bottom:clamp(102px,16vh,165px);z-index:3;text-align:center;pointer-events:none;width:min(90vw,720px)}.step{font-size:11px;letter-spacing:.25em;color:#d1a96b}.caption{margin:12px auto 17px;color:#e9ddc6;font-size:clamp(12px,1.1vw,15px);line-height:1.5}.buttons{display:flex;justify-content:center;gap:9px;pointer-events:auto;flex-wrap:wrap}button{border-radius:13px;border:1px solid var(--edge);padding:13px 19px;background:rgba(7,19,31,.8);color:#fbe7c6;cursor:pointer;font:600 12px 'DM Sans',sans-serif;backdrop-filter:blur(16px)}button:hover,button:focus-visible{outline:none;border-color:#e8b86c;background:rgba(56,43,26,.85)}button.primary{background:#c79a50;border-color:#e9c387;color:#11141c}button:disabled{opacity:.4;cursor:not-allowed}.bottom{position:fixed;z-index:3;bottom:22px;left:clamp(18px,4vw,64px);right:clamp(18px,4vw,64px);display:flex;align-items:end;justify-content:space-between;gap:14px;pointer-events:none}.panel{border-radius:18px;border:1px solid var(--edge);background:linear-gradient(120deg,rgba(10,23,37,.86),rgba(7,16,28,.72));padding:15px 20px;backdrop-filter:blur(20px);max-width:340px;pointer-events:auto}.panel small{font-size:10px;letter-spacing:.21em;color:#cc9f5d}.panel strong{display:block;margin:7px 0;font:500 22px Georgia,serif}.panel p{margin:0;font-size:12px;color:#afbeca;line-height:1.5}.side{display:flex;gap:8px;pointer-events:auto;flex-wrap:wrap;justify-content:end}.tip{position:fixed;z-index:3;left:50%;transform:translateX(-50%);bottom:10px;color:#8899a8;font-size:10px;letter-spacing:.06em;white-space:nowrap;pointer-events:none;opacity:0}.fallback{display:none;position:fixed;inset:30% 20%;z-index:12;background:#101b29;padding:24px;border:1px solid #ab874d;border-radius:18px;line-height:1.7}@media(max-width:820px){.tag{display:none}.panel{display:none}.bottom{justify-content:center}.center{bottom:110px}.side{justify-content:center}.brand{font-size:11px}.sub{font-size:9px}}@media(max-height:700px){.center{bottom:90px}.panel{display:none}.bottom{bottom:16px}.caption{margin:5px auto 10px}}@media(max-height:520px){.center{bottom:72px}.bottom{display:none}}
+
+/* v0.6 refinements */
+body:before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 56%,rgba(192,127,45,.055),transparent 38%),radial-gradient(ellipse at 16% 45%,rgba(15,87,94,.06),transparent 28%)}
+.tag{background:rgba(6,15,28,.58);font-size:11px}
+.center{bottom:clamp(104px,16vh,160px)}
+.step{color:#e4ba78;font-weight:600}
+.caption{color:#f1e6d0;text-shadow:0 3px 16px #020611}
+.panel{background:linear-gradient(120deg,rgba(9,22,35,.83),rgba(5,14,25,.7));max-width:315px}
+button{transition:background .2s,border-color .2s,transform .2s}
+button:hover{transform:translateY(-2px)}
+button.primary{box-shadow:0 8px 32px rgba(176,112,35,.20)}
+@media(max-width:700px){.side button{padding:10px 11px;font-size:10px}.center{bottom:135px}.bottom{bottom:12px}}
+
+/* v0.7 — CINEMATIC BALANCE: protected controls & quiet planetary hierarchy */
+.center{
+  bottom:clamp(126px,18vh,178px);
+  width:min(90vw,660px);
+  padding:16px 20px 14px;
+  border-radius:22px;
+  background:linear-gradient(180deg,rgba(1,6,17,0) 0%,rgba(1,6,17,.72) 28%,rgba(1,6,17,.88) 100%);
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.25));
+}
+.center .caption{margin:9px auto 14px;font-size:13px}
+.center .buttons{gap:8px}
+.center button{padding:12px 17px}
+.bottom{bottom:15px}
+.side{background:rgba(1,6,17,.66);padding:7px;border:1px solid rgba(255,223,155,.08);border-radius:16px;backdrop-filter:blur(14px)}
+.side button{padding:11px 14px;font-size:11px}
+.panel{max-width:300px;padding:12px 16px;background:rgba(5,14,26,.8)}
+.panel strong{font-size:18px}
+@media(max-width:820px){.center{bottom:115px;width:94vw}.bottom{bottom:9px}}
+@media(max-height:760px){.center{bottom:105px;padding:9px 12px}.bottom{bottom:9px}.panel{display:none}}
+@media(max-height:590px){.center{bottom:72px}.bottom{display:none}}
+
+/* v0.7.1 — final spacing and action hierarchy */
+.center{bottom:clamp(105px,13vh,135px);background:linear-gradient(180deg,rgba(1,6,17,0),rgba(1,6,17,.80) 34%,rgba(1,6,17,.92) 100%)}
+.center .step{position:relative;margin-top:4px}
+.center .caption{margin:12px auto 12px}
+.center .buttons button[hidden]{display:none!important}
+@media(max-height:760px){.center{bottom:88px}.center .caption{margin:6px auto 9px}}
+@media(max-height:590px){.center{bottom:63px}}
+
+/* v0.8 — spatial tracing bridge, no separate Ayah header */
+.trace-open{position:fixed;z-index:7;top:94px;right:64px;display:none}
+.trace-open.visible{display:block}
+.trace-panel{position:fixed;z-index:20;right:28px;top:50%;transform:translateY(-50%);width:min(380px,calc(100vw - 32px));padding:20px;border-radius:24px;border:1px solid rgba(241,200,127,.42);background:linear-gradient(150deg,rgba(10,25,37,.97),rgba(1,8,19,.96));backdrop-filter:blur(20px);box-shadow:0 20px 90px #000b;display:none}
+.trace-panel.visible{display:block}.trace-head{display:flex;align-items:start;justify-content:space-between;gap:16px}
+.trace-kicker{letter-spacing:.22em;font-size:10px;color:#ddb877}.trace-head h2{font:600 21px 'DM Sans',sans-serif;margin:7px 0 4px}.trace-head p{font-size:12px;color:#aebac3;line-height:1.5;margin:0 0 15px}
+.trace-board{position:relative;touch-action:none;width:100%;aspect-ratio:1.18;border-radius:18px;background:radial-gradient(circle at center,rgba(255,218,148,.09),rgba(4,13,26,.9) 75%);border:1px solid rgba(240,209,159,.2);overflow:hidden;cursor:crosshair}
+.trace-board svg{width:100%;height:100%;display:block;touch-action:none}
+.trace-guide{fill:none;stroke:#d9b67e;stroke-opacity:.27;stroke-width:23;stroke-linecap:round;stroke-linejoin:round}
+.trace-fill{fill:none;stroke:#ffe19a;stroke-width:22;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 10px rgba(255,199,106,.7))}
+.trace-dot-guide{fill:rgba(219,182,117,.24);stroke:#dec18c;stroke-opacity:.5;stroke-width:2}
+.trace-dot-done{fill:#ffdc91;filter:drop-shadow(0 0 11px rgba(255,195,90,.9))}
+.trace-status{font-size:12px;color:#e6d4b4;text-align:center;min-height:36px;margin:12px 0 7px}
+.trace-actions{display:flex;gap:8px;justify-content:center}.trace-actions button{flex:1}
+@media(max-width:800px){.trace-open{top:84px;right:20px}.trace-panel{right:16px;top:50%}}
+
+/* v0.8.1 Desktop hand interaction simulation */
+#handMode[aria-pressed="true"]{border-color:#f1cb85;background:rgba(135,91,35,.36);color:#ffe3a8}
+.hand-cursor{position:fixed;z-index:35;left:0;top:0;width:36px;height:36px;border:2px solid rgba(255,214,126,.92);border-radius:50%;box-shadow:0 0 17px #e8aa58a8, inset 0 0 12px #ebbc6a6e;transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity .15s,width .15s,height .15s,border-color .15s}
+.hand-cursor.visible{opacity:1}.hand-cursor.near{width:51px;height:51px;box-shadow:0 0 32px #ffd18dbc,inset 0 0 17px #d9a25090}
+.hand-cursor.pinching{width:21px;height:21px;background:#ffda8f82;border-color:#fff4c7}
+.hand-center{position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:#ffe3a1;transform:translate(-50%,-50%)}
+.hand-toast{position:fixed;z-index:19;left:50%;top:86px;transform:translateX(-50%);border-radius:999px;border:1px solid #c99c5e80;background:#07121dd9;padding:10px 16px;font-size:11px;color:#ffe4ab;letter-spacing:.035em;pointer-events:none;opacity:0;transition:opacity .2s;white-space:nowrap}
+.hand-toast.visible{opacity:1}
+@media(max-width:700px){.hand-toast{top:115px;max-width:90vw;white-space:normal;text-align:center}}
+
+/* v0.9 — hand-crafted spatial calligraphy study */
+.trace-letter-identity{position:absolute;right:29px;top:91px;color:#f8dca2;font:700 34px 'Amiri',serif;z-index:1;opacity:.85;pointer-events:none}
+.trace-panel{padding-top:25px}
+.trace-board{box-shadow:inset 0 0 38px #bf8d3920,0 0 24px #b98c3212}
+.trace-open{border-color:#deb87896;box-shadow:0 0 26px #d9a45344}
+/* v0.8.2: visible responsive near-field targets and momentary pinch confirmation */
+.hand-cursor{transition:opacity .16s,width .14s,height .14s,border-color .14s,left .085s ease-out,top .085s ease-out}
+.hand-cursor.near{border-color:#fff0bd;box-shadow:0 0 37px #ffc76eec,inset 0 0 22px #f6ca849c}
+.hand-cursor.pinching{box-shadow:0 0 32px 11px #ffcb6a70,inset 0 0 18px #fff0bd}
+.pinch-burst{position:fixed;z-index:34;width:22px;height:22px;border-radius:50%;pointer-events:none;border:2px solid #ffe2a7;box-shadow:0 0 22px #ffc366;animation:pinch-burst .50s ease-out forwards}
+@keyframes pinch-burst{0%{opacity:1;transform:translate(-50%,-50%) scale(.3)}100%{opacity:0;transform:translate(-50%,-50%) scale(4)}}
+.trace-open.contextual{position:fixed;z-index:19;right:auto;top:auto;transform:translate(-50%,-120%);box-shadow:0 0 28px #c48a4666;white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.pinch-burst{animation-duration:.01s}.hand-cursor{transition:none}}
+</style><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script></head><body><div id="scene"></div><div class="shade"></div><header class="top"><div><div class="brand">QARI<b>AI</b> / SPATIAL</div><div class="sub">THE LIVING ORBIT · SELECTION FIX</div></div><div class="tag">✧ The letters lead · The universe responds</div></header><section class="center"><div class="step" id="step">✧ MIRRORED LETTERS &nbsp; 01 / 02</div><div class="caption" id="caption">Reach for a golden letter to reveal its mirror. Then awaken the orbit.</div><div class="buttons"><button class="primary" id="action">◎ Bring the letters into orbit →</button><button id="back" disabled>← Back</button><button id="replay">↺ Replay</button></div></section><footer class="bottom"><div class="panel"><small id="panelTag">THE HIDDEN SYMMETRY</small><strong id="panelTitle">Seven letters. One celestial path.</strong><p id="panelBody">ك ل ف ي ف ل ك — the undiacritized letter sequence reads the same in either direction.</p></div><div class="side"><button id="reset">↺ Reset view</button><button id="pause">Ⅱ Pause motion</button><button id="speed">1× Speed</button><button id="handMode" aria-pressed="false">◉ Hand Mode</button></div></footer><button class="trace-open" id="traceOpen">✎ Trace letter →</button>
+<div id="handCursor" class="hand-cursor" aria-hidden="true"><span class="hand-center"></span></div><div class="hand-toast" id="handToast" role="status" aria-live="polite">Desktop hand simulation · Move to hover · Click to pinch/select</div><aside class="trace-panel" id="tracePanel" aria-label="Arabic letter tracing prototype" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="trace-head"><div><div class="trace-kicker">HARF WRITER · FOUR-LETTER STUDY</div><h2 id="traceTitle">Trace the letter ف</h2><p>Explore an illustrative stroke path with your pointer or finger. These four guides are prototypes, not yet imported from the Android Harf Writer source.</p></div><button id="traceClose" aria-label="Close tracing">✕</button></div>
+  <div class="trace-letter-identity" id="traceIdentity" lang="ar">ف</div><div class="trace-board" id="traceBoard"><svg viewBox="0 0 320 270" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative Arabic letter tracing exercise">
+    <path id="traceGuide" class="trace-guide" d="M232 102 C245 62 280 80 269 127 C259 174 179 202 113 199 C81 197 57 184 59 151"/>
+    <path id="traceFill" class="trace-fill" d="M232 102 C245 62 280 80 269 127 C259 174 179 202 113 199 C81 197 57 184 59 151"/>
+    <circle id="traceDotGuide" class="trace-dot-guide" cx="238" cy="57" r="12"/><circle id="traceDotDone" class="trace-dot-done" cx="238" cy="57" r="11" style="display:none"/>
+    <circle id="traceTip" cx="232" cy="102" r="8" fill="#fff2cc" opacity=".85"/>
+  </svg></div>
+  <div class="trace-status" id="traceStatus" aria-live="polite">Begin at the glowing point and trace the curved stroke.</div>
+  <div class="trace-actions"><button id="traceReset">↺ Try again</button><button class="primary" id="traceDone" disabled>Complete</button></div>
+</aside>
+<div class="fallback" id="fallback">The 3D preview could not load. Please open this file in Chrome or Edge while connected to the internet.</div>
+<script type="module">
+import * as THREE from 'three';import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const host=document.querySelector('#scene');const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.35;host.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color('#010611');scene.fog=new THREE.FogExp2('#010611',.0015);const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,1800);camera.position.set(0,96,177);const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,-13,0);controls.enableDamping=true;controls.dampingFactor=.055;controls.minDistance=85;controls.maxDistance=290;controls.minPolarAngle=0.90;controls.maxPolarAngle=1.36;controls.minAzimuthAngle=-Math.PI*.36;controls.maxAzimuthAngle=Math.PI*.36;
+scene.add(new THREE.AmbientLight(0xe7f0ff,.95));const key=new THREE.PointLight('#ffd28d',1600,250);key.position.set(0,8,0);scene.add(key);const green=new THREE.DirectionalLight('#4ac0a0',.75);green.position.set(-100,90,75);scene.add(green);const blue=new THREE.DirectionalLight('#5c8fff',.55);blue.position.set(110,50,-100);scene.add(blue);
+function starfield(n,spread,size,opacity){let pos=new Float32Array(n*3);for(let i=0;i<n;i++){const r=spread*(.43+Math.random()*.57),a=Math.random()*Math.PI*2,v=Math.acos(Math.random()*2-1);pos[i*3]=Math.sin(v)*Math.cos(a)*r;pos[i*3+1]=Math.cos(v)*r;pos[i*3+2]=Math.sin(v)*Math.sin(a)*r;}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));const m=new THREE.PointsMaterial({color:0xc9d4eb,size,transparent:true,opacity,sizeAttenuation:true,depthWrite:false});const p=new THREE.Points(g,m);scene.add(p);return p;}starfield(5200,850,1,.86);const foreground=starfield(1400,340,.72,.42);
+function glowTexture(){const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');const gr=ctx.createRadialGradient(64,64,1,64,64,64);gr.addColorStop(0,'rgba(255,252,222,1)');gr.addColorStop(.12,'rgba(255,215,135,.85)');gr.addColorStop(.4,'rgba(255,147,56,.19)');gr.addColorStop(1,'rgba(255,147,56,0)');ctx.fillStyle=gr;ctx.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)}const glow=glowTexture();
+const sun=new THREE.Mesh(new THREE.SphereGeometry(8.5,48,32),new THREE.MeshBasicMaterial({color:'#ffe6a8'}));scene.add(sun);const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:glow,color:0xffba70,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));halo.scale.set(64,64,1);scene.add(halo);
+const orbitRings=[];function orbitRing(r,bright=.24){const pts=[];for(let i=0;i<=260;i++){let a=i*Math.PI*2/260;pts.push(new THREE.Vector3(Math.cos(a)*r,0,Math.sin(a)*r));}const material=new THREE.LineBasicMaterial({color:0xc89e61,transparent:true,opacity:bright,depthWrite:false});const l=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),material);scene.add(l);orbitRings.push(material)}
+const planetsInfo=[{name:'Mercury',r:15,s:1.4,c:'#bcb3a6',v:.38},{name:'Venus',r:24,s:2.65,c:'#d5ad79',v:.29},{name:'Earth',r:35,s:3.35,c:'#247fc7',v:.22},{name:'Mars',r:47,s:2.3,c:'#cb694e',v:.16},{name:'Jupiter',r:63,s:6.25,c:'#d5ab83',v:.105},{name:'Saturn',r:83,s:5.55,c:'#e4c691',v:.073}];
+function stripedTexture(name){const c=document.createElement('canvas');c.width=256;c.height=512;const x=c.getContext('2d');if(name==='Earth'){x.fillStyle='#14538a';x.fillRect(0,0,256,512);for(let i=0;i<48;i++){x.fillStyle=i%4===0?'#d8ca96':'#4f9a71';x.beginPath();x.ellipse(Math.random()*256,Math.random()*512,8+Math.random()*32,6+Math.random()*19,Math.random()*3,0,Math.PI*2);x.fill();}for(let i=0;i<55;i++){x.fillStyle='rgba(255,255,255,.27)';x.fillRect(Math.random()*256,Math.random()*512,20+Math.random()*50,2+Math.random()*5)}}else{let palette=['#e5ceb1','#aa7a5c','#dbc0a4','#bc8764','#ead6b8','#d3a17b'];for(let y=0;y<512;y++){x.fillStyle=palette[Math.floor(y/25+Math.sin(y/27)*.8+12)%palette.length];x.fillRect(0,y,256,1)}}return new THREE.CanvasTexture(c)}const earthTexture=stripedTexture('Earth'),jupiterTexture=stripedTexture('Jupiter');let planetMeshes=[];planetsInfo.forEach((p,i)=>{orbitRing(p.r*.84,.18);const grp=new THREE.Group();grp.scale.setScalar(.76);scene.add(grp);let material=new THREE.MeshStandardMaterial({color:p.c,roughness:.86});if(p.name==='Earth'||p.name==='Jupiter'){material.map=p.name==='Earth'?earthTexture:jupiterTexture;material.color.set('white')}const sphere=new THREE.Mesh(new THREE.SphereGeometry(p.s,40,28),material);grp.add(sphere);if(p.name==='Saturn'){const cv=document.createElement('canvas');cv.width=cv.height=512;const cx=cv.getContext('2d');const mid=256;for(let j=0;j<180;j++){const rad=152+j*.5,band=Math.sin(j*.37)*.11+Math.sin(j*.11)*.16;cx.beginPath();cx.strokeStyle=`rgba(${210+Math.floor(30*band)},${180+Math.floor(35*band)},${131+Math.floor(35*band)},${.17+.48*Math.max(0,Math.sin(j*.64)**2)})`;cx.lineWidth=.85;cx.arc(mid,mid,rad,0,Math.PI*2);cx.stroke()}const rt=new THREE.CanvasTexture(cv);rt.colorSpace=THREE.SRGBColorSpace;const ring=new THREE.Mesh(new THREE.RingGeometry(7.2,13.2,160),new THREE.MeshBasicMaterial({map:rt,color:'#f5dab0',side:THREE.DoubleSide,transparent:true,opacity:.88,depthWrite:false}));ring.rotation.x=1.12;ring.rotation.y=.28;grp.add(ring)}let moon=null;if(p.name==='Earth'){moon=new THREE.Mesh(new THREE.SphereGeometry(.75,16,12),new THREE.MeshStandardMaterial({color:'#d0c5af'}));grp.add(moon)}planetMeshes.push({p,grp,sphere,moon,offset:i*.84+1})});
+const beltPositions=new Float32Array(1400*3);for(let i=0;i<1400;i++){let a=Math.random()*Math.PI*2,r=45+Math.random()*4;beltPositions[i*3]=Math.cos(a)*r;beltPositions[i*3+1]=(Math.random()-.5)*1.8;beltPositions[i*3+2]=Math.sin(a)*r}const beltGeom=new THREE.BufferGeometry();beltGeom.setAttribute('position',new THREE.BufferAttribute(beltPositions,3));scene.add(new THREE.Points(beltGeom,new THREE.PointsMaterial({color:0xa99a86,size:.48,opacity:.43,transparent:true})));
+// Seven letters are actual 3D planes in the scene; there are no detached DOM glyphs or Ayah header.
+const letters=['ك','ل','ف','ي','ف','ل','ك'];function glyphTexture(letter){const c=document.createElement('canvas');c.width=c.height=256;const ctx=c.getContext('2d');ctx.clearRect(0,0,256,256);ctx.textAlign='center';ctx.textBaseline='middle';ctx.font="bold 182px Amiri, serif";ctx.lineJoin='round';ctx.shadowColor='#e2a247';ctx.shadowBlur=24;ctx.lineWidth=9;ctx.strokeStyle='#503017';ctx.strokeText(letter,128,133);ctx.shadowBlur=17;ctx.lineWidth=3;ctx.strokeStyle='#b7843e';ctx.strokeText(letter,127,132);let ink=ctx.createLinearGradient(60,38,180,226);ink.addColorStop(0,'#fff5d9');ink.addColorStop(.36,'#f7d28a');ink.addColorStop(.7,'#bd7a2c');ink.addColorStop(1,'#f6da99');ctx.fillStyle=ink;ctx.fillText(letter,128,133);ctx.shadowBlur=6;ctx.fillStyle='#fff5ddaa';ctx.fillText(letter,127,130);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;}await document.fonts.load('700 70px Amiri');const letterGroup=new THREE.Group();scene.add(letterGroup);let letters3d=letters.map((l,i)=>{const mat=new THREE.MeshBasicMaterial({map:glyphTexture(l),transparent:true,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending});let mesh=new THREE.Mesh(new THREE.PlaneGeometry(20,20),mat);mesh.userData.index=i;mesh.userData.isLetter=true;letterGroup.add(mesh);const aura=new THREE.Sprite(new THREE.SpriteMaterial({map:glow,color:0xffc16e,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false,opacity:.30}));aura.scale.set(29,29,1);mesh.add(aura);mesh.userData.aura=aura;return mesh});
+const letterOrbitR=75;orbitRing(letterOrbitR,.76);
+// Paired luminosity replaces the previous cross-scene connection beam.
+// Mirrored glyphs receive matching light pulses without obscuring the planets.
+// The central Yāʼ gets its own halo, and the orbital path reacts to its selection.
+const centerHalo=new THREE.Sprite(new THREE.SpriteMaterial({map:glow,color:0xfff2c4,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false,depthTest:false}));
+centerHalo.scale.set(48,48,1);scene.add(centerHalo);
+
+// Layered living-energy traces — coherent geometry, not flat UI ornaments.
+const energyLines=[];
+for(const [r,op] of [[letterOrbitR-.75,.22],[letterOrbitR+.95,.16]]){
+ const pts=[];for(let j=0;j<=320;j++){const a=j*Math.PI*2/320;pts.push(new THREE.Vector3(Math.cos(a)*r,0,Math.sin(a)*r))}
+ const mat=new THREE.LineBasicMaterial({color:'#f7c570',transparent:true,opacity:op,depthWrite:false});
+ const line=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),mat);scene.add(line);energyLines.push(mat);
+}
+const motes=[];for(let j=0;j<68;j++){
+ const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:glow,color:j%3===0?0xffebbb:0xe6ad5a,transparent:true,blending:THREE.AdditiveBlending,opacity:.20,depthWrite:false}));
+ sprite.scale.setScalar(j%7===0?2.8:1.25);scene.add(sprite);motes.push(sprite);
+}
+const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();let active=-1,phase=0,transition=0,clock=0,running=true,speed=1,chosenPlanet=-1;const stageCaption=document.getElementById('caption');let over=-1;
+function updateText(){document.getElementById('step').textContent=phase===0?'✧ MIRRORED LETTERS   01 / 02':'✧ THE LIVING ORBIT   02 / 02';stageCaption.textContent=phase===0?'Reach for a golden letter to reveal its mirror. Then awaken the orbit.':'The letters awaken — a continuous, luminous celestial dance.';document.getElementById('action').textContent='◎ Bring the letters into orbit →';document.getElementById('action').hidden=phase===1;document.getElementById('back').hidden=phase===0;document.getElementById('replay').hidden=phase===0;document.getElementById('back').disabled=phase===0;document.getElementById('panelTag').textContent=phase===0?'THE HIDDEN SYMMETRY':'THE LIVING ORBIT';document.getElementById('panelTitle').textContent=phase===0?'Seven letters. One celestial path.':'An orbit brought to life';document.getElementById('panelBody').textContent=phase===0?'ك ل ف ي ف ل ك — the undiacritized letter sequence reads the same in either direction.':'Watch the seven letters revolve around the Sun, while the celestial bodies move behind them.'}function setPhase(p){phase=p;active=-1;traceOpen.classList.remove('visible');traceClosePanel();updateText()}document.getElementById('action').onclick=()=>setPhase(1);document.getElementById('back').onclick=()=>setPhase(0);document.getElementById('replay').onclick=()=>{setPhase(0);clock=0};document.getElementById('pause').onclick=e=>{running=!running;e.currentTarget.textContent=running?'Ⅱ Pause motion':'▶ Resume motion'};document.getElementById('speed').onclick=e=>{speed=speed===1?2:speed===2?.5:1;e.currentTarget.textContent=speed+'× Speed'};document.getElementById('reset').onclick=()=>{camera.position.set(0,96,177);controls.target.set(0,-13,0);controls.update()};updateText();
+// Competition tracing preview: four unique letter identities share one reusable stroke player.
+// Paths must be checked against Android Harf Writer before educational release.
+const tracing = {
+ 'ف': {title:'Fāʼ',path:'M232 102 C245 62 280 80 269 127 C259 174 179 202 113 199 C81 197 57 184 59 151', dots:[[238,57]],help:'Trace the curved body, then place the dot above.'},
+ 'ك': {title:'Kāf',path:'M257 83 L109 147 C99 157 102 184 131 188 L269 188',dots:[],help:'Follow the main angular form. The internal mark is decorative in this prototype.'},
+ 'ل': {title:'Lām',path:'M232 49 L232 147 Q229 205 156 202 Q113 201 92 169',dots:[],help:'Trace downward, then follow the sweeping curve.'},
+ 'ي': {title:'Yāʼ',path:'M260 112 Q242 190 156 198 Q98 199 69 151',dots:[[143,229],[177,230]],help:'Follow the curve, then add the two dots below.'}
+};
+const tracePanel=document.getElementById('tracePanel'),traceOpen=document.getElementById('traceOpen');
+const tracePath=document.getElementById('traceFill'),traceGuide=document.getElementById('traceGuide'),traceTip=document.getElementById('traceTip'),traceBoard=document.getElementById('traceBoard');
+const traceStatus=document.getElementById('traceStatus'),traceDot=document.getElementById('traceDotDone'),traceDone=document.getElementById('traceDone');
+const dotGuide=document.getElementById('traceDotGuide'),svgBoard=traceBoard.querySelector('svg');
+let traceLetter='ف',traceLength=0,traceProgress=0,traceDragging=false,traceDotAdded=false,traceDotsComplete=[];
+function configureTrace(letter){
+ traceLetter=tracing[letter]?letter:'ف';const cfg=tracing[traceLetter];
+ document.getElementById('traceTitle').textContent=`Trace ${cfg.title} · ${traceLetter}`;
+ document.getElementById('traceIdentity').textContent=traceLetter;
+ traceGuide.setAttribute('d',cfg.path);tracePath.setAttribute('d',cfg.path);
+ traceLength=traceGuide.getTotalLength();
+ svgBoard.querySelectorAll('.extra-dot').forEach(e=>e.remove());
+ dotGuide.style.display='none';traceDot.style.display='none';
+ cfg.dots.forEach(([cx,cy],i)=>{
+ const a=document.createElementNS('http://www.w3.org/2000/svg','circle');
+ a.setAttribute('cx',cx);a.setAttribute('cy',cy);a.setAttribute('r','11');a.setAttribute('class','trace-dot-guide extra-dot');a.dataset.dot=i;svgBoard.appendChild(a);
+ const b=document.createElementNS('http://www.w3.org/2000/svg','circle');
+ b.setAttribute('cx',cx);b.setAttribute('cy',cy);b.setAttribute('r','9');b.setAttribute('class','trace-dot-done extra-dot');b.setAttribute('style','display:none');b.dataset.completeDot=i;svgBoard.appendChild(b);
+ });
+ traceReset();
+}
+function traceReset(){
+ traceProgress=0;traceDotAdded=false;traceDragging=false;traceDotsComplete=[];
+ tracePath.style.strokeDasharray=`0 ${traceLength}`;
+ svgBoard.querySelectorAll('[data-complete-dot]').forEach(e=>e.style.display='none');
+ traceDone.disabled=true;
+ traceStatus.textContent=tracing[traceLetter].help;
+ const pt=traceGuide.getPointAtLength(0);traceTip.setAttribute('cx',pt.x);traceTip.setAttribute('cy',pt.y);
+}
+function traceOpenPanel(){configureTrace(traceLetter);tracePanel.classList.add('visible');tracePanel.setAttribute('aria-hidden','false');controls.enabled=false}
+function traceClosePanel(){tracePanel.classList.remove('visible');tracePanel.setAttribute('aria-hidden','true');controls.enabled=true}
+traceOpen.onclick=traceOpenPanel;document.getElementById('traceClose').onclick=traceClosePanel;document.getElementById('traceReset').onclick=traceReset;
+traceDone.onclick=()=>{traceStatus.textContent=`Well done exploring ${traceLetter}. Return to the orbit.`;setTimeout(traceClosePanel,650)};
+function localPoint(e){const rect=traceBoard.getBoundingClientRect();return{x:(e.clientX-rect.left)/rect.width*320,y:(e.clientY-rect.top)/rect.height*270}}
+function traceMove(e){const q=localPoint(e);const cfg=tracing[traceLetter];
+ if(traceProgress>=traceLength*.98){
+   let changed=false;
+   cfg.dots.forEach(([x,y],i)=>{if(!traceDotsComplete.includes(i)&&Math.hypot(q.x-x,q.y-y)<24){traceDotsComplete.push(i);const dot=svgBoard.querySelector(`[data-complete-dot="${i}"]`);if(dot)dot.style.display='block';changed=true}});
+   const done=traceDotsComplete.length===cfg.dots.length;
+   traceDone.disabled=!done;
+   traceStatus.textContent=done?'Letter exploration complete.':'Stroke complete. Tap each remaining dot.';
+   return;
+ }
+ let best=traceProgress,dist=Infinity;const limit=Math.min(traceLength,traceProgress+21);
+ for(let l=Math.max(0,traceProgress-9);l<=limit;l+=2){const p=traceGuide.getPointAtLength(l),d=Math.hypot(q.x-p.x,q.y-p.y);if(d<dist){dist=d;best=l}}
+ if(dist<26&&best>=traceProgress-6){
+   traceProgress=Math.max(traceProgress,best);
+   tracePath.style.strokeDasharray=`${traceProgress} ${traceLength}`;
+   const point=traceGuide.getPointAtLength(traceProgress);
+   traceTip.setAttribute('cx',point.x);traceTip.setAttribute('cy',point.y);
+   if(traceProgress>=traceLength*.98){traceDone.disabled=cfg.dots.length>0;traceStatus.textContent=cfg.dots.length?'Stroke complete. Tap the dots.':'Letter exploration complete.';}
+   else traceStatus.textContent=`Guided trace · ${Math.round(traceProgress/traceLength*100)}%`;
+ }
+}
+traceBoard.addEventListener('pointerdown',e=>{traceDragging=true;traceBoard.setPointerCapture(e.pointerId);traceMove(e)});
+traceBoard.addEventListener('pointermove',e=>{if(traceDragging)traceMove(e)});
+traceBoard.addEventListener('pointerup',e=>{traceMove(e);traceDragging=false});traceBoard.addEventListener('pointercancel',()=>{traceDragging=false});
+configureTrace('ف');
+function pick(e){
+ pointer.set(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1);
+ ray.setFromCamera(pointer,camera);
+ // Raycasts can hit glow sprites attached to letter meshes. Resolve their parent
+ // instead of reading an undefined index from the glow sprite itself.
+ const hits=ray.intersectObjects(letters3d,true);
+ for(const hit of hits){
+  let object=hit.object;
+  while(object && !Number.isInteger(object.userData.index)) object=object.parent;
+  if(object && Number.isInteger(object.userData.index) && object.userData.index>=0 && object.userData.index<letters.length)
+   return object.userData.index;
+ }
+ return -1;
+}// Screen-space proximity gives hand mode forgiving targeting without changing camera controls.
+function screenPoint(index){const v=letters3d[index].position.clone().project(camera);return {x:(v.x+1)*innerWidth/2,y:(1-v.y)*innerHeight/2,front:v.z<1&&v.z>-1}}
+function nearbyLetter(x,y){if(phase!==0||tracePanel.classList.contains('visible'))return -1;let best=-1,dist=85;for(let i=0;i<letters3d.length;i++){const q=screenPoint(i);const d=Math.hypot(q.x-x,q.y-y);if(q.front&&d<dist){dist=d;best=i}}return best}
+function contextualTrace(i){const button=document.getElementById('traceOpen');const enabled=i>=0&&phase===0&&!!tracing[letters[i]];button.classList.toggle('visible',enabled);button.classList.toggle('contextual',enabled);if(enabled){traceLetter=letters[i];button.textContent='✎ Trace '+traceLetter+' →';const pos=screenPoint(i);button.style.left=Math.max(110,Math.min(innerWidth-110,pos.x))+'px';button.style.top=Math.max(130,Math.min(innerHeight-130,pos.y-33))+'px'}}
+function selectLetter(i){if(!Number.isInteger(i)||i<0||i>=letters.length||phase!==0)return;active=i;stageCaption.textContent=i===3?'ي is the center of the mirrored sequence.':`Mirrored pair: ${letters[i]} ↔ ${letters[6-i]}`;contextualTrace(i)}
+renderer.domElement.addEventListener('pointermove',e=>{over=simulatedHand?nearbyLetter(e.clientX,e.clientY):pick(e);renderer.domElement.style.cursor=over>=0?'pointer':'grab'});
+renderer.domElement.addEventListener('click',e=>{selectLetter(simulatedHand?nearbyLetter(e.clientX,e.clientY):pick(e))});
+
+const handToggle=document.getElementById('handMode');
+const handCursor=document.getElementById('handCursor');
+const handToast=document.getElementById('handToast');
+let simulatedHand=false;
+handToggle.addEventListener('click',()=>{
+ simulatedHand=!simulatedHand;
+ handToggle.setAttribute('aria-pressed',String(simulatedHand));
+ handToggle.textContent=simulatedHand?'◉ Hand Mode On':'◉ Hand Mode';
+ handCursor.classList.toggle('visible',simulatedHand);
+ handToast.classList.toggle('visible',simulatedHand);
+ if(simulatedHand)setTimeout(()=>handToast.classList.remove('visible'),3800);
+ if(!simulatedHand)handCursor.classList.remove('near','pinching');
+});
+document.addEventListener('pointermove',e=>{
+ if(!simulatedHand)return;
+ const inScene=e.target===renderer.domElement;
+ const near=inScene?nearbyLetter(e.clientX,e.clientY):-1;
+ over=inScene?near:-1;
+ const target=near>=0?screenPoint(near):null;
+ // Visually magnetize the fingertip while preserving actual selection coordinates.
+ handCursor.style.left=(target?e.clientX+(target.x-e.clientX)*.38:e.clientX)+'px';
+ handCursor.style.top=(target?e.clientY+(target.y-e.clientY)*.38:e.clientY)+'px';
+ handCursor.classList.toggle('near',near>=0||(!inScene&&e.target instanceof Element&&!!e.target.closest('button')));
+});
+document.addEventListener('pointerdown',e=>{if(!simulatedHand)return;handCursor.classList.add('pinching');const burst=document.createElement('span');burst.className='pinch-burst';burst.style.left=e.clientX+'px';burst.style.top=e.clientY+'px';document.body.appendChild(burst);burst.addEventListener('animationend',()=>burst.remove(),{once:true});setTimeout(()=>burst.remove(),700)});
+document.addEventListener('pointerup',()=>handCursor.classList.remove('pinching'));
+window.addEventListener('blur',()=>handCursor.classList.remove('pinching'));
+
+function frame(now){requestAnimationFrame(frame);let dt=Math.min((now-(frame.last||now))/1000,.05);frame.last=now;if(running)clock+=dt*speed;transition+=(phase-transition)*Math.min(1,dt*1.65);planetMeshes.forEach(({p,grp,sphere,moon,offset})=>{let a=clock*p.v+offset;grp.position.set(p.r*.84*Math.cos(a),0,p.r*.84*Math.sin(a));sphere.rotation.y+=running?dt*.18*speed:0;if(moon)moon.position.set(Math.cos(clock*1.9)*6,0.7,Math.sin(clock*1.9)*6)});foreground.rotation.y=clock*.0018;
+letters3d.forEach((mesh,i)=>{let a=i*Math.PI*2/7-Math.PI/2+Math.max(0,transition-(i*.018))*clock*.20;const r=letterOrbitR;const stationaryY=2+Math.sin(i*1.35)*5;const movingY=Math.sin(a*2)*1.1;mesh.position.set(r*Math.cos(a),THREE.MathUtils.lerp(stationaryY,movingY,transition),r*Math.sin(a));mesh.quaternion.copy(camera.quaternion);const hoverPair=phase===0&&over>=0&&(i===over||i===6-over);const matching=phase===0&&(i===active||i===6-active)&&active>=0;const isCenter=active===3&&i===3;const hover=i===over||hoverPair;const energy=isCenter?1:matching?1:hover?.88:.26;mesh.userData.aura.material.opacity=energy;mesh.userData.aura.scale.setScalar(isCenter?40:29);mesh.scale.setScalar((isCenter?1.30:matching?1.17:hover?1.09:1)*(1+.012*Math.sin(clock*1.3+i)));});
+const luminousPair=phase===0&&(over>=0?over:active);
+const pairActive=luminousPair>=0&&luminousPair!==3;
+if(pairActive){
+  const pulse=.83+.17*Math.sin(now*.009);
+  for(const idx of [luminousPair,6-luminousPair]){
+    const glyph=letters3d[idx];
+    glyph.userData.aura.material.opacity=Math.max(glyph.userData.aura.material.opacity,pulse);
+    glyph.userData.aura.scale.setScalar(31+4*pulse);
+  }
+}
+const centerSelected=(active===3||over===3)&&phase===0;centerHalo.position.copy(letters3d[3].position);centerHalo.material.opacity+=((centerSelected?.92:0)-centerHalo.material.opacity)*.13;centerHalo.scale.setScalar(centerSelected?48+3*Math.sin(clock*3):48);
+motes.forEach((m,j)=>{const a=(j/68)*Math.PI*2+clock*(.06+.18*transition);m.position.set(letterOrbitR*Math.cos(a),.4+Math.sin(a*3+clock)*.65,letterOrbitR*Math.sin(a));m.material.opacity=(.10+.32*transition)*(.45+.55*Math.sin(j*3.91+clock*2)**2)});
+energyLines.forEach((mat,j)=>{mat.opacity=.15+.2*transition+.035*Math.sin(clock*1.5+j)});
+orbitRings[orbitRings.length-1].opacity=(centerSelected?.94:.56+.36*transition);orbitRings[orbitRings.length-1].color.set(centerSelected?'#ffe6aa':'#c89e61');controls.update();if(traceOpen.classList.contains('visible')&&active>=0)contextualTrace(active);renderer.render(scene,camera)}requestAnimationFrame(frame);addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+</script><script>setTimeout(()=>{if(!document.querySelector('#scene canvas'))document.getElementById('fallback').style.display='block'},12000)</script></body></html>
