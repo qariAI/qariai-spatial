@@ -40,7 +40,7 @@ function arabicTexture(letter:string):THREE.CanvasTexture {
 }
 function useLoadedArabicFont(){const [ready,setReady]=useState(false);useEffect(()=>{let mounted=true;const done=()=>{if(mounted)setReady(true)};document.fonts.load('700 100px Amiri').then(done).catch(done);return()=>{mounted=false}},[]);return ready}
 function Stars({count,radius,opacity,size,seed}:{count:number;radius:number;opacity:number;size:number;seed:number}){
- const geometry=useMemo(()=>{let x=seed>>>0;const rand=()=>{x=(1664525*x+1013904223)>>>0;return x/4294967296};const arr=new Float32Array(count*3);for(let i=0;i<count;i++){const theta=rand()*Math.PI*2,u=rand()*2-1,r=radius*(.48+rand()*.52),h=Math.sqrt(1-u*u);arr[i*3]=r*h*Math.cos(theta);arr[i*3+1]=r*u*.7;arr[i*3+2]=r*h*Math.sin(theta)}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(arr,3));return g},[count,radius,seed]);useEffect(()=>()=>geometry.dispose(),[geometry]);return <points geometry={geometry}><pointsMaterial size={size} color="#c8d9eb" opacity={opacity} transparent depthWrite={false} sizeAttenuation /></points>
+ const geometry=useMemo(()=>{let x=seed>>>0;const rand=()=>{x=(1664525*x+1013904223)>>>0;return x/4294967296};const arr=new Float32Array(count*3);for(let i=0;i<count;i++){const theta=rand()*Math.PI*2,u=rand()*2-1,r=radius*(.48+rand()*.52),h=Math.sqrt(1-u*u);arr[i*3]=r*h*Math.cos(theta);arr[i*3+1]=r*u*.7;arr[i*3+2]=r*h*Math.sin(theta)}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(arr,3));return g},[count,radius,seed]);useEffect(()=>()=>geometry.dispose(),[geometry]);const {gl}=useThree();useFrame(()=>{geometry.setDrawRange(0,gl.xr.isPresenting?Math.min(count,Math.ceil(count*.42)):count)});return <points geometry={geometry}><pointsMaterial size={size} color="#c8d9eb" opacity={opacity} transparent depthWrite={false} sizeAttenuation /></points>
 }
 function OrbitLine({radius,opacity=.22,color='#d6ad67'}:{radius:number;opacity?:number;color?:string}){
  const geometry=useMemo(()=>{const pts=Array.from({length:257},(_,i)=>{const a=i/256*Math.PI*2;return new THREE.Vector3(Math.cos(a)*radius,Y,Math.sin(a)*radius*.74)});return new THREE.BufferGeometry().setFromPoints(pts)},[radius]);useEffect(()=>()=>geometry.dispose(),[geometry]);return <lineLoop geometry={geometry}><lineBasicMaterial color={color} transparent opacity={opacity} /></lineLoop>
@@ -56,7 +56,7 @@ function Planet({planet,paused,speed}:{planet:PlanetSpec;paused:boolean;speed:nu
  const material=planet.name==='Earth'?<meshStandardMaterial map={earth} roughness={.9}/>:planet.name==='Jupiter'?<meshStandardMaterial map={jupiter} roughness={.88}/>:<meshStandardMaterial color={planet.hue} roughness={.87}/>;
  return <group ref={ref}><mesh><sphereGeometry args={[planet.radius,32,24]}/>{material}</mesh>{planet.name==='Earth'&&<mesh ref={moon}><sphereGeometry args={[.4,12,12]}/><meshStandardMaterial color="#c4c3bb"/></mesh>}{planet.name==='Saturn'&&<group rotation={[.72,.22,.15]}><mesh><ringGeometry args={[planet.radius*1.25,planet.radius*1.94,96]}/><meshStandardMaterial color="#bda681" side={THREE.DoubleSide} transparent opacity={.65} roughness={1} depthWrite={false}/></mesh><mesh><ringGeometry args={[planet.radius*1.55,planet.radius*1.78,96]}/><meshBasicMaterial color="#ead29f" side={THREE.DoubleSide} transparent opacity={.55} depthWrite={false}/></mesh></group>}</group>
 }
-function Belt(){const geometry=useMemo(()=>{const points=new Float32Array(1800*3);let seed=55;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};for(let i=0;i<1800;i++){const a=rand()*Math.PI*2,r=41+rand()*5;points[i*3]=r*Math.cos(a);points[i*3+1]=Y+(rand()-.5);points[i*3+2]=r*.74*Math.sin(a)}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(points,3));return g},[]);useEffect(()=>()=>geometry.dispose(),[geometry]);return <points geometry={geometry}><pointsMaterial color="#bb9b79" size={.3} transparent opacity={.55}/></points>}
+function Belt(){const geometry=useMemo(()=>{const points=new Float32Array(1800*3);let seed=55;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};for(let i=0;i<1800;i++){const a=rand()*Math.PI*2,r=41+rand()*5;points[i*3]=r*Math.cos(a);points[i*3+1]=Y+(rand()-.5);points[i*3+2]=r*.74*Math.sin(a)}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(points,3));return g},[]);useEffect(()=>()=>geometry.dispose(),[geometry]);const {gl}=useThree();useFrame(()=>{geometry.setDrawRange(0,gl.xr.isPresenting?900:1800)});return <points geometry={geometry}><pointsMaterial color="#bb9b79" size={.3} transparent opacity={.55}/></points>}
 function LetterObject({letter,index,phase,selected,handTarget,onSelect}:{letter:string;index:number;phase:Phase;selected:Selection;handTarget:number|null;onSelect:(index:number)=>void}){
  const group=useRef<THREE.Group>(null);const angle=useRef(-Math.PI/2+index*Math.PI*2/7);const texture=useMemo(()=>arabicTexture(letter),[letter]);useEffect(()=>()=>texture.dispose(),[texture]);
  const active=selected===index||selected===6-index||handTarget===index||handTarget===6-index;
@@ -88,6 +88,8 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
  const lastHover=useRef<number|null>(null);
  const lastReport=useRef('');
  const cooldown=useRef([0,0]);
+ const lastActionAt=useRef(0);
+ const lastActionLabel=useRef('');
  useEffect(()=>{
   gl.xr.enabled=true;
   const factory=new XRHandModelFactory();
@@ -118,32 +120,41 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
    if(marker){marker.visible=true;marker.position.copy(finger);marker.quaternion.copy(state.camera.quaternion);marker.scale.setScalar(isPinching?1.55:1)}
    const aim=new THREE.Vector3(0,0,-1);
    if(wrist){wrist.getWorldPosition(wristPos);aim.copy(finger).sub(wristPos).normalize()}
+   const ray=new THREE.Raycaster(finger,aim,0,3);
    let targetIndex:number|null=null,targetAction=false,targetScore=Infinity;
-   const test=(obj:THREE.Object3D,index:number|null,radius:number)=>{
-    const p=new THREE.Vector3();obj.getWorldPosition(p);
-    const direct=p.distanceTo(finger);
-    const to=p.clone().sub(finger),along=to.dot(aim);
-    const lateral=along>0&&along<3?to.addScaledVector(aim,-along).length():Infinity;
-    const accepted=direct<radius?direct: lateral<radius*.75?lateral+.12:Infinity;
-    if(accepted<targetScore){targetScore=accepted;targetIndex=index;targetAction=index===null}
-   };
-   for(let i=0;i<7;i++){const obj=scene.getObjectByName('qari-letter-'+i);if(obj)test(obj,i,.20)}
+   // Use actual world positions and world scale, never estimated orbit coordinates.
+   for(let i=0;i<7;i++){
+    const obj=scene.getObjectByName('qari-letter-'+i);if(!obj)continue;
+    const pos=new THREE.Vector3();obj.getWorldPosition(pos);
+    const sphereRadius=.13;const direct=pos.distanceTo(finger);
+    const projected=pos.clone().sub(finger).dot(aim);
+    const lateral=projected>.04&&projected<3?ray.ray.distanceToPoint(pos):Infinity;
+    const score=direct<sphereRadius?direct:lateral<sphereRadius?lateral+.13:Infinity;
+    if(score<targetScore){targetScore=score;targetIndex=i;targetAction=false}
+   }
    const action=scene.getObjectByName('qari-action-primary');
-   if(action)test(action,null,.29);
+   // True plane intersection uses the button's full geometry, not its center.
+   if(action&&action.visible&&action.parent?.visible){
+    const hits=ray.intersectObject(action,false);
+    const direct=new THREE.Vector3();action.getWorldPosition(direct);
+    const near=direct.distanceTo(finger)<.18;
+    if(hits.length||near){const score=hits.length > 0 ? 0.09 : direct.distanceTo(finger);if(score<targetScore){targetScore=score;targetIndex=null;targetAction=true}}
+   }
    if(targetIndex!==null&&targetScore<best){best=targetScore;hovered=targetIndex}
    if(isPinching&&!pinched.current[side]&&now>cooldown.current[side]&&targetScore<Infinity){
-    if(targetAction)onAction();else if(targetIndex!==null)onPinch(targetIndex);
+    if(targetAction){onAction();lastActionAt.current=now;lastActionLabel.current='spatial action activated'}
+    else if(targetIndex!==null){onPinch(targetIndex);lastActionAt.current=now;lastActionLabel.current='selected '+LETTERS[targetIndex]}
     cooldown.current[side]=now+.35;
    }
    pinched.current[side]=isPinching;
   });
   if(hovered!==lastHover.current){lastHover.current=hovered;onHover(hovered)}
-  const report='Quest XR · tracked hands: '+visible+' · hover: '+(hovered===null?'none':LETTERS[hovered]);
+  const report='Quest XR · tracked hands: '+visible+' · hover: '+(hovered===null?'none':LETTERS[hovered])+(now-lastActionAt.current<2.5?' · last pinch: '+lastActionLabel.current:'');
   if(report!==lastReport.current){lastReport.current=report;onDiagnostics(report)}
  });
  return null;
 }
-function ImmersiveButton(){const {gl}=useThree();const [available,setAvailable]=useState(false);const [inSession,setInSession]=useState(false);useEffect(()=>{let on=true;const xr=(navigator as Navigator & {xr?:{isSessionSupported:(mode:string)=>Promise<boolean>;requestSession:(mode:string,options:object)=>Promise<any>}}).xr;if(!xr)return;xr.isSessionSupported('immersive-vr').then(v=>{if(on)setAvailable(v)}).catch(()=>{});const onStart=()=>setInSession(true),onEnd=()=>setInSession(false);gl.xr.addEventListener('sessionstart',onStart);gl.xr.addEventListener('sessionend',onEnd);return()=>{on=false;gl.xr.removeEventListener('sessionstart',onStart);gl.xr.removeEventListener('sessionend',onEnd)}},[gl]);useEffect(()=>{const btn=document.getElementById('enter-xr') as HTMLButtonElement|null;if(!btn)return;btn.hidden=!available;btn.textContent=inSession?'Exit VR':'Enter Quest VR';btn.onclick=async()=>{try{if(gl.xr.isPresenting){await gl.xr.getSession()?.end();return}const session=await (navigator as Navigator & {xr:{requestSession:(mode:string,options:object)=>Promise<any>}}).xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});await gl.xr.setSession(session)}catch(e){console.error('WebXR session failed',e);window.alert('Unable to enter VR. Use HTTPS in a supported Quest browser and enable hand tracking.')}};return()=>{btn.onclick=null}},[gl,available,inSession]);return null}
+function ImmersiveButton(){const {gl}=useThree();const [available,setAvailable]=useState(false);const [inSession,setInSession]=useState(false);useEffect(()=>{let on=true;const xr=(navigator as Navigator & {xr?:{isSessionSupported:(mode:string)=>Promise<boolean>;requestSession:(mode:string,options:object)=>Promise<any>}}).xr;if(!xr)return;xr.isSessionSupported('immersive-vr').then(v=>{if(on)setAvailable(v)}).catch(()=>{});const onStart=()=>setInSession(true),onEnd=()=>setInSession(false);gl.xr.addEventListener('sessionstart',onStart);gl.xr.addEventListener('sessionend',onEnd);return()=>{on=false;gl.xr.removeEventListener('sessionstart',onStart);gl.xr.removeEventListener('sessionend',onEnd)}},[gl]);useEffect(()=>{const btn=document.getElementById('enter-xr') as HTMLButtonElement|null;if(!btn)return;btn.hidden=!available;btn.textContent=inSession?'Exit VR':'Enter Quest VR';btn.onclick=async()=>{try{if(gl.xr.isPresenting){await gl.xr.getSession()?.end();return}const session=await (navigator as Navigator & {xr:{requestSession:(mode:string,options:object)=>Promise<any>}}).xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});gl.xr.setFramebufferScaleFactor(0.85);await gl.xr.setSession(session)}catch(e){console.error('WebXR session failed',e);window.alert('Unable to enter VR. Use HTTPS in a supported Quest browser and enable hand tracking.')}};return()=>{btn.onclick=null}},[gl,available,inSession]);return null}
 function WorldAnchor({children}:{children:React.ReactNode}){const {gl}=useThree();const group=useRef<THREE.Group>(null);useFrame(()=>{if(!group.current)return;if(gl.xr.isPresenting){group.current.position.set(0,1.45,-2.4);group.current.scale.setScalar(.014)}else{group.current.position.set(0,15,0);group.current.scale.setScalar(1)}});return <group ref={group}>{children}</group>}
 function SceneRig({phase,speed,paused,selected,onSelect,handTarget,onHover,onAdvance,onBack,onDiagnostics}:{phase:Phase;speed:number;paused:boolean;selected:Selection;onSelect:(i:number)=>void;handTarget:number|null;onHover:(i:number|null)=>void;onAdvance:()=>void;onBack:()=>void;onDiagnostics:(s:string)=>void}){return <><WorldAnchor><OrbitalScene phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/><SpatialActions phase={phase} onAdvance={onAdvance} onBack={onBack}/></WorldAnchor><HandTracking onHover={onHover} onPinch={onSelect} onAction={phase===0?onAdvance:onBack} onDiagnostics={onDiagnostics}/><ImmersiveButton/><OrbitControls enableDamping dampingFactor={.06} minDistance={105} maxDistance={255} maxPolarAngle={1.28} minPolarAngle={.85} enablePan={false}/></>}
 
