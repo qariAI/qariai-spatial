@@ -31,3 +31,27 @@
  .canvas{right:clamp(280px,23vw,360px)}
  .vignette{right:clamp(280px,23vw,360px)}
 }
+
+/* v1.0.5: enforce a side-mounted HUD at desktop widths, regardless of viewport height */
+@media screen and (min-width: 980px) {
+  .app > .stage-ui {
+    position:absolute;
+    left:auto !important;
+    right:clamp(24px,3.5vw,60px) !important;
+    top:50% !important;
+    bottom:auto !important;
+    transform:translateY(-35%) !important;
+    width:clamp(250px,21vw,330px) !important;
+    max-width:330px !important;
+    background:linear-gradient(145deg,rgba(6,19,31,.96),rgba(2,9,20,.94)) !important;
+    border:1px solid rgba(232,194,122,.30);
+    border-radius:22px;
+    padding:20px 18px;
+    text-align:left;
+    box-shadow:0 22px 60px rgba(0,0,0,.36);
+    backdrop-filter:blur(12px);
+  }
+  .app > .stage-ui .primary-actions{display:flex;flex-direction:column;align-items:stretch}
+  .app > .stage-ui .primary-actions button{width:100%;white-space:normal}
+  .app > .canvas,.app > .vignette {right:clamp(300px,24vw,390px)}
+}
