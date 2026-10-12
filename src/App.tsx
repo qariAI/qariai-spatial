@@ -118,21 +118,30 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
    if(marker){marker.visible=true;marker.position.copy(finger);marker.quaternion.copy(state.camera.quaternion);marker.scale.setScalar(isPinching?1.55:1)}
    const aim=new THREE.Vector3(0,0,-1);
    if(wrist){wrist.getWorldPosition(wristPos);aim.copy(finger).sub(wristPos).normalize()}
+   const ray=new THREE.Raycaster(finger,aim,0,3);
    let targetIndex:number|null=null,targetAction=false,targetScore=Infinity;
-   const test=(obj:THREE.Object3D,index:number|null,radius:number)=>{
-    const p=new THREE.Vector3();obj.getWorldPosition(p);
-    const direct=p.distanceTo(finger);
-    const to=p.clone().sub(finger),along=to.dot(aim);
-    const lateral=along>0&&along<3?to.addScaledVector(aim,-along).length():Infinity;
-    const accepted=direct<radius?direct: lateral<radius*.75?lateral+.12:Infinity;
-    if(accepted<targetScore){targetScore=accepted;targetIndex=index;targetAction=index===null}
-   };
-   for(let i=0;i<7;i++){const obj=scene.getObjectByName('qari-letter-'+i);if(obj)test(obj,i,.20)}
+   // Use actual world positions and world scale, never estimated orbit coordinates.
+   for(let i=0;i<7;i++){
+    const obj=scene.getObjectByName('qari-letter-'+i);if(!obj)continue;
+    const pos=new THREE.Vector3();obj.getWorldPosition(pos);
+    const sphereRadius=.13;const direct=pos.distanceTo(finger);
+    const projected=pos.clone().sub(finger).dot(aim);
+    const lateral=projected>.04&&projected<3?ray.ray.distanceToPoint(pos):Infinity;
+    const score=direct<sphereRadius?direct:lateral<sphereRadius?lateral+.13:Infinity;
+    if(score<targetScore){targetScore=score;targetIndex=i;targetAction=false}
+   }
    const action=scene.getObjectByName('qari-action-primary');
-   if(action)test(action,null,.29);
+   // True plane intersection uses the button's full geometry, not its center.
+   if(action&&action.visible&&action.parent?.visible){
+    const hits=ray.intersectObject(action,false);
+    const direct=new THREE.Vector3();action.getWorldPosition(direct);
+    const near=direct.distanceTo(finger)<.18;
+    if(hits.length||near){const score=hits.length?.09:direct.distanceTo(finger);if(score<targetScore){targetScore=score;targetIndex=null;targetAction=true}}
+   }
    if(targetIndex!==null&&targetScore<best){best=targetScore;hovered=targetIndex}
    if(isPinching&&!pinched.current[side]&&now>cooldown.current[side]&&targetScore<Infinity){
-    if(targetAction)onAction();else if(targetIndex!==null)onPinch(targetIndex);
+    if(targetAction){onAction();lastReport.current='';onDiagnostics('Quest XR · pinch: spatial action activated')}
+    else if(targetIndex!==null){onPinch(targetIndex);lastReport.current='';onDiagnostics('Quest XR · pinch: selected '+LETTERS[targetIndex])}
     cooldown.current[side]=now+.35;
    }
    pinched.current[side]=isPinching;
