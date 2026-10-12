@@ -72,10 +72,12 @@ function OrbitalScene(props:OrbitProps){return <><color attach="background" args
 /** Actual WebXR hand joints, not desktop emulation. For WebXR-compatible Quest browser only. */
 /* World-space hit targets are resolved from the same transformed objects rendered by R3F. */
 function SpatialActions({phase,onAdvance,onBack}:{phase:Phase;onAdvance:()=>void;onBack:()=>void}){
+ const {gl}=useThree();const root=useRef<THREE.Group>(null);
+ useFrame(()=>{if(root.current)root.current.visible=gl.xr.isPresenting});
  const label=phase===0?'BRING LETTERS INTO ORBIT':'EXPLORE LETTERS AGAIN';
  const texture=useMemo(()=>{const c=document.createElement('canvas');c.width=1024;c.height=256;const ctx=c.getContext('2d')!;ctx.fillStyle='#061724';ctx.fillRect(0,0,c.width,c.height);ctx.strokeStyle='#d9ae66';ctx.lineWidth=9;ctx.strokeRect(5,5,1014,246);ctx.fillStyle='#ffdf9b';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 53px sans-serif';ctx.fillText(label,512,128);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t},[label]);
  useEffect(()=>()=>texture.dispose(),[texture]);
- return <group position={[0,Y+35,-42]} name="qari-spatial-controls">
+ return <group ref={root} visible={false} position={[0,Y+35,-42]} name="qari-spatial-controls">
    <mesh name="qari-action-primary" onClick={phase===0?onAdvance:onBack}>
     <planeGeometry args={[52,13]}/><meshBasicMaterial map={texture} side={THREE.DoubleSide} transparent/>
    </mesh>
