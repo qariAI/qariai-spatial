@@ -1,0 +1,8 @@
+{
+  "method": "unchanged camera callbacks stepped at 50ms; intermediate GPU draws suppressed; final frame rendered normally",
+  "budgetMs": 90000,
+  "status": "unavailable",
+  "captures": [],
+  "reason": "Single 90-second matched-pair budget exceeded during baseline startup; process group terminated",
+  "elapsedMs": 91427
+}

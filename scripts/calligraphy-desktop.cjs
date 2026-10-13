@@ -2,7 +2,7 @@ process.env.PW_TEST_SCREENSHOT_NO_FONTS_READY = '1';
 // Requires Playwright and Chromium in the development/test environment.
 const { chromium } = require('playwright'), fs = require('fs'), assert = require('assert'), path = require('path');
 const project = path.resolve(__dirname, '..');
-const artifacts = path.join(project, 'docs/v1.4.8');
+const artifacts = process.env.QARI_CAPTURE_DIR || path.join(project, 'docs/v1.4.8/refinement', process.env.BASELINE ? 'before' : 'after');
 (async () => { let browser; const server = require('child_process').spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', '5258'], { cwd: project }); try {
     await new Promise(r => setTimeout(r, 2000));
     browser = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
@@ -21,6 +21,27 @@ const artifacts = path.join(project, 'docs/v1.4.8');
     await p.evaluate(async (url) => { const m = await import(url); window.__state = () => m._roots.get(document.querySelector('canvas')).store.getState(); window.__qari = () => { const s = window.__state(); const art = s.scene.getObjectByName('calligraphy-depth-art'); return { camera: s.camera.position.toArray(), info: JSON.parse(JSON.stringify(s.gl.info.render)), memory: s.gl.info.memory, detail: art?.children.filter(o => o.material?.userData.detail).map(o => o.material.userData.detail.value) }; }; }, fiber);
     await p.waitForFunction(() => window.__qari().detail?.length === 3, null, { timeout: 120000 });
     console.log('READY', await p.evaluate(() => window.__qari()));
+    const saveArtwork = async name => {
+        const capture=await p.evaluate(()=>{const s=window.__state();s.gl.render(s.scene,s.camera);return {png:s.gl.domElement.toDataURL('image/png'),camera:s.camera.position.toArray(),target:s.controls.target.toArray(),scales:Array.from({length:7},(_,i)=>s.scene.getObjectByName('qari-letter-'+i).scale.x),caption:document.querySelector('.stage-ui p').textContent};});
+        assert(capture.scales.every(v=>v<=1.02),'Capture contains selected letters');
+        assert(capture.caption.includes('Select a letter'),'Capture is not a neutral opening state');
+        fs.writeFileSync(path.join(artifacts,name+'-art.png'),Buffer.from(capture.png.split(',')[1],'base64'));
+        delete capture.png;fs.writeFileSync(path.join(artifacts,name+'-state.json'),JSON.stringify(capture,null,2));
+    };
+    const stepTransition = async () => {
+        if (!process.env.STEPPED_CAPTURE) return;
+        await p.evaluate(()=>{
+            const state=window.__state(), original=state.gl.render;
+            state.setFrameloop('never');
+            // Exercise the unchanged frame subscribers at 50ms intervals.
+            // Suppress intermediate GPU draws only; render the settled scene.
+            state.gl.render=()=>{};
+            try { for(let i=1;i<=180;i++) state.advance(i*.05,true); }
+            finally { state.gl.render=original; }
+            state.advance(9.05,true);
+        });
+    };
+
     if (process.env.LAYOUT_ONLY) {
         fs.mkdirSync(artifacts,{recursive:true});
         await p.evaluate(()=>window.__state().setFrameloop('never'));
@@ -34,12 +55,19 @@ const artifacts = path.join(project, 'docs/v1.4.8');
     }
     await p.getByRole('button', { name: /Pause motion/ }).click();
     await p.waitForFunction(() => Array.from({ length: 7 }, (_, i) => window.__state().scene.getObjectByName('qari-letter-' + i)).every(Boolean), null, { timeout: 60000 });
+    if (!process.env.CAPTURE_ONLY) {
     const screen = await p.evaluate(() => { const s = window.__state(), rect = document.querySelector('canvas').getBoundingClientRect(), v = s.camera.position.clone(); s.scene.getObjectByName('qari-letter-0').getWorldPosition(v); v.project(s.camera); return [rect.x + (v.x + 1) * rect.width / 2, rect.y + (1 - v.y) * rect.height / 2]; });
     await p.mouse.click(...screen);
+    await stepTransition();
     await p.waitForFunction(() => [0, 6].every(i => window.__state().scene.getObjectByName('qari-letter-' + i).scale.x > 1.15), null, { timeout: 60000 });
     console.log('PASS pointer selection and mirrored pair');
     await p.getByRole('button', {name: /Reset view/}).click();
+    await stepTransition();
+    await p.keyboard.press('ArrowLeft');
+    await stepTransition();
+    await p.waitForFunction(()=>Array.from({length:7},(_,i)=>window.__state().scene.getObjectByName('qari-letter-'+i)?.scale.x).every(v=>v<=1.02),null,{timeout:120000});
     await p.waitForFunction(() => window.__qari().detail?.length === 3, null, {timeout: 120000});
+    }
     fs.mkdirSync(artifacts, { recursive: true });
     if (process.env.MID_ONLY) {
         await p.mouse.move(420, 280);
@@ -49,7 +77,8 @@ const artifacts = path.join(project, 'docs/v1.4.8');
         await p.waitForFunction(() => Math.abs(window.__qari().camera[0]) > 1, null, { timeout: 60000 });
         console.log('PASS desktop orbit drag');
         await p.evaluate(() => { const s = window.__state(); s.controls.dispatchEvent({ type: 'start' }); s.controls.enableDamping = false; s.controls.update(); s.camera.position.set(0, 48, 103); s.controls.target.set(0, 3, 25); s.controls.update(); });
-        await p.waitForFunction(() => window.__qari().detail[1] > .2 && window.__qari().detail[1] < .8, null, { timeout: 60000 });
+        await stepTransition();
+    await p.waitForFunction(() => window.__qari().detail[1] > .2 && window.__qari().detail[1] < .8, null, { timeout: 60000 });
         await p.screenshot({ path: path.join(artifacts, 'mid.png'), timeout: 120000 });
         const mid = await p.evaluate(() => window.__qari());
         console.log('MID', mid);
@@ -58,28 +87,61 @@ const artifacts = path.join(project, 'docs/v1.4.8');
         return;
     }
     await p.screenshot({ path: path.join(artifacts, 'far.png'), timeout: 120000 });
+    await saveArtwork('far');
     await p.getByRole('button', { name: /Explore Calligraphy/ }).click();
-    await p.waitForFunction(() => Math.abs(window.__qari().camera[2] - 78) < 2, null, { timeout: 180000 });
+    await p.getByRole('button',{name:/Return to Orbit/}).waitFor();
+    await stepTransition();
+    await p.waitForFunction(() => Math.abs(window.__qari().camera[2] - 78) < .01, null, { timeout: 240000 }).catch(async error=>{console.log('CAMERA TIMEOUT',await p.evaluate(()=>window.__qari()));throw error});
     await p.waitForFunction(() => window.__qari().detail[1] > .85, null, { timeout: 120000 });
     await p.screenshot({ path: path.join(artifacts, 'close.png'), timeout: 120000 });
-    console.log('CLOSE', await p.evaluate(() => window.__qari()));
+    await saveArtwork('close');
+    const closeState=await p.evaluate(()=>window.__qari());
+    console.log('CLOSE', closeState);
+    fs.writeFileSync(path.join(artifacts,'capture-state.json'),JSON.stringify(closeState,null,2));
     const atlas = await p.evaluate(() => window.__state().scene.getObjectByName('calligraphy-depth-art').children[0].material.map.image.toDataURL());
     fs.writeFileSync(path.join(artifacts, 'atlas.png'), Buffer.from(atlas.split(',')[1], 'base64'));
-    if (process.env.PREVIEW)
-        return;
+    if (!process.env.BASELINE) {
+        const maskProof = await p.evaluate(async()=>{
+            const {paintHeroBevel}=await import('/src/calligraphy/heroBevel.ts');
+            const {EXCERPTS}=await import('/src/calligraphy/content.ts');
+            const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d'),cache=new Map();
+            ctx.font='700 100px Amiri';ctx.direction='rtl';ctx.textAlign='center';ctx.textBaseline='middle';
+            const proofs=[];
+            for(const excerpt of EXCERPTS){
+                paintHeroBevel(ctx,excerpt.text,cache);
+                const tile=cache.get(ctx.font+':'+excerpt.text),reference=document.createElement('canvas');
+                reference.width=tile.canvas.width;reference.height=tile.canvas.height;
+                const original=reference.getContext('2d');original.font=ctx.font;original.direction='rtl';original.textAlign='center';original.textBaseline='middle';original.fillStyle='#fff';original.fillText(excerpt.text,tile.left,tile.top);
+                const a=original.getImageData(0,0,reference.width,reference.height).data,b=tile.canvas.getContext('2d').getImageData(0,0,reference.width,reference.height).data;
+                let differences=0;for(let i=3;i<a.length;i+=4)if(a[i]!==b[i])differences++;
+                proofs.push({reference:excerpt.surah+':'+excerpt.ayah,alphaDifferences:differences});
+            }
+            return proofs;
+        });
+        assert(maskProof.every(p=>p.alphaDifferences===0),'Bevel recoloring changed sacred ink coverage');
+        fs.writeFileSync(path.join(artifacts,'mask-verification.json'),JSON.stringify(maskProof,null,2));
+        console.log('PASS all eight native glyph masks retain identical alpha coverage');
+    }
+    if (process.env.PREVIEW) { assert.deepStrictEqual(errors, []); return; }
     await p.getByRole('button', { name: /Return to Orbit/ }).click();
+    await p.getByRole('button',{name:/Explore Calligraphy/}).waitFor();
+    await stepTransition();
     await p.waitForFunction(() => Math.abs(window.__qari().camera[2] - 169) < 2, null, { timeout: 180000 });
+
     const normal = await p.evaluate(() => window.__qari());
     assert(normal.detail.every(v => v < .1));
     await p.evaluate(() => { const s = window.__state(); s.controls.dispatchEvent({ type: 'start' }); s.controls.enableDamping = false; s.controls.update(); s.camera.position.set(0, 48, 103); s.controls.target.set(0, 3, 25); s.controls.update(); });
+    await stepTransition();
     await p.waitForFunction(() => window.__qari().detail[1] > .2 && window.__qari().detail[1] < .8, null, { timeout: 60000 });
     await p.screenshot({ path: path.join(artifacts, 'mid.png'), timeout: 120000 });
     const mid = await p.evaluate(() => window.__qari());
     console.log('MID', mid);
     fs.writeFileSync(path.join(artifacts, 'medium-detail.json'), JSON.stringify(mid, null, 2));
     await p.getByRole('button', { name: /Reset view/ }).click();
+    await stepTransition();
     await p.waitForFunction(() => Math.abs(window.__qari().camera[2] - 169) < 2, null, { timeout: 120000 });
     await p.keyboard.press('4');
+    await stepTransition();
     await p.getByRole('button', { name: /Trace/ }).click();
     const svg = p.locator('.trace-panel svg');
     const box = await svg.boundingBox();
@@ -91,8 +153,10 @@ const artifacts = path.join(project, 'docs/v1.4.8');
     await p.keyboard.press('Escape');
     await p.locator('.trace-panel').waitFor({ state: 'detached' });
     await p.keyboard.press('ArrowRight');
+    await stepTransition();
     assert((await p.locator('.step').innerText()).includes('02'));
     await p.getByRole('button', { name: /Resume motion/ }).click();
+    await stepTransition();
     await p.getByRole('button', { name: '1× Speed' }).click();
     await p.getByRole('button', { name: '2× Speed' }).waitFor();
     await p.getByRole('button', { name: /Explore planets/ }).click();
@@ -101,7 +165,9 @@ const artifacts = path.join(project, 'docs/v1.4.8');
         await p.getByRole('button', { name: new RegExp(name + ' · Next planet') }).click();
     }
     await p.getByRole('button', { name: /Reset view/ }).click();
+    await stepTransition();
     await p.keyboard.press('ArrowLeft');
+    await stepTransition();
     await p.getByRole('button', { name: '◎ Hand Mode', exact: true }).click();
     assert.equal(await p.locator('.finger').count(), 1);
     assert.deepStrictEqual(errors, []);

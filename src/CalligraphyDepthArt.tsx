@@ -3,6 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
 import { EXCERPTS } from './calligraphy/content';
+import { paintHeroBevel, type EngravedGlyph } from './calligraphy/heroBevel';
 
 
 const WIDTH = 4096;
@@ -26,7 +27,7 @@ function strokeRule(ctx: CanvasRenderingContext2D, y: number, color: string, wid
 }
 
 function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingContext2D,
-  x: number, y: number, size: number, available: number, colors: string[], pixelAspect: number, phrase: string, angle = 0, maxHeight = 76) {
+  x: number, y: number, size: number, available: number, colors: string[], pixelAspect: number, phrase: string, angle = 0, maxHeight = 76, bevelCache?: Map<string, EngravedGlyph>) {
   // Compensate for unequal angular/radial UV scale. The canvas transform
   // restores the shaped glyph proportions on the actual architectural surface.
   face.font = `700 ${size}px Amiri`;
@@ -45,7 +46,7 @@ function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingConte
       // Cut a narrow shadow valley around a raised, continuous ink face.
       ctx.strokeStyle = '#353535'; ctx.lineWidth = 2;
       ctx.strokeText(phrase, 0, 0);
-      ctx.fillStyle = '#c4c4c4'; ctx.fillText(phrase, 0, 0);
+      ctx.fillStyle = bevelCache ? '#d0d0d0' : '#c4c4c4'; ctx.fillText(phrase, 0, 0);
     } else {
       ctx.fillStyle = '#030a12'; ctx.fillText(phrase, 1.2 / pixelAspect, 1.5);
       ctx.strokeStyle = '#07101b'; ctx.lineWidth = 1.8;
@@ -54,9 +55,13 @@ function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingConte
       gold.addColorStop(0, colors[0]); gold.addColorStop(.28, colors[1]);
       gold.addColorStop(.43, colors[0]); gold.addColorStop(.57, colors[1]);
       gold.addColorStop(1, colors[2]);
-      ctx.fillStyle = gold; ctx.fillText(phrase, 0, 0);
-      ctx.strokeStyle = colors[0]; ctx.lineWidth = .45;
-      ctx.strokeText(phrase, -.5 / pixelAspect, -.5);
+      ctx.fillStyle = gold;
+      if (bevelCache) paintHeroBevel(ctx, phrase, bevelCache);
+      else {
+        ctx.fillText(phrase, 0, 0);
+        ctx.strokeStyle = colors[0]; ctx.lineWidth = .45;
+        ctx.strokeText(phrase, -.5 / pixelAspect, -.5);
+      }
     }
     ctx.restore();
   }
@@ -66,6 +71,7 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
   const face = document.createElement('canvas'); face.width = WIDTH; face.height = HEIGHT;
   const relief = face.cloneNode() as HTMLCanvasElement;
   const c = face.getContext('2d')!, h = relief.getContext('2d')!;
+  const bevelCache = new Map<string, EngravedGlyph>();
   c.fillStyle = '#172b3e'; c.fillRect(0, 0, WIDTH, HEIGHT);
   h.fillStyle = '#999999'; h.fillRect(0, 0, WIDTH, HEIGHT);
   for (const ctx of [c, h]) { ctx.direction = 'rtl'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; }
@@ -104,19 +110,27 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
         const fitted = Math.min(nominal, nominal * maxHeight / Math.max(1, bounds.actualBoundingBoxAscent + bounds.actualBoundingBoxDescent));
         const width = Math.max(bounds.width, bounds.actualBoundingBoxLeft + bounds.actualBoundingBoxRight) * fitted / nominal * pixelAspect;
         if (cursor + width > WIDTH - 16) break;
-        drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight);
+        drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight, index === 1 ? bevelCache : undefined);
         const gap = (index === 0 ? 14 : 20) + (ordinal % 3) * 5;
         // Separate geometric filigree sits only in measured empty gutters.
         // Its paired arcs weave around a bronze spindle, never through ink.
         const edge = cursor + width + gap / 2;
         const center = band.top + offset;
         for (const ctx of [c, h]) {
-          ctx.save(); ctx.strokeStyle = ctx === c ? '#806743' : '#888888';
+          ctx.save(); ctx.strokeStyle = ctx === c ? (index === 1 ? '#b3925c' : '#806743') : '#888888';
           ctx.lineWidth = .8;
           for (const sign of [-1, 1]) {
             ctx.beginPath(); ctx.moveTo(edge, center - 14);
             ctx.bezierCurveTo(edge + sign * 3, center - 4, edge - sign * 3, center + 4, edge, center + 14);
             ctx.stroke();
+          }
+          if (index === 1) {
+            // Closed geometric finials are confined to the same empty gutter.
+            for (const sign of [-1, 1]) {
+              const y = center + sign * 21;
+              ctx.beginPath(); ctx.moveTo(edge, y - 3); ctx.lineTo(edge + 2, y);
+              ctx.lineTo(edge, y + 3); ctx.lineTo(edge - 2, y); ctx.closePath(); ctx.stroke();
+            }
           }
           ctx.restore();
         }
@@ -238,8 +252,8 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const details = useMemo(() => BANDS.map(() => ({ value: 0 })), []);
   const materials = useMemo(() => BANDS.map((band, index) => {
     const material = new THREE.MeshStandardMaterial({ map: maps.map, bumpMap: maps.bump,
-      bumpScale: .32, metalness: band.metalness, roughness: band.roughness,
-      emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: .12 });
+      bumpScale: index === 1 ? .54 : .32, metalness: band.metalness, roughness: index === 1 ? .31 : band.roughness,
+      emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: index === 1 ? .145 : .12 });
     material.userData.detail = details[index];
     material.onBeforeCompile = shader => {
       shader.uniforms.qariDetail = details[index];
@@ -256,10 +270,10 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
       `);
       shader.fragmentShader = shader.fragmentShader.replace('#include <emissivemap_fragment>', `
         #include <emissivemap_fragment>
-        totalEmissiveRadiance = mix(dust * dustColor * 0.42, totalEmissiveRadiance, qariDetail);
+        totalEmissiveRadiance = mix(dust * dustColor * 0.52, totalEmissiveRadiance, qariDetail);
       `);
     };
-    material.customProgramCacheKey = () => 'qari-manuscript-distance-v148';
+    material.customProgramCacheKey = () => 'qari-manuscript-distance-v148-hero-bevel';
     return material;
   }), [maps, details]);
   const eye = useMemo(() => new THREE.Vector3(), []);
@@ -291,7 +305,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
         const distance = nearest.length() / scale;
         const target = 1 - THREE.MathUtils.smoothstep(distance, 35, 115);
         details[index].value = THREE.MathUtils.damp(details[index].value, target, 6, Math.min(delta, .05));
-        materials[index].bumpScale = .32 * details[index].value;
+        materials[index].bumpScale = (index === 1 ? .54 : .32) * details[index].value;
       });
     }
     if (!paused) illuminationPhase.current += Math.min(delta, .05) * .65 * speed;

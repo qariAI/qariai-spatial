@@ -29,3 +29,7 @@ Production build, exact Arabic-content verification and whitespace checks pass. 
 Control/status/build-note separation, stage-panel separation and button bounds pass at 1920×1080, 1440×900, 1100×760, 980×600, 900×600, 821×600, 820×600 and 390×760. `responsive-layout.json` records those actual DOM measurements. A separate fresh 390px viewport verifies Pause/Resume clicks and visible controls. `controls-390.png` is a focused control crop from that fresh viewport, with the 3D frame loop stopped only in the test harness. The initial rapid-resize software-rendered screenshot omitted the toolbar despite valid bounds; it is not used as evidence. Run this supplemental check with `LAYOUT_ONLY=1 node scripts/calligraphy-desktop.cjs`.
 
 [Far](far.png) · [Medium](mid.png) · [Close](close.png) · [Before far](before-far.png) · [Before close](before-close.png) · [900px controls](controls-900.png) · [390px control crop](controls-390.png).
+
+## Resumed hero-band refinement
+
+See [the refinement validation and capture limitations](refinement/README.md). Earlier results above describe the initial v1.4.8 commit; the final hero refinement has new build/content/mask verification and no reliable new matched screenshot pair.
