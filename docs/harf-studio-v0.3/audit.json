@@ -1,0 +1,14 @@
+{
+  "fontSha256": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+  "fontVersion": "Version 1.002",
+  "glyph": "U+0628 uni0628",
+  "outlineExactUniformTransform": true,
+  "insideBodyCentrelineSamples": 505,
+  "outsideSamples": 0,
+  "dotCentreInsideSourceOutline": true,
+  "expertStrokeOrderReview": "pending",
+  "letterDefinitionUnchangedFrom": "ae8d2a39d6058b7c31e52037e2742eeb04e4e9e0",
+  "centrelineOrigin": "manually fitted, not font-derived",
+  "dotGeometryOrigin": "font-derived",
+  "nibAndTaperStatus": "provisional artistic parameters, not measured pen mechanics"
+}

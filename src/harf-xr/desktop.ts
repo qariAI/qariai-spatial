@@ -1,8 +1,11 @@
+import { inkPath, GOLD_STOPS } from './ink';
 import { BA, bodyPath } from './letters/definition';
 import { Tracing, GUIDE, DOT, type Point } from './tracing';
 const board = document.querySelector<SVGSVGElement>('#board')!, guide = document.querySelector<SVGPathElement>('#bodyGuide')!, ink = document.querySelector<SVGGElement>('#ink')!;
 const body = document.querySelector<SVGPathElement>('#bodyGlow')!, dot = document.querySelector<SVGPathElement>('#dotGuide')!, done = document.querySelector<SVGPathElement>('#dotDone')!;
 const start = document.querySelector<SVGCircleElement>('#start')!, label = document.querySelector<SVGTextElement>('#startLabel')!;
+const gradient=document.querySelector('#goldInk')!;
+gradient.replaceChildren(...GOLD_STOPS.map(([offset,color])=>{const stop=document.createElementNS('http://www.w3.org/2000/svg','stop');stop.setAttribute('offset',String(offset));stop.setAttribute('stop-color',color);return stop;}));
 body.setAttribute('d', BA.bodyOutline);
 document.querySelector('#clipBody')!.setAttribute('d', BA.bodyOutline);
 guide.setAttribute('d', bodyPath(BA));
@@ -22,12 +25,13 @@ finish.setAttribute('text-anchor', 'middle');
 board.append(finish);
 const trace = new Tracing();
 let pointer: number | null = null, visible = true, demo = false, animation = 0;
-function redraw(strokes = trace.strokes) { ink.replaceChildren(); for (const points of strokes) {
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-    line.setAttribute('class', 'trace');
-    line.setAttribute('points', points.map(p => `${p.x},${p.y}`).join(' '));
-    ink.append(line);
-} }
+function redraw(strokes = trace.strokes) {
+    ink.replaceChildren();
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', inkPath(strokes));
+    path.setAttribute('fill', 'url(#goldInk)');
+    ink.append(path);
+}
 function update() { const percent = Math.round(trace.progress * 100); document.querySelector('#counter')!.textContent = `${percent}% traced`; document.querySelector<HTMLElement>('#bar')!.style.width = `${percent}%`; document.querySelector('#feedback')!.textContent = trace.feedback; document.querySelector('#phaseLabel')!.textContent = trace.phase === 'body' ? 'Step 1 of 2 · trace the body' : trace.phase === 'dot' ? 'Step 2 of 2 · add the dot' : 'Complete · Bāʾ'; document.querySelector('#stepBody')!.classList.toggle('active', trace.phase === 'body'); document.querySelector('#stepDot')!.classList.toggle('active', trace.phase === 'dot'); done.setAttribute('visibility', trace.phase === 'complete' ? 'visible' : 'hidden'); dot.setAttribute('fill', trace.phase === 'dot' ? '#e5b96a' : '#96acaf'); start.setAttribute('visibility', trace.phase === 'body' ? 'visible' : 'hidden'); label.setAttribute('visibility', trace.phase === 'body' ? 'visible' : 'hidden'); redraw(); }
 function point(e: PointerEvent): Point | null { const matrix = board.getScreenCTM(); if (!matrix)
     return null; const p = board.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(matrix.inverse()); }
