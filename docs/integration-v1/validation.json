@@ -1,0 +1,30 @@
+{
+  "orbitBase": "b7e9772b283a3b7b76c88f9a49f32f22863494b7",
+  "harfBase": "2eb0bc2a0fd804e7d74de393b4ef14fdbb46c945",
+  "build": "passed; inherited chunk warning",
+  "builtRoutes": {
+    "routes": [
+      "/",
+      "/harf-studio.html",
+      "/harf-studio-xr.html"
+    ],
+    "font": "/fonts/Amiri-Bold.ttf",
+    "httpStatus": 200
+  },
+  "quran": "8 passed",
+  "nativeGlyphMasks": "24 passed",
+  "engravedAtlas": "bounds, gutters, courses and packed channels passed",
+  "harfProvenance": "exact outlines, dot and 505 samples passed",
+  "logic": "tracing, pinch, session, broad nib, navigation end-event and completion-display tests passed",
+  "harfBrowser": {
+    "svgFallback": "passed",
+    "spatialPointerBodyDotRetry": "passed",
+    "handFeatureDenial": "passed",
+    "mobileLayout": "passed",
+    "pagehideCleanup": "no JS error",
+    "errors": []
+  },
+  "orbitBrowser": "90-second startup/capture timeout; further bounded navigation diagnostics also stalled; no new Orbit images or full regression pass claimed",
+  "headset": "pending",
+  "preview": "awaiting verified Vercel status"
+}

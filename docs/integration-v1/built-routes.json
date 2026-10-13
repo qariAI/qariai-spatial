@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "/",
+    "/harf-studio.html",
+    "/harf-studio-xr.html"
+  ],
+  "font": "/fonts/Amiri-Bold.ttf",
+  "httpStatus": 200
+}
