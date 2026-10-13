@@ -14,11 +14,11 @@
 <div class="layout">
 <section class="panel canvasPanel" aria-label="Interactive tracing practice"><div class="panelTitle"><span>Practice · <span lang="ar" dir="rtl">ب</span> (Bāʾ)</span><span class="hint" id="phaseLabel">Step 1 of 2 · trace the body</span></div>
 <div class="traceFrame"><svg id="board" viewBox="0 0 900 530" role="img" aria-label="Trace the dotted Arabic letter ba from right to left, then place its dot">
-<defs><pattern id="grid" width="45" height="45" patternUnits="userSpaceOnUse"><path d="M45 0H0V45" fill="none" stroke="#345061" stroke-width=".7" opacity=".55"/></pattern><clipPath id="letterClip"><path id="clipBody"/></clipPath></defs>
+<defs><pattern id="grid" width="45" height="45" patternUnits="userSpaceOnUse"><path d="M45 0H0V45" fill="none" stroke="#345061" stroke-width=".7" opacity=".55"/></pattern><linearGradient id="goldInk" x1="0" y1="106" x2="0" y2="494" gradientUnits="userSpaceOnUse"/><clipPath id="letterClip"><path id="clipBody"/></clipPath></defs>
 <rect width="900" height="530" fill="url(#grid)"/>
 <path id="bodyGlow" fill="#355565" stroke="#819b9d" stroke-width="1"/>
 <path id="bodyGuide" class="guide" d=""/>
-<path class="dotGuide" id="dotGuide"/><path class="dotDone" id="dotDone" visibility="hidden"/>
+<path class="dotGuide" id="dotGuide"/><path class="dotDone" style="fill:url(#goldInk);filter:none" id="dotDone" visibility="hidden"/>
 <g id="ink" clip-path="url(#letterClip)"></g><circle id="start" cx="752" cy="165" r="17" fill="#8bd2c2" stroke="#dffbf0" stroke-width="3"><title>Begin the stroke here</title></circle>
 <text x="752" y="126" font-size="19" text-anchor="middle" fill="#b5ded4" id="startLabel">START</text>
 </svg></div>

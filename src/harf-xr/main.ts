@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GUIDE, Tracing, Pinch, type Point } from './tracing';
 import { SessionOwner } from './session';
 import './style.css';
+import { inkPath, GOLD_STOPS } from './ink';
 import { BA } from './letters/definition';
 const bodyOutline=new Path2D(BA.bodyOutline), dotOutline=new Path2D(BA.dotOutline);
 const host = document.querySelector<HTMLDivElement>('#surface')!, status = document.querySelector<HTMLParagraphElement>('#status')!;
@@ -23,6 +24,8 @@ canvas.height = 650;
 const ctx = canvas.getContext('2d')!, texture = new THREE.CanvasTexture(canvas);
 texture.colorSpace = THREE.SRGBColorSpace;
 texture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
+const gold=ctx.createLinearGradient(0,106,0,494);
+for(const [position,color] of GOLD_STOPS)gold.addColorStop(position,color);
 const geometry = new THREE.PlaneGeometry(.72, .52), material = new THREE.MeshBasicMaterial({ map: texture });
 const surface = new THREE.Mesh(geometry, material);
 board.add(surface);
@@ -79,13 +82,8 @@ function paint() {
     ctx.stroke();
     ctx.setLineDash([]);
     ctx.save();ctx.clip(bodyOutline);
-    ctx.strokeStyle = '#e5bd71';
-    ctx.lineWidth = 12;
-    for (const stroke of trace.strokes) {
-        ctx.beginPath();
-        stroke.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
-        ctx.stroke();
-    }
+    ctx.fillStyle = gold;
+    ctx.fill(new Path2D(inkPath(trace.strokes)));
     ctx.restore();
     const disc = (p: Point, r: number, color: string) => { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2); ctx.fill(); };
     disc(GUIDE[0], 14, trace.phase === 'body' ? '#94dbc9' : '#627882');
@@ -96,7 +94,7 @@ function paint() {
     ctx.fillText('START', GUIDE[0].x, GUIDE[0].y-28);
     ctx.fillStyle = '#d5bf97';
     ctx.fillText('FINISH', GUIDE.at(-1)!.x, GUIDE.at(-1)!.y-28);
-    ctx.fillStyle=trace.phase==='complete'?'#edc77d':trace.phase==='dot'?'#a68e59':'#355565';
+    ctx.fillStyle=trace.phase==='complete'?gold:trace.phase==='dot'?'#a68e59':'#355565';
     ctx.fill(dotOutline);ctx.strokeStyle='#a9b9ae';ctx.lineWidth=1;ctx.stroke(dotOutline);
     ctx.fillStyle = '#d7e5df';
     ctx.font = '20px sans-serif';

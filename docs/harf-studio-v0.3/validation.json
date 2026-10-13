@@ -1,0 +1,41 @@
+{
+  "build": "passed; inherited chunk-size warning",
+  "tracingPinchSession": "passed",
+  "broadNibAndNativeSVGPoints": "passed",
+  "sourceGlyphAudit": "passed; expert penmanship review pending",
+  "desktop": {
+    "svgFallback": "passed",
+    "spatialPointerBodyDotRetry": "passed",
+    "handFeatureDenial": "passed",
+    "mobileLayout": "passed",
+    "pagehideCleanup": "no JS error",
+    "errors": []
+  },
+  "images": {
+    "before-spatial.png": {
+      "sha256": "94298d58b927d6cdfee74072436b8bc45c22a6f2e4a1375ed125812731a22ca7",
+      "dimensions": [
+        1100,
+        900
+      ]
+    },
+    "spatial-complete.png": {
+      "sha256": "9424e3707b6ca02fd7f57270e44519be83c73a848cdc4634d1163d7c94e55fd4",
+      "dimensions": [
+        1100,
+        900
+      ]
+    },
+    "svg-complete.png": {
+      "sha256": "d9a4c90246dc0914f4b65d74b74a7a5f8be0c83846665ab2342f0512b490862e",
+      "dimensions": [
+        1100,
+        900
+      ]
+    }
+  },
+  "beforeSource": "retained exact-base v0.2 screenshot",
+  "afterSource": "fresh corrected desktop captures",
+  "questHardware": "pending",
+  "protectedScope": "Living Orbit, letter data, tracing and session modules unchanged"
+}
