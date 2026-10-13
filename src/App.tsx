@@ -3,6 +3,7 @@ import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
 import { Billboard, OrbitControls } from '@react-three/drei';
 import { XRHandModelFactory } from 'three/examples/jsm/webxr/XRHandModelFactory.js';
 import * as THREE from 'three';
+import { CalligraphyDepthArt } from './CalligraphyDepthArt';
 
 type Phase = 0 | 1;
 type Letter = 'ك' | 'ل' | 'ف' | 'ي';
@@ -46,110 +47,6 @@ function OrbitLine({radius,opacity=.22,color='#d6ad67'}:{radius:number;opacity?:
  const geometry=useMemo(()=>{const pts=Array.from({length:257},(_,i)=>{const a=i/256*Math.PI*2;return new THREE.Vector3(Math.cos(a)*radius,Y,Math.sin(a)*radius*.74)});return new THREE.BufferGeometry().setFromPoints(pts)},[radius]);useEffect(()=>()=>geometry.dispose(),[geometry]);return <lineLoop geometry={geometry}><lineBasicMaterial color={color} transparent opacity={opacity} /></lineLoop>
 }
 function LivingRing(){const geometry=useMemo(()=>{const p=Array.from({length:321},(_,i)=>{const a=i/320*Math.PI*2;return new THREE.Vector3(Math.cos(a)*ORBIT_X,Y+1,Math.sin(a)*ORBIT_Z)});return new THREE.BufferGeometry().setFromPoints(p)},[]);useEffect(()=>()=>geometry.dispose(),[geometry]);return <><lineLoop geometry={geometry}><lineBasicMaterial color="#e9bd73" opacity={.7} transparent /></lineLoop><lineLoop geometry={geometry} position={[0,.3,0]}><lineBasicMaterial color="#b88942" opacity={.3} transparent /></lineLoop></>}
-/**
- * An intentional, legible calligraphy composition: the unvocalized phrase
- * "كل في فلك" (part of 21:33), rendered using Arabic shaping in Amiri.
- * Canvas artwork is a single textured annulus, not procedural inflated tubes.
- * The principal seven interactive letters remain entirely separate.
- */
-function circularCalligraphyTexture():THREE.CanvasTexture {
- const canvas=document.createElement('canvas');canvas.width=canvas.height=2048;
- const ctx=canvas.getContext('2d')!;const center=1024;
- ctx.clearRect(0,0,2048,2048);
- const gold='#d7bb85',blue='#7fa6bc';
- // Restrained architectural outlines give the calligraphic band a carved edge.
- [565,580,755,768].forEach((radius,i)=>{
-  ctx.beginPath();ctx.arc(center,center,radius,0,Math.PI*2);
-  ctx.lineWidth=i%2===0?5:2;
-  ctx.strokeStyle=i%2===0?'rgba(101,150,184,.42)':'rgba(222,193,136,.55)';ctx.stroke();
- });
- // Layered legible ink — silhouettes/shadows below, crisp face above.
- const phrase='كل في فلك';
- ctx.textAlign='center';ctx.textBaseline='middle';
- ctx.direction='rtl';
- const count=16;
- for(let i=0;i<count;i++){
-  const angle=i/count*Math.PI*2-Math.PI/2;
-  ctx.save();ctx.translate(center+Math.cos(angle)*660,center+Math.sin(angle)*660);
-  ctx.rotate(angle+Math.PI/2);
-  ctx.font='700 65px Amiri, serif';
-  ctx.shadowColor='rgba(10,25,44,.95)';ctx.shadowBlur=8;ctx.shadowOffsetY=8;
-  ctx.lineJoin='round';ctx.strokeStyle='rgba(13,37,57,.95)';ctx.lineWidth=11;ctx.strokeText(phrase,0,0);
-  ctx.shadowBlur=0;ctx.shadowOffsetY=0;
-  ctx.fillStyle=i%4===0?blue:gold;ctx.fillText(phrase,0,0);
-  ctx.strokeStyle='rgba(245,228,191,.47)';ctx.lineWidth=1.2;ctx.strokeText(phrase,0,-1);
-  ctx.restore();
- }
- // Paired dot clusters at the spaces between calligraphic cartouches.
- for(let i=0;i<count;i++){
-  const a=(i+.5)/count*Math.PI*2-Math.PI/2;
-  const x=center+Math.cos(a)*659,y=center+Math.sin(a)*659;
-  for(let j=-1;j<=1;j++){
-   ctx.beginPath();ctx.arc(x+j*7,y+(j%2)*5,j===0?3.4:2.2,0,Math.PI*2);
-   ctx.fillStyle=j===0?'rgba(252,221,155,.91)':'rgba(120,181,205,.67)';ctx.fill();
-  }
- }
- const texture=new THREE.CanvasTexture(canvas);
- texture.colorSpace=THREE.SRGBColorSpace;
- texture.anisotropy=8;
- return texture;
-}
-function closeCalligraphyTexture():THREE.CanvasTexture {
- const canvas=document.createElement('canvas');canvas.width=canvas.height=2048;
- const ctx=canvas.getContext('2d')!;const center=1024;
- ctx.direction='rtl';ctx.textAlign='center';ctx.textBaseline='middle';
- const phrases=['كل في فلك','فلك','كل','في'];
- // Hand-positioned clusters at multiple radii, not an evenly stamped wallpaper.
- const bands=[{radius:495,count:13,size:47},{radius:595,count:19,size:39},{radius:725,count:23,size:34}];
- bands.forEach((band,b)=>{
-  for(let i=0;i<band.count;i++){
-   const a=(i+(b*.37)+Math.sin(i*2.7)*.16)/band.count*Math.PI*2-Math.PI/2;
-   const radius=band.radius+Math.sin(i*1.7+b)*17;
-   ctx.save();ctx.translate(center+Math.cos(a)*radius,center+Math.sin(a)*radius);
-   ctx.rotate(a+Math.PI/2+Math.sin(i*1.43)*.16);
-   ctx.font='700 '+band.size+'px Amiri,serif';
-   ctx.lineJoin='round';ctx.lineWidth=3;ctx.strokeStyle='rgba(4,17,32,.85)';
-   const phrase=phrases[(i*3+b)%phrases.length];ctx.strokeText(phrase,0,0);
-   ctx.fillStyle=i%5===0?'rgba(160,213,231,.92)':'rgba(232,199,137,.9)';ctx.fillText(phrase,0,0);
-   // Luminous accent pairs belong to script clusters rather than random sky particles.
-   ctx.fillStyle='rgba(245,220,157,.75)';
-   for(let j=0;j<2;j++){ctx.beginPath();ctx.arc(15+j*8,-band.size*.62,2.3-j*.5,0,Math.PI*2);ctx.fill()}
-   ctx.restore();
-  }
- });
- const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t;
-}
-function CalligraphyDepthArt(){
- const texture=useMemo(circularCalligraphyTexture,[]);
- const detail=useMemo(closeCalligraphyTexture,[]);
- const material=useRef<THREE.MeshBasicMaterial>(null);
- const detailMesh=useRef<THREE.Mesh>(null);
- const {camera,gl}=useThree();
- useEffect(()=>()=>{texture.dispose();detail.dispose()},[texture,detail]);
- useFrame(()=>{
-  if(!material.current)return;
-  const eye=gl.xr.isPresenting?gl.xr.getCamera():camera;
-  const worldPosition=new THREE.Vector3();eye.getWorldPosition(worldPosition);
-  const anchor=new THREE.Vector3(0,Y-3.6,0);
-  // For Quest the scene is re-parented and scaled to meters.
-  const sceneGroup=detailMesh.current;
-  if(sceneGroup){sceneGroup.getWorldPosition(anchor)}
-  const worldScale=new THREE.Vector3(1,1,1);
-  if(sceneGroup)sceneGroup.getWorldScale(worldScale);
-  const distance=worldPosition.distanceTo(anchor)/Math.max(worldScale.x,.0001);
-  material.current.opacity=THREE.MathUtils.smoothstep(145-distance,0,85)*.9;
- });
- return <group name="calligraphy-depth-art" position={[0,Y-3.6,0]}>
-  <mesh rotation={[-Math.PI/2,0,0]} raycast={()=>null}>
-   <planeGeometry args={[155,114]}/>
-   <meshBasicMaterial map={texture} transparent depthWrite={false} side={THREE.DoubleSide} opacity={.95}/>
-  </mesh>
-  <mesh ref={detailMesh} rotation={[-Math.PI/2,0,0]} position={[0,.12,0]} raycast={()=>null}>
-   <planeGeometry args={[155,114]}/>
-   <meshBasicMaterial ref={material} map={detail} transparent depthWrite={false} side={THREE.DoubleSide} opacity={0}/>
-  </mesh>
- </group>;
-}
 function Sun(){const glow=useMemo(makeGlowTexture,[]);useEffect(()=>()=>glow.dispose(),[glow]);return <group position={[0,Y,0]}><mesh><sphereGeometry args={[6,48,32]}/><meshBasicMaterial color="#ffedb7" /></mesh><sprite scale={[40,40,1]}><spriteMaterial map={glow} blending={THREE.AdditiveBlending} transparent depthWrite={false}/></sprite><pointLight color="#ffd28d" intensity={160} distance={160} decay={2}/></group>}
 function PlanetTexture({kind}:{kind:'earth'|'jupiter'}){
  const texture=useMemo(()=>{const canvas=document.createElement('canvas');canvas.width=512;canvas.height=256;const c=canvas.getContext('2d')!;let seed=17;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};if(kind==='jupiter'){for(let y=0;y<256;y++){const bands=['#b38668','#e5cdb0','#bfa28b','#e7d2b4','#a87e68'];c.fillStyle=bands[Math.floor(y/14+Math.sin(y*.06))%bands.length];c.fillRect(0,y,512,1)}c.fillStyle='#bc8265';c.beginPath();c.ellipse(380,145,44,19,-.1,0,Math.PI*2);c.fill()}else{c.fillStyle='#0e5aa0';c.fillRect(0,0,512,256);for(let i=0;i<90;i++){c.fillStyle=i%3===0?'#b6a36f':'#63865c';c.beginPath();c.ellipse(rand()*512,rand()*256,9+rand()*29,4+rand()*12,rand()*3,0,Math.PI*2);c.fill()}for(let i=0;i<50;i++){c.fillStyle='rgba(248,247,241,.45)';c.beginPath();c.ellipse(rand()*512,rand()*256,8+rand()*32,2+rand()*5,0,0,Math.PI*2);c.fill()}}const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;return t},[kind]);useEffect(()=>()=>texture.dispose(),[texture]);return texture
@@ -161,14 +58,14 @@ function Planet({planet,paused,speed,active,onExplore}:{planet:PlanetSpec;paused
  return <group ref={ref} name={'qari-planet-'+planet.name}><mesh onClick={e=>{e.stopPropagation();onExplore(planet.name)}}><sphereGeometry args={[planet.radius,32,24]}/>{material}</mesh>{active&&<mesh raycast={()=>null}><sphereGeometry args={[planet.radius*1.22,24,16]}/><meshBasicMaterial color="#ffe2a2" wireframe transparent opacity={.20} depthWrite={false}/></mesh>}{planet.name==='Earth'&&<mesh ref={moon}><sphereGeometry args={[.4,12,12]}/><meshStandardMaterial color="#c4c3bb"/></mesh>}{planet.name==='Saturn'&&<group rotation={[.72,.22,.15]}><mesh><ringGeometry args={[planet.radius*1.25,planet.radius*1.94,96]}/><meshStandardMaterial color="#bda681" side={THREE.DoubleSide} transparent opacity={.65} roughness={1} depthWrite={false}/></mesh><mesh><ringGeometry args={[planet.radius*1.55,planet.radius*1.78,96]}/><meshBasicMaterial color="#ead29f" side={THREE.DoubleSide} transparent opacity={.55} depthWrite={false}/></mesh></group>}</group>
 }
 function Belt(){const geometry=useMemo(()=>{const points=new Float32Array(1800*3);let seed=55;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};for(let i=0;i<1800;i++){const a=rand()*Math.PI*2,r=41+rand()*5;points[i*3]=r*Math.cos(a);points[i*3+1]=Y+(rand()-.5);points[i*3+2]=r*.74*Math.sin(a)}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(points,3));return g},[]);useEffect(()=>()=>geometry.dispose(),[geometry]);const {gl}=useThree();useFrame(()=>{geometry.setDrawRange(0,gl.xr.isPresenting?900:1800)});return <points geometry={geometry}><pointsMaterial color="#bb9b79" size={.3} transparent opacity={.55}/></points>}
-function LetterObject({letter,index,phase,selected,handTarget,onSelect}:{letter:string;index:number;phase:Phase;selected:Selection;handTarget:number|null;onSelect:(index:number)=>void}){
+function LetterObject({letter,index,phase,paused,speed,selected,handTarget,onSelect}:{letter:string;index:number;phase:Phase;paused:boolean;speed:number;selected:Selection;handTarget:number|null;onSelect:(index:number)=>void}){
  const group=useRef<THREE.Group>(null);const angle=useRef(-Math.PI/2+index*Math.PI*2/7);const texture=useMemo(()=>arabicTexture(letter),[letter]);useEffect(()=>()=>texture.dispose(),[texture]);
  const active=selected===index||selected===6-index||handTarget===index||handTarget===6-index;
- useFrame((_,dt)=>{if(!group.current)return;if(phase===1)angle.current+=Math.min(dt,.04)*.22;else angle.current=THREE.MathUtils.damp(angle.current,-Math.PI/2+index*Math.PI*2/7,3,dt);const a=angle.current;const x=ORBIT_X*Math.cos(a),z=ORBIT_Z*Math.sin(a);group.current.position.set(x,Y+2+Math.sin(a*2)*.6,z);const target=active?1.32:1;const scale=THREE.MathUtils.damp(group.current.scale.x,target,5,dt);group.current.scale.setScalar(scale)});
+ useFrame((_,dt)=>{if(!group.current)return;if(phase===1){if(!paused)angle.current+=Math.min(dt,.04)*.22*speed}else angle.current=THREE.MathUtils.damp(angle.current,-Math.PI/2+index*Math.PI*2/7,3,dt);const a=angle.current;const x=ORBIT_X*Math.cos(a),z=ORBIT_Z*Math.sin(a);group.current.position.set(x,Y+2+Math.sin(a*2)*.6,z);const target=active?1.32:1;const scale=THREE.MathUtils.damp(group.current.scale.x,target,5,dt);group.current.scale.setScalar(scale)});
  const select=(e:ThreeEvent<MouseEvent>)=>{e.stopPropagation();onSelect(index)};
  return <group ref={group} name={`qari-letter-${index}`}><Billboard follow lockX={false} lockY={false} lockZ={false}><mesh onPointerOver={e=>{e.stopPropagation();document.body.style.cursor='pointer'}} onPointerOut={()=>{document.body.style.cursor='auto'}} onClick={select}><planeGeometry args={[14,14]}/><meshBasicMaterial map={texture} transparent opacity={active?1:.89} depthWrite={false} side={THREE.DoubleSide} /></mesh><mesh onClick={select}><planeGeometry args={[10,10]}/><meshBasicMaterial transparent opacity={0} depthWrite={false}/></mesh><sprite scale={[active?21:16,active?21:16,1]}><spriteMaterial map={texture} transparent opacity={active?.33:.11} blending={THREE.AdditiveBlending} depthWrite={false}/></sprite></Billboard></group>
 }
-function OrbitalScene(props:OrbitProps){return <><color attach="background" args={['#010611']}/><fog attach="fog" args={['#010611',180,650]}/><ambientLight intensity={1.1} color="#cdd9e5"/><directionalLight position={[-70,80,70]} intensity={2.4} color="#ffd28d"/><pointLight position={[-90,35,45]} intensity={20} distance={200} color="#4ac0a0"/><pointLight position={[85,40,-45]} intensity={15} distance={200} color="#5c8fff"/><Stars count={5200} radius={620} opacity={.83} size={.8} seed={184}/><Stars count={1400} radius={290} opacity={.45} size={.55} seed={603}/><Sun/><CalligraphyDepthArt/><Belt/>{PLANETS.map(p=><group key={p.name}><OrbitLine radius={p.distance}/><Planet planet={p} paused={props.paused} speed={props.speed} active={props.exploringPlanet===p.name} onExplore={props.onExplorePlanet}/></group>)}<LivingRing/>{LETTERS.map((l,i)=><LetterObject key={i} letter={l} index={i} phase={props.phase} selected={props.selected} handTarget={props.handTarget} onSelect={props.onSelect}/>)}</>}
+function OrbitalScene(props:OrbitProps){return <><color attach="background" args={['#010611']}/><fog attach="fog" args={['#010611',180,650]}/><ambientLight intensity={1.1} color="#cdd9e5"/><directionalLight position={[-70,80,70]} intensity={2.4} color="#ffd28d"/><pointLight position={[-90,35,45]} intensity={20} distance={200} color="#4ac0a0"/><pointLight position={[85,40,-45]} intensity={15} distance={200} color="#5c8fff"/><Stars count={5200} radius={620} opacity={.83} size={.8} seed={184}/><Stars count={1400} radius={290} opacity={.45} size={.55} seed={603}/><Sun/><CalligraphyDepthArt/><Belt/>{PLANETS.map(p=><group key={p.name}><OrbitLine radius={p.distance}/><Planet planet={p} paused={props.paused} speed={props.speed} active={props.exploringPlanet===p.name} onExplore={props.onExplorePlanet}/></group>)}<LivingRing/>{LETTERS.map((l,i)=><LetterObject key={i} letter={l} index={i} phase={props.phase} paused={props.paused} speed={props.speed} selected={props.selected} handTarget={props.handTarget} onSelect={props.onSelect}/>)}</>}
 
 /** Actual WebXR hand joints, not desktop emulation. For WebXR-compatible Quest browser only. */
 /* World-space hit targets are resolved from the same transformed objects rendered by R3F. */
@@ -264,23 +161,30 @@ function CameraExploreRig({active}:{active:boolean}){
  const {camera,gl,controls}=useThree();
  const home=useMemo(()=>new THREE.Vector3(0,98,169),[]);
  const close=useMemo(()=>new THREE.Vector3(0,37,52),[]);
- const target=useMemo(()=>new THREE.Vector3(0,Y,0),[]);
+ const target=useMemo(()=>new THREE.Vector3(0,Y+15,0),[]);
  const moving=useRef(false);
- const previous=useRef(active);
+ const previous=useRef(false);
+ useEffect(()=>{
+  const orbit=controls as unknown as {target?:THREE.Vector3;update?:()=>void;addEventListener?:(type:string, fn:()=>void)=>void;removeEventListener?:(type:string, fn:()=>void)=>void};
+  if(!gl.xr.isPresenting){camera.position.copy(home);orbit?.target?.set(0,0,0);orbit?.update?.()}
+  const cancel=()=>{moving.current=false};
+  orbit?.addEventListener?.("start",cancel);
+  return()=>orbit?.removeEventListener?.("start",cancel);
+ },[camera,controls,gl,home]);
  useFrame((_,dt)=>{
-  if(gl.xr.isPresenting)return;
+  if(gl.xr.isPresenting){moving.current=false;previous.current=active;return}
   if(previous.current!==active){previous.current=active;moving.current=true}
   if(!moving.current)return;
   const destination=active?close:home;
   camera.position.lerp(destination,1-Math.exp(-Math.min(dt,.05)*2.7));
   const orbit=controls as {target?:THREE.Vector3;update?:()=>void}|undefined;
-  if(orbit?.target){orbit.target.copy(target);orbit.update?.()}
+  if(orbit?.target){orbit.target.lerp(target,1-Math.exp(-Math.min(dt,.05)*2.7));orbit.update?.()}
   else camera.lookAt(target);
-  if(camera.position.distanceTo(destination)<.06){camera.position.copy(destination);moving.current=false}
+  if(camera.position.distanceTo(destination)<.06){camera.position.copy(destination);orbit?.target?.copy(target);orbit?.update?.();moving.current=false}
  });
  return null;
 }
-function SceneRig({phase,speed,paused,selected,onSelect,handTarget,onHover,onAdvance,onBack,onDiagnostics,exploringPlanet,onExplorePlanet,exploreCalligraphy}:{phase:Phase;speed:number;paused:boolean;selected:Selection;onSelect:(i:number)=>void;handTarget:number|null;onHover:(i:number|null)=>void;onAdvance:()=>void;onBack:()=>void;onDiagnostics:(s:string)=>void;exploringPlanet:PlanetName|null;onExplorePlanet:(p:PlanetName)=>void;exploreCalligraphy:boolean}){return <><WorldAnchor><OrbitalScene exploringPlanet={exploringPlanet} onExplorePlanet={onExplorePlanet} phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/><SpatialActions phase={phase} onAdvance={onAdvance} onBack={onBack}/></WorldAnchor><HandTracking onHover={onHover} onPinch={onSelect} onAction={phase===0?onAdvance:onBack} onDiagnostics={onDiagnostics}/><ImmersiveButton/><CameraExploreRig active={exploreCalligraphy}/><OrbitControls makeDefault enableDamping dampingFactor={.06} minDistance={exploreCalligraphy?18:105} maxDistance={255} maxPolarAngle={1.45} minPolarAngle={.4} enablePan={false}/></>}
+function SceneRig({phase,speed,paused,selected,onSelect,handTarget,onHover,onAdvance,onBack,onDiagnostics,exploringPlanet,onExplorePlanet,exploreCalligraphy}:{phase:Phase;speed:number;paused:boolean;selected:Selection;onSelect:(i:number)=>void;handTarget:number|null;onHover:(i:number|null)=>void;onAdvance:()=>void;onBack:()=>void;onDiagnostics:(s:string)=>void;exploringPlanet:PlanetName|null;onExplorePlanet:(p:PlanetName)=>void;exploreCalligraphy:boolean}){return <><WorldAnchor><OrbitalScene exploringPlanet={exploringPlanet} onExplorePlanet={onExplorePlanet} phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/><SpatialActions phase={phase} onAdvance={onAdvance} onBack={onBack}/></WorldAnchor><HandTracking onHover={onHover} onPinch={onSelect} onAction={phase===0?onAdvance:onBack} onDiagnostics={onDiagnostics}/><ImmersiveButton/><CameraExploreRig active={exploreCalligraphy}/><OrbitControls makeDefault enableDamping dampingFactor={.06} minDistance={18} maxDistance={255} maxPolarAngle={1.45} minPolarAngle={.4} enablePan={false}/></>}
 
 const traceGuides:Record<Letter,{name:string;instruction:string}>= {
  'ك':{name:'Kāf',instruction:'Illustrative study guide. Verify the source stroke order before educational use.'},
