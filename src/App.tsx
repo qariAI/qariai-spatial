@@ -265,16 +265,18 @@ function CameraExploreRig({active}:{active:boolean}){
  const home=useMemo(()=>new THREE.Vector3(0,98,169),[]);
  const close=useMemo(()=>new THREE.Vector3(0,37,52),[]);
  const target=useMemo(()=>new THREE.Vector3(0,Y,0),[]);
+ const moving=useRef(false);
+ const previous=useRef(active);
  useFrame((_,dt)=>{
   if(gl.xr.isPresenting)return;
+  if(previous.current!==active){previous.current=active;moving.current=true}
+  if(!moving.current)return;
   const destination=active?close:home;
-  const distance=camera.position.distanceTo(destination);
-  if(distance>.045){
-   camera.position.lerp(destination,1-Math.exp(-dt*2.7));
-   camera.lookAt(target);
-   const orbit=controls as {target?:THREE.Vector3;update?:()=>void}|undefined;
-   if(orbit?.target){orbit.target.copy(target);orbit.update?.()}
-  }
+  camera.position.lerp(destination,1-Math.exp(-Math.min(dt,.05)*2.7));
+  const orbit=controls as {target?:THREE.Vector3;update?:()=>void}|undefined;
+  if(orbit?.target){orbit.target.copy(target);orbit.update?.()}
+  else camera.lookAt(target);
+  if(camera.position.distanceTo(destination)<.06){camera.position.copy(destination);moving.current=false}
  });
  return null;
 }
