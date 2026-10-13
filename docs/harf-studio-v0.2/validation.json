@@ -1,0 +1,18 @@
+{
+  "productionBuild": "passed; inherited Three.js chunk warning",
+  "logicTests": "passed: tracing direction/proximity/resume, body/dot/reset, pinch and session lifecycle",
+  "desktopChecks": {
+    "svgFallback": "passed",
+    "spatialPointerBodyDotRetry": "passed",
+    "handFeatureDenial": "passed",
+    "mobileLayout": "passed",
+    "pagehideCleanup": "no JS error",
+    "errors": []
+  },
+  "screenshot": "ba/desktop-complete.png (actual spatial desktop pointer completion)",
+  "sourceOutline": "byte-exact uniformly transformed Amiri Bold 1.002 glyph; 505 centreline samples and dot target inside source glyph",
+  "preview": "not manually deployed; live branch preview URL unverified",
+  "questHardware": "pending",
+  "expertReview": "source form is Amiri Naskh; centreline, pen angle and educational stroke order need Arabic calligrapher validation",
+  "protectedScope": "Living Orbit and session/hand code unchanged; no main/production/Android changes"
+}
