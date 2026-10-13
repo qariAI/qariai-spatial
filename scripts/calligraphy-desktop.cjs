@@ -91,7 +91,7 @@ const artifacts = process.env.QARI_CAPTURE_DIR || path.join(project, 'docs/v1.4.
     await p.getByRole('button', { name: /Explore Calligraphy/ }).click();
     await p.getByRole('button',{name:/Return to Orbit/}).waitFor();
     await stepTransition();
-    await p.waitForFunction(() => Math.abs(window.__qari().camera[2] - 78) < .01, null, { timeout: 240000 }).catch(async error=>{console.log('CAMERA TIMEOUT',await p.evaluate(()=>window.__qari()));throw error});
+    await p.waitForFunction(z => Math.abs(window.__qari().camera[2] - z) < .01, process.env.BASELINE ? 78 : 84, { timeout: 240000 }).catch(async error=>{console.log('CAMERA TIMEOUT',await p.evaluate(()=>window.__qari()));throw error});
     await p.waitForFunction(() => window.__qari().detail[1] > .85, null, { timeout: 120000 });
     await p.screenshot({ path: path.join(artifacts, 'close.png'), timeout: 120000 });
     await saveArtwork('close');

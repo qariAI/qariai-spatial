@@ -44,9 +44,13 @@ function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingConte
       (ink.actualBoundingBoxAscent - ink.actualBoundingBoxDescent) / 2);
     if (ctx === relief) {
       // Cut a narrow shadow valley around a raised, continuous ink face.
-      ctx.strokeStyle = '#353535'; ctx.lineWidth = 2;
-      ctx.strokeText(phrase, 0, 0);
-      ctx.fillStyle = bevelCache ? '#d0d0d0' : '#c4c4c4'; ctx.fillText(phrase, 0, 0);
+      // Rounded relief shoulder and a recessed outer valley. Filtering applies
+      // only to height, never to the native-shaped colour/diacritic mask.
+      ctx.filter = 'blur(0.55px)';
+      ctx.strokeStyle = '#595959'; ctx.lineWidth = 5; ctx.strokeText(phrase, 0, 0);
+      ctx.strokeStyle = '#aaaaaa'; ctx.lineWidth = 2.8; ctx.strokeText(phrase, 0, 0);
+      ctx.strokeStyle = '#cdcdcd'; ctx.lineWidth = 1; ctx.strokeText(phrase, 0, 0);
+      ctx.fillStyle = bevelCache ? '#eeeeee' : '#dddddd'; ctx.fillText(phrase, 0, 0);
     } else {
       ctx.fillStyle = '#030a12'; ctx.fillText(phrase, 1.2 / pixelAspect, 1.5);
       ctx.strokeStyle = '#07101b'; ctx.lineWidth = 1.8;
@@ -95,14 +99,17 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
     }
     // Complete passages occupy staggered manuscript courses. The ink bounds,
     // including marks above/below the baseline, determine each fitted size.
-    const pixelAspect = (band.outer - band.inner) * WIDTH / (height * Math.PI * (band.inner + band.outer));
-    const rows = index === 1 ? [64, 168, 270] : [58, 151, 248];
+    // Compensate at each course's own radius, rather than the band midpoint.
+    // This preserves Arabic proportions across the width of the annulus.
+    const rows = index === 1 ? [64, 168, 270] : [62, 151, 248];
     rows.forEach((offset, row) => {
+      const radius = band.inner + offset / height * (band.outer - band.inner);
+      const pixelAspect = (band.outer - band.inner) * WIDTH / (height * 2 * Math.PI * radius);
       // Pack by ink width rather than stamp cells. Short clauses no longer
       // leave blank cartouches; full verses get their natural larger span.
       let cursor = 16 + row * 8 + index * 3, ordinal = 0;
-      const maxHeight = row === 1 ? (index === 1 ? 132 : index === 0 ? 82 : 104) : (index === 1 ? 62 : 56);
-      const nominal = row === 1 ? (index === 1 ? 190 : index === 0 ? 100 : 138) : (index === 0 ? 48 : 68);
+      const maxHeight = row === 1 ? (index === 1 ? 120 : index === 0 ? 82 : 104) : (index === 1 ? 68 : 64);
+      const nominal = row === 1 ? (index === 1 ? 190 : index === 0 ? 100 : 138) : (index === 0 ? 60 : 78);
       while (cursor < WIDTH - 32) {
         const excerpt = EXCERPTS[(ordinal * 3 + row * 2 + index) % EXCERPTS.length];
         c.font = `700 ${nominal}px Amiri`;
@@ -111,7 +118,7 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
         const width = Math.max(bounds.width, bounds.actualBoundingBoxLeft + bounds.actualBoundingBoxRight) * fitted / nominal * pixelAspect;
         if (cursor + width > WIDTH - 16) break;
         drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight, index === 1 ? bevelCache : undefined);
-        const gap = (index === 0 ? 14 : 20) + (ordinal % 3) * 5;
+        const gap = (index === 0 ? 24 : 32) + (ordinal % 3) * 6;
         // Separate geometric filigree sits only in measured empty gutters.
         // Its paired arcs weave around a bronze spindle, never through ink.
         const edge = cursor + width + gap / 2;
@@ -148,15 +155,23 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
     }
   });
   // Far representation is sampled from the actual engraving, not fake glyphs.
-  const ink = h.getImageData(0, 0, WIDTH, HEIGHT).data;
+  const packed = h.getImageData(0, 0, WIDTH, HEIGHT);
+  const ink = packed.data;
   const pixels = c.getImageData(0, 0, WIDTH, HEIGHT);
   for (let y = 0; y < HEIGHT; y++) for (let x = 0; x < WIDTH; x++) {
     const offset = (y * WIDTH + x) * 4;
     const engraved = ink[offset] > 175;
     const cluster = engraved && ((Math.imul(x >> 2, 73856093) ^ Math.imul(y >> 2, 19349663)) >>> 0) % 19 === 0;
     pixels.data[offset + 3] = cluster ? 255 : 128;
+    // Shared texture: R = continuous relief, G = metallic roughness.
+    // Recessed slate is matte; raised ink is polished with restrained grain.
+    // No additional GPU texture or geometry is required.
+    const height = ink[offset];
+    const grain = ((Math.imul(x, 31) ^ Math.imul(y, 17)) >>> 0) % 9;
+    ink[offset + 1] = height > 175 ? 100 + grain : height < 130 ? 235 : 205 + grain;
   }
   c.putImageData(pixels, 0, 0);
+  h.putImageData(packed, 0, 0);
   const images = [face, relief].map(canvas => {
     if (maxTextureSize >= WIDTH) return canvas;
     const resized = document.createElement('canvas');
@@ -251,9 +266,9 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const glow = useMemo(lightTexture, []);
   const details = useMemo(() => BANDS.map(() => ({ value: 0 })), []);
   const materials = useMemo(() => BANDS.map((band, index) => {
-    const material = new THREE.MeshStandardMaterial({ map: maps.map, bumpMap: maps.bump,
-      bumpScale: index === 1 ? .54 : .32, metalness: band.metalness, roughness: index === 1 ? .31 : band.roughness,
-      emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: index === 1 ? .145 : .12 });
+    const material = new THREE.MeshStandardMaterial({ map: maps.map, bumpMap: maps.bump, roughnessMap: maps.bump,
+      bumpScale: index === 1 ? .82 : .48, metalness: band.metalness, roughness: .85,
+      emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: index === 1 ? .07 : .06 });
     material.userData.detail = details[index];
     material.onBeforeCompile = shader => {
       shader.uniforms.qariDetail = details[index];
@@ -273,7 +288,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
         totalEmissiveRadiance = mix(dust * dustColor * 0.52, totalEmissiveRadiance, qariDetail);
       `);
     };
-    material.customProgramCacheKey = () => 'qari-manuscript-distance-v148-hero-bevel';
+    material.customProgramCacheKey = () => 'qari-manuscript-distance-v148-packed-relief';
     return material;
   }), [maps, details]);
   const eye = useMemo(() => new THREE.Vector3(), []);
@@ -305,7 +320,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
         const distance = nearest.length() / scale;
         const target = 1 - THREE.MathUtils.smoothstep(distance, 35, 115);
         details[index].value = THREE.MathUtils.damp(details[index].value, target, 6, Math.min(delta, .05));
-        materials[index].bumpScale = (index === 1 ? .54 : .32) * details[index].value;
+        materials[index].bumpScale = (index === 1 ? .82 : .48) * details[index].value;
       });
     }
     if (!paused) illuminationPhase.current += Math.min(delta, .05) * .65 * speed;

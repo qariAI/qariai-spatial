@@ -160,7 +160,8 @@ function WorldAnchor({children}:{children:React.ReactNode}){const {gl}=useThree(
 function CameraExploreRig({active}:{active:boolean}){
  const {camera,gl,controls}=useThree();
  const home=useMemo(()=>new THREE.Vector3(0,98,169),[]);
- const close=useMemo(()=>new THREE.Vector3(0,26,78),[]);
+ // Desktop calligraphy framing: slightly wider and higher; planet transforms stay intact.
+ const close=useMemo(()=>new THREE.Vector3(-4,30,84),[]);
  const homeTarget=useMemo(()=>new THREE.Vector3(0,Y+15,0),[]);
  const closeTarget=useMemo(()=>new THREE.Vector3(0,-2.7,44),[]);
  const moving=useRef(false);

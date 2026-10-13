@@ -1,0 +1,20 @@
+{
+  "build": "passed (existing bundle-size warning)",
+  "arabic": "8 exact source spans passed",
+  "glyphMasks": "24 passed; alpha byte-identical",
+  "scope": "App differs only in authorized desktop close destination and comment; content and geometry unchanged",
+  "desktop": {
+    "status": "startup timeout",
+    "budgetSeconds": 90,
+    "exit": 137,
+    "completedChecks": [],
+    "screenshots": []
+  },
+  "atlasBrowser": {
+    "status": "startup timeout",
+    "budgetSeconds": 40,
+    "exit": 124
+  },
+  "visualAcceptance": "pending",
+  "questHardware": "pending"
+}
