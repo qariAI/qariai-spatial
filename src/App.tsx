@@ -46,6 +46,72 @@ function OrbitLine({radius,opacity=.22,color='#d6ad67'}:{radius:number;opacity?:
  const geometry=useMemo(()=>{const pts=Array.from({length:257},(_,i)=>{const a=i/256*Math.PI*2;return new THREE.Vector3(Math.cos(a)*radius,Y,Math.sin(a)*radius*.74)});return new THREE.BufferGeometry().setFromPoints(pts)},[radius]);useEffect(()=>()=>geometry.dispose(),[geometry]);return <lineLoop geometry={geometry}><lineBasicMaterial color={color} transparent opacity={opacity} /></lineLoop>
 }
 function LivingRing(){const geometry=useMemo(()=>{const p=Array.from({length:321},(_,i)=>{const a=i/320*Math.PI*2;return new THREE.Vector3(Math.cos(a)*ORBIT_X,Y+1,Math.sin(a)*ORBIT_Z)});return new THREE.BufferGeometry().setFromPoints(p)},[]);useEffect(()=>()=>geometry.dispose(),[geometry]);return <><lineLoop geometry={geometry}><lineBasicMaterial color="#e9bd73" opacity={.7} transparent /></lineLoop><lineLoop geometry={geometry} position={[0,.3,0]}><lineBasicMaterial color="#b88942" opacity={.3} transparent /></lineLoop></>}
+/**
+ * Calligraphy-inspired depth art, deliberately abstract rather than Qur'anic text.
+ * Curves echo pen pressure, nested architectural bands and diacritic-like sparks.
+ * All geometry is deterministic, GPU-friendly and disposed on unmount.
+ */
+interface InkBandSpec { radius:number; elevation:number; amplitude:number; lobes:number; phase:number; color:string; opacity:number; width:number }
+const INK_BANDS:readonly InkBandSpec[]=[
+ {radius:12,elevation:1.1,amplitude:1.6,lobes:3,phase:0,color:'#f4dca5',opacity:.35,width:.16},
+ {radius:17,elevation:-.4,amplitude:2.0,lobes:5,phase:.9,color:'#bda074',opacity:.34,width:.12},
+ {radius:23,elevation:1.6,amplitude:2.5,lobes:4,phase:1.4,color:'#e1bb77',opacity:.31,width:.16},
+ {radius:30,elevation:-1.3,amplitude:2.6,lobes:7,phase:.6,color:'#dfbb8e',opacity:.30,width:.10},
+ {radius:38,elevation:1.4,amplitude:3.8,lobes:6,phase:2.1,color:'#a5b4b4',opacity:.25,width:.13},
+ {radius:48,elevation:-1.6,amplitude:3.5,lobes:8,phase:1.1,color:'#d0a469',opacity:.25,width:.10},
+ {radius:57,elevation:1.0,amplitude:3.1,lobes:5,phase:2.7,color:'#e0c291',opacity:.26,width:.12},
+ {radius:72,elevation:-1.1,amplitude:2.5,lobes:9,phase:.5,color:'#af8b5a',opacity:.18,width:.11},
+];
+function PenStroke({spec}:{spec:InkBandSpec}){
+ const geometry=useMemo(()=>{
+  const points:THREE.Vector3[]=[];
+  for(let i=0;i<=384;i++){
+   const a=i/384*Math.PI*2;
+   const breathing=Math.sin(a*spec.lobes+spec.phase);
+   const r=spec.radius+spec.amplitude*breathing;
+   points.push(new THREE.Vector3(
+    Math.cos(a)*r,
+    Y+spec.elevation+Math.sin(a*(spec.lobes-1)+spec.phase)*.7,
+    Math.sin(a)*r*.74
+   ));
+  }
+  return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points,true,'centripetal'),192,spec.width,4,true);
+ },[spec]);
+ useEffect(()=>()=>geometry.dispose(),[geometry]);
+ return <mesh geometry={geometry} raycast={()=>null}>
+  <meshBasicMaterial color={spec.color} transparent opacity={spec.opacity} blending={THREE.AdditiveBlending} depthWrite={false}/>
+ </mesh>;
+}
+function DiacriticStardust(){
+ const {gl}=useThree();
+ const geometry=useMemo(()=>{
+  const total=560,positions=new Float32Array(total*3),colors=new Float32Array(total*3);
+  const gold=new THREE.Color('#efd3a0'),blue=new THREE.Color('#83bbca');
+  let seed=3197;
+  const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
+  for(let i=0;i<total;i++){
+   const a=rand()*Math.PI*2,layer=i%5,r=14+layer*11+Math.sin(a*(3+layer))*2.1+(rand()-.5)*3;
+   positions[i*3]=Math.cos(a)*r;
+   positions[i*3+1]=Y+(rand()-.5)*5+(layer-2)*.35;
+   positions[i*3+2]=Math.sin(a)*r*.74;
+   const color=(i%7===0?blue:gold).clone().multiplyScalar(.5+rand()*.5);
+   colors.set(color.toArray(),i*3);
+  }
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  g.setAttribute('color',new THREE.BufferAttribute(colors,3));return g;
+ },[]);
+ useEffect(()=>()=>geometry.dispose(),[geometry]);
+ useFrame(()=>geometry.setDrawRange(0,gl.xr.isPresenting?250:560));
+ return <points geometry={geometry} raycast={()=>null}>
+  <pointsMaterial size={.64} transparent opacity={.88} vertexColors depthWrite={false} blending={THREE.AdditiveBlending} sizeAttenuation/>
+ </points>;
+}
+function CalligraphyDepthArt(){
+ return <group name="calligraphy-depth-art">
+  {INK_BANDS.map((spec,i)=><PenStroke key={i} spec={spec}/>)}
+  <DiacriticStardust/>
+ </group>;
+}
 function Sun(){const glow=useMemo(makeGlowTexture,[]);useEffect(()=>()=>glow.dispose(),[glow]);return <group position={[0,Y,0]}><mesh><sphereGeometry args={[6,48,32]}/><meshBasicMaterial color="#ffedb7" /></mesh><sprite scale={[40,40,1]}><spriteMaterial map={glow} blending={THREE.AdditiveBlending} transparent depthWrite={false}/></sprite><pointLight color="#ffd28d" intensity={160} distance={160} decay={2}/></group>}
 function PlanetTexture({kind}:{kind:'earth'|'jupiter'}){
  const texture=useMemo(()=>{const canvas=document.createElement('canvas');canvas.width=512;canvas.height=256;const c=canvas.getContext('2d')!;let seed=17;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};if(kind==='jupiter'){for(let y=0;y<256;y++){const bands=['#b38668','#e5cdb0','#bfa28b','#e7d2b4','#a87e68'];c.fillStyle=bands[Math.floor(y/14+Math.sin(y*.06))%bands.length];c.fillRect(0,y,512,1)}c.fillStyle='#bc8265';c.beginPath();c.ellipse(380,145,44,19,-.1,0,Math.PI*2);c.fill()}else{c.fillStyle='#0e5aa0';c.fillRect(0,0,512,256);for(let i=0;i<90;i++){c.fillStyle=i%3===0?'#b6a36f':'#63865c';c.beginPath();c.ellipse(rand()*512,rand()*256,9+rand()*29,4+rand()*12,rand()*3,0,Math.PI*2);c.fill()}for(let i=0;i<50;i++){c.fillStyle='rgba(248,247,241,.45)';c.beginPath();c.ellipse(rand()*512,rand()*256,8+rand()*32,2+rand()*5,0,0,Math.PI*2);c.fill()}}const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;return t},[kind]);useEffect(()=>()=>texture.dispose(),[texture]);return texture
@@ -64,7 +130,7 @@ function LetterObject({letter,index,phase,selected,handTarget,onSelect}:{letter:
  const select=(e:ThreeEvent<MouseEvent>)=>{e.stopPropagation();onSelect(index)};
  return <group ref={group} name={`qari-letter-${index}`}><Billboard follow lockX={false} lockY={false} lockZ={false}><mesh onPointerOver={e=>{e.stopPropagation();document.body.style.cursor='pointer'}} onPointerOut={()=>{document.body.style.cursor='auto'}} onClick={select}><planeGeometry args={[14,14]}/><meshBasicMaterial map={texture} transparent opacity={active?1:.89} depthWrite={false} side={THREE.DoubleSide} /></mesh><mesh onClick={select}><planeGeometry args={[10,10]}/><meshBasicMaterial transparent opacity={0} depthWrite={false}/></mesh><sprite scale={[active?21:16,active?21:16,1]}><spriteMaterial map={texture} transparent opacity={active?.33:.11} blending={THREE.AdditiveBlending} depthWrite={false}/></sprite></Billboard></group>
 }
-function OrbitalScene(props:OrbitProps){return <><color attach="background" args={['#010611']}/><fog attach="fog" args={['#010611',180,650]}/><ambientLight intensity={1.1} color="#cdd9e5"/><directionalLight position={[-70,80,70]} intensity={2.4} color="#ffd28d"/><pointLight position={[-90,35,45]} intensity={20} distance={200} color="#4ac0a0"/><pointLight position={[85,40,-45]} intensity={15} distance={200} color="#5c8fff"/><Stars count={5200} radius={620} opacity={.83} size={.8} seed={184}/><Stars count={1400} radius={290} opacity={.45} size={.55} seed={603}/><Sun/><Belt/>{PLANETS.map(p=><group key={p.name}><OrbitLine radius={p.distance}/><Planet planet={p} paused={props.paused} speed={props.speed}/></group>)}<LivingRing/>{LETTERS.map((l,i)=><LetterObject key={i} letter={l} index={i} phase={props.phase} selected={props.selected} handTarget={props.handTarget} onSelect={props.onSelect}/>)}</>}
+function OrbitalScene(props:OrbitProps){return <><color attach="background" args={['#010611']}/><fog attach="fog" args={['#010611',180,650]}/><ambientLight intensity={1.1} color="#cdd9e5"/><directionalLight position={[-70,80,70]} intensity={2.4} color="#ffd28d"/><pointLight position={[-90,35,45]} intensity={20} distance={200} color="#4ac0a0"/><pointLight position={[85,40,-45]} intensity={15} distance={200} color="#5c8fff"/><Stars count={5200} radius={620} opacity={.83} size={.8} seed={184}/><Stars count={1400} radius={290} opacity={.45} size={.55} seed={603}/><Sun/><CalligraphyDepthArt/><Belt/>{PLANETS.map(p=><group key={p.name}><OrbitLine radius={p.distance}/><Planet planet={p} paused={props.paused} speed={props.speed}/></group>)}<LivingRing/>{LETTERS.map((l,i)=><LetterObject key={i} letter={l} index={i} phase={props.phase} selected={props.selected} handTarget={props.handTarget} onSelect={props.onSelect}/>)}</>}
 
 /** Actual WebXR hand joints, not desktop emulation. For WebXR-compatible Quest browser only. */
 /* World-space hit targets are resolved from the same transformed objects rendered by R3F. */
