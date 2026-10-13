@@ -123,6 +123,7 @@ function CalligraphyDepthArt(){
  const texture=useMemo(circularCalligraphyTexture,[]);
  const detail=useMemo(closeCalligraphyTexture,[]);
  const material=useRef<THREE.MeshBasicMaterial>(null);
+ const detailMesh=useRef<THREE.Mesh>(null);
  const {camera,gl}=useThree();
  useEffect(()=>()=>{texture.dispose();detail.dispose()},[texture,detail]);
  useFrame(()=>{
@@ -131,7 +132,7 @@ function CalligraphyDepthArt(){
   const worldPosition=new THREE.Vector3();eye.getWorldPosition(worldPosition);
   const anchor=new THREE.Vector3(0,Y-3.6,0);
   // For Quest the scene is re-parented and scaled to meters.
-  const sceneGroup=material.current.parent;
+  const sceneGroup=detailMesh.current;
   if(sceneGroup){sceneGroup.getWorldPosition(anchor)}
   const worldScale=new THREE.Vector3(1,1,1);
   if(sceneGroup)sceneGroup.getWorldScale(worldScale);
@@ -143,7 +144,7 @@ function CalligraphyDepthArt(){
    <planeGeometry args={[155,114]}/>
    <meshBasicMaterial map={texture} transparent depthWrite={false} side={THREE.DoubleSide} opacity={.95}/>
   </mesh>
-  <mesh rotation={[-Math.PI/2,0,0]} position={[0,.12,0]} raycast={()=>null}>
+  <mesh ref={detailMesh} rotation={[-Math.PI/2,0,0]} position={[0,.12,0]} raycast={()=>null}>
    <planeGeometry args={[155,114]}/>
    <meshBasicMaterial ref={material} map={detail} transparent depthWrite={false} side={THREE.DoubleSide} opacity={0}/>
   </mesh>
