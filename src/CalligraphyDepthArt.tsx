@@ -2,10 +2,9 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
+import { EXCERPTS } from './calligraphy/content';
 
-// The complete shaped excerpt stays together. Decorative points never alter
-// its dots or spelling. This is the unvocalized excerpt of Qur'an 21:33.
-const PHRASE = 'كل في فلك';
+
 const WIDTH = 4096;
 const HEIGHT = 1024;
 const SEGMENTS = 256;
@@ -27,24 +26,30 @@ function strokeRule(ctx: CanvasRenderingContext2D, y: number, color: string, wid
 }
 
 function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingContext2D,
-  x: number, y: number, size: number, available: number, colors: string[], pixelAspect: number) {
+  x: number, y: number, size: number, available: number, colors: string[], pixelAspect: number, phrase: string, angle = 0, maxHeight = 76) {
   // Compensate for unequal angular/radial UV scale. The canvas transform
   // restores the shaped glyph proportions on the actual architectural surface.
   face.font = `700 ${size}px Amiri`;
-  const measured = face.measureText(PHRASE).width;
-  const fitted = Math.min(size, size * available / Math.max(measured * pixelAspect, 1));
+  const measured = face.measureText(phrase).width;
+  const bounds = face.measureText(phrase);
+  const inkHeight = bounds.actualBoundingBoxAscent + bounds.actualBoundingBoxDescent;
+  const fitted = Math.min(size, size * available / Math.max(measured * pixelAspect, 1), size * maxHeight / Math.max(inkHeight, 1));
   for (const ctx of [face, relief]) {
-    ctx.save(); ctx.translate(x, y); ctx.scale(pixelAspect, 1);
+    ctx.save(); ctx.translate(x, y); ctx.scale(pixelAspect, 1); ctx.rotate(angle);
     ctx.font = `700 ${fitted}px Amiri`;
+    const ink = ctx.measureText(phrase);
+    // Center actual ink, not the advance box: marks must stay in their course.
+    ctx.translate((ink.actualBoundingBoxLeft - ink.actualBoundingBoxRight) / 2,
+      (ink.actualBoundingBoxAscent - ink.actualBoundingBoxDescent) / 2);
     if (ctx === relief) {
-      ctx.fillStyle = '#383838'; ctx.fillText(PHRASE, 0, 0);
+      ctx.fillStyle = '#383838'; ctx.fillText(phrase, 0, 0);
     } else {
-      ctx.fillStyle = '#060e18'; ctx.fillText(PHRASE, 1.4 / pixelAspect, 2.8);
+      ctx.fillStyle = '#060e18'; ctx.fillText(phrase, 1.4 / pixelAspect, 2.8);
       const gold = ctx.createLinearGradient(0, -fitted * .6, 0, fitted * .6);
       gold.addColorStop(0, colors[0]); gold.addColorStop(.42, colors[1]); gold.addColorStop(1, colors[2]);
-      ctx.fillStyle = gold; ctx.fillText(PHRASE, 0, 0);
+      ctx.fillStyle = gold; ctx.fillText(phrase, 0, 0);
       ctx.strokeStyle = colors[0]; ctx.lineWidth = .65;
-      ctx.strokeText(PHRASE, -.5 / pixelAspect, -.5);
+      ctx.strokeText(phrase, -.5 / pixelAspect, -.5);
     }
     ctx.restore();
   }
@@ -66,7 +71,7 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
   }
   c.globalAlpha = 1;
   BANDS.forEach((band, index) => {
-    const height = band.bottom - band.top, center = (band.top + band.bottom) / 2;
+    const height = band.bottom - band.top;
     const vignette = c.createLinearGradient(0, band.top, 0, band.bottom);
     vignette.addColorStop(0, '#050d1680'); vignette.addColorStop(.28, '#172d4100');
     vignette.addColorStop(.72, '#172d4100'); vignette.addColorStop(1, '#050d1680');
@@ -75,45 +80,47 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
       strokeRule(c, band.top + inset, inset === 12 ? '#b79559' : '#624e35', inset === 12 ? 2 : 1);
       strokeRule(h, band.top + inset, '#cccccc', 1);
     }
-    const cell = WIDTH / band.count;
+    // Complete passages occupy staggered manuscript courses. The ink bounds,
+    // including marks above/below the baseline, determine each fitted size.
     const pixelAspect = (band.outer - band.inner) * WIDTH / (height * Math.PI * (band.inner + band.outer));
-    for (let i = 0; i < band.count; i++) {
-      const rhythm = i % 3;
-      const x = (i + .5) * cell;
-      const size = band.size * [1, .83, .94][rhythm];
-      const y = center + (index === 0 ? -24 : index === 1 ? [-9, 9, 0][rhythm] : -12);
-      drawPhrase(c, h, x, y, size, cell * .84, band.gold, pixelAspect);
-      if (index === 1) {
-        // Fine facing inscriptions frame each of the main cartouches.
-        drawPhrase(c, h, x, band.top + 46, 36, cell * .72, band.gold, pixelAspect);
-        drawPhrase(c, h, x, band.bottom - 43, 32, cell * .62, band.gold, pixelAspect);
-        c.strokeStyle = '#806443'; c.lineWidth = 1;
-        c.beginPath(); c.moveTo(x - cell * .41, band.top + 64);
-        c.lineTo(x - cell * .45, center); c.lineTo(x - cell * .41, band.bottom - 62); c.stroke();
-      } else if (index === 0 && i % 4 < 2) {
-        // Dense marginal notes occupy selected alternating manuscript regions.
-        drawPhrase(c, h, x, band.bottom - 80, 33, cell * .9, band.gold, pixelAspect);
-        drawPhrase(c, h, x, band.bottom - 37, 27, cell * .8, band.gold, pixelAspect);
-      } else if (index === 2) {
-        drawPhrase(c, h, x + (rhythm - 1) * cell * .06, band.bottom - 52, 44, cell * .74, band.gold, pixelAspect);
-        if (i % 3 === 0) {
-          // Geometric rivet ornament is deliberately separate from the script.
-          const edge = i * cell;
-          c.strokeStyle = '#b19062'; c.lineWidth = 1.4;
-          c.beginPath(); c.moveTo(edge + 7, center - 9); c.lineTo(edge + 13, center);
-          c.lineTo(edge + 7, center + 9); c.lineTo(edge + 1, center); c.closePath(); c.stroke();
-        }
+    const rows = index === 1 ? [64, 168, 270] : [58, 151, 248];
+    rows.forEach((offset, row) => {
+      // Pack by ink width rather than stamp cells. Short clauses no longer
+      // leave blank cartouches; full verses get their natural larger span.
+      let cursor = 16 + row * 8, ordinal = 0;
+      const maxHeight = row === 1 ? (index === 1 ? 138 : index === 0 ? 82 : 104) : (index === 1 ? 62 : 56);
+      const nominal = row === 1 ? (index === 1 ? 190 : index === 0 ? 100 : 138) : (index === 0 ? 48 : 68);
+      while (cursor < WIDTH - 32) {
+        const excerpt = EXCERPTS[(ordinal * 3 + row * 2 + index) % EXCERPTS.length];
+        c.font = `700 ${nominal}px Amiri`;
+        const bounds = c.measureText(excerpt.text);
+        const fitted = Math.min(nominal, nominal * maxHeight / Math.max(1, bounds.actualBoundingBoxAscent + bounds.actualBoundingBoxDescent));
+        const width = Math.max(bounds.width, bounds.actualBoundingBoxLeft + bounds.actualBoundingBoxRight) * fitted / nominal * pixelAspect;
+        if (cursor + width > WIDTH - 16) break;
+        drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight);
+        cursor += width + (index === 0 ? 10 : 14) + (ordinal % 3) * 5;
+        ordinal++;
       }
-    }
+    });
     // Sparse paired illuminations along the moldings, baked into the face.
     for (let i = 0; i < band.count; i += index === 1 ? 1 : 3) {
-      const x = i * cell, y = band.top + 24;
+      const x = i * WIDTH / band.count, y = band.top + 24;
       for (let j = -1; j <= 1; j++) {
         c.fillStyle = j ? '#397f7b' : '#a0e3cf';
         c.beginPath(); c.arc(x + j * 7, y, j ? 1.4 : 2.4, 0, Math.PI * 2); c.fill();
       }
     }
   });
+  // Far representation is sampled from the actual engraving, not fake glyphs.
+  const ink = h.getImageData(0, 0, WIDTH, HEIGHT).data;
+  const pixels = c.getImageData(0, 0, WIDTH, HEIGHT);
+  for (let y = 0; y < HEIGHT; y++) for (let x = 0; x < WIDTH; x++) {
+    const offset = (y * WIDTH + x) * 4;
+    const engraved = ink[offset] < 100;
+    const cluster = engraved && ((Math.imul(x >> 2, 73856093) ^ Math.imul(y >> 2, 19349663)) >>> 0) % 19 === 0;
+    pixels.data[offset + 3] = cluster ? 255 : 128;
+  }
+  c.putImageData(pixels, 0, 0);
   const images = [face, relief].map(canvas => {
     if (maxTextureSize >= WIDTH) return canvas;
     const resized = document.createElement('canvas');
@@ -206,10 +213,62 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const backing = useMemo(bronzeArchitecture, []);
   const lights = useMemo(lightClusters, []);
   const glow = useMemo(lightTexture, []);
+  const details = useMemo(() => BANDS.map(() => ({ value: 0 })), []);
+  const materials = useMemo(() => BANDS.map((band, index) => {
+    const material = new THREE.MeshStandardMaterial({ map: maps.map, bumpMap: maps.bump,
+      bumpScale: .2, metalness: band.metalness, roughness: band.roughness,
+      emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: .12 });
+    material.userData.detail = details[index];
+    material.onBeforeCompile = shader => {
+      shader.uniforms.qariDetail = details[index];
+      shader.fragmentShader = 'uniform float qariDetail;\n' + shader.fragmentShader;
+      shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', `
+        #include <map_fragment>
+        float dust = clamp((sampledDiffuseColor.a * 255.0 - 128.0) / 127.0, 0.0, 1.0);
+        vec3 distant = vec3(0.018, 0.033, 0.052) + dust * vec3(0.62, 0.49, 0.25);
+        diffuseColor.rgb = mix(distant, diffuseColor.rgb, qariDetail);
+        diffuseColor.a = 1.0;
+      `);
+      shader.fragmentShader = shader.fragmentShader.replace('#include <emissivemap_fragment>', `
+        #include <emissivemap_fragment>
+        totalEmissiveRadiance = mix(dust * vec3(0.065, 0.09, 0.075), totalEmissiveRadiance, qariDetail);
+      `);
+    };
+    material.customProgramCacheKey = () => 'qari-manuscript-distance-v147';
+    return material;
+  }), [maps, details]);
+  const eye = useMemo(() => new THREE.Vector3(), []);
+  const nearest = useMemo(() => new THREE.Vector3(), []);
   const lightMaterial = useRef<THREE.PointsMaterial>(null);
   const illuminationPhase = useRef(0);
-  useEffect(() => () => { maps.map.dispose(); maps.bump.dispose(); faces.forEach(g => g.dispose()); backing.dispose(); lights.dispose(); glow.dispose(); }, [maps, faces, backing, lights, glow]);
-  useFrame((_, delta) => {
+  useEffect(() => () => { maps.map.dispose(); maps.bump.dispose(); faces.forEach(g => g.dispose()); backing.dispose(); lights.dispose(); glow.dispose(); materials.forEach(m => m.dispose()); }, [maps, faces, backing, lights, glow, materials]);
+  useFrame(({ camera }, delta) => {
+    if (root.current) {
+      const group = root.current;
+      group.getWorldScale(worldScale);
+      const scale = Math.max(worldScale.x, worldScale.y, worldScale.z);
+      const view = gl.xr.isPresenting ? gl.xr.getCamera() : camera;
+      view.getWorldPosition(eye); group.worldToLocal(eye);
+      BANDS.forEach((band, index) => {
+        const radius = THREE.MathUtils.clamp(Math.hypot(eye.x, eye.y), band.inner, band.outer);
+        // Minimize distance to the elliptical surface in world units.
+        let angle = Math.atan2(eye.y, eye.x);
+        const a = radius * worldScale.x, b = radius * worldScale.y;
+        const px = eye.x * worldScale.x, py = eye.y * worldScale.y;
+        for (let step = 0; step < 6; step++) {
+          const c = Math.cos(angle), t = Math.sin(angle);
+          const f = (b*b-a*a)*t*c + a*px*t - b*py*c;
+          const derivative = (b*b-a*a)*(c*c-t*t) + a*px*c + b*py*t;
+          if (Math.abs(derivative) > .001) angle -= THREE.MathUtils.clamp(f / derivative, -.3, .3);
+        }
+        nearest.set((eye.x-radius*Math.cos(angle))*worldScale.x,
+          (eye.y-radius*Math.sin(angle))*worldScale.y, (eye.z-band.elevation)*worldScale.z);
+        const distance = nearest.length() / scale;
+        const target = 1 - THREE.MathUtils.smoothstep(distance, 35, 115);
+        details[index].value = THREE.MathUtils.damp(details[index].value, target, 6, Math.min(delta, .05));
+        materials[index].bumpScale = .2 * details[index].value;
+      });
+    }
     if (!paused) illuminationPhase.current += Math.min(delta, .05) * .65 * speed;
     lights.setDrawRange(0, gl.xr.isPresenting ? 36 : 72);
     if (lightMaterial.current) {
@@ -222,9 +281,8 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   // Keep the wider deck below even the enlarged seven-letter planes and
   // Saturn's tilted rings; their choreography and transforms stay intact.
   return <group ref={root} name="calligraphy-depth-art" position={[0, -17.7, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[1, .74, 1]}>
-    {BANDS.map((band, index) => <mesh key={index} geometry={faces[index]} raycast={() => null}>
-      <meshStandardMaterial map={maps.map} bumpMap={maps.bump} bumpScale={.2} metalness={band.metalness} roughness={band.roughness}
-        emissive="#b49c77" emissiveMap={maps.map} emissiveIntensity={.075} />
+    {BANDS.map((_, index) => <mesh key={index} geometry={faces[index]} raycast={() => null}>
+      <primitive object={materials[index]} attach="material" />
     </mesh>)}
     <mesh geometry={backing} raycast={() => null}><meshStandardMaterial color="#806441" metalness={.6} roughness={.5} /></mesh>
     <points geometry={lights} raycast={() => null}>
