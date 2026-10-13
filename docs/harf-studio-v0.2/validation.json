@@ -1,0 +1,17 @@
+{
+  "baseline": "66cd927",
+  "productionBuild": "passed; inherited large Three.js chunk warning",
+  "logicTests": "passed: tracing, pinch, session lifecycle and resource/listener cleanup simulation",
+  "desktopSVG": "passed pointer body/dot/reset/guide",
+  "desktopSpatial": {
+    "status": "timeout during navigation",
+    "finalBudgetSeconds": 60,
+    "exit": 124,
+    "completedSpatialChecks": []
+  },
+  "screenshot": "unavailable; no fabricated replacement",
+  "preview": "not deployed manually; branch preview URL unverified",
+  "quest": "all hardware acceptance tests pending",
+  "protectedScope": "Living Orbit source and original desktop HTML untouched",
+  "typeScript": "passed after final input/teardown guards"
+}
