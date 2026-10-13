@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 // Living Orbit remains the default entry; Harf is an independent experiment.
 export default defineConfig({ build: { rollupOptions: { input: {
-  orbit: 'index.html', harfXR: 'harf-studio-xr.html',
+  orbit: 'index.html', harfXR: 'harf-studio-xr.html', harfDesktop: 'harf-studio.html',
 } } } });

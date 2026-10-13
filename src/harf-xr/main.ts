@@ -1,7 +1,9 @@
 import * as THREE from 'three';
-import { GUIDE, DOT, Tracing, Pinch, type Point } from './tracing';
+import { GUIDE, Tracing, Pinch, type Point } from './tracing';
 import { SessionOwner } from './session';
 import './style.css';
+import { BA } from './letters/definition';
+const bodyOutline=new Path2D(BA.bodyOutline), dotOutline=new Path2D(BA.dotOutline);
 const host = document.querySelector<HTMLDivElement>('#surface')!, status = document.querySelector<HTMLParagraphElement>('#status')!;
 const enter = document.querySelector<HTMLButtonElement>('#enter')!, leave = document.querySelector<HTMLButtonElement>('#leave')!;
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -64,16 +66,19 @@ function paint() {
     ctx.fillText('HARF STUDIO / BĀʾ', 35, 40);
     ctx.fillStyle = '#a9c5cc';
     ctx.font = '18px sans-serif';
-    ctx.fillText('Illustrative guide · proximity feedback, not expert assessment', 35, 72);
+    ctx.fillText('Amiri Naskh · sourced form, practice stroke pending expert review', 35, 72);
+    ctx.fillStyle=trace.phase==='body'?'#355565':'#665b40';ctx.fill(bodyOutline);
+    ctx.strokeStyle='#91a9aa';ctx.lineWidth=1;ctx.stroke(bodyOutline);
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    ctx.strokeStyle = '#698592';
-    ctx.lineWidth = 12;
+    ctx.strokeStyle = '#bad0cb';
+    ctx.lineWidth = 3;
     ctx.setLineDash([12, 13]);
     ctx.beginPath();
     GUIDE.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
     ctx.stroke();
     ctx.setLineDash([]);
+    ctx.save();ctx.clip(bodyOutline);
     ctx.strokeStyle = '#e5bd71';
     ctx.lineWidth = 12;
     for (const stroke of trace.strokes) {
@@ -81,22 +86,24 @@ function paint() {
         stroke.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
         ctx.stroke();
     }
+    ctx.restore();
     const disc = (p: Point, r: number, color: string) => { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2); ctx.fill(); };
     disc(GUIDE[0], 14, trace.phase === 'body' ? '#94dbc9' : '#627882');
     disc(GUIDE[GUIDE.length - 1], 10, '#e3c68d');
     ctx.textAlign = 'center';
     ctx.font = 'bold 18px sans-serif';
     ctx.fillStyle = '#b9e3d8';
-    ctx.fillText('START', 752, 130);
+    ctx.fillText('START', GUIDE[0].x, GUIDE[0].y-28);
     ctx.fillStyle = '#d5bf97';
-    ctx.fillText('FINISH', 131, 163);
-    disc(DOT, 19, trace.phase === 'complete' ? '#edc77d' : trace.phase === 'dot' ? '#c6ab74' : '#718994');
+    ctx.fillText('FINISH', GUIDE.at(-1)!.x, GUIDE.at(-1)!.y-28);
+    ctx.fillStyle=trace.phase==='complete'?'#edc77d':trace.phase==='dot'?'#a68e59':'#355565';
+    ctx.fill(dotOutline);ctx.strokeStyle='#a9b9ae';ctx.lineWidth=1;ctx.stroke(dotOutline);
     ctx.fillStyle = '#d7e5df';
     ctx.font = '20px sans-serif';
-    ctx.fillText(trace.phase === 'body' ? `Body · ${Math.round(trace.progress * 100)}% · right → left` : trace.phase === 'dot' ? 'Open hand, then pinch at the dot' : 'Body and dot complete', 450, 485);
+    ctx.fillText(trace.phase === 'body' ? `Body · ${Math.round(trace.progress * 100)}% · right → left` : trace.phase === 'dot' ? 'Open hand, then pinch at the dot' : 'Body and dot complete', 450, 510);
     ctx.font = '17px sans-serif';
     ctx.fillStyle = '#a7c8ca';
-    ctx.fillText(renderer.xr.isPresenting ? 'Index tip near surface + pinch · hold buttons briefly' : 'Drag from START · release to pause', 450, 520);
+    ctx.fillText(renderer.xr.isPresenting ? 'Index tip near surface + pinch · hold buttons briefly' : 'Drag from START · release to pause', 450, 535);
     for (const [x, text] of [[110, 'TRY AGAIN'], [510, 'LEAVE VR']] as const) {
         ctx.fillStyle = '#263f50';
         ctx.fillRect(x, 550, 280, 62);

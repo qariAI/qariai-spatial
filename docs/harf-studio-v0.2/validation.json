@@ -1,17 +1,18 @@
 {
-  "baseline": "66cd927",
-  "productionBuild": "passed; inherited large Three.js chunk warning",
-  "logicTests": "passed: tracing, pinch, session lifecycle and resource/listener cleanup simulation",
-  "desktopSVG": "passed pointer body/dot/reset/guide",
-  "desktopSpatial": {
-    "status": "timeout during navigation",
-    "finalBudgetSeconds": 60,
-    "exit": 124,
-    "completedSpatialChecks": []
+  "productionBuild": "passed; inherited Three.js chunk warning",
+  "logicTests": "passed: tracing direction/proximity/resume, body/dot/reset, pinch and session lifecycle",
+  "desktopChecks": {
+    "svgFallback": "passed",
+    "spatialPointerBodyDotRetry": "passed",
+    "handFeatureDenial": "passed",
+    "mobileLayout": "passed",
+    "pagehideCleanup": "no JS error",
+    "errors": []
   },
-  "screenshot": "unavailable; no fabricated replacement",
-  "preview": "not deployed manually; branch preview URL unverified",
-  "quest": "all hardware acceptance tests pending",
-  "protectedScope": "Living Orbit source and original desktop HTML untouched",
-  "typeScript": "passed after final input/teardown guards"
+  "screenshot": "ba/desktop-complete.png (actual spatial desktop pointer completion)",
+  "sourceOutline": "byte-exact uniformly transformed Amiri Bold 1.002 glyph; 505 centreline samples and dot target inside source glyph",
+  "preview": "not manually deployed; live branch preview URL unverified",
+  "questHardware": "pending",
+  "expertReview": "source form is Amiri Naskh; centreline, pen angle and educational stroke order need Arabic calligrapher validation",
+  "protectedScope": "Living Orbit and session/hand code unchanged; no main/production/Android changes"
 }
