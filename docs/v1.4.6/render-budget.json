@@ -1,0 +1,48 @@
+{
+  "viewport": [
+    1100,
+    760
+  ],
+  "method": "Chromium software renderer; paused initial scene; these counts are not FPS measurements",
+  "v1.4.5": {
+    "scene_draw_calls": 54,
+    "scene_triangles": 13666,
+    "uploaded_textures": 12,
+    "art_draw_calls": 2,
+    "art_triangles": 768,
+    "main_texture_sizes": [
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        2048
+      ]
+    ]
+  },
+  "v1.4.6": {
+    "scene_draw_calls": 57,
+    "scene_triangles": 23698,
+    "uploaded_textures": 13,
+    "art_draw_calls": 5,
+    "art_triangles": 10800,
+    "main_texture_sizes": [
+      [
+        4096,
+        1024
+      ],
+      [
+        4096,
+        1024
+      ]
+    ],
+    "light_mask_size": [
+      32,
+      32
+    ],
+    "desktop_light_points": 72,
+    "xr_light_points": 36
+  },
+  "headset_verified": false
+}

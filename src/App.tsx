@@ -65,7 +65,7 @@ function LetterObject({letter,index,phase,paused,speed,selected,handTarget,onSel
  const select=(e:ThreeEvent<MouseEvent>)=>{e.stopPropagation();onSelect(index)};
  return <group ref={group} name={`qari-letter-${index}`}><Billboard follow lockX={false} lockY={false} lockZ={false}><mesh onPointerOver={e=>{e.stopPropagation();document.body.style.cursor='pointer'}} onPointerOut={()=>{document.body.style.cursor='auto'}} onClick={select}><planeGeometry args={[14,14]}/><meshBasicMaterial map={texture} transparent opacity={active?1:.89} depthWrite={false} side={THREE.DoubleSide} /></mesh><mesh onClick={select}><planeGeometry args={[10,10]}/><meshBasicMaterial transparent opacity={0} depthWrite={false}/></mesh><sprite scale={[active?21:16,active?21:16,1]}><spriteMaterial map={texture} transparent opacity={active?.33:.11} blending={THREE.AdditiveBlending} depthWrite={false}/></sprite></Billboard></group>
 }
-function OrbitalScene(props:OrbitProps){return <><color attach="background" args={['#010611']}/><fog attach="fog" args={['#010611',180,650]}/><ambientLight intensity={1.1} color="#cdd9e5"/><directionalLight position={[-70,80,70]} intensity={2.4} color="#ffd28d"/><pointLight position={[-90,35,45]} intensity={20} distance={200} color="#4ac0a0"/><pointLight position={[85,40,-45]} intensity={15} distance={200} color="#5c8fff"/><Stars count={5200} radius={620} opacity={.83} size={.8} seed={184}/><Stars count={1400} radius={290} opacity={.45} size={.55} seed={603}/><Sun/><CalligraphyDepthArt/><Belt/>{PLANETS.map(p=><group key={p.name}><OrbitLine radius={p.distance}/><Planet planet={p} paused={props.paused} speed={props.speed} active={props.exploringPlanet===p.name} onExplore={props.onExplorePlanet}/></group>)}<LivingRing/>{LETTERS.map((l,i)=><LetterObject key={i} letter={l} index={i} phase={props.phase} paused={props.paused} speed={props.speed} selected={props.selected} handTarget={props.handTarget} onSelect={props.onSelect}/>)}</>}
+function OrbitalScene(props:OrbitProps){return <><color attach="background" args={['#010611']}/><fog attach="fog" args={['#010611',180,650]}/><ambientLight intensity={1.1} color="#cdd9e5"/><directionalLight position={[-70,80,70]} intensity={2.4} color="#ffd28d"/><pointLight position={[-90,35,45]} intensity={20} distance={200} color="#4ac0a0"/><pointLight position={[85,40,-45]} intensity={15} distance={200} color="#5c8fff"/><Stars count={5200} radius={620} opacity={.83} size={.8} seed={184}/><Stars count={1400} radius={290} opacity={.45} size={.55} seed={603}/><Sun/><CalligraphyDepthArt paused={props.paused} speed={props.speed}/><Belt/>{PLANETS.map(p=><group key={p.name}><OrbitLine radius={p.distance}/><Planet planet={p} paused={props.paused} speed={props.speed} active={props.exploringPlanet===p.name} onExplore={props.onExplorePlanet}/></group>)}<LivingRing/>{LETTERS.map((l,i)=><LetterObject key={i} letter={l} index={i} phase={props.phase} paused={props.paused} speed={props.speed} selected={props.selected} handTarget={props.handTarget} onSelect={props.onSelect}/>)}</>}
 
 /** Actual WebXR hand joints, not desktop emulation. For WebXR-compatible Quest browser only. */
 /* World-space hit targets are resolved from the same transformed objects rendered by R3F. */
@@ -160,8 +160,9 @@ function WorldAnchor({children}:{children:React.ReactNode}){const {gl}=useThree(
 function CameraExploreRig({active}:{active:boolean}){
  const {camera,gl,controls}=useThree();
  const home=useMemo(()=>new THREE.Vector3(0,98,169),[]);
- const close=useMemo(()=>new THREE.Vector3(0,37,52),[]);
- const target=useMemo(()=>new THREE.Vector3(0,Y+15,0),[]);
+ const close=useMemo(()=>new THREE.Vector3(0,26,78),[]);
+ const homeTarget=useMemo(()=>new THREE.Vector3(0,Y+15,0),[]);
+ const closeTarget=useMemo(()=>new THREE.Vector3(0,-2.7,44),[]);
  const moving=useRef(false);
  const previous=useRef(false);
  useEffect(()=>{
@@ -176,6 +177,7 @@ function CameraExploreRig({active}:{active:boolean}){
   if(previous.current!==active){previous.current=active;moving.current=true}
   if(!moving.current)return;
   const destination=active?close:home;
+  const target=active?closeTarget:homeTarget;
   camera.position.lerp(destination,1-Math.exp(-Math.min(dt,.05)*2.7));
   const orbit=controls as {target?:THREE.Vector3;update?:()=>void}|undefined;
   if(orbit?.target){orbit.target.lerp(target,1-Math.exp(-Math.min(dt,.05)*2.7));orbit.update?.()}
