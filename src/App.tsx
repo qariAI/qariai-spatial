@@ -144,7 +144,7 @@ function DiacriticStardust(){
 }
 function CalligraphyDepthArt(){
  return <group name="calligraphy-depth-art">
-  {INK_LAYERS.map((layer,i)=><group key={i}><CalligraphyRibbon layer={layer} index={i}/><InkHalo radius={layer.radius+2.7} lift={layer.lift} seed={i+1}/></group>)}
+  {INK_LAYERS.map((layer,i)=><group key={i}><CalligraphyRibbon layer={layer} index={i}/><CalligraphyRibbon layer={{...layer,radius:layer.radius+3.4,lift:layer.lift-.85,phase:layer.phase+1.3,hue:'#506b85'}} index={i+6}/><InkHalo radius={layer.radius+2.7} lift={layer.lift} seed={i+1}/></group>)}
   <DiacriticStardust/>
  </group>;
 }
