@@ -1,0 +1,27 @@
+{
+  "baseline_commit": "322841a8751a5bea1fb921f345b607c83a8263fc",
+  "production_build": "passed",
+  "arabic_content": "eight source spans matched exactly",
+  "mask_validation": "24 native-mask comparisons passed at 55/100/190px",
+  "unchanged": [
+    "src/App.tsx",
+    "src/style.css",
+    "src/calligraphy/content.ts",
+    "faceGeometry",
+    "bronzeArchitecture",
+    "lightTexture",
+    "lightClusters"
+  ],
+  "hero_only": [
+    "RGB edge bevel",
+    "ridge height",
+    "roughness",
+    "near emissive lift",
+    "gutter finials"
+  ],
+  "global_far_change": "stardust emission 0.42 -> 0.52; distance thresholds unchanged",
+  "source_sha256": {
+    "src/CalligraphyDepthArt.tsx": "30ca3f9e35800d0d4032e73735276b9fedd57ebd49d987dae84b90263027b0f5",
+    "src/calligraphy/heroBevel.ts": "c0d4d673f3979e352973fd06e2661b9294b67db15e1b15616047517fe1f93b70"
+  }
+}

@@ -3,6 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
 import { EXCERPTS } from './calligraphy/content';
+import { paintHeroBevel, type EngravedGlyph } from './calligraphy/heroBevel';
 
 
 const WIDTH = 4096;
@@ -26,7 +27,7 @@ function strokeRule(ctx: CanvasRenderingContext2D, y: number, color: string, wid
 }
 
 function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingContext2D,
-  x: number, y: number, size: number, available: number, colors: string[], pixelAspect: number, phrase: string, angle = 0, maxHeight = 76) {
+  x: number, y: number, size: number, available: number, colors: string[], pixelAspect: number, phrase: string, angle = 0, maxHeight = 76, bevelCache?: Map<string, EngravedGlyph>) {
   // Compensate for unequal angular/radial UV scale. The canvas transform
   // restores the shaped glyph proportions on the actual architectural surface.
   face.font = `700 ${size}px Amiri`;
@@ -42,14 +43,29 @@ function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingConte
     ctx.translate((ink.actualBoundingBoxLeft - ink.actualBoundingBoxRight) / 2,
       (ink.actualBoundingBoxAscent - ink.actualBoundingBoxDescent) / 2);
     if (ctx === relief) {
-      ctx.fillStyle = '#383838'; ctx.fillText(phrase, 0, 0);
+      // Cut a narrow shadow valley around a raised, continuous ink face.
+      // Rounded relief shoulder and a recessed outer valley. Filtering applies
+      // only to height, never to the native-shaped colour/diacritic mask.
+      ctx.filter = 'blur(0.55px)';
+      ctx.strokeStyle = '#595959'; ctx.lineWidth = 5; ctx.strokeText(phrase, 0, 0);
+      ctx.strokeStyle = '#aaaaaa'; ctx.lineWidth = 2.8; ctx.strokeText(phrase, 0, 0);
+      ctx.strokeStyle = '#cdcdcd'; ctx.lineWidth = 1; ctx.strokeText(phrase, 0, 0);
+      ctx.fillStyle = bevelCache ? '#eeeeee' : '#dddddd'; ctx.fillText(phrase, 0, 0);
     } else {
-      ctx.fillStyle = '#060e18'; ctx.fillText(phrase, 1.4 / pixelAspect, 2.8);
-      const gold = ctx.createLinearGradient(0, -fitted * .6, 0, fitted * .6);
-      gold.addColorStop(0, colors[0]); gold.addColorStop(.42, colors[1]); gold.addColorStop(1, colors[2]);
-      ctx.fillStyle = gold; ctx.fillText(phrase, 0, 0);
-      ctx.strokeStyle = colors[0]; ctx.lineWidth = .65;
-      ctx.strokeText(phrase, -.5 / pixelAspect, -.5);
+      ctx.fillStyle = '#030a12'; ctx.fillText(phrase, 1.2 / pixelAspect, 1.5);
+      ctx.strokeStyle = '#07101b'; ctx.lineWidth = 1.8;
+      ctx.strokeText(phrase, 0, 0);
+      const gold = ctx.createLinearGradient(0, -ink.actualBoundingBoxAscent, 0, ink.actualBoundingBoxDescent);
+      gold.addColorStop(0, colors[0]); gold.addColorStop(.28, colors[1]);
+      gold.addColorStop(.43, colors[0]); gold.addColorStop(.57, colors[1]);
+      gold.addColorStop(1, colors[2]);
+      ctx.fillStyle = gold;
+      if (bevelCache) paintHeroBevel(ctx, phrase, bevelCache);
+      else {
+        ctx.fillText(phrase, 0, 0);
+        ctx.strokeStyle = colors[0]; ctx.lineWidth = .45;
+        ctx.strokeText(phrase, -.5 / pixelAspect, -.5);
+      }
     }
     ctx.restore();
   }
@@ -59,6 +75,7 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
   const face = document.createElement('canvas'); face.width = WIDTH; face.height = HEIGHT;
   const relief = face.cloneNode() as HTMLCanvasElement;
   const c = face.getContext('2d')!, h = relief.getContext('2d')!;
+  const bevelCache = new Map<string, EngravedGlyph>();
   c.fillStyle = '#172b3e'; c.fillRect(0, 0, WIDTH, HEIGHT);
   h.fillStyle = '#999999'; h.fillRect(0, 0, WIDTH, HEIGHT);
   for (const ctx of [c, h]) { ctx.direction = 'rtl'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; }
@@ -82,14 +99,17 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
     }
     // Complete passages occupy staggered manuscript courses. The ink bounds,
     // including marks above/below the baseline, determine each fitted size.
-    const pixelAspect = (band.outer - band.inner) * WIDTH / (height * Math.PI * (band.inner + band.outer));
-    const rows = index === 1 ? [64, 168, 270] : [58, 151, 248];
+    // Compensate at each course's own radius, rather than the band midpoint.
+    // This preserves Arabic proportions across the width of the annulus.
+    const rows = index === 1 ? [64, 168, 270] : [62, 151, 248];
     rows.forEach((offset, row) => {
+      const radius = band.inner + offset / height * (band.outer - band.inner);
+      const pixelAspect = (band.outer - band.inner) * WIDTH / (height * 2 * Math.PI * radius);
       // Pack by ink width rather than stamp cells. Short clauses no longer
       // leave blank cartouches; full verses get their natural larger span.
-      let cursor = 16 + row * 8, ordinal = 0;
-      const maxHeight = row === 1 ? (index === 1 ? 138 : index === 0 ? 82 : 104) : (index === 1 ? 62 : 56);
-      const nominal = row === 1 ? (index === 1 ? 190 : index === 0 ? 100 : 138) : (index === 0 ? 48 : 68);
+      let cursor = 16 + row * 8 + index * 3, ordinal = 0;
+      const maxHeight = row === 1 ? (index === 1 ? 120 : index === 0 ? 82 : 104) : (index === 1 ? 68 : 64);
+      const nominal = row === 1 ? (index === 1 ? 190 : index === 0 ? 100 : 138) : (index === 0 ? 60 : 78);
       while (cursor < WIDTH - 32) {
         const excerpt = EXCERPTS[(ordinal * 3 + row * 2 + index) % EXCERPTS.length];
         c.font = `700 ${nominal}px Amiri`;
@@ -97,8 +117,31 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
         const fitted = Math.min(nominal, nominal * maxHeight / Math.max(1, bounds.actualBoundingBoxAscent + bounds.actualBoundingBoxDescent));
         const width = Math.max(bounds.width, bounds.actualBoundingBoxLeft + bounds.actualBoundingBoxRight) * fitted / nominal * pixelAspect;
         if (cursor + width > WIDTH - 16) break;
-        drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight);
-        cursor += width + (index === 0 ? 10 : 14) + (ordinal % 3) * 5;
+        drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight, index === 1 ? bevelCache : undefined);
+        const gap = (index === 0 ? 24 : 32) + (ordinal % 3) * 6;
+        // Separate geometric filigree sits only in measured empty gutters.
+        // Its paired arcs weave around a bronze spindle, never through ink.
+        const edge = cursor + width + gap / 2;
+        const center = band.top + offset;
+        for (const ctx of [c, h]) {
+          ctx.save(); ctx.strokeStyle = ctx === c ? (index === 1 ? '#b3925c' : '#806743') : '#888888';
+          ctx.lineWidth = .8;
+          for (const sign of [-1, 1]) {
+            ctx.beginPath(); ctx.moveTo(edge, center - 14);
+            ctx.bezierCurveTo(edge + sign * 3, center - 4, edge - sign * 3, center + 4, edge, center + 14);
+            ctx.stroke();
+          }
+          if (index === 1) {
+            // Closed geometric finials are confined to the same empty gutter.
+            for (const sign of [-1, 1]) {
+              const y = center + sign * 21;
+              ctx.beginPath(); ctx.moveTo(edge, y - 3); ctx.lineTo(edge + 2, y);
+              ctx.lineTo(edge, y + 3); ctx.lineTo(edge - 2, y); ctx.closePath(); ctx.stroke();
+            }
+          }
+          ctx.restore();
+        }
+        cursor += width + gap;
         ordinal++;
       }
     });
@@ -112,15 +155,23 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
     }
   });
   // Far representation is sampled from the actual engraving, not fake glyphs.
-  const ink = h.getImageData(0, 0, WIDTH, HEIGHT).data;
+  const packed = h.getImageData(0, 0, WIDTH, HEIGHT);
+  const ink = packed.data;
   const pixels = c.getImageData(0, 0, WIDTH, HEIGHT);
   for (let y = 0; y < HEIGHT; y++) for (let x = 0; x < WIDTH; x++) {
     const offset = (y * WIDTH + x) * 4;
-    const engraved = ink[offset] < 100;
+    const engraved = ink[offset] > 175;
     const cluster = engraved && ((Math.imul(x >> 2, 73856093) ^ Math.imul(y >> 2, 19349663)) >>> 0) % 19 === 0;
     pixels.data[offset + 3] = cluster ? 255 : 128;
+    // Shared texture: R = continuous relief, G = metallic roughness.
+    // Recessed slate is matte; raised ink is polished with restrained grain.
+    // No additional GPU texture or geometry is required.
+    const height = ink[offset];
+    const grain = ((Math.imul(x, 31) ^ Math.imul(y, 17)) >>> 0) % 9;
+    ink[offset + 1] = height > 175 ? 100 + grain : height < 130 ? 235 : 205 + grain;
   }
   c.putImageData(pixels, 0, 0);
+  h.putImageData(packed, 0, 0);
   const images = [face, relief].map(canvas => {
     if (maxTextureSize >= WIDTH) return canvas;
     const resized = document.createElement('canvas');
@@ -215,9 +266,9 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const glow = useMemo(lightTexture, []);
   const details = useMemo(() => BANDS.map(() => ({ value: 0 })), []);
   const materials = useMemo(() => BANDS.map((band, index) => {
-    const material = new THREE.MeshStandardMaterial({ map: maps.map, bumpMap: maps.bump,
-      bumpScale: .2, metalness: band.metalness, roughness: band.roughness,
-      emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: .12 });
+    const material = new THREE.MeshStandardMaterial({ map: maps.map, bumpMap: maps.bump, roughnessMap: maps.bump,
+      bumpScale: index === 1 ? .82 : .48, metalness: band.metalness, roughness: .85,
+      emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: index === 1 ? .07 : .06 });
     material.userData.detail = details[index];
     material.onBeforeCompile = shader => {
       shader.uniforms.qariDetail = details[index];
@@ -225,16 +276,19 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
       shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', `
         #include <map_fragment>
         float dust = clamp((sampledDiffuseColor.a * 255.0 - 128.0) / 127.0, 0.0, 1.0);
-        vec3 distant = vec3(0.018, 0.033, 0.052) + dust * vec3(0.62, 0.49, 0.25);
+        // Palette variation is low frequency and independent of Arabic strokes.
+        float turquoise = smoothstep(0.62, 0.88, fract(vMapUv.x * 12.0 + vMapUv.y * 2.0));
+        vec3 dustColor = mix(vec3(0.82, 0.61, 0.29), vec3(0.26, 0.63, 0.54), turquoise);
+        vec3 distant = vec3(0.022, 0.039, 0.058) + dust * dustColor;
         diffuseColor.rgb = mix(distant, diffuseColor.rgb, qariDetail);
         diffuseColor.a = 1.0;
       `);
       shader.fragmentShader = shader.fragmentShader.replace('#include <emissivemap_fragment>', `
         #include <emissivemap_fragment>
-        totalEmissiveRadiance = mix(dust * vec3(0.065, 0.09, 0.075), totalEmissiveRadiance, qariDetail);
+        totalEmissiveRadiance = mix(dust * dustColor * 0.52, totalEmissiveRadiance, qariDetail);
       `);
     };
-    material.customProgramCacheKey = () => 'qari-manuscript-distance-v147';
+    material.customProgramCacheKey = () => 'qari-manuscript-distance-v148-packed-relief';
     return material;
   }), [maps, details]);
   const eye = useMemo(() => new THREE.Vector3(), []);
@@ -266,7 +320,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
         const distance = nearest.length() / scale;
         const target = 1 - THREE.MathUtils.smoothstep(distance, 35, 115);
         details[index].value = THREE.MathUtils.damp(details[index].value, target, 6, Math.min(delta, .05));
-        materials[index].bumpScale = .2 * details[index].value;
+        materials[index].bumpScale = (index === 1 ? .82 : .48) * details[index].value;
       });
     }
     if (!paused) illuminationPhase.current += Math.min(delta, .05) * .65 * speed;
