@@ -47,105 +47,61 @@ function OrbitLine({radius,opacity=.22,color='#d6ad67'}:{radius:number;opacity?:
 }
 function LivingRing(){const geometry=useMemo(()=>{const p=Array.from({length:321},(_,i)=>{const a=i/320*Math.PI*2;return new THREE.Vector3(Math.cos(a)*ORBIT_X,Y+1,Math.sin(a)*ORBIT_Z)});return new THREE.BufferGeometry().setFromPoints(p)},[]);useEffect(()=>()=>geometry.dispose(),[geometry]);return <><lineLoop geometry={geometry}><lineBasicMaterial color="#e9bd73" opacity={.7} transparent /></lineLoop><lineLoop geometry={geometry} position={[0,.3,0]}><lineBasicMaterial color="#b88942" opacity={.3} transparent /></lineLoop></>}
 /**
- * Dome-inspired mixed-media ornamentation. These are abstract ink strokes,
- * not Arabic letters or quoted Qur'anic text. Deliberately below the planet plane.
- * Geometry is generated once, vertex-shaded, and GPU-constant during animation.
+ * An intentional, legible calligraphy composition: the unvocalized phrase
+ * "كل في فلك" (part of 21:33), rendered using Arabic shaping in Amiri.
+ * Canvas artwork is a single textured annulus, not procedural inflated tubes.
+ * The principal seven interactive letters remain entirely separate.
  */
-type InkLayer={radius:number;loops:number;phase:number;lift:number;hue:string};
-const INK_LAYERS:readonly InkLayer[]=[
- {radius:15,loops:9,phase:.2,lift:-1.4,hue:'#6c90ac'},
- {radius:23,loops:12,phase:1.1,lift:-2.1,hue:'#769ab2'},
- {radius:32,loops:15,phase:.6,lift:-2.9,hue:'#7d9ab0'},
- {radius:42,loops:18,phase:1.9,lift:-3.5,hue:'#7e98a8'},
- {radius:53,loops:21,phase:2.8,lift:-4.3,hue:'#657f9b'},
- {radius:65,loops:24,phase:1.3,lift:-5.1,hue:'#5b7797'},
-];
-function CalligraphyRibbon({layer,index}:{layer:InkLayer;index:number}){
- const geometry=useMemo(()=>{
-  const segments=360,across=6;
-  const pos=new Float32Array((segments+1)*(across+1)*3);
-  const colors=new Float32Array(pos.length);
-  const uv=new Float32Array((segments+1)*(across+1)*2);
-  const indices:number[]=[];
-  const deep=new THREE.Color('#122239'),ink=new THREE.Color(layer.hue),gold=new THREE.Color('#f0cb8e');
-  for(let i=0;i<=segments;i++){
-   const t=i/segments,a=t*Math.PI*2;
-   const repeat=Math.sin(a*layer.loops+layer.phase);
-   const curl=Math.sin(a*(layer.loops/2)+layer.phase*2);
-   const center=layer.radius+1.8*repeat+1.25*curl;
-   // A calligraphic reed-pen nib alternates between dense bodies and fine tips.
-   const pressure=Math.pow(Math.max(.03,(repeat+1)/2),1.15);
-   const width=.65+pressure*3.9;
-   const rise=Y+layer.lift+1.1*Math.sin(a*layer.loops+layer.phase);
-   for(let j=0;j<=across;j++){
-    const u=j/across,edge=u*2-1;
-    const radius=center+width*edge;
-    const k=(i*(across+1)+j)*3;
-    pos[k]=Math.cos(a)*radius;
-    pos[k+1]=rise+1.6*(1-edge*edge)+.35*Math.sin(a*layer.loops*2+edge*2);
-    pos[k+2]=Math.sin(a)*radius*.74;
-    const stripe=Math.pow(1-Math.abs(edge),.7);
-    const inkGrain=.84+.16*Math.sin(a*layer.loops*4+u*15);
-    const tone=deep.clone().lerp(ink,.28+stripe*.5).lerp(gold,stripe*pressure*.22).multiplyScalar(inkGrain);
-    colors[k]=tone.r;colors[k+1]=tone.g;colors[k+2]=tone.b;
-    const q=(i*(across+1)+j)*2;uv[q]=t;uv[q+1]=u;
-    if(i<segments&&j<across){const n=i*(across+1)+j;indices.push(n,n+1,n+across+1,n+1,n+across+2,n+across+1)}
-   }
+function circularCalligraphyTexture():THREE.CanvasTexture {
+ const canvas=document.createElement('canvas');canvas.width=canvas.height=2048;
+ const ctx=canvas.getContext('2d')!;const center=1024;
+ ctx.clearRect(0,0,2048,2048);
+ const gold='#d7bb85',blue='#7fa6bc';
+ // Restrained architectural outlines give the calligraphic band a carved edge.
+ [565,580,755,768].forEach((radius,i)=>{
+  ctx.beginPath();ctx.arc(center,center,radius,0,Math.PI*2);
+  ctx.lineWidth=i%2===0?5:2;
+  ctx.strokeStyle=i%2===0?'rgba(101,150,184,.42)':'rgba(222,193,136,.55)';ctx.stroke();
+ });
+ // Layered legible ink — silhouettes/shadows below, crisp face above.
+ const phrase='كل في فلك';
+ ctx.textAlign='center';ctx.textBaseline='middle';
+ ctx.direction='rtl';
+ const count=16;
+ for(let i=0;i<count;i++){
+  const angle=i/count*Math.PI*2-Math.PI/2;
+  ctx.save();ctx.translate(center+Math.cos(angle)*660,center+Math.sin(angle)*660);
+  ctx.rotate(angle+Math.PI/2);
+  ctx.font='700 65px Amiri, serif';
+  ctx.shadowColor='rgba(10,25,44,.95)';ctx.shadowBlur=8;ctx.shadowOffsetY=8;
+  ctx.lineJoin='round';ctx.strokeStyle='rgba(13,37,57,.95)';ctx.lineWidth=11;ctx.strokeText(phrase,0,0);
+  ctx.shadowBlur=0;ctx.shadowOffsetY=0;
+  ctx.fillStyle=i%4===0?blue:gold;ctx.fillText(phrase,0,0);
+  ctx.strokeStyle='rgba(245,228,191,.47)';ctx.lineWidth=1.2;ctx.strokeText(phrase,0,-1);
+  ctx.restore();
+ }
+ // Paired dot clusters at the spaces between calligraphic cartouches.
+ for(let i=0;i<count;i++){
+  const a=(i+.5)/count*Math.PI*2-Math.PI/2;
+  const x=center+Math.cos(a)*659,y=center+Math.sin(a)*659;
+  for(let j=-1;j<=1;j++){
+   ctx.beginPath();ctx.arc(x+j*7,y+(j%2)*5,j===0?3.4:2.2,0,Math.PI*2);
+   ctx.fillStyle=j===0?'rgba(252,221,155,.91)':'rgba(120,181,205,.67)';ctx.fill();
   }
-  const g=new THREE.BufferGeometry();
-  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  g.setAttribute('color',new THREE.BufferAttribute(colors,3));
-  g.setAttribute('uv',new THREE.BufferAttribute(uv,2));
-  g.setIndex(indices);g.computeVertexNormals();return g;
- },[layer]);
- useEffect(()=>()=>geometry.dispose(),[geometry]);
- return <mesh geometry={geometry} raycast={()=>null} renderOrder={index}>
-  <meshStandardMaterial vertexColors side={THREE.DoubleSide} roughness={.84} metalness={.16} transparent opacity={.97} depthWrite/>
- </mesh>;
-}
-function InkHalo({radius,lift,seed}:{radius:number;lift:number;seed:number}){
- const geometry=useMemo(()=>{
-  const pts:THREE.Vector3[]=[];
-  for(let i=0;i<=180;i++){
-   const a=i/180*Math.PI*2;
-   const r=radius+.8*Math.sin(a*(13+seed)+seed);
-   pts.push(new THREE.Vector3(Math.cos(a)*r,Y+lift-.45,Math.sin(a)*r*.74));
-  }
-  return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts,true),180,.075,3,true);
- },[radius,lift,seed]);
- useEffect(()=>()=>geometry.dispose(),[geometry]);
- return <mesh geometry={geometry} raycast={()=>null}><meshBasicMaterial color="#caa775" transparent opacity={.48} depthWrite={false}/></mesh>;
-}
-function DiacriticStardust(){
- const {gl}=useThree();
- const geometry=useMemo(()=>{
-  const total=1200,positions=new Float32Array(total*3),colors=new Float32Array(total*3);
-  let seed=3197;
-  const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
-  const palette=[new THREE.Color('#f4d8a2'),new THREE.Color('#8ab8d0'),new THREE.Color('#d6edf0')];
-  for(let i=0;i<total;i++){
-   const band=Math.floor(rand()*INK_LAYERS.length),layer=INK_LAYERS[band];
-   const cluster=Math.floor(rand()*layer.loops);
-   const a=(cluster+(rand()-.5)*.23)/layer.loops*Math.PI*2+layer.phase/layer.loops;
-   const r=layer.radius+2*Math.sin(a*layer.loops+layer.phase)+(rand()-.5)*6;
-   positions[i*3]=Math.cos(a)*r;
-   positions[i*3+1]=Y+layer.lift+.2+rand()*2.3;
-   positions[i*3+2]=Math.sin(a)*r*.74;
-   const color=palette[i%palette.length].clone().multiplyScalar(.46+rand()*.54);
-   colors.set(color.toArray(),i*3);
-  }
-  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(positions,3));g.setAttribute('color',new THREE.BufferAttribute(colors,3));return g;
- },[]);
- useEffect(()=>()=>geometry.dispose(),[geometry]);
- useFrame(()=>geometry.setDrawRange(0,gl.xr.isPresenting?460:1200));
- return <points geometry={geometry} raycast={()=>null}>
-  <pointsMaterial size={.52} transparent opacity={.86} vertexColors depthWrite={false} blending={THREE.AdditiveBlending}/>
- </points>;
+ }
+ const texture=new THREE.CanvasTexture(canvas);
+ texture.colorSpace=THREE.SRGBColorSpace;
+ texture.anisotropy=8;
+ return texture;
 }
 function CalligraphyDepthArt(){
- return <group name="calligraphy-depth-art">
-  {INK_LAYERS.map((layer,i)=><group key={i}><CalligraphyRibbon layer={layer} index={i}/><CalligraphyRibbon layer={{...layer,radius:layer.radius+3.4,lift:layer.lift-.85,phase:layer.phase+1.3,hue:'#506b85'}} index={i+6}/><InkHalo radius={layer.radius+2.7} lift={layer.lift} seed={i+1}/></group>)}
-  <DiacriticStardust/>
+ const texture=useMemo(circularCalligraphyTexture,[]);
+ useEffect(()=>()=>texture.dispose(),[texture]);
+ return <group name="calligraphy-depth-art" position={[0,Y-3.6,0]}>
+  <mesh rotation={[-Math.PI/2,0,0]} raycast={()=>null}>
+   <planeGeometry args={[155,114]}/>
+   <meshBasicMaterial map={texture} transparent depthWrite={false} side={THREE.DoubleSide} opacity={.95}/>
+  </mesh>
  </group>;
 }
 function Sun(){const glow=useMemo(makeGlowTexture,[]);useEffect(()=>()=>glow.dispose(),[glow]);return <group position={[0,Y,0]}><mesh><sphereGeometry args={[6,48,32]}/><meshBasicMaterial color="#ffedb7" /></mesh><sprite scale={[40,40,1]}><spriteMaterial map={glow} blending={THREE.AdditiveBlending} transparent depthWrite={false}/></sprite><pointLight color="#ffd28d" intensity={160} distance={160} decay={2}/></group>}
