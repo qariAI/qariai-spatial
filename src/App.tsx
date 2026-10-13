@@ -94,13 +94,59 @@ function circularCalligraphyTexture():THREE.CanvasTexture {
  texture.anisotropy=8;
  return texture;
 }
+function closeCalligraphyTexture():THREE.CanvasTexture {
+ const canvas=document.createElement('canvas');canvas.width=canvas.height=2048;
+ const ctx=canvas.getContext('2d')!;const center=1024;
+ ctx.direction='rtl';ctx.textAlign='center';ctx.textBaseline='middle';
+ const phrases=['كل في فلك','فلك','كل','في'];
+ // Hand-positioned clusters at multiple radii, not an evenly stamped wallpaper.
+ const bands=[{radius:495,count:13,size:47},{radius:595,count:19,size:39},{radius:725,count:23,size:34}];
+ bands.forEach((band,b)=>{
+  for(let i=0;i<band.count;i++){
+   const a=(i+(b*.37)+Math.sin(i*2.7)*.16)/band.count*Math.PI*2-Math.PI/2;
+   const radius=band.radius+Math.sin(i*1.7+b)*17;
+   ctx.save();ctx.translate(center+Math.cos(a)*radius,center+Math.sin(a)*radius);
+   ctx.rotate(a+Math.PI/2+Math.sin(i*1.43)*.16);
+   ctx.font='700 '+band.size+'px Amiri,serif';
+   ctx.lineJoin='round';ctx.lineWidth=3;ctx.strokeStyle='rgba(4,17,32,.85)';
+   const phrase=phrases[(i*3+b)%phrases.length];ctx.strokeText(phrase,0,0);
+   ctx.fillStyle=i%5===0?'rgba(160,213,231,.92)':'rgba(232,199,137,.9)';ctx.fillText(phrase,0,0);
+   // Luminous accent pairs belong to script clusters rather than random sky particles.
+   ctx.fillStyle='rgba(245,220,157,.75)';
+   for(let j=0;j<2;j++){ctx.beginPath();ctx.arc(15+j*8,-band.size*.62,2.3-j*.5,0,Math.PI*2);ctx.fill()}
+   ctx.restore();
+  }
+ });
+ const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t;
+}
 function CalligraphyDepthArt(){
  const texture=useMemo(circularCalligraphyTexture,[]);
- useEffect(()=>()=>texture.dispose(),[texture]);
+ const detail=useMemo(closeCalligraphyTexture,[]);
+ const material=useRef<THREE.MeshBasicMaterial>(null);
+ const detailMesh=useRef<THREE.Mesh>(null);
+ const {camera,gl}=useThree();
+ useEffect(()=>()=>{texture.dispose();detail.dispose()},[texture,detail]);
+ useFrame(()=>{
+  if(!material.current)return;
+  const eye=gl.xr.isPresenting?gl.xr.getCamera():camera;
+  const worldPosition=new THREE.Vector3();eye.getWorldPosition(worldPosition);
+  const anchor=new THREE.Vector3(0,Y-3.6,0);
+  // For Quest the scene is re-parented and scaled to meters.
+  const sceneGroup=detailMesh.current;
+  if(sceneGroup){sceneGroup.getWorldPosition(anchor)}
+  const worldScale=new THREE.Vector3(1,1,1);
+  if(sceneGroup)sceneGroup.getWorldScale(worldScale);
+  const distance=worldPosition.distanceTo(anchor)/Math.max(worldScale.x,.0001);
+  material.current.opacity=THREE.MathUtils.smoothstep(145-distance,0,85)*.9;
+ });
  return <group name="calligraphy-depth-art" position={[0,Y-3.6,0]}>
   <mesh rotation={[-Math.PI/2,0,0]} raycast={()=>null}>
    <planeGeometry args={[155,114]}/>
    <meshBasicMaterial map={texture} transparent depthWrite={false} side={THREE.DoubleSide} opacity={.95}/>
+  </mesh>
+  <mesh ref={detailMesh} rotation={[-Math.PI/2,0,0]} position={[0,.12,0]} raycast={()=>null}>
+   <planeGeometry args={[155,114]}/>
+   <meshBasicMaterial ref={material} map={detail} transparent depthWrite={false} side={THREE.DoubleSide} opacity={0}/>
   </mesh>
  </group>;
 }
