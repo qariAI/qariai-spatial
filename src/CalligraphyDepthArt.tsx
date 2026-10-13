@@ -42,13 +42,20 @@ function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingConte
     ctx.translate((ink.actualBoundingBoxLeft - ink.actualBoundingBoxRight) / 2,
       (ink.actualBoundingBoxAscent - ink.actualBoundingBoxDescent) / 2);
     if (ctx === relief) {
-      ctx.fillStyle = '#383838'; ctx.fillText(phrase, 0, 0);
+      // Cut a narrow shadow valley around a raised, continuous ink face.
+      ctx.strokeStyle = '#353535'; ctx.lineWidth = 2;
+      ctx.strokeText(phrase, 0, 0);
+      ctx.fillStyle = '#c4c4c4'; ctx.fillText(phrase, 0, 0);
     } else {
-      ctx.fillStyle = '#060e18'; ctx.fillText(phrase, 1.4 / pixelAspect, 2.8);
-      const gold = ctx.createLinearGradient(0, -fitted * .6, 0, fitted * .6);
-      gold.addColorStop(0, colors[0]); gold.addColorStop(.42, colors[1]); gold.addColorStop(1, colors[2]);
+      ctx.fillStyle = '#030a12'; ctx.fillText(phrase, 1.2 / pixelAspect, 1.5);
+      ctx.strokeStyle = '#07101b'; ctx.lineWidth = 1.8;
+      ctx.strokeText(phrase, 0, 0);
+      const gold = ctx.createLinearGradient(0, -ink.actualBoundingBoxAscent, 0, ink.actualBoundingBoxDescent);
+      gold.addColorStop(0, colors[0]); gold.addColorStop(.28, colors[1]);
+      gold.addColorStop(.43, colors[0]); gold.addColorStop(.57, colors[1]);
+      gold.addColorStop(1, colors[2]);
       ctx.fillStyle = gold; ctx.fillText(phrase, 0, 0);
-      ctx.strokeStyle = colors[0]; ctx.lineWidth = .65;
+      ctx.strokeStyle = colors[0]; ctx.lineWidth = .45;
       ctx.strokeText(phrase, -.5 / pixelAspect, -.5);
     }
     ctx.restore();
@@ -87,8 +94,8 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
     rows.forEach((offset, row) => {
       // Pack by ink width rather than stamp cells. Short clauses no longer
       // leave blank cartouches; full verses get their natural larger span.
-      let cursor = 16 + row * 8, ordinal = 0;
-      const maxHeight = row === 1 ? (index === 1 ? 138 : index === 0 ? 82 : 104) : (index === 1 ? 62 : 56);
+      let cursor = 16 + row * 8 + index * 3, ordinal = 0;
+      const maxHeight = row === 1 ? (index === 1 ? 132 : index === 0 ? 82 : 104) : (index === 1 ? 62 : 56);
       const nominal = row === 1 ? (index === 1 ? 190 : index === 0 ? 100 : 138) : (index === 0 ? 48 : 68);
       while (cursor < WIDTH - 32) {
         const excerpt = EXCERPTS[(ordinal * 3 + row * 2 + index) % EXCERPTS.length];
@@ -98,7 +105,22 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
         const width = Math.max(bounds.width, bounds.actualBoundingBoxLeft + bounds.actualBoundingBoxRight) * fitted / nominal * pixelAspect;
         if (cursor + width > WIDTH - 16) break;
         drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight);
-        cursor += width + (index === 0 ? 10 : 14) + (ordinal % 3) * 5;
+        const gap = (index === 0 ? 14 : 20) + (ordinal % 3) * 5;
+        // Separate geometric filigree sits only in measured empty gutters.
+        // Its paired arcs weave around a bronze spindle, never through ink.
+        const edge = cursor + width + gap / 2;
+        const center = band.top + offset;
+        for (const ctx of [c, h]) {
+          ctx.save(); ctx.strokeStyle = ctx === c ? '#806743' : '#888888';
+          ctx.lineWidth = .8;
+          for (const sign of [-1, 1]) {
+            ctx.beginPath(); ctx.moveTo(edge, center - 14);
+            ctx.bezierCurveTo(edge + sign * 3, center - 4, edge - sign * 3, center + 4, edge, center + 14);
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+        cursor += width + gap;
         ordinal++;
       }
     });
@@ -116,7 +138,7 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
   const pixels = c.getImageData(0, 0, WIDTH, HEIGHT);
   for (let y = 0; y < HEIGHT; y++) for (let x = 0; x < WIDTH; x++) {
     const offset = (y * WIDTH + x) * 4;
-    const engraved = ink[offset] < 100;
+    const engraved = ink[offset] > 175;
     const cluster = engraved && ((Math.imul(x >> 2, 73856093) ^ Math.imul(y >> 2, 19349663)) >>> 0) % 19 === 0;
     pixels.data[offset + 3] = cluster ? 255 : 128;
   }
@@ -216,7 +238,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const details = useMemo(() => BANDS.map(() => ({ value: 0 })), []);
   const materials = useMemo(() => BANDS.map((band, index) => {
     const material = new THREE.MeshStandardMaterial({ map: maps.map, bumpMap: maps.bump,
-      bumpScale: .2, metalness: band.metalness, roughness: band.roughness,
+      bumpScale: .32, metalness: band.metalness, roughness: band.roughness,
       emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: .12 });
     material.userData.detail = details[index];
     material.onBeforeCompile = shader => {
@@ -225,16 +247,19 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
       shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', `
         #include <map_fragment>
         float dust = clamp((sampledDiffuseColor.a * 255.0 - 128.0) / 127.0, 0.0, 1.0);
-        vec3 distant = vec3(0.018, 0.033, 0.052) + dust * vec3(0.62, 0.49, 0.25);
+        // Palette variation is low frequency and independent of Arabic strokes.
+        float turquoise = smoothstep(0.62, 0.88, fract(vMapUv.x * 12.0 + vMapUv.y * 2.0));
+        vec3 dustColor = mix(vec3(0.82, 0.61, 0.29), vec3(0.26, 0.63, 0.54), turquoise);
+        vec3 distant = vec3(0.022, 0.039, 0.058) + dust * dustColor;
         diffuseColor.rgb = mix(distant, diffuseColor.rgb, qariDetail);
         diffuseColor.a = 1.0;
       `);
       shader.fragmentShader = shader.fragmentShader.replace('#include <emissivemap_fragment>', `
         #include <emissivemap_fragment>
-        totalEmissiveRadiance = mix(dust * vec3(0.065, 0.09, 0.075), totalEmissiveRadiance, qariDetail);
+        totalEmissiveRadiance = mix(dust * dustColor * 0.42, totalEmissiveRadiance, qariDetail);
       `);
     };
-    material.customProgramCacheKey = () => 'qari-manuscript-distance-v147';
+    material.customProgramCacheKey = () => 'qari-manuscript-distance-v148';
     return material;
   }), [maps, details]);
   const eye = useMemo(() => new THREE.Vector3(), []);
@@ -266,7 +291,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
         const distance = nearest.length() / scale;
         const target = 1 - THREE.MathUtils.smoothstep(distance, 35, 115);
         details[index].value = THREE.MathUtils.damp(details[index].value, target, 6, Math.min(delta, .05));
-        materials[index].bumpScale = .2 * details[index].value;
+        materials[index].bumpScale = .32 * details[index].value;
       });
     }
     if (!paused) illuminationPhase.current += Math.min(delta, .05) * .65 * speed;

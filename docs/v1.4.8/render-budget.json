@@ -1,0 +1,23 @@
+{
+  "camera": [
+    0,
+    98,
+    169
+  ],
+  "info": {
+    "frame": 134,
+    "calls": 57,
+    "triangles": 23698,
+    "points": 8472,
+    "lines": 2184
+  },
+  "memory": {
+    "geometries": 40,
+    "textures": 13
+  },
+  "detail": [
+    0,
+    0,
+    0
+  ]
+}

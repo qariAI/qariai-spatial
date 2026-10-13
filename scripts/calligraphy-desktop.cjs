@@ -2,11 +2,12 @@ process.env.PW_TEST_SCREENSHOT_NO_FONTS_READY = '1';
 // Requires Playwright and Chromium in the development/test environment.
 const { chromium } = require('playwright'), fs = require('fs'), assert = require('assert'), path = require('path');
 const project = path.resolve(__dirname, '..');
-const artifacts = path.join(project, 'docs/v1.4.7');
-(async () => { let browser; const server = require('child_process').spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', '5257'], { cwd: project }); try {
+const artifacts = path.join(project, 'docs/v1.4.8');
+(async () => { let browser; const server = require('child_process').spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', '5258'], { cwd: project }); try {
     await new Promise(r => setTimeout(r, 2000));
     browser = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
-    const p = await browser.newPage({ viewport: { width: 1100, height: 760 } });
+    const p = await browser.newPage({ viewport: { width: process.env.LAYOUT_ONLY ? 390 : 1100, height: 760 } });
+    p.setDefaultTimeout(120000);
     let fiber;
     const errors = [];
     p.on('response', r => { if (r.url().includes('@react-three_fiber.js'))
@@ -15,17 +16,30 @@ const artifacts = path.join(project, 'docs/v1.4.7');
     p.on('console', m => { if (m.type() === 'error' && /THREE|shader|WebGL/i.test(m.text()))
         errors.push(m.text()); });
     await p.route('https://fonts.googleapis.com/**', r => r.abort());
-    await p.goto('http://127.0.0.1:5257', { waitUntil: 'domcontentloaded', timeout: 120000 });
+    await p.goto('http://127.0.0.1:5258', { waitUntil: 'domcontentloaded', timeout: 120000 });
     await p.waitForFunction(() => document.querySelector('canvas'), null, { timeout: 120000 });
     await p.evaluate(async (url) => { const m = await import(url); window.__state = () => m._roots.get(document.querySelector('canvas')).store.getState(); window.__qari = () => { const s = window.__state(); const art = s.scene.getObjectByName('calligraphy-depth-art'); return { camera: s.camera.position.toArray(), info: JSON.parse(JSON.stringify(s.gl.info.render)), memory: s.gl.info.memory, detail: art?.children.filter(o => o.material?.userData.detail).map(o => o.material.userData.detail.value) }; }; }, fiber);
     await p.waitForFunction(() => window.__qari().detail?.length === 3, null, { timeout: 120000 });
     console.log('READY', await p.evaluate(() => window.__qari()));
+    if (process.env.LAYOUT_ONLY) {
+        fs.mkdirSync(artifacts,{recursive:true});
+        await p.evaluate(()=>window.__state().setFrameloop('never'));
+        await p.getByRole('button',{name:/Pause motion/}).click();
+        await p.getByRole('button',{name:/Resume motion/}).waitFor();
+        await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+        await p.locator('.tools').screenshot({path:path.join(artifacts,'controls-390.png'),timeout:120000});
+        assert.deepStrictEqual(errors,[]);
+        console.log('PASS fresh narrow viewport renders clickable controls');
+        return;
+    }
     await p.getByRole('button', { name: /Pause motion/ }).click();
     await p.waitForFunction(() => Array.from({ length: 7 }, (_, i) => window.__state().scene.getObjectByName('qari-letter-' + i)).every(Boolean), null, { timeout: 60000 });
     const screen = await p.evaluate(() => { const s = window.__state(), rect = document.querySelector('canvas').getBoundingClientRect(), v = s.camera.position.clone(); s.scene.getObjectByName('qari-letter-0').getWorldPosition(v); v.project(s.camera); return [rect.x + (v.x + 1) * rect.width / 2, rect.y + (1 - v.y) * rect.height / 2]; });
     await p.mouse.click(...screen);
     await p.waitForFunction(() => [0, 6].every(i => window.__state().scene.getObjectByName('qari-letter-' + i).scale.x > 1.15), null, { timeout: 60000 });
     console.log('PASS pointer selection and mirrored pair');
+    await p.getByRole('button', {name: /Reset view/}).click();
+    await p.waitForFunction(() => window.__qari().detail?.length === 3, null, {timeout: 120000});
     fs.mkdirSync(artifacts, { recursive: true });
     if (process.env.MID_ONLY) {
         await p.mouse.move(420, 280);
@@ -93,6 +107,24 @@ const artifacts = path.join(project, 'docs/v1.4.7');
     assert.deepStrictEqual(errors, []);
     const report = await p.evaluate(() => window.__qari());
     fs.writeFileSync(path.join(artifacts, 'render-budget.json'), JSON.stringify(report, null, 2));
+    const layout = [];
+    for (const [width, height] of [[1920,1080],[1440,900],[1100,760],[980,600],[900,600],[821,600],[820,600],[390,760]]) {
+        await p.setViewportSize({width,height});
+        await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+        const boxes = await p.evaluate(() => {
+            const rect = selector => {const el=document.querySelector(selector),r=el.getBoundingClientRect(); return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,visible:getComputedStyle(el).display!=='none'};};
+            return {tools:rect('.tools'),status:rect('.xr-diagnostics'),note:rect('.build-note'),stage:rect('.stage-ui'),buttons:Array.from(document.querySelectorAll('.tools button')).filter(b=>!b.hidden).map(b=>{const r=b.getBoundingClientRect();return {x:r.x,right:r.right,y:r.y,bottom:r.bottom};})};
+        });
+        const overlap=(a,b)=>a.x<b.right&&b.x<a.right&&a.y<b.bottom&&b.y<a.bottom;
+        if(boxes.status.visible) assert(!overlap(boxes.tools,boxes.status), `Controls overlap Quest status at ${width}x${height}`);
+        if(boxes.note.visible) assert(!overlap(boxes.tools,boxes.note), `Controls overlap build note at ${width}x${height}`);
+        assert(!overlap(boxes.tools,boxes.stage), `Controls overlap stage at ${width}x${height}`);
+        for(const button of boxes.buttons) assert(button.x>=0&&button.right<=width+.5&&button.y>=0&&button.bottom<=height+.5, `Button offscreen at ${width}x${height}`);
+        layout.push({width,height,...boxes});
+        if(width===900) await p.screenshot({path:path.join(artifacts,'controls-900.png'),timeout:120000});
+    }
+    fs.writeFileSync(path.join(artifacts,'responsive-layout.json'),JSON.stringify(layout,null,2));
+    console.log('PASS responsive control/status separation at eight viewport sizes');
     console.log('PASS camera transitions, phases, speed, planets, reset, desktop hand mode, no page errors');
 }
 finally {
