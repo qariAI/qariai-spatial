@@ -1,0 +1,23 @@
+{
+  "kind": "IWER 2.1.0 simulated hands, not Quest",
+  "viewport": "1280x720",
+  "renderer": "Chromium SwiftShader",
+  "states": [
+    "guide",
+    {
+      "type": "state",
+      "state": "Ready: body",
+      "path": "/harf-studio-xr.html",
+      "emulated": true
+    },
+    {
+      "type": "state",
+      "state": "FAILED: XR frames stalled; capture stopped",
+      "path": "/harf-studio-xr.html",
+      "emulated": true
+    }
+  ],
+  "appStatus": "Body complete · Add the dot",
+  "result": "failed",
+  "reason": "Error: FAILED: XR frames stalled; capture stopped"
+}
