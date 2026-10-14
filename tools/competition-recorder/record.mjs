@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawn,spawnSync} from 'node:child_process';
 import {createInterface} from 'node:readline/promises';
+import {keyboardCue} from './keyboard.mjs';
 import {verifyArrangement} from './display.mjs';
 import {SHOTS,projectedPoint,verifyVideo,ffmpegArgs} from './core.mjs';
 const origin=new URL(process.env.DEMO_URL||'http://localhost:5173');
@@ -19,6 +20,7 @@ const consent=createInterface({input:process.stdin,output:process.stdout});
 async function connect(){await obs.connect(process.env.OBS_URL||'ws://127.0.0.1:4455',process.env.OBS_PASSWORD||'');verifyVideo(await obs.call('GetVideoSettings'));if((await obs.call('GetRecordStatus')).outputActive)throw Error('OBS already recording. Stop your recording first; this script will not interrupt it.');}
 async function captureReady(){await page.waitForSelector('#capture-truth-label');await page.getByRole('link',{name:/Practice Calligraphy/}).waitFor();await page.evaluate(()=>document.fonts.ready);await sleep(5000);}
 async function cue(name){
+ if(await keyboardCue(page,name,sleep,()=>{if(recording)checkGuard();}))return;
  await page.evaluate(()=>{if(!window.qariRecordingChannel){window.qariRecordingStates=[];window.qariRecordingChannel=new BroadcastChannel('qari-competition-capture-v1');window.qariRecordingChannel.onmessage=e=>window.qariRecordingStates.push(e.data);}});
  if(recording){checkGuard();await page.bringToFront();}
  const before=await page.evaluate(()=>window.qariRecordingStates.length);

@@ -54,3 +54,7 @@ On browser load, viewport, validator, navigation, OBS or timing failures, inspec
 ## Repeatability checks
 
 `npm test` validates timing, OBS/Display source rejection, full program-image comparisons (including wrong/blank display and wrong dimensions), coordinate bounds/direction and MP4 export safeguards. At repository root, `node scripts/check-recording-data.cjs` verifies all stored guide points and dot against the unchanged authoritative application definition, and checks the desktop projection camera assumption. The generated `trace-data.json` is a recording input fixture, not a new letter definition; changing app geometry requires regenerating and checking it.
+
+### Rehearsal keyboard fix
+
+The recorder uses Playwright's real keyboard input for ArrowLeft and mirror keys 1–7. It does not send those cues through the older demo client's Window-dispatched synthetic events, whose Window target caused `.closest is not a function` errors in the editable-field checks. Application handlers and fatal browser-error checks are unchanged. `node check-keyboard.mjs` reproduces the old failure and verifies the new element-targeted input in actual Chromium without running the GPU scene.
