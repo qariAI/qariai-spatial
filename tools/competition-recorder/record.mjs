@@ -38,7 +38,7 @@ async function viewport(){const size=await page.evaluate(()=>({width:innerWidth,
 try{
  await connect();
  browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL||'chrome',headless:false,args:['--start-maximized','--disable-background-timer-throttling','--disable-renderer-backgrounding']});
- const context=await browser.newContext({viewport:null,deviceScaleFactor:1});page=await context.newPage();page.setDefaultTimeout(15000);
+ const context=await browser.newContext({viewport:null});page=await context.newPage();page.setDefaultTimeout(15000);
  page.on('pageerror',e=>{report.pageErrors??=[];report.pageErrors.push(e.message);});
  const url=new URL('/',origin);url.searchParams.set('competitionDemo','1');await page.goto(url.href,{waitUntil:'domcontentloaded'});await captureReady();
  console.log('Keep your existing Display Capture (Windows Graphics Capture, cursor off). Select the Chrome monitor, fit source to 1920×1080. F11 Chrome fullscreen; OBS/terminal must be on another monitor or fully covered behind Chrome. Keep disclosure visible.');
