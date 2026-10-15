@@ -1,0 +1,49 @@
+{
+  "kind": "Actual SDK XR frames plus unchanged validator; no application artwork/UI capture",
+  "results": [
+    {
+      "test": "body separately",
+      "observed": {
+        "phase": "dot",
+        "progress": 0.9392265193370166,
+        "jumps": 0,
+        "samples": {
+          "maxTipErrorMeters": 1.1218546240854457e-7,
+          "frames": 474
+        }
+      }
+    },
+    {
+      "test": "dot separately",
+      "observed": {
+        "phase": "complete",
+        "jumps": 0,
+        "samples": {
+          "maxTipErrorMeters": 1.0101251566946191e-7,
+          "frames": 85
+        }
+      }
+    },
+    {
+      "test": "complete sequence",
+      "body": {
+        "phase": "dot",
+        "progress": 0.9392265193370166,
+        "jumps": 0,
+        "samples": {
+          "maxTipErrorMeters": 1.1218546240854457e-7,
+          "frames": 474
+        }
+      },
+      "dot": {
+        "phase": "complete",
+        "jumps": 0,
+        "samples": {
+          "maxTipErrorMeters": 1.0101251566946191e-7,
+          "frames": 85
+        }
+      }
+    }
+  ],
+  "result": "passed"
+}
