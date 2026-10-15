@@ -1,0 +1,20 @@
+{
+  "route": "/showcase-harf.html?showcase=1&emulate=1",
+  "viewport": "1280x720",
+  "renderer": "SwiftShader",
+  "input": "WEBXR HAND EMULATION — NOT QUEST",
+  "results": [
+    {
+      "type": "result",
+      "at": "2026-10-15T09:03:12.647Z",
+      "cue": "body",
+      "result": "FAILED",
+      "detail": "Error: XR frames stalled; stop take, no interaction forced.",
+      "path": "/showcase-harf.html",
+      "input": "WEBXR HAND EMULATION — NOT QUEST"
+    }
+  ],
+  "qualityApproved": false,
+  "result": "blocked",
+  "reason": "Error: Error: XR frames stalled; stop take, no interaction forced."
+}
