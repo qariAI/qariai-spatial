@@ -1,0 +1,21 @@
+{
+  "base": "b1521ea1149872debeb840b5a8c8d47c4558ca92",
+  "unchanged": {
+    "src/App.tsx": "15153dbfe40c8ab5b95e7fe333dea3d73fe88ca4a8e184e6fd2309bf8703bc8c",
+    "src/style.css": "b21943bb767f4a98786c2b9fe84f41d47403e1e1afc641ade58289e3cd948142",
+    "src/calligraphy/content.ts": "b3af1cb17a5f300a4ddc512457359d751a709d22214afeec8b2555ecf04faae4",
+    "src/calligraphy/heroBevel.ts": "c0d4d673f3979e352973fd06e2661b9294b67db15e1b15616047517fe1f93b70",
+    "public/fonts/Amiri-Bold.ttf": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+    "src/harf-xr/tracing.ts": "cb09cdf5ef2fc491fa8fe0c475415c51138da76c53a89909815d7b841c619b56",
+    "src/harf-xr/ink.ts": "81b331f23a6b25fab3527acb446c4d889ea7aa2099466f6af5a970e43558ba6a",
+    "src/harf-xr/session.ts": "c8f2fedd8334dffa0788ebb50e20788a96d82177b21745d20eb8e3e95a746f0b",
+    "vite.config.ts": "a2b732165584fcdd7f7a6c85f388c9e1d78bafebdb4ad6719806812f633e3b9a",
+    "package.json": "5da45c128ff2b1c46e3000c54c1f1991cbdcdaa50ea2786cc521e42edec97cd9"
+  },
+  "bandDefinitions": "byte-identical",
+  "faceGeometry": "byte-identical",
+  "bronzeBacking": "byte-identical",
+  "pointsGeometry": "byte-identical",
+  "rootTransform": "unchanged",
+  "applicationChanges": "Only CalligraphyDepthArt.tsx and the new raisedRelief.ts module are allowed"
+}

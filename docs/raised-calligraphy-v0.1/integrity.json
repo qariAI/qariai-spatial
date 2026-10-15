@@ -1,0 +1,32 @@
+{
+  "phrases": 66,
+  "colorDifferences": 0,
+  "heightRoughnessDifferences": 0,
+  "otherBandDifferences": 0,
+  "maskDifferences": 0,
+  "packedMaskDifferences": 0,
+  "missingPixels": 0,
+  "filledOpenings": 0,
+  "duplicateCoverage": 0,
+  "syntheticDifferences": 0,
+  "downsampleRejected": true,
+  "finiteGeometry": true,
+  "measurement": {
+    "inkPixels": 145179,
+    "coveredPixels": 145179,
+    "faceRectangles": 16631,
+    "wallRuns": 55731,
+    "triangles": 144724,
+    "bufferBytes": 13893504,
+    "buildMs": 633.4000000059605,
+    "components": 2188
+  },
+  "syntheticComponents": 4,
+  "totalMs": 90782.30000000447,
+  "limits": {
+    "triangles": 160000,
+    "bufferBytes": 16777216,
+    "draws": 2
+  },
+  "method": "Actual baseline baker tile/transform replay versus recorded native alpha; exact per-texel mesh-support comparison"
+}

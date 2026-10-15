@@ -1,0 +1,14 @@
+{
+  "baseline": "b1521ea1149872debeb840b5a8c8d47c4558ca92",
+  "productionBuild": "passed; pre-existing bundle-size warning",
+  "calligraphyContent": "eight exact source spans passed; no fresh external-source retrieval claimed",
+  "nativeMaskIntegrity": "66 shaped phrase placements; zero differing alpha pixels versus original tile replay",
+  "meshSupport": "145179 pixels preserved; 2188 components; zero missing support or filled openings",
+  "geometryBudget": "passed with fail-closed synthetic over-budget regression",
+  "scope": "base ring geometry, transforms, original atlases R/G and colour, App/camera, Harf, font and content unchanged",
+  "desktop": "matched wide/Explore/Return, mirror pair, exactly two phases passed",
+  "harf": "SVG/spatial real pointer body, separate dot, reset, guide, denied XR session, narrow layout and cleanup passed; tracing/pinch/session/ink simulations passed",
+  "builtEntries": "all three pages and local font return HTTP 200",
+  "quest": "hardware validation pending; no headset performance or hand-tracking validation claimed",
+  "visualApproval": "pending owner review; native raster relief has visible pixel-edge limitations"
+}

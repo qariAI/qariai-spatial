@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),{buildSync}=require('esbuild');
+const code=buildSync({entryPoints:['src/calligraphy/raisedRelief.ts'],bundle:true,write:false,format:'cjs'}).outputFiles[0].text,m={exports:{}};new Function('module','exports',code)(m,m.exports);
+const {buildRaisedRelief,RELIEF_HEIGHT,RELIEF_LIMITS}=m.exports;
+const band=h=>({inner:52.9,outer:64.2,elevation:.48,top:0,bottom:h});
+const point=new Uint8Array(4096*8);point[0]=1;point[4095]=255;point[4*4096+10]=2;
+const original=Buffer.from(point),g=buildRaisedRelief({width:4096,height:8,alpha:point},band(8),8);
+assert(Buffer.from(point).equals(original),'source mask mutated');assert.equal(g.measurement.inkPixels,3);assert.equal(g.measurement.coveredPixels,3);assert.equal(g.measurement.components,3);
+assert(g.faces.attributes.position.array.every((n,i)=>i%3!==2||Math.abs(n-(.48+RELIEF_HEIGHT))<1e-6),'all faces must share rigid elevation');
+assert.throws(()=>buildRaisedRelief({width:2048,height:8,alpha:new Uint8Array(2048*8)},band(8),8),/resampling/);
+assert.throws(()=>buildRaisedRelief({width:4096,height:8,alpha:new Uint8Array(4096*8)},band(8),8),/coverage/);
+const noisy=new Uint8Array(4096*128);for(let y=0;y<128;y++)for(let x=0;x<4096;x++)if((x+y)%2)noisy[y*4096+x]=255;
+const started=performance.now();assert.throws(()=>buildRaisedRelief({width:4096,height:128,alpha:noisy},band(128),128),/budget exceeded during construction/);const rejectMs=performance.now()-started;
+const result={singleAlphaTexelPreserved:true,sourceMaskUnmodified:true,uniformFaceElevation:true,downsampleRejected:true,emptyMaskRejected:true,budgetFailsClosed:true,budgetRejectionMs:rejectMs,limits:RELIEF_LIMITS};
+fs.mkdirSync('docs/raised-calligraphy-v0.1',{recursive:true});fs.writeFileSync('docs/raised-calligraphy-v0.1/budget-regressions.json',JSON.stringify(result,null,2));console.log('PASS',JSON.stringify(result));

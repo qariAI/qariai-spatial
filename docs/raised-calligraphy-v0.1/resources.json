@@ -1,0 +1,126 @@
+{
+  "method": "WebGLRenderer.info after forced synchronous real draws; texture bytes estimated as uncompressed RGBA + mip chains, not a driver memory query",
+  "profiles": [
+    {
+      "mode": "before",
+      "shot": "wide",
+      "render": {
+        "frame": 3,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        1940.2999999970198,
+        25.700000002980232,
+        9.299999997019768
+      ],
+      "canvas": [
+        972,
+        800
+      ]
+    },
+    {
+      "mode": "after",
+      "shot": "wide",
+      "render": {
+        "frame": 6,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        53.80000000447035,
+        6.0999999940395355,
+        9.600000001490116
+      ],
+      "canvas": [
+        972,
+        800
+      ]
+    },
+    {
+      "mode": "before",
+      "shot": "close",
+      "render": {
+        "frame": 9,
+        "calls": 22,
+        "triangles": 18458,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        6.299999997019768,
+        2.9000000059604645,
+        2.0999999940395355
+      ],
+      "canvas": [
+        972,
+        800
+      ]
+    },
+    {
+      "mode": "after",
+      "shot": "close",
+      "render": {
+        "frame": 12,
+        "calls": 24,
+        "triangles": 163182,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        285.79999999701977,
+        2.7000000029802322,
+        0.5
+      ],
+      "canvas": [
+        972,
+        800
+      ]
+    }
+  ],
+  "relief": {
+    "inkPixels": 145179,
+    "coveredPixels": 145179,
+    "faceRectangles": 16631,
+    "wallRuns": 55731,
+    "triangles": 144724,
+    "bufferBytes": 13893504,
+    "buildMs": 633.4000000059605,
+    "components": 2188
+  },
+  "limits": {
+    "triangles": 160000,
+    "bufferBytes": 16777216,
+    "draws": 2
+  },
+  "widePngByteIdentical": true,
+  "warnings": [
+    "Software-renderer wall times include scheduling/driver noise and are not GPU timer-query measurements. Two warm samples cannot establish a performance speedup or headset FPS.",
+    "144724 extra triangles is substantial; caps are prototype engineering guards, not a Quest performance acceptance result.",
+    "Cold relief shader/upload synchronous frame: 285.79999999701977 ms."
+  ]
+}
