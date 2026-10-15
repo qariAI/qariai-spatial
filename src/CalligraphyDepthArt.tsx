@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
+import { buildRaisedRelief } from './calligraphy/raisedRelief';
 import { EXCERPTS } from './calligraphy/content';
 import { paintHeroBevel, type EngravedGlyph } from './calligraphy/heroBevel';
 
@@ -27,7 +28,7 @@ function strokeRule(ctx: CanvasRenderingContext2D, y: number, color: string, wid
 }
 
 function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingContext2D,
-  x: number, y: number, size: number, available: number, colors: string[], pixelAspect: number, phrase: string, angle = 0, maxHeight = 76, bevelCache?: Map<string, EngravedGlyph>) {
+  x: number, y: number, size: number, available: number, colors: string[], pixelAspect: number, phrase: string, angle = 0, maxHeight = 76, bevelCache?: Map<string, EngravedGlyph>, inkMask?: CanvasRenderingContext2D) {
   // Compensate for unequal angular/radial UV scale. The canvas transform
   // restores the shaped glyph proportions on the actual architectural surface.
   face.font = `700 ${size}px Amiri`;
@@ -60,7 +61,15 @@ function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingConte
       gold.addColorStop(.43, colors[0]); gold.addColorStop(.57, colors[1]);
       gold.addColorStop(1, colors[2]);
       ctx.fillStyle = gold;
-      if (bevelCache) paintHeroBevel(ctx, phrase, bevelCache);
+      if (bevelCache) {
+        paintHeroBevel(ctx, phrase, bevelCache);
+        if (inkMask) {
+          // Copy the SAME cached native-shaped tile at the SAME transform.
+          // This is a coverage record, never a new shaping or outline pass.
+          inkMask.save(); inkMask.setTransform(ctx.getTransform()); inkMask.font = ctx.font;
+          paintHeroBevel(inkMask, phrase, bevelCache); inkMask.restore();
+        }
+      }
       else {
         ctx.fillText(phrase, 0, 0);
         ctx.strokeStyle = colors[0]; ctx.lineWidth = .45;
@@ -71,10 +80,12 @@ function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingConte
   }
 }
 
-function engravedAtlas(anisotropy: number, maxTextureSize: number) {
+export function engravedAtlas(anisotropy: number, maxTextureSize: number, recordHeroMask = false) {
   const face = document.createElement('canvas'); face.width = WIDTH; face.height = HEIGHT;
   const relief = face.cloneNode() as HTMLCanvasElement;
   const c = face.getContext('2d')!, h = relief.getContext('2d')!;
+  const mask = recordHeroMask ? face.cloneNode() as HTMLCanvasElement : null;
+  const inkMask = mask?.getContext('2d') ?? undefined;
   const bevelCache = new Map<string, EngravedGlyph>();
   c.fillStyle = '#172b3e'; c.fillRect(0, 0, WIDTH, HEIGHT);
   h.fillStyle = '#999999'; h.fillRect(0, 0, WIDTH, HEIGHT);
@@ -117,7 +128,7 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
         const fitted = Math.min(nominal, nominal * maxHeight / Math.max(1, bounds.actualBoundingBoxAscent + bounds.actualBoundingBoxDescent));
         const width = Math.max(bounds.width, bounds.actualBoundingBoxLeft + bounds.actualBoundingBoxRight) * fitted / nominal * pixelAspect;
         if (cursor + width > WIDTH - 16) break;
-        drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight, index === 1 ? bevelCache : undefined);
+        drawPhrase(c, h, cursor + width / 2, band.top + offset, fitted, width, band.gold, pixelAspect, excerpt.text, 0, maxHeight, index === 1 ? bevelCache : undefined, index === 1 ? inkMask : undefined);
         const gap = (index === 0 ? 24 : 32) + (ordinal % 3) * 6;
         // Separate geometric filigree sits only in measured empty gutters.
         // Its paired arcs weave around a bronze spindle, never through ink.
@@ -186,7 +197,19 @@ function engravedAtlas(anisotropy: number, maxTextureSize: number) {
     texture.anisotropy = anisotropy;
     texture.minFilter = THREE.LinearMipmapLinearFilter;
   }
-  return { map, bump };
+  let raised = null;
+  if (mask) {
+    if (maxTextureSize < WIDTH) throw Error('Native-mask relief needs a 4096px texture capability; no resampling allowed');
+    const hero = BANDS[1], image = inkMask!.getImageData(0, hero.top, WIDTH, hero.bottom - hero.top);
+    const alpha = new Uint8Array(WIDTH * image.height);
+    for (let i = 0; i < alpha.length; i++) alpha[i] = image.data[i * 4 + 3];
+    raised = buildRaisedRelief({ width: WIDTH, height: image.height, alpha }, hero, HEIGHT);
+    // B was unused. R=relief, G=roughness and both original atlases' other
+    // band lanes remain byte-identical. No extra GPU texture is allocated.
+    for (let i = 0; i < alpha.length; i++) packed.data[((hero.top * WIDTH) + i) * 4 + 2] = alpha[i];
+    h.putImageData(packed, 0, 0);
+  }
+  return { map, bump, heroMask: mask, raised };
 }
 
 // Polar UVs use a shared rectangular atlas. The 0/1 seam is in the gap between
@@ -259,7 +282,15 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const { gl } = useThree();
   const root = useRef<THREE.Group>(null);
   const worldScale = useMemo(() => new THREE.Vector3(), []);
-  const maps = useMemo(() => engravedAtlas(Math.min(8, gl.capabilities.getMaxAnisotropy()), gl.capabilities.maxTextureSize), [gl]);
+  const raisedEnabled = new URLSearchParams(window.location.search).get('raisedCalligraphy') === '1';
+  const maps = useMemo(() => {
+    const result = engravedAtlas(Math.min(8, gl.capabilities.getMaxAnisotropy()), gl.capabilities.maxTextureSize, raisedEnabled);
+    // The proof API retains its native coverage canvas and rectangle ledger;
+    // the live component needs only the completed buffers and packed atlas.
+    if (result.heroMask) { result.heroMask.width = 1; result.heroMask.height = 1; }
+    if (result.raised) result.raised.rectangles.length = 0;
+    return result;
+  }, [gl, raisedEnabled]);
   const faces = useMemo(() => BANDS.map(faceGeometry), []);
   const backing = useMemo(bronzeArchitecture, []);
   const lights = useMemo(lightClusters, []);
@@ -291,11 +322,39 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
     material.customProgramCacheKey = () => 'qari-manuscript-distance-v148-packed-relief';
     return material;
   }), [maps, details]);
+  const raisedGroup = useRef<THREE.Group>(null);
+  const raisedMaterials = useMemo(() => {
+    if (!maps.raised) return [];
+    return [false, true].map(wall => {
+      const material = new THREE.MeshStandardMaterial({
+        map: maps.map, bumpMap: maps.bump, roughnessMap: maps.bump,
+        color: wall ? '#9e6539' : '#fff0cc', metalness: wall ? .62 : .52,
+        roughness: wall ? .75 : .52, bumpScale: wall ? 0 : .08,
+        transparent: true, depthWrite: true,
+      });
+      material.onBeforeCompile = shader => {
+        shader.uniforms.qariDetail = details[1];
+        shader.fragmentShader = 'uniform float qariDetail;\n' + shader.fragmentShader;
+        shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', `
+          #include <map_fragment>
+          // Original native coverage, stored losslessly in the unused B lane.
+          float coverage = texture2D(bumpMap, vBumpMapUv).b;
+          diffuseColor.a = coverage * smoothstep(0.15, 0.8, qariDetail);
+          if (diffuseColor.a <= 0.0) discard;
+          ${wall ? 'diffuseColor.rgb = vec3(0.36, 0.19, 0.07);' : 'diffuseColor.rgb = vec3(0.95, 0.84, 0.60) * (0.92 + 0.08 * dot(diffuseColor.rgb, vec3(0.333333)));'}
+        `);
+      };
+      material.customProgramCacheKey = () => 'qari-native-mask-raised-' + (wall ? 'bronze-wall' : 'ivory-face');
+      return material;
+    });
+  }, [maps, details]);
   const eye = useMemo(() => new THREE.Vector3(), []);
   const nearest = useMemo(() => new THREE.Vector3(), []);
   const lightMaterial = useRef<THREE.PointsMaterial>(null);
   const illuminationPhase = useRef(0);
-  useEffect(() => () => { maps.map.dispose(); maps.bump.dispose(); faces.forEach(g => g.dispose()); backing.dispose(); lights.dispose(); glow.dispose(); materials.forEach(m => m.dispose()); }, [maps, faces, backing, lights, glow, materials]);
+  useEffect(() => () => { maps.map.dispose(); maps.bump.dispose(); faces.forEach(g => g.dispose()); backing.dispose(); lights.dispose(); glow.dispose(); materials.forEach(m => m.dispose());
+    maps.raised?.faces.dispose(); maps.raised?.walls.dispose(); raisedMaterials.forEach(m => m.dispose());
+  }, [maps, faces, backing, lights, glow, materials, raisedMaterials]);
   useFrame(({ camera }, delta) => {
     if (root.current) {
       const group = root.current;
@@ -323,6 +382,14 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
         materials[index].bumpScale = (index === 1 ? .82 : .48) * details[index].value;
       });
     }
+    if (raisedGroup.current) {
+      const detail = details[1].value;
+      raisedGroup.current.visible = detail > .15;
+      // Only NEW relief changes height, continuously with the existing LOD.
+      // The underlying ring geometry, transforms and shader stay unchanged.
+      raisedGroup.current.scale.z = Math.max(.00001, detail);
+      raisedGroup.current.position.z = BANDS[1].elevation * (1 - detail);
+    }
     if (!paused) illuminationPhase.current += Math.min(delta, .05) * .65 * speed;
     lights.setDrawRange(0, gl.xr.isPresenting ? 36 : 72);
     if (lightMaterial.current) {
@@ -338,6 +405,10 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
     {BANDS.map((_, index) => <mesh key={index} geometry={faces[index]} raycast={() => null}>
       <primitive object={materials[index]} attach="material" />
     </mesh>)}
+    {maps.raised && <group ref={raisedGroup} name="hero-native-mask-relief" userData={{ measurement: maps.raised.measurement }}>
+      <mesh geometry={maps.raised.faces} raycast={() => null}><primitive object={raisedMaterials[0]} attach="material" /></mesh>
+      <mesh geometry={maps.raised.walls} raycast={() => null}><primitive object={raisedMaterials[1]} attach="material" /></mesh>
+    </group>}
     <mesh geometry={backing} raycast={() => null}><meshStandardMaterial color="#806441" metalness={.6} roughness={.5} /></mesh>
     <points geometry={lights} raycast={() => null}>
       <pointsMaterial ref={lightMaterial} map={glow} color="#8ce4ce" size={.35} transparent opacity={.7} blending={THREE.AdditiveBlending} depthWrite={false} />

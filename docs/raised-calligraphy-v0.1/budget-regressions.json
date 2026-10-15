@@ -1,0 +1,14 @@
+{
+  "singleAlphaTexelPreserved": true,
+  "sourceMaskUnmodified": true,
+  "uniformFaceElevation": true,
+  "downsampleRejected": true,
+  "emptyMaskRejected": true,
+  "budgetFailsClosed": true,
+  "budgetRejectionMs": 1901.933144,
+  "limits": {
+    "triangles": 160000,
+    "bufferBytes": 16777216,
+    "draws": 2
+  }
+}
