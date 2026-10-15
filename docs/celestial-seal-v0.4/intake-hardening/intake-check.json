@@ -1,0 +1,355 @@
+{
+  "fixtureKind": "SYNTHETIC NONSCRIPTURAL RECTANGLES; source text is metadata only; fictional approvals",
+  "valid": [
+    "complete separated base/mark/pause components",
+    "independent glyph depths within the same word",
+    "reviewed visible mark above its base",
+    "compound path with separate base and mark contours",
+    "original cubic and quadratic contour preserved",
+    "original arc contour preserved",
+    "original relative and implicit line commands preserved",
+    "evenodd hole preserves nonzero filled area",
+    "reviewed shared contour represents base plus attached marks",
+    "many-to-many ligature components across two glyphs",
+    "reviewed body interweaving with separate visible marks"
+  ],
+  "rejected": [
+    {
+      "name": "mark-only path falsely labelled body",
+      "reason": "Mark path falsely classified as body or invalid compound"
+    },
+    {
+      "name": "combining sign falsely mapped to base component",
+      "reason": "Combining marks cannot be classified as base/body components"
+    },
+    {
+      "name": "mark hidden inside body role of compound path",
+      "reason": "Mark path falsely classified as body or invalid compound"
+    },
+    {
+      "name": "missing combining-mark component",
+      "reason": "Unaccounted/misclassified combining mark or pause"
+    },
+    {
+      "name": "missing mark owner",
+      "reason": "Unaccounted/misclassified combining mark or pause"
+    },
+    {
+      "name": "swapped base owner in same word",
+      "reason": "Swapped owner or detached mark rigid group"
+    },
+    {
+      "name": "mark and owner in different rigid groups",
+      "reason": "Component rigid group mismatch"
+    },
+    {
+      "name": "detached mark outside reviewed glyph bounds",
+      "reason": "Vector geometry: Detached component: approved glyph bounds differ"
+    },
+    {
+      "name": "shared contour without explicit review",
+      "reason": "Vector geometry: Shared contour needs explicit specialist review"
+    },
+    {
+      "name": "malformed reciprocal glyph mapping",
+      "reason": "Malformed glyph/component mapping"
+    },
+    {
+      "name": "wrong component contour",
+      "reason": "Vector geometry: Missing component contour"
+    },
+    {
+      "name": "unmapped original contour",
+      "reason": "Vector geometry: Unmapped original contour"
+    },
+    {
+      "name": "duplicate path IDs",
+      "reason": "Duplicate/missing path ID"
+    },
+    {
+      "name": "duplicate character references",
+      "reason": "Invalid codepoint mapping"
+    },
+    {
+      "name": "wrong 18-word metadata count",
+      "reason": "Exactly 18 source words required"
+    },
+    {
+      "name": "wrong exact character span",
+      "reason": "Wrong exact word codepoint span"
+    },
+    {
+      "name": "wrong logical word order",
+      "reason": "Wrong word/course reading order"
+    },
+    {
+      "name": "path presentation display=\"none\"",
+      "reason": "Vector geometry: Hidden/stroked artwork/ancestor"
+    },
+    {
+      "name": "path presentation visibility=\"hidden\"",
+      "reason": "Vector geometry: Hidden/stroked artwork/ancestor"
+    },
+    {
+      "name": "path presentation opacity=\"0\"",
+      "reason": "Vector geometry: Transparent artwork/ancestor"
+    },
+    {
+      "name": "path presentation fill-opacity=\"0\"",
+      "reason": "Vector geometry: Transparent artwork/ancestor"
+    },
+    {
+      "name": "path presentation fill=\"none\"",
+      "reason": "Vector geometry: Nonopaque/nonfilled presentation"
+    },
+    {
+      "name": "path presentation fill=\"transparent\"",
+      "reason": "Vector geometry: Nonopaque/nonfilled presentation"
+    },
+    {
+      "name": "path presentation stroke=\"black\"",
+      "reason": "Vector geometry: Hidden/stroked artwork/ancestor"
+    },
+    {
+      "name": "path presentation stroke-width=\"999\"",
+      "reason": "Vector geometry: Unpermitted SVG attribute"
+    },
+    {
+      "name": "path presentation style=\"display:none\"",
+      "reason": "Vector geometry: Unpermitted SVG attribute"
+    },
+    {
+      "name": "path presentation transform=\"translate(0)\"",
+      "reason": "Vector geometry: Unpermitted SVG attribute"
+    },
+    {
+      "name": "path presentation onclick=\"x()\"",
+      "reason": "Vector geometry: Unpermitted SVG attribute"
+    },
+    {
+      "name": "inherited presentation opacity=\"0\"",
+      "reason": "Vector geometry: Transparent artwork/ancestor"
+    },
+    {
+      "name": "inherited presentation display=\"none\"",
+      "reason": "Vector geometry: Hidden/stroked artwork/ancestor"
+    },
+    {
+      "name": "inherited presentation visibility=\"hidden\"",
+      "reason": "Vector geometry: Hidden/stroked artwork/ancestor"
+    },
+    {
+      "name": "inherited presentation fill=\"none\"",
+      "reason": "Vector geometry: Nonopaque/nonfilled presentation"
+    },
+    {
+      "name": "nested viewport changes geometry presentation",
+      "reason": "Vector geometry: Unpermitted element/namespace/nested viewport"
+    },
+    {
+      "name": "zero-width SVG viewport",
+      "reason": "Vector geometry: Unpermitted SVG attribute"
+    },
+    {
+      "name": "unknown SVG element",
+      "reason": "Vector geometry: Unpermitted element/namespace/nested viewport"
+    },
+    {
+      "name": "wrong SVG namespace",
+      "reason": "Vector geometry: Malformed SVG/namespace"
+    },
+    {
+      "name": "live font text",
+      "reason": "Vector geometry: Unpermitted element/namespace/nested viewport"
+    },
+    {
+      "name": "off-canvas path",
+      "reason": "Vector geometry: Off-canvas/degenerate path bounds"
+    },
+    {
+      "name": "curved off-canvas extremum",
+      "reason": "Vector geometry: Off-canvas/degenerate path bounds"
+    },
+    {
+      "name": "nonzero-length zero-area path",
+      "reason": "Vector geometry: No nondegenerate filled interior (including holes/cancellation)"
+    },
+    {
+      "name": "cancelled evenodd filled area",
+      "reason": "Vector geometry: No nondegenerate filled interior (including holes/cancellation)"
+    },
+    {
+      "name": "compound mark contour has zero filled area",
+      "reason": "Vector geometry: Component has no visible filled interior in its original path"
+    },
+    {
+      "name": "compound mark mapped only to a hole",
+      "reason": "Vector geometry: Component has no visible filled interior in its original path"
+    },
+    {
+      "name": "malformed trailing SVG path command",
+      "reason": "Vector geometry: Malformed path parameters"
+    },
+    {
+      "name": "undeclared body overlap",
+      "reason": "Vector geometry: Undeclared overlap candidate"
+    },
+    {
+      "name": "reversed over/under order",
+      "reason": "Vector geometry: Over/under depth or paint-order conflict"
+    },
+    {
+      "name": "SVG paint order differs from reviewed manifest",
+      "reason": "Vector geometry: SVG paint order/count differs from manifest"
+    },
+    {
+      "name": "overlap obscures sacred mark even if declared",
+      "reason": "Vector geometry: Overlap could obscure sacred mark/pause"
+    },
+    {
+      "name": "sub-tolerance occluding strip is still rejected",
+      "reason": "Vector geometry: Overlap could obscure sacred mark/pause"
+    },
+    {
+      "name": "paint order conflicts with physical depth",
+      "reason": "Vector geometry: Over/under depth or paint-order conflict"
+    },
+    {
+      "name": "removed pause sign",
+      "reason": "Verse text/codepoints changed"
+    },
+    {
+      "name": "pause incorrectly classified as diacritic",
+      "reason": "Unaccounted/misclassified combining mark or pause"
+    },
+    {
+      "name": "pause separated into an extra token",
+      "reason": "Verse text/codepoints changed"
+    },
+    {
+      "name": "NFD normalization changes locked bytes",
+      "reason": "Verse text/codepoints changed"
+    },
+    {
+      "name": "presentation-form/compatibility normalization changes source",
+      "reason": "Verse text/codepoints changed"
+    },
+    {
+      "name": "missing expert approval",
+      "reason": "Missing matching SVG + manifest expert approval records"
+    },
+    {
+      "name": "missing rights",
+      "reason": "Incomplete artwork usage/adaptation rights"
+    },
+    {
+      "name": "nonboolean rights",
+      "reason": "Incomplete artwork usage/adaptation rights"
+    },
+    {
+      "name": "approval wrong SVG digest",
+      "reason": "Missing matching SVG + manifest expert approval records"
+    },
+    {
+      "name": "approval wrong manifest digest",
+      "reason": "Missing matching SVG + manifest expert approval records"
+    },
+    {
+      "name": "mapping altered after review",
+      "reason": "Reviewed mapping/geometry manifest digest mismatch"
+    },
+    {
+      "name": "overlap altered after review",
+      "reason": "Reviewed mapping/geometry manifest digest mismatch"
+    },
+    {
+      "name": "SVG bytes altered after approval",
+      "reason": "Original SVG digest mismatch"
+    }
+  ],
+  "beforeAfter": [
+    {
+      "name": "mark falsely classified as body",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Mark path falsely classified as body or invalid compound",
+      "samePayload": true
+    },
+    {
+      "name": "swapped glyph/base owner",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Swapped owner or detached mark rigid group",
+      "samePayload": true
+    },
+    {
+      "name": "detached mark geometry",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Vector geometry: Detached component: approved glyph bounds differ",
+      "samePayload": true
+    },
+    {
+      "name": "hidden path",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Vector geometry: Hidden/stroked artwork/ancestor",
+      "samePayload": true
+    },
+    {
+      "name": "transparent ancestor",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Vector geometry: Transparent artwork/ancestor",
+      "samePayload": true
+    },
+    {
+      "name": "unpainted path",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Vector geometry: Nonopaque/nonfilled presentation",
+      "samePayload": true
+    },
+    {
+      "name": "off-canvas path",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Vector geometry: Off-canvas/degenerate path bounds",
+      "samePayload": true
+    },
+    {
+      "name": "undeclared body overlap",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Vector geometry: Undeclared overlap candidate",
+      "samePayload": true
+    },
+    {
+      "name": "mismatched manifest approval",
+      "before10510f7": "ACCEPTED",
+      "after": "REJECTED",
+      "reason": "Missing matching SVG + manifest expert approval records",
+      "samePayload": true
+    }
+  ],
+  "lockedSource": {
+    "wordCount": 18,
+    "codepointCount": 137,
+    "pauseWordIds": [
+      5,
+      12
+    ],
+    "pauseCodepointIndices": [
+      41,
+      92
+    ],
+    "normalization": "No normalization; exact locked SHA-256"
+  },
+  "legacySchemaFailsClosed": true,
+  "result": "passed",
+  "validCount": 11,
+  "negativeCount": 63,
+  "pageErrors": [],
+  "baseline": "10510f75c53e0de1ae6c53f6155014477151498b",
+  "checkedAt": "2026-10-15T14:24:32.291Z"
+}

@@ -1,5 +1,7 @@
 # Celestial Seal v0.4 — nonscriptural material and geometry foundation
 
+**Latest intake contract:** [schema v2 safety hardening, synthetic regressions, compatibility and review requirements](intake-hardening/README.md). This supersedes the earlier word-only intake schema; all displayed sculpture code and locked source bytes remain unchanged.
+
 **Latest material review:** [polish report, updated wide/close captures, current measurements and preservation audit](polish/README.md). The earlier measurements and images below are retained as the reviewed pre-polish baseline.
 
 Standalone opt-in route: **`/celestial-seal-foundation.html`**. Branch `prototype/celestial-seal-v0.4-foundation`, based exactly on PR #26 head `c4d5362c177c22983380637eedfa7c65cb311412`. Draft target: `prototype/celestial-seal-v0.2`. All existing Living Orbit, Harf Studio, previous seal studies, recorder, fonts and competition footage remain unchanged. The earlier `/celestial-seal.html` is a historical study; it is not the new v0.4 route.
@@ -62,18 +64,9 @@ Cloud images use Chromium SwiftShader at 960×720; final functional/timing check
 
 ## Future vector intake — independent asset still required
 
-`src/seal-foundation/vectorIntake.ts` defines a reusable, asynchronous **validation contract**, not a font-to-art generator or a connected artwork loader. The current renderer cannot load an inscription. It accepts original SVG bytes plus:
+The current **schema v2** contract in `src/seal-foundation/vectorIntake.ts` and its geometry preflight helper supersede the initial word-only schema. See the [intake hardening report](intake-hardening/README.md) for exact glyph/component ownership, compound/shared-contour support, rigid groups, strict SVG exports, geometry/visibility checks, paint/overlap declarations, dual SVG/manifest approval hashes, regression evidence and compatibility limitations.
 
-- Locked complete verse text and SHA-256; exact 18-word logical order and four course spans **01–05 / 06–12 / 13–14 / 15–18**.
-- Original asset SHA-256, source URL, viewBox and explicit SVG Y-down coordinate convention.
-- Stable closed-path IDs, exact `d` values/fill rules, word IDs, canonical Unicode-codepoint mappings, body/diacritic/pause roles, mark-owner IDs and one of seven nominal depth slots.
-- Separate calligrapher and Qur'anic-text approval records tied to the exact original SVG hash, and an explicit rights record for WebXR, technical 3D adaptation, public-source distribution and film use.
-
-The intake checks the raw-byte digest, rejects font-text/external/scripted SVG content, requires a flattened self-contained path master (no transforms/styles to resolve), compares actual SVG path strings and fill rules with metadata, verifies reciprocal word/path mapping and canonical character coverage, and keeps marks at their owner's depth. Both source pause signs must be identified on W05/W12. No automatic normalization, contour rewriting, invented joins or glyph mirroring is performed. Coordinates/curve strings stay untouched; no approved vector asset is present.
-
-**Approval/rights fields are assertions to inspect, not identity authentication or legal verification.** An automated validator cannot prove that the drawn curves spell the verse or that a referenced approval is genuine. Qualified reviewers and the owner must inspect original artwork, check source/font/art rights, compare raster proofs and approve file hashes before a future contour-to-relief adapter is enabled. The strict SVG subset is intentional; any flattened export needs its own recorded approval rather than engineering silently changing the artist's master.
-
-The browser regression uses explicitly labelled **synthetic geometric schema fixtures** to exercise the contract. Their fictional approvals/rights are test data, not a claim of actual expert approval. No fixture is loaded into the displayed sculpture. Failures cover changed sacred text, asset hash, missing approval/rights, displaced or misidentified marks, reading order, path mismatch, missing pause and incomplete mapping.
+The gate remains independent of the sculpture: no original Arabic vectors are present and no inscription loader is enabled. Original approved contours, word/glyph/mark mapping, reviewer records and usage rights require external human inspection. The saved complete Al-Mulk 67:3 bytes, source hash and four course spans are unchanged. Synthetic fixtures exercise schema behaviour without generating or displaying Arabic artwork.
 
 ## Verification / reproduce
 

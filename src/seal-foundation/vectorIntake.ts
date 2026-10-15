@@ -1,74 +1,120 @@
 import {LOCKED_SOURCE} from './config';
-export type Approval = {reviewer:string; role:'calligrapher'|'quran-text'; date:string; assetSha256:string; record:string};
-export type VectorPath = {id:string; d:string; fillRule:'nonzero'|'evenodd'; role:'body'|'diacritic'|'pause'; wordIds:number[]; sourceCodepoints:number[]; ownerWordId?:number; level:0|1|2|3|4|5|6};
-export type ApprovedVectorAsset = {
-  kind:'approved-original-calligraphy'; assetSha256:string; canonicalText:string; sourceSha256:string;
-  sourceUrl:string; viewBox:[number,number,number,number]; coordinates:'svg-y-down';
-  paths:VectorPath[];
-  words:{id:number; text:string; course:1|2|3|4; pathIds:string[]}[];
+import {inspectVectorGeometry,type Bounds} from './vectorIntakeGeometry';
+
+export type Approval={reviewer:string;role:'calligrapher'|'quran-text';date:string;assetSha256:string;manifestSha256:string;record:string};
+export type VectorPath={id:string;d:string;fillRule:'nonzero'|'evenodd';role:'body'|'diacritic'|'pause'|'compound';wordIds:number[];sourceCodepoints:number[];componentIds:string[];rigidGroupId:string;level:0|1|2|3|4|5|6};
+export type VectorComponent={id:string;pathId:string;contours:number[];kind:'base'|'diacritic'|'pause';sourceCodepoints:number[];glyphIds:string[];rigidGroupId:string;owners:{baseComponentId:string;glyphId:string;baseCodepoint:number}[]};
+export type ApprovedVectorAsset={
+  schemaVersion:2;kind:'approved-original-calligraphy';assetSha256:string;manifestSha256:string;canonicalText:string;sourceSha256:string;sourceUrl:string;
+  viewBox:Bounds;coordinates:'svg-y-down';paths:VectorPath[];components:VectorComponent[];
+  glyphs:{id:string;wordId:number;sourceCodepoints:number[];componentIds:string[];rigidGroupId:string;bounds:Bounds}[];
+  rigidGroups:{id:string;level:number}[];
+  words:{id:number;text:string;course:number;sourceSpan:[number,number];pathIds:string[]}[];
+  paintOrder:string[];overlaps:{frontPathId:string;backPathId:string;record:string}[];
+  sharedContours:{pathId:string;contour:number;componentIds:string[];record:string}[];
   approvals:Approval[];
-  rights:{holder:string; grantRecord:string; webXR:boolean; technical3DAdaptation:boolean; publicSourceDistribution:boolean; film:boolean};
+  rights:{holder:string;grantRecord:string;webXR:boolean;technical3DAdaptation:boolean;publicSourceDistribution:boolean;film:boolean};
 };
 export class IntakeError extends Error {}
-const check=(yes:unknown,message:string):void=>{if(!yes)throw new IntakeError(message);};
-const digest=async(text:string)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))).map(b=>b.toString(16).padStart(2,'0')).join('');
-/** Metadata + digest gate only. No text-to-outline generation and no sculpture loading.
- * Paths use one declared Y inversion and uniform scale at a FUTURE approved importer.
- * A passing digest is not proof of authenticity; human approval records must be checked. */
+function check(yes:unknown,message:string):asserts yes {if(!yes)throw new IntakeError(message);}
+const text=(v:unknown):v is string=>typeof v==='string'&&v.trim().length>0;
+const list=(v:unknown):v is unknown[]=>Array.isArray(v)&&v.length<=20000;
+const unique=(a:unknown[])=>new Set(a).size===a.length;
+const same=(a:unknown[],b:unknown[])=>a.length===b.length&&a.every(x=>b.includes(x));
+const bounds=(b:unknown):b is Bounds=>Array.isArray(b)&&b.length===4&&b.every(Number.isFinite)&&b[2]>0&&b[3]>0;
+const mark=(c:string)=>/\p{M}/u.test(c),pause=(c:string)=>c==='\u06d6';
+export const intakeDigest=async(bytes:Uint8Array)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new Uint8Array(bytes)))).map(b=>b.toString(16).padStart(2,'0')).join('');
+// Sorted object keys; array order is authoritative. No Unicode/text/path normalization.
+function canonicalJSON(value:unknown):string {
+  if(value===null||typeof value!=='object'){check(value===null||['string','boolean','number'].includes(typeof value),'Review manifest must be JSON data');check(typeof value!=='number'||Number.isFinite(value),'Nonfinite review manifest number');return JSON.stringify(value);}
+  if(Array.isArray(value))return '['+value.map(canonicalJSON).join(',')+']';
+  return '{'+Object.keys(value).sort().map(k=>JSON.stringify(k)+':'+canonicalJSON((value as Record<string,unknown>)[k])).join(',')+'}';
+}
+/** Both reviewers must approve this exact manifest as well as the original SVG bytes.
+ * Excludes only the digest itself and approval records, avoiding a circular hash. */
+export async function vectorManifestDigest(asset:unknown):Promise<string>{
+  check(asset!==null&&typeof asset==='object','Missing review manifest');
+  const {manifestSha256:_hash,approvals:_approvals,...reviewed}=asset as Record<string,unknown>;
+  return intakeDigest(new TextEncoder().encode(canonicalJSON(reviewed)));
+}
+
+/** Future intake gate only; never rewrites curves or connects artwork to the sculpture.
+ * Metadata assertions/record links are NOT authentication of a reviewer or of Arabic shapes. */
 export async function validateVectorIntake(value:unknown,originalSvgBytes:Uint8Array):Promise<Readonly<ApprovedVectorAsset>> {
   check(value!==null&&typeof value==='object','Missing approved vector bundle');
-  const asset=value as ApprovedVectorAsset;
-  check(asset.kind==='approved-original-calligraphy','Font proofs and placeholders are not original calligraphy');
-  check(typeof asset.canonicalText==='string'&&asset.sourceSha256===LOCKED_SOURCE.sha256,'Wrong locked verse representation');
-  check(await digest(asset.canonicalText)===LOCKED_SOURCE.sha256,'Verse text/codepoints changed');
-  check(typeof asset.sourceUrl==='string'&&/^https:\/\//.test(asset.sourceUrl),'Missing source citation');
-  const svgDigest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new Uint8Array(originalSvgBytes)))).map(b=>b.toString(16).padStart(2,'0')).join('');
-  check(asset.assetSha256===svgDigest,'Approval must identify the exact original SVG bytes');
-  check(originalSvgBytes.byteLength<=5_000_000,'SVG exceeds intake size limit');
-  const svg=new TextDecoder('utf-8',{fatal:true}).decode(originalSvgBytes);
-  check(/<svg[\s>]/.test(svg)&&!/<\s*(script|image|foreignObject|text|use|clipPath|mask|filter)\b|\bon\w+\s*=|\bhref\s*=|url\s*\(|<!DOCTYPE|<!ENTITY/i.test(svg),'Only self-contained original path artwork is eligible');
-  const doc=new DOMParser().parseFromString(svg,'image/svg+xml');
-  check(!doc.querySelector('parsererror')&&doc.documentElement.localName==='svg','Malformed SVG');
-  check(Array.from(doc.querySelectorAll('*')).every(n=>['svg','g','path','title','desc','metadata'].includes(n.localName)),'Unsupported SVG element; supply an approved flattened path master');
-  check(!Array.from(doc.querySelectorAll('*')).some(n=>n.hasAttribute('transform')||n.hasAttribute('style')),'Transforms/styles must be resolved by the artist before approval');
-  const originalPaths=Array.from(doc.querySelectorAll('path'));
-  check(asset.coordinates==='svg-y-down'&&Array.isArray(asset.viewBox)&&asset.viewBox.length===4&&asset.viewBox.every(Number.isFinite)&&asset.viewBox[2]>0&&asset.viewBox[3]>0,'Invalid declared coordinate system');
-  check(Array.isArray(asset.paths)&&asset.paths.length>0&&asset.paths.length<=10000,'Missing or excessive vector paths');
-  check(originalPaths.length===asset.paths.length,'SVG and metadata path counts differ');
-  const svgViewBox=doc.documentElement.getAttribute('viewBox')?.trim().split(/[\s,]+/).map(Number);
-  check(svgViewBox?.length===4&&svgViewBox.every((x,i)=>x===asset.viewBox[i]),'SVG viewBox differs from declared coordinates');
-  const canonical=Array.from(asset.canonicalText),coverage=new Set<number>();
-  const wordSpans:number[][]=[];let offset=0;for(const word of asset.canonicalText.split(' ')){wordSpans.push(Array.from(word,(_,i)=>offset+i));offset+=Array.from(word).length+1;}
-  const ids=new Set<string>();let pathBytes=0;
-  for(const p of asset.paths){
-    check(typeof p.id==='string'&&p.id.length>0&&!ids.has(p.id),'Duplicate or missing path ID');ids.add(p.id);
-    check(typeof p.d==='string'&&p.d.length<=200000&&/^[Mm]/.test(p.d)&&/^[MmZzLlHhVvCcSsQqTtAa\d.,+\-\seE]+$/.test(p.d),'Unsafe or unsupported path data');
-    pathBytes+=p.d.length;check(pathBytes<=5_000_000,'Combined path data exceeds intake limit');
-    check((p.d.match(/[-+]?(?:\d*\.?\d+)(?:[eE][-+]?\d+)?/g)??[]).every(n=>Number.isFinite(Number(n))&&Math.abs(Number(n))<1e7),'Nonfinite or excessive path coordinate');
-    check(p.d.split(/(?=[Mm])/).filter(Boolean).every(part=>/[Zz]\s*$/.test(part)),'Every approved contour must explicitly close');
-    const original=originalPaths.find(n=>n.id===p.id);
-    check(original&&original.getAttribute('d')===p.d&&original.getAttribute('fill-rule')===p.fillRule&&['nonzero','evenodd'].includes(p.fillRule),'Original curve or fill-rule metadata mismatch');
-    check(original&&Number.isFinite(original.getTotalLength())&&original.getTotalLength()>0,'Empty or invalid path geometry');
-    check(['body','diacritic','pause'].includes(p.role)&&Number.isInteger(p.level)&&p.level>=0&&p.level<7,'Invalid path role/depth');
-    check(Array.isArray(p.wordIds)&&p.wordIds.length>0&&p.wordIds.every(i=>Number.isInteger(i)&&i>=1&&i<=18),'Unmapped vector path');
-    check(Array.isArray(p.sourceCodepoints)&&p.sourceCodepoints.length>0&&p.sourceCodepoints.every(i=>Number.isInteger(i)&&i>=0&&i<canonical.length&&canonical[i]!==' '&&p.wordIds.some(w=>wordSpans[w-1]?.includes(i))),'Invalid source character/path mapping');
-    p.sourceCodepoints.forEach(i=>coverage.add(i));
-    if(p.role!=='body')check(Number.isInteger(p.ownerWordId)&&p.wordIds.includes(p.ownerWordId!),'Detached mark ownership');
+  const a=value as ApprovedVectorAsset;
+  check(a.schemaVersion===2&&a.kind==='approved-original-calligraphy','Original calligraphy schema v2 required; legacy/font proofs need new reviewed mappings');
+  check(originalSvgBytes instanceof Uint8Array&&originalSvgBytes.byteLength>0&&originalSvgBytes.byteLength<=5_000_000,'Invalid/excessive original SVG bytes');
+  check(typeof a.canonicalText==='string'&&a.sourceSha256===LOCKED_SOURCE.sha256,'Wrong locked verse representation');
+  check(await intakeDigest(new TextEncoder().encode(a.canonicalText))===LOCKED_SOURCE.sha256,'Verse text/codepoints changed');
+  check(text(a.sourceUrl)&&/^https:\/\//.test(a.sourceUrl),'Missing source citation');
+  check(await intakeDigest(originalSvgBytes)===a.assetSha256,'Original SVG digest mismatch');
+  check(await vectorManifestDigest(a)===a.manifestSha256,'Reviewed mapping/geometry manifest digest mismatch');
+  check(bounds(a.viewBox)&&a.coordinates==='svg-y-down','Invalid coordinate system/viewBox');
+  for(const key of ['paths','components','glyphs','rigidGroups','words','paintOrder','overlaps','sharedContours','approvals'] as const)check(list(a[key]),`Invalid ${key} array`);
+  check(a.paths.length>0&&a.paths.length<=1000&&a.components.length>0&&a.glyphs.length>0,'Missing/excessive paths, components or glyphs');
+  const chars=Array.from(a.canonicalText),words=a.canonicalText.split(' '),spans:number[][]=[];let offset=0;
+  for(const word of words){const s=Array.from(word,(_,i)=>offset+i);spans.push(s);offset+=s.length+1;}
+  check(words.length===18&&a.words.length===18,'Exactly 18 source words required');
+  check(same(chars.flatMap((c,i)=>pause(c)?[i]:[]),[41,92])&&chars[41]==='\u06d6'&&chars[92]==='\u06d6','Locked pause positions changed');
+  const index=<T extends {id:string}>(items:T[],label:string)=>{check(items.every(v=>v&&text(v.id))&&unique(items.map(v=>v.id)),`Duplicate/missing ${label} ID`);return new Map(items.map(v=>[v.id,v]));};
+  const paths=index(a.paths,'path'),components=index(a.components,'component'),glyphs=index(a.glyphs,'glyph'),groups=index(a.rigidGroups,'rigid group');
+  for(const g of a.rigidGroups)check(Number.isInteger(g.level)&&g.level>=0&&g.level<7,'Invalid rigid depth');
+  const refs=(v:unknown,known:Map<string,unknown>,label:string)=>{check(list(v)&&v.length>0&&unique(v)&&v.every(id=>typeof id==='string'&&known.has(id)),`Malformed ${label} mapping`);};
+  const cps=(v:unknown)=>{check(list(v)&&v.length>0&&unique(v)&&v.every(i=>Number.isInteger(i)&&Number(i)>=0&&Number(i)<chars.length&&chars[Number(i)]!==' '),'Invalid codepoint mapping');};
+  for(const p of a.paths){
+    check(['body','diacritic','pause','compound'].includes(p.role)&&['nonzero','evenodd'].includes(p.fillRule),'Invalid path role/fill rule');
+    check(groups.has(p.rigidGroupId)&&p.level===groups.get(p.rigidGroupId)!.level,'Path rigid depth mismatch');
+    refs(p.componentIds,components,'path/component');cps(p.sourceCodepoints);
+    check(list(p.wordIds)&&p.wordIds.length>0&&unique(p.wordIds)&&p.wordIds.every(w=>Number.isInteger(w)&&w>=1&&w<=18),'Invalid path/word mapping');
+    check(same(p.sourceCodepoints.flatMap(i=>spans.flatMap((s,w)=>s.includes(i)?[w+1]:[])).filter((w,i,all)=>all.indexOf(w)===i),p.wordIds),'Path words differ from character spans');
   }
-  check(canonical.every((c,i)=>c===' '||coverage.has(i)),'Unmapped source character or diacritic');
-  check(Array.isArray(asset.words)&&asset.words.length===18,'Exactly 18 words required');
-  check(asset.words.map(w=>w.text).join(' ')===asset.canonicalText,'Word sequence differs from canonical source');
-  asset.words.forEach((w,i)=>{
-    const expectedCourse=i<5?1:i<12?2:i<14?3:4;
-    check(w.id===i+1&&w.course===expectedCourse,'Wrong word/course reading order');
-    check(Array.isArray(w.pathIds)&&w.pathIds.length>0&&w.pathIds.every(id=>ids.has(id)),'Incomplete word-to-path mapping');
-    for(const id of w.pathIds){const p=asset.paths.find(p=>p.id===id)!;check(p.wordIds.includes(w.id),'Asymmetric word/path mapping');}
+  const covered=new Set<number>();
+  for(const c of a.components){
+    check(paths.has(c.pathId)&&paths.get(c.pathId)!.componentIds.includes(c.id),'Asymmetric component/path mapping');
+    check(c.rigidGroupId===paths.get(c.pathId)!.rigidGroupId,'Component rigid group mismatch');
+    cps(c.sourceCodepoints);refs(c.glyphIds,glyphs,'component/glyph');
+    check(list(c.contours)&&c.contours.length>0&&unique(c.contours)&&c.contours.every(n=>Number.isInteger(n)&&n>=0),'Invalid component contour mapping');
+    check(['base','diacritic','pause'].includes(c.kind)&&list(c.owners),'Invalid component kind/owners');
+    if(c.kind==='base')check(c.sourceCodepoints.every(i=>!mark(chars[i]))&&c.owners.length===0,'Combining marks cannot be classified as base/body components');
+    else check(c.sourceCodepoints.every(i=>mark(chars[i])&&(c.kind==='pause'?pause(chars[i]):!pause(chars[i])))&&c.owners.length>0,'Unaccounted/misclassified combining mark or pause');
+    c.sourceCodepoints.forEach(i=>covered.add(i));
+  }
+  check(chars.every((c,i)=>c===' '||covered.has(i)),'Missing source character/diacritic/pause component');
+  for(const p of a.paths){
+    const cs=p.componentIds.map(id=>components.get(id)!);
+    check(cs.every(c=>c.pathId===p.id)&&same([...new Set(cs.flatMap(c=>c.sourceCodepoints))],p.sourceCodepoints),'Path/component character mapping mismatch');
+    const kinds=new Set(cs.map(c=>c.kind));
+    check(p.role==='compound'?kinds.has('base')&&cs.length>1:p.role==='body'?kinds.size===1&&kinds.has('base'):kinds.size===1&&kinds.has(p.role),'Mark path falsely classified as body or invalid compound');
+  }
+  for(const g of a.glyphs){
+    cps(g.sourceCodepoints);refs(g.componentIds,components,'glyph/component');
+    check(Number.isInteger(g.wordId)&&g.wordId>=1&&g.wordId<=18&&g.sourceCodepoints.every(i=>spans[g.wordId-1].includes(i)),'Glyph spans wrong source word');
+    check(groups.has(g.rigidGroupId)&&bounds(g.bounds),'Missing glyph rigid group/approved bounds');
+    const cs=g.componentIds.map(id=>components.get(id)!);
+    check(cs.every(c=>c.glyphIds.includes(g.id)&&c.rigidGroupId===g.rigidGroupId)&&same([...new Set(cs.flatMap(c=>c.sourceCodepoints.filter(i=>g.sourceCodepoints.includes(i))))],g.sourceCodepoints),'Glyph component coverage/group mismatch');
+    // A glyph cluster contains every combining sign attached to its declared base(s).
+    for(const i of g.sourceCodepoints){if(mark(chars[i])){let base=i-1;while(base>=0&&mark(chars[base]))base--;check(g.sourceCodepoints.includes(base),'Mark outside its glyph source cluster');}else {for(let n=i+1;n<chars.length&&mark(chars[n]);n++)check(g.sourceCodepoints.includes(n),'Glyph omitted attached combining sign');}}
+  }
+  for(const c of a.components){
+    check(c.glyphIds.every(id=>glyphs.get(id)!.componentIds.includes(c.id))&&c.sourceCodepoints.every(i=>c.glyphIds.some(id=>glyphs.get(id)!.sourceCodepoints.includes(i))),'Asymmetric/unmapped component glyph');
+    if(c.kind==='base')continue;
+    const expected=c.sourceCodepoints.map(i=>{let base=i-1;while(base>=0&&mark(chars[base]))base--;return base;});
+    check(c.owners.every(o=>o&&Number.isInteger(o.baseCodepoint)&&components.get(o.baseComponentId)?.kind==='base'&&glyphs.has(o.glyphId)),'Missing mark owner base/glyph');
+    for(const o of c.owners){const base=components.get(o.baseComponentId)!,g=glyphs.get(o.glyphId)!;
+      check(expected.includes(o.baseCodepoint)&&base.sourceCodepoints.includes(o.baseCodepoint)&&c.glyphIds.includes(o.glyphId)&&base.glyphIds.includes(o.glyphId)&&g.sourceCodepoints.includes(o.baseCodepoint)&&base.rigidGroupId===c.rigidGroupId,'Swapped owner or detached mark rigid group');}
+    check(expected.every(i=>c.owners.some(o=>o.baseCodepoint===i)),'Missing combining-mark owner mapping');
+  }
+  a.words.forEach((w,i)=>{
+    check(w&&w.id===i+1&&w.text===words[i]&&w.course===(i<5?1:i<12?2:i<14?3:4),'Wrong word/course reading order');
+    check(Array.isArray(w.sourceSpan)&&w.sourceSpan.length===2&&w.sourceSpan[0]===spans[i][0]&&w.sourceSpan[1]===spans[i].at(-1)!+1,'Wrong exact word codepoint span');
+    refs(w.pathIds,paths,'word/path');check(same(w.pathIds,a.paths.filter(p=>p.wordIds.includes(w.id)).map(p=>p.id)),'Asymmetric word/path mapping');
   });
-  for(const p of asset.paths){for(const id of p.wordIds)check(asset.words[id-1].pathIds.includes(p.id),'Unreferenced path/word association');
-    if(p.ownerWordId){check(p.sourceCodepoints.every(i=>wordSpans[p.ownerWordId!-1]?.includes(i)&&/\p{M}/u.test(canonical[i])),'Mark metadata must identify actual owner-word combining signs');if(p.role==='pause')check(p.sourceCodepoints.every(i=>canonical[i]==='\u06d6'),'Pause metadata must identify the source pause sign');const bodies=asset.paths.filter(b=>b.role==='body'&&b.wordIds.includes(p.ownerWordId!));check(bodies.length>0&&bodies.every(b=>b.level===p.level),'Marks and owner must share a rigid depth level');}}
-  for(const i of [5,12])check(asset.paths.some(p=>p.role==='pause'&&p.ownerWordId===i),'Missing mapped Qur’anic pause sign');
-  check(Array.isArray(asset.approvals)&&['calligrapher','quran-text'].every(role=>asset.approvals.some(a=>a.role===role&&a.assetSha256===svgDigest&&Boolean(a.reviewer?.trim()&&a.record?.trim())&&/^\d{4}-\d{2}-\d{2}$/.test(a.date))),'Missing asset-specific expert approval records');
-  const r=asset.rights;check(r&&r.holder?.trim()&&r.grantRecord?.trim()&&r.webXR===true&&r.technical3DAdaptation===true&&r.publicSourceDistribution===true&&r.film===true,'Incomplete artwork usage/adaptation rights');
-  // Defensive copy: callers cannot alter the checked input through the original object.
-  return structuredClone(asset);
+  refs(a.paintOrder,paths,'paint order');check(a.paintOrder.length===a.paths.length,'Incomplete paint order');
+  const geometry=inspectVectorGeometry(new TextDecoder('utf-8',{fatal:true}).decode(originalSvgBytes),a);
+  check(geometry,'Invalid SVG geometry');
+  const validDate=(s:unknown)=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&Number.isFinite(Date.parse(s))&&new Date(s).toISOString().slice(0,10)===s;
+  check(['calligrapher','quran-text'].every(role=>a.approvals.some(r=>r&&r.role===role&&r.assetSha256===a.assetSha256&&r.manifestSha256===a.manifestSha256&&text(r.reviewer)&&text(r.record)&&validDate(r.date))),'Missing matching SVG + manifest expert approval records');
+  const r=a.rights;check(r&&text(r.holder)&&text(r.grantRecord)&&r.webXR===true&&r.technical3DAdaptation===true&&r.publicSourceDistribution===true&&r.film===true,'Incomplete artwork usage/adaptation rights');
+  return structuredClone(a);
 }
