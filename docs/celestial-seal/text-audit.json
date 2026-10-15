@@ -1,0 +1,32 @@
+{
+  "excerpt": "كُلّٞ فِي فَلَكٖ يَسۡبَحُونَ",
+  "citation": "Qur’an 21:33, words 8–11 (excerpt, not whole verse)",
+  "source": "https://quran.com/21/33",
+  "orthography": "Exact cached Quran Foundation Uthmani word text, unnormalized",
+  "sourceSnapshotChecked": "2026-10-13",
+  "sourceSnapshotSHA256": "4e02bfe598721dd5283d51a6a20cdce9b4561f39ff4bfd7c19f0c9b9c193dfdb",
+  "font": {
+    "file": "public/fonts/Amiri-Bold.ttf",
+    "sha256": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+    "license": "SIL OFL 1.1",
+    "upem": 1000
+  },
+  "shaper": {
+    "name": "HarfBuzz / uharfbuzz",
+    "version": "0.52.0",
+    "direction": "rtl",
+    "script": "arab",
+    "language": "ar"
+  },
+  "isolatedMotifs": [
+    "ك",
+    "ل",
+    "ف",
+    "ي",
+    "ف",
+    "ل",
+    "ك"
+  ],
+  "transforms": "Uniform XY scaling and whole-motif rotation only. Excerpt remains horizontal and unbroken.",
+  "expertCalligrapherReview": "pending"
+}
