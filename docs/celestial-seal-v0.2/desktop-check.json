@@ -1,0 +1,44 @@
+{
+  "renderer": "Chromium SwiftShader",
+  "viewport": "960x720",
+  "captureBackend": "view",
+  "screenshots": [
+    "wide.png",
+    "close.png"
+  ],
+  "hardware": "No Quest or Windows GPU validation",
+  "wideStats": {
+    "drawCalls": 7,
+    "triangles": 87184,
+    "textures": 2,
+    "geometries": 6,
+    "resources": {
+      "geometryBytes": 8131552,
+      "triangles": 87184,
+      "grainBytesWithMipmaps": 349525.3333333333,
+      "shadowMapSize": 512
+    }
+  },
+  "stats": {
+    "drawCalls": 7,
+    "triangles": 87184,
+    "textures": 2,
+    "geometries": 6,
+    "resources": {
+      "geometryBytes": 8131552,
+      "triangles": 87184,
+      "grainBytesWithMipmaps": 349525.3333333333,
+      "shadowMapSize": 512
+    }
+  },
+  "idleBrowserRafNotSceneFPS": {
+    "frames": 132,
+    "elapsedMs": 2200.5,
+    "approxFPS": 59.986366734833
+  },
+  "return": "passed",
+  "stage": "repeat-return",
+  "repeatReturnAfterManualOrbit": "passed",
+  "pageErrors": [],
+  "result": "passed"
+}
