@@ -1,0 +1,111 @@
+{
+  "kind": "Nonscriptural material/geometry foundation",
+  "renderer": "Chromium SwiftShader software WebGL",
+  "viewport": [
+    960,
+    720
+  ],
+  "headsetValidation": false,
+  "intake": {
+    "syntheticGeometricSchemaFixtureAccepted": true,
+    "rejections": [
+      "missing original bundle",
+      "altered verse",
+      "wrong asset hash",
+      "missing approval",
+      "missing rights",
+      "displaced mark",
+      "wrong path",
+      "wrong reading order",
+      "missing mapped pause",
+      "wrong mark identity",
+      "mismatched word mapping"
+    ],
+    "fontProofRejected": true,
+    "limitations": "Schema/digest gate only. Synthetic fixtures are not actual Arabic art, rights grants or expert approvals; external records require human inspection."
+  },
+  "desktopWide": {
+    "profile": "desktop",
+    "drawCalls": 4,
+    "triangles": 9578,
+    "textures": 4,
+    "geometries": 4,
+    "resources": {
+      "profile": "desktop",
+      "geometryBytes": 919488,
+      "triangles": 9578,
+      "depthLevels": [
+        -0.12,
+        -0.08,
+        -0.04,
+        0,
+        0.04,
+        0.08,
+        0.12
+      ],
+      "materialMapBytesWithMipmaps": 699051,
+      "shadowTargetBytesEstimate": 2097152,
+      "actualShadowTargets": [
+        [
+          512,
+          512
+        ]
+      ]
+    },
+    "environmentBytes": 688128,
+    "estimatedTextureBytes": 3484331,
+    "contextLost": false
+  },
+  "captureStatus": {
+    "wide": "Existing actual capture retained; diagnostics-only changes since successful capture",
+    "close": "Existing actual capture retained; diagnostics-only changes since successful capture"
+  },
+  "desktopMeasurement": {
+    "status": "partial-timeout (3/12 frames)",
+    "sampleCount": 3,
+    "cpuRenderMs": {
+      "mean": 19.033333331346512,
+      "p95": 28.099999997764826
+    },
+    "renderSubmissionIntervalMs": {
+      "mean": 6003.03333333383,
+      "p95": 9929
+    },
+    "snapshot": {
+      "profile": "desktop",
+      "drawCalls": 4,
+      "triangles": 9578,
+      "textures": 4,
+      "geometries": 4,
+      "resources": {
+        "profile": "desktop",
+        "geometryBytes": 919488,
+        "triangles": 9578,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 699051,
+        "shadowTargetBytesEstimate": 2097152,
+        "actualShadowTargets": [
+          [
+            512,
+            512
+          ]
+        ]
+      },
+      "environmentBytes": 688128,
+      "estimatedTextureBytes": 3484331,
+      "contextLost": false
+    },
+    "limitations": "Partial actual-render sample: software renderer did not complete the requested frame count in 20 seconds. CPU callback duration and submission intervals only; NOT GPU timings or Quest performance."
+  },
+  "dragAndReturn": "passed",
+  "result": "failed",
+  "error": "TimeoutError: page.waitForFunction: Timeout 32000ms exceeded."
+}

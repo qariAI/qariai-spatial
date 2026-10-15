@@ -1,0 +1,18 @@
+{
+  "kind": "Genuine native Chromium screenshots of nonscriptural geometry; not generated imagery",
+  "viewport": [
+    960,
+    720
+  ],
+  "files": {
+    "wide.png": "ab5969bce97ca7cfc1675fc65fe7690baaa31c2a9f833d680c2e0a2ec47c8feb",
+    "close.png": "2c7d6c42f2aad753566be87bdc81ef7eb1a45f083f9664403bc0e0b700495fa6"
+  },
+  "provenance": "Retained from successful native-view captures earlier in this working session. Geometry, materials, desktop shadow size and camera poses match the final foundation. Later edits hardened vector intake and diagnostics/profile-switch allocation, not the displayed desktop artwork. A later capture timed out; no further captures were attempted.",
+  "hardware": "SwiftShader software WebGL, not Quest or Windows GPU capture",
+  "currentVisualSourceHashes": {
+    "src/seal-foundation/sculpture.ts": "a2b35f944f85137a3ce6cf95866d3783fe9d135d0d315dfe2a71b49a050f8d56",
+    "src/seal-foundation/environment.ts": "47c1547998e61d2d97268cfb45319ca98dd9e7d722cb30c8ca83d1ce48bf6084",
+    "src/seal-foundation/config.ts": "016af72edac9d1cc780d49ad745e71015ee885c29603779cc56555779bdfa917"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "Nonscriptural material/geometry foundation",
+  "renderer": "Chromium SwiftShader software WebGL",
+  "viewport": [
+    960,
+    720
+  ],
+  "headsetValidation": false,
+  "intake": {
+    "syntheticGeometricSchemaFixtureAccepted": true,
+    "rejections": [
+      "missing original bundle",
+      "altered verse",
+      "wrong asset hash",
+      "missing approval",
+      "missing rights",
+      "displaced mark",
+      "wrong path",
+      "wrong reading order",
+      "missing mapped pause",
+      "wrong mark identity",
+      "mismatched word mapping"
+    ],
+    "fontProofRejected": true,
+    "limitations": "Schema/digest gate only. Synthetic fixtures are not actual Arabic art, rights grants or expert approvals; external records require human inspection."
+  },
+  "desktopWide": {
+    "profile": "desktop",
+    "drawCalls": 4,
+    "triangles": 9578,
+    "textures": 4,
+    "geometries": 4,
+    "resources": {
+      "profile": "desktop",
+      "geometryBytes": 919488,
+      "triangles": 9578,
+      "depthLevels": [
+        -0.12,
+        -0.08,
+        -0.04,
+        0,
+        0.04,
+        0.08,
+        0.12
+      ],
+      "materialMapBytesWithMipmaps": 699051,
+      "shadowTargetBytesEstimate": 2097152
+    },
+    "environmentBytes": 688128,
+    "estimatedTextureBytes": 3484331,
+    "contextLost": false
+  },
+  "desktopMeasurement": {
+    "status": "measured",
+    "sampleCount": 12,
+    "cpuRenderMs": {
+      "mean": 3.97499999931703,
+      "p95": 14.899999998509884
+    },
+    "renderSubmissionIntervalMs": {
+      "mean": 1249.5,
+      "p95": 2191.60000000149
+    },
+    "snapshot": {
+      "profile": "desktop",
+      "drawCalls": 4,
+      "triangles": 9578,
+      "textures": 4,
+      "geometries": 4,
+      "resources": {
+        "profile": "desktop",
+        "geometryBytes": 919488,
+        "triangles": 9578,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 699051,
+        "shadowTargetBytesEstimate": 2097152
+      },
+      "environmentBytes": 688128,
+      "estimatedTextureBytes": 3484331,
+      "contextLost": false
+    },
+    "limitations": "CPU time inside WebGLRenderer scene callbacks and intervals between actual render submissions; NOT GPU timer measurements, not idle RAF and not Quest hardware performance."
+  },
+  "dragAndReturn": "passed",
+  "cinematicWideCloseReturn": "passed (21-second desktop camera study)",
+  "result": "failed",
+  "error": "Error: page.evaluate: Error: Actual-render measurement timed out after 6/12 measured frames; do not claim a frame rate\n    at http://127.0.0.1:5294/src/seal-foundation/main.tsx:141:16"
+}

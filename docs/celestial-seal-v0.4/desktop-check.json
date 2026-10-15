@@ -1,0 +1,162 @@
+{
+  "kind": "Nonscriptural material/geometry foundation",
+  "renderer": "Chromium SwiftShader software WebGL",
+  "viewport": [
+    480,
+    720
+  ],
+  "headsetValidation": false,
+  "intake": {
+    "syntheticGeometricSchemaFixtureAccepted": true,
+    "rejections": [
+      "missing original bundle",
+      "altered verse",
+      "wrong asset hash",
+      "missing approval",
+      "missing rights",
+      "nonboolean rights",
+      "displaced mark",
+      "wrong path",
+      "wrong reading order",
+      "missing mapped pause",
+      "wrong mark identity",
+      "mismatched word mapping"
+    ],
+    "fontProofRejected": true,
+    "limitations": "Schema/digest gate only. Synthetic fixtures are not actual Arabic art, rights grants or expert approvals; external records require human inspection."
+  },
+  "desktopWide": {
+    "profile": "desktop",
+    "drawCalls": 4,
+    "triangles": 9578,
+    "textures": 4,
+    "geometries": 4,
+    "resources": {
+      "profile": "desktop",
+      "geometryBytes": 919488,
+      "triangles": 9578,
+      "depthLevels": [
+        -0.12,
+        -0.08,
+        -0.04,
+        0,
+        0.04,
+        0.08,
+        0.12
+      ],
+      "materialMapBytesWithMipmaps": 699051,
+      "shadowTargetBytesEstimate": 2097152,
+      "actualShadowTargets": [
+        [
+          512,
+          512
+        ]
+      ]
+    },
+    "environmentBytes": 688128,
+    "estimatedTextureBytes": 3484331,
+    "contextLost": false
+  },
+  "captureStatus": {
+    "wide": "Existing actual capture retained; diagnostics-only changes since successful capture",
+    "close": "Existing actual capture retained; diagnostics-only changes since successful capture",
+    "quest-profile": "Not captured: further cloud capture attempts disabled after timeout"
+  },
+  "desktopMeasurement": {
+    "status": "partial-timeout (9/12 frames)",
+    "sampleCount": 9,
+    "cpuRenderMs": {
+      "mean": 2.388888889716731,
+      "p95": 10
+    },
+    "renderSubmissionIntervalMs": {
+      "mean": 1479.8000000003312,
+      "p95": 3304.2000000029802
+    },
+    "snapshot": {
+      "profile": "desktop",
+      "drawCalls": 4,
+      "triangles": 9578,
+      "textures": 4,
+      "geometries": 4,
+      "resources": {
+        "profile": "desktop",
+        "geometryBytes": 919488,
+        "triangles": 9578,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 699051,
+        "shadowTargetBytesEstimate": 2097152,
+        "actualShadowTargets": [
+          [
+            512,
+            512
+          ]
+        ]
+      },
+      "environmentBytes": 688128,
+      "estimatedTextureBytes": 3484331,
+      "contextLost": false
+    },
+    "limitations": "Partial actual-render sample: software renderer did not complete the requested frame count in 20 seconds. CPU callback duration and submission intervals only; NOT GPU timings or Quest performance."
+  },
+  "dragAndReturn": "passed",
+  "cinematicWideCloseReturn": "passed (21-second desktop camera study)",
+  "questProfileMeasurement": {
+    "status": "measured",
+    "sampleCount": 12,
+    "cpuRenderMs": {
+      "mean": 5.874999999689559,
+      "p95": 35.399999998509884
+    },
+    "renderSubmissionIntervalMs": {
+      "mean": 827.8583333330849,
+      "p95": 2379.89999999851
+    },
+    "snapshot": {
+      "profile": "quest",
+      "drawCalls": 4,
+      "triangles": 6274,
+      "textures": 4,
+      "geometries": 4,
+      "resources": {
+        "profile": "quest",
+        "geometryBytes": 602304,
+        "triangles": 6274,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 174763,
+        "shadowTargetBytesEstimate": 524288,
+        "actualShadowTargets": [
+          [
+            256,
+            256
+          ]
+        ]
+      },
+      "environmentBytes": 344064,
+      "estimatedTextureBytes": 1043115,
+      "contextLost": false
+    },
+    "limitations": "CPU time inside WebGLRenderer scene callbacks and intervals between actual render submissions; NOT GPU timer measurements, not idle RAF and not Quest hardware performance."
+  },
+  "reducedMotion": "passed",
+  "mobileNoHorizontalOverflow": true,
+  "pageErrors": [],
+  "result": "functional-checks-passed",
+  "performanceComplete": false
+}
