@@ -1,0 +1,8 @@
+{
+  "kind": "Live seal plus clearly labelled historical baseline image, 960x720 SwiftShader",
+  "historicalReferenceLoaded": true,
+  "screenshot": "compare.png",
+  "toggleOff": true,
+  "errors": [],
+  "result": "passed"
+}
