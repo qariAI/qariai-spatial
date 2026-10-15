@@ -1,0 +1,216 @@
+{
+  "status": "provisional layout, no bespoke paths",
+  "verse": "67:3",
+  "canonicalSha256": "fbcf48fe24468963b5bdb0a5e729e4bbbc3fa1feb8cc5558fbc0d1a3f09da2fc",
+  "characterSpans": "zero-based Unicode code points, end exclusive; separators remain U+0020",
+  "courseProgression": "C1 to C2 to C3 to C4; return to right at each course",
+  "withinCourse": "RTL; no angular or counter-clockwise assumption",
+  "courses": [
+    {
+      "id": "C1",
+      "firstWord": 1,
+      "lastWord": 5,
+      "next": "C2"
+    },
+    {
+      "id": "C2",
+      "firstWord": 6,
+      "lastWord": 12,
+      "next": "C3"
+    },
+    {
+      "id": "C3",
+      "firstWord": 13,
+      "lastWord": 14,
+      "next": "C4"
+    },
+    {
+      "id": "C4",
+      "firstWord": 15,
+      "lastWord": 18,
+      "next": null
+    }
+  ],
+  "words": [
+    {
+      "wordId": "w01",
+      "text": "ٱلَّذِي",
+      "band": "C1",
+      "codepointSpan": [
+        0,
+        7
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w02",
+      "text": "خَلَقَ",
+      "band": "C1",
+      "codepointSpan": [
+        8,
+        14
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w03",
+      "text": "سَبۡعَ",
+      "band": "C1",
+      "codepointSpan": [
+        15,
+        21
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w04",
+      "text": "سَمَٰوَٰتٖ",
+      "band": "C1",
+      "codepointSpan": [
+        22,
+        32
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w05",
+      "text": "طِبَاقٗاۖ",
+      "band": "C1",
+      "codepointSpan": [
+        33,
+        42
+      ],
+      "pauseSign": "U+06D6"
+    },
+    {
+      "wordId": "w06",
+      "text": "مَّا",
+      "band": "C2",
+      "codepointSpan": [
+        43,
+        47
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w07",
+      "text": "تَرَىٰ",
+      "band": "C2",
+      "codepointSpan": [
+        48,
+        54
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w08",
+      "text": "فِي",
+      "band": "C2",
+      "codepointSpan": [
+        55,
+        58
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w09",
+      "text": "خَلۡقِ",
+      "band": "C2",
+      "codepointSpan": [
+        59,
+        65
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w10",
+      "text": "ٱلرَّحۡمَٰنِ",
+      "band": "C2",
+      "codepointSpan": [
+        66,
+        78
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w11",
+      "text": "مِن",
+      "band": "C2",
+      "codepointSpan": [
+        79,
+        82
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w12",
+      "text": "تَفَٰوُتٖۖ",
+      "band": "C2",
+      "codepointSpan": [
+        83,
+        93
+      ],
+      "pauseSign": "U+06D6"
+    },
+    {
+      "wordId": "w13",
+      "text": "فَٱرۡجِعِ",
+      "band": "C3",
+      "codepointSpan": [
+        94,
+        103
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w14",
+      "text": "ٱلۡبَصَرَ",
+      "band": "C3",
+      "codepointSpan": [
+        104,
+        113
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w15",
+      "text": "هَلۡ",
+      "band": "C4",
+      "codepointSpan": [
+        114,
+        118
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w16",
+      "text": "تَرَىٰ",
+      "band": "C4",
+      "codepointSpan": [
+        119,
+        125
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w17",
+      "text": "مِن",
+      "band": "C4",
+      "codepointSpan": [
+        126,
+        129
+      ],
+      "pauseSign": null
+    },
+    {
+      "wordId": "w18",
+      "text": "فُطُورٖ",
+      "band": "C4",
+      "codepointSpan": [
+        130,
+        137
+      ],
+      "pauseSign": null
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "kind": "Actual Chromium 2D SVG/text proof rendering, no WebGL or generated imagery",
+  "fontLoaded": true,
+  "chromium": "154.0.8037.57",
+  "fontSize": 92.92286676098941,
+  "viewport": [
+    1600,
+    1600
+  ],
+  "courseBounds": [
+    {
+      "text": "ٱلَّذِي خَلَقَ سَبۡعَ سَمَٰوَٰتٖ طِبَاقٗاۖ",
+      "x": 374.90576171875,
+      "y": 431,
+      "width": 840.830810546875,
+      "height": 163
+    },
+    {
+      "text": "مَّا تَرَىٰ فِي خَلۡقِ ٱلرَّحۡمَٰنِ مِن تَفَٰوُتٖۖ",
+      "x": 335.078125,
+      "y": 661,
+      "width": 929.84375,
+      "height": 163
+    },
+    {
+      "text": "فَٱرۡجِعِ ٱلۡبَصَرَ",
+      "x": 613.53125,
+      "y": 861,
+      "width": 365.9375,
+      "height": 163
+    },
+    {
+      "text": "هَلۡ تَرَىٰ مِن فُطُورٖ",
+      "x": 536.5,
+      "y": 1071,
+      "width": 520,
+      "height": 163
+    }
+  ],
+  "allMarksWithinEnvelope": true,
+  "courseBoundsDoNotOverlap": true,
+  "pageErrors": [],
+  "artisticStatus": "Provisional source-font study; bespoke Jali Thuluth and visual correctness need expert review"
+}
