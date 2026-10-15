@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {spawn,spawnSync} from 'node:child_process';
 import {createInterface} from 'node:readline/promises';
 import {waitForCheck,readinessBudget,orbitReady,bodyComplete,letterComplete} from './readiness.mjs';
+import {diagnosticScreenshot} from './diagnostic-screenshot.mjs';
 import {keyboardCue} from './keyboard.mjs';
 import {verifyArrangement} from './display.mjs';
 import {SHOTS,projectedPoint,verifyVideo,ffmpegArgs} from './core.mjs';
@@ -34,7 +35,7 @@ async function body(){const rect=await canvas();const points=guide.map(p=>projec
 async function placeDot(){const p=projectedPoint(dot,await canvas());await page.mouse.click(p.x,p.y);await waitForCheck(page,report,{name:recording?'recording:letter-complete':'rehearsal:letter-complete',predicate:letterComplete,timeout:recording?4000:15000});}
 async function studio(){if(recording)checkGuard();await page.getByRole('link',{name:/Practice Calligraphy/}).click();await page.waitForURL(u=>u.pathname==='/harf-studio-xr.html'&&u.searchParams.get('competitionDemo')==='1');await page.waitForSelector('#capture-truth-label');await page.locator('#retry').waitFor();await sleep(1200);}
 async function finish(){if(recording)checkGuard();await page.getByRole('link',{name:/Return to Living Orbit/}).click();await captureReady();}
-async function screenshot(name){await page.screenshot({path:resolve(out,name+'.png'),timeout:8000});}
+async function screenshot(name){await diagnosticScreenshot(page,report,{name,path:resolve(out,name+'.png'),enabled:process.env.RECORDER_SCREENSHOTS==='1',recording});}
 function checkGuard(){if(focusError)throw focusError;if(!guard||performance.now()-guardTick>2000)throw Error('Windows foreground guard unavailable or stale.');}
 async function startGuard(){if(process.platform!=='win32')throw Error('Display foreground guard requires Windows.');guard=spawn('powershell.exe',['-NoProfile','-ExecutionPolicy','RemoteSigned','-File',fileURLToPath(new URL('./foreground.ps1',import.meta.url))],{windowsHide:true});let pending='';guard.stdout.on('data',b=>{pending+=b.toString();let i;while((i=pending.indexOf('\n'))>=0){const line=pending.slice(0,i).trim();pending=pending.slice(i+1);try{const state=JSON.parse(line);if(state.error)focusError=Error(state.error);else if(state.foreground&&state.fullscreen)guardTick=performance.now();}catch{}}});guard.on('error',e=>focusError=e);guard.on('exit',()=>{if(recording)focusError=Error('Foreground guard exited');});const deadline=performance.now()+8000;while(!guardTick){if(performance.now()>deadline)throw Error('Foreground guard startup failed. Check PowerShell policy; no recording started.');await sleep(100);}checkGuard();}
 async function viewport(){const size=await page.evaluate(()=>({width:innerWidth,height:innerHeight,dpr:devicePixelRatio}));if(size.width!==1920||size.height!==1080||size.dpr!==1)throw Error(`Browser must be fullscreen 1920×1080 at 100% Windows scaling; got ${JSON.stringify(size)}`);}
