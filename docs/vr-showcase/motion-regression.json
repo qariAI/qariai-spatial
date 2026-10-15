@@ -1,0 +1,35 @@
+{
+  "kind": "Unchanged validator/filter/pinch simulation, NOT rendered XR/UI or Quest evidence",
+  "results": [
+    {
+      "fps": 15,
+      "body": "dot learning step observed",
+      "bodyProgress": 0.9392265193370166,
+      "bodySeconds": 23.53,
+      "dot": "complete observed only after separate close",
+      "combined": "complete",
+      "trackingJumpWarnings": 0,
+      "maxCommandStepPixels": 3.702529390947974
+    },
+    {
+      "fps": 30,
+      "body": "dot learning step observed",
+      "bodyProgress": 0.9392265193370166,
+      "bodySeconds": 11.87,
+      "dot": "complete observed only after separate close",
+      "combined": "complete",
+      "trackingJumpWarnings": 0,
+      "maxCommandStepPixels": 3.702529390947974
+    },
+    {
+      "fps": 72,
+      "body": "dot learning step observed",
+      "bodyProgress": 0.9392265193370166,
+      "bodySeconds": 9.83,
+      "dot": "complete observed only after separate close",
+      "combined": "complete",
+      "trackingJumpWarnings": 0,
+      "maxCommandStepPixels": 3.702529390947974
+    }
+  ]
+}
