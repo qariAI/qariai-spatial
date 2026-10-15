@@ -6,7 +6,7 @@ export function makeStudioEnvironment(gl:T.WebGLRenderer,size:number){
     for(let y=0;y<size;y++)for(let x=0;x<size;x++){const u=(x+.5)/size*2-1,v=(y+.5)/size*2-1;
       const d=new T.Vector3(...([[1,-v,-u],[-1,-v,u],[u,1,v],[u,-1,-v],[u,-v,1],[-u,-v,-1]][face] as [number,number,number])).normalize();
       const a=Math.exp(28*(d.dot(directions[0])-1)),b=Math.exp(45*(d.dot(directions[1])-1));
-      data.data.set([Math.min(255,32+a*215+b*150),Math.min(255,36+a*215+b*116),Math.min(255,44+a*211+b*75),255],(y*size+x)*4);
+      data.data.set([Math.min(255,46+a*209+b*150),Math.min(255,43+a*205+b*116),Math.min(255,42+a*192+b*75),255],(y*size+x)*4);
     }ctx.putImageData(data,0,0);return c;});
   const cube=new T.CubeTexture(faces);cube.colorSpace=T.SRGBColorSpace;cube.needsUpdate=true;
   const generator=new T.PMREMGenerator(gl),target=generator.fromCubemap(cube);generator.dispose();cube.dispose();

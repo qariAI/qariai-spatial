@@ -1,5 +1,7 @@
 # Celestial Seal v0.4 — nonscriptural material and geometry foundation
 
+**Latest material review:** [polish report, updated wide/close captures, current measurements and preservation audit](polish/README.md). The earlier measurements and images below are retained as the reviewed pre-polish baseline.
+
 Standalone opt-in route: **`/celestial-seal-foundation.html`**. Branch `prototype/celestial-seal-v0.4-foundation`, based exactly on PR #26 head `c4d5362c177c22983380637eedfa7c65cb311412`. Draft target: `prototype/celestial-seal-v0.2`. All existing Living Orbit, Harf Studio, previous seal studies, recorder, fonts and competition footage remain unchanged. The earlier `/celestial-seal.html` is a historical study; it is not the new v0.4 route.
 
 **NONSCRIPTURAL GEOMETRY ONLY. No approved calligraphy is loaded or represented.** The original Al-Mulk 67:3 vector master is still missing. No Arabic text is rendered in this prototype, no font outlines are generated, no AI image is projected onto the object, and no script-shaped placeholder is used. The eightfold polygons are calibration/architectural geometry. They do not purport to reproduce the missing artwork, seven letters, a verse, or a literal depiction of heavens.

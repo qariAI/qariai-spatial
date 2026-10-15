@@ -60,7 +60,7 @@ function Scene({profile}:{profile:Quality}){
   },[gl,scene,seal,profile,invalidate]);
   return <primitive object={seal.root}/>;
 }
-function Lights({profile}:{profile:Quality}){const size=QUALITY[profile].shadowSize;return <><ambientLight intensity={.5} color="#9aafc1"/><directionalLight position={[-4,6,7]} intensity={3.6} color="#e7efff" castShadow shadow-mapSize={[size,size]} shadow-camera-left={-5.2} shadow-camera-right={5.2} shadow-camera-top={5.2} shadow-camera-bottom={-5.2} shadow-camera-near={.5} shadow-camera-far={25} shadow-bias={-.00012} shadow-normalBias={.004} shadow-radius={2.5}/><spotLight position={[5,1.5,6]} angle={.85} penumbra={1} intensity={55} color="#f3c78d" distance={24}/><pointLight position={[-4,-3,3]} intensity={6} color="#74b4b6" distance={15}/></>;}
+function Lights({profile}:{profile:Quality}){const size=QUALITY[profile].shadowSize;return <><ambientLight intensity={.32} color="#9aafc1"/><directionalLight position={[-3,5,3.8]} intensity={4.2} color="#ffe0b5" castShadow shadow-mapSize={[size,size]} shadow-camera-left={-5.2} shadow-camera-right={5.2} shadow-camera-top={5.2} shadow-camera-bottom={-5.2} shadow-camera-near={.5} shadow-camera-far={25} shadow-bias={-.00012} shadow-normalBias={.004} shadow-radius={2.5}/><spotLight position={[5,1.5,6]} angle={.85} penumbra={1} intensity={68} color="#f3c78d" distance={24}/><pointLight position={[-4,-3,3]} intensity={6} color="#74b4b6" distance={15}/></>;}
 function App(){
   const [profile,setProfile]=useState<Quality>(new URLSearchParams(location.search).get('quality')==='quest'?'quest':'desktop');
   const [view,setView]=useState<View>('wide'),[revision,setRevision]=useState(0),[report,setReport]=useState('No frame measurement requested.'),[measuring,setMeasuring]=useState(false);
