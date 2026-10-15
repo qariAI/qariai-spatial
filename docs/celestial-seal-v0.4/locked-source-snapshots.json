@@ -1,0 +1,34 @@
+{
+  "checked": "2026-10-15",
+  "primary": {
+    "url": "https://quran.com/67/3",
+    "representation": "Uthmani word text as extracted from displayed word entries; one U+0020 between entries",
+    "words": [
+      "ٱلَّذِي",
+      "خَلَقَ",
+      "سَبۡعَ",
+      "سَمَٰوَٰتٖ",
+      "طِبَاقٗاۖ",
+      "مَّا",
+      "تَرَىٰ",
+      "فِي",
+      "خَلۡقِ",
+      "ٱلرَّحۡمَٰنِ",
+      "مِن",
+      "تَفَٰوُتٖۖ",
+      "فَٱرۡجِعِ",
+      "ٱلۡبَصَرَ",
+      "هَلۡ",
+      "تَرَىٰ",
+      "مِن",
+      "فُطُورٖ"
+    ]
+  },
+  "secondary": {
+    "url": "https://quranenc.com/ar/browse/arabic_mokhtasar/67/3",
+    "representation": "Complete verse heading, without heading syntax or verse-number metadata",
+    "verse": "ٱلَّذِي خَلَقَ سَبۡعَ سَمَٰوَٰتٖ طِبَاقٗاۖ مَّا تَرَىٰ فِي خَلۡقِ ٱلرَّحۡمَٰنِ مِن تَفَٰوُتٖۖ فَٱرۡجِعِ ٱلۡبَصَرَ هَلۡ تَرَىٰ مِن فُطُورٖ"
+  },
+  "retrieval": "Web-tool text extraction, not raw HTTP payload; source markup and display fonts may change. No Unicode normalization.",
+  "proposalOnly": true
+}

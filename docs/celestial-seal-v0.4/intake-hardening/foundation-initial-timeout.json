@@ -1,0 +1,11 @@
+{
+  "kind": "Nonscriptural material/geometry foundation",
+  "renderer": "Chromium SwiftShader software WebGL",
+  "viewport": [
+    480,
+    720
+  ],
+  "headsetValidation": false,
+  "result": "failed",
+  "error": "TimeoutError: page.waitForFunction: Timeout 20000ms exceeded."
+}

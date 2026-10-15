@@ -1,0 +1,11 @@
+{
+  "kind": "Nonscriptural material/geometry foundation",
+  "renderer": "Chromium SwiftShader software WebGL",
+  "viewport": [
+    480,
+    720
+  ],
+  "headsetValidation": false,
+  "result": "failed",
+  "error": "TimeoutError: page.goto: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5294/celestial-seal-foundation.html\", waiting until \"domcontentloaded\"\u001b[22m\n"
+}

@@ -1,0 +1,61 @@
+{
+  "kind": "Nonscriptural material/geometry foundation",
+  "renderer": "Chromium SwiftShader software WebGL",
+  "viewport": [
+    960,
+    720
+  ],
+  "headsetValidation": false,
+  "intake": {
+    "syntheticGeometricSchemaFixtureAccepted": true,
+    "rejections": [
+      "missing original bundle",
+      "altered verse",
+      "wrong asset hash",
+      "missing approval",
+      "missing rights",
+      "displaced mark",
+      "wrong path",
+      "wrong reading order",
+      "missing mapped pause",
+      "wrong mark identity",
+      "mismatched word mapping"
+    ],
+    "fontProofRejected": true,
+    "limitations": "Schema/digest gate only. Synthetic fixtures are not actual Arabic art, rights grants or expert approvals; external records require human inspection."
+  },
+  "desktopWide": {
+    "profile": "desktop",
+    "drawCalls": 4,
+    "triangles": 9578,
+    "textures": 4,
+    "geometries": 4,
+    "resources": {
+      "profile": "desktop",
+      "geometryBytes": 919488,
+      "triangles": 9578,
+      "depthLevels": [
+        -0.12,
+        -0.08,
+        -0.04,
+        0,
+        0.04,
+        0.08,
+        0.12
+      ],
+      "materialMapBytesWithMipmaps": 699051,
+      "shadowTargetBytesEstimate": 2097152,
+      "actualShadowTargets": [
+        [
+          512,
+          512
+        ]
+      ]
+    },
+    "environmentBytes": 688128,
+    "estimatedTextureBytes": 3484331,
+    "contextLost": false
+  },
+  "result": "failed",
+  "error": "Error: Native capture timeout; do not keep retrying"
+}

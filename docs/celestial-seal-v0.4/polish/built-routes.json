@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "bytes": 930
+  },
+  {
+    "path": "/harf-studio.html",
+    "status": 200,
+    "bytes": 7853
+  },
+  {
+    "path": "/harf-studio-xr.html",
+    "status": 200,
+    "bytes": 1630
+  },
+  {
+    "path": "/celestial-seal.html",
+    "status": 200,
+    "bytes": 768
+  },
+  {
+    "path": "/celestial-seal-foundation.html",
+    "status": 200,
+    "bytes": 804
+  },
+  {
+    "path": "/fonts/Amiri-Bold.ttf",
+    "status": 200,
+    "bytes": 368616
+  }
+]

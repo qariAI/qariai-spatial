@@ -1,0 +1,40 @@
+{
+  "baseline": "10510f75c53e0de1ae6c53f6155014477151498b",
+  "checkedAt": "2026-10-15T14:35:23.150Z",
+  "result": "passed",
+  "protectedTrackedFilesUnchanged": 161,
+  "changedFiles": [
+    "docs/celestial-seal-v0.4/README.md",
+    "docs/celestial-seal-v0.4/intake-hardening/README.md",
+    "docs/celestial-seal-v0.4/intake-hardening/foundation-check.json",
+    "docs/celestial-seal-v0.4/intake-hardening/foundation-initial-timeout.json",
+    "docs/celestial-seal-v0.4/intake-hardening/foundation-navigation-timeout.json",
+    "docs/celestial-seal-v0.4/intake-hardening/intake-check.json",
+    "docs/celestial-seal-v0.4/intake-hardening/scope-check.json",
+    "scripts/check-seal-foundation.cjs",
+    "scripts/check-seal-intake.cjs",
+    "scripts/fixtures/seal-intake.mjs",
+    "src/seal-foundation/vectorIntake.ts",
+    "src/seal-foundation/vectorIntakeGeometry.ts"
+  ],
+  "criticalUnchangedSHA256": {
+    "src/seal-foundation/main.tsx": "814c7bd8ec80bef61ce55e99c0c7a98f91f7062db771ff1b04726e6454b21424",
+    "src/seal-foundation/sculpture.ts": "e169386bcc193e53e4ad43f9175f000a9675712d794e833508f4dd0ae10ac218",
+    "src/seal-foundation/environment.ts": "091ecd4b3fdb1772dde263069bb8015dce29f505a5667fe43a0e1c0e5edaaef2",
+    "src/seal-foundation/config.ts": "016af72edac9d1cc780d49ad745e71015ee885c29603779cc56555779bdfa917",
+    "src/seal-foundation/style.css": "91aa5e2731e11465d9fe1f7e2b33e32a657d2c1ff63c7aab275e9856b101857b",
+    "docs/celestial-seal-v0.4/locked-source-snapshots.json": "ef7f79e6f8fcf353f61ec23ce5e0c59fd284f5e2d909fc1dfabb001f30e34d68"
+  },
+  "medallionResourcesComparedToPolish": "Exact equality: main draw calls, triangles, textures, geometries, estimated texture bytes and all resource fields in both profiles",
+  "tests": {
+    "build": "passed; existing chunk-size warning",
+    "intake": "passed: 11 valid, 63 negative, 9 paired before/after cases",
+    "foundation": "functional-checks-passed; no page errors",
+    "desktopTiming": "measured",
+    "questProfileTiming": "partial-timeout (10/12 frames)",
+    "calligraphyContent": "passed: eight source spans",
+    "harf": "passed: tracing/pinch/body/dot/reset/session",
+    "integration": "passed: completion/navigation/session cleanup"
+  },
+  "limitations": "Initial render and navigation timeouts retained separately; partial SwiftShader timing is not a hardware claim."
+}

@@ -1,0 +1,81 @@
+{
+  "baseline": "b3752db314f0988be271519a97cdcc5aa1ec5ee1",
+  "checkedAt": "2026-10-15T13:45:24.657Z",
+  "result": "passed",
+  "cameraAndEntryPageOutsideLights": "byte-identical",
+  "vectorIntakeAndDepthConfiguration": "byte-identical",
+  "profiles": {
+    "desktop": {
+      "before": {
+        "profile": "desktop",
+        "geometryBytes": 919488,
+        "triangles": 9578,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 699051,
+        "shadowTargetBytesEstimate": 2097152
+      },
+      "after": {
+        "profile": "desktop",
+        "geometryBytes": 992370,
+        "triangles": 9578,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 699051,
+        "shadowTargetBytesEstimate": 2097152
+      },
+      "unchangedPositionNormalUvSHA256": "4219bb1f1e01cdeb584e22ce1e1fa2a50903cd8dc38ac45f8a06cdf388b56b3d",
+      "geometryComparison": "Exact typed-array equality; original positions, normals, UVs, topology, transforms and shadow flags preserved"
+    },
+    "quest": {
+      "before": {
+        "profile": "quest",
+        "geometryBytes": 602304,
+        "triangles": 6274,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 174763,
+        "shadowTargetBytesEstimate": 524288
+      },
+      "after": {
+        "profile": "quest",
+        "geometryBytes": 650058,
+        "triangles": 6274,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 174763,
+        "shadowTargetBytesEstimate": 524288
+      },
+      "unchangedPositionNormalUvSHA256": "178a529debbf3bdd4bec26f44955d2432e7feee056c6b0d2a595d14ca1f6bcf8",
+      "geometryComparison": "Exact typed-array equality; original positions, normals, UVs, topology, transforms and shadow flags preserved"
+    }
+  }
+}

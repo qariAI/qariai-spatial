@@ -1,0 +1,186 @@
+{
+  "checkedAt": "2026-10-15T13:46:11.332Z",
+  "renderer": "Chromium SwiftShader software WebGL",
+  "viewport": [
+    960,
+    720
+  ],
+  "headsetValidation": false,
+  "captures": {
+    "wide": {
+      "result": "captured",
+      "sha256": "5714801da910c9a5f011d01498f77431ac15219d4d57a963cc96f4b991af0d7e",
+      "method": "CDP Page.captureScreenshot, native browser view, fromSurface:false; no rescaling or enhancement"
+    },
+    "close": {
+      "result": "captured",
+      "sha256": "202cd1d6289e806ef041d68064d37173f194fcf85882b9b8b4e64f56c0556e94",
+      "method": "CDP Page.captureScreenshot, native browser view, fromSurface:false; no rescaling or enhancement"
+    }
+  },
+  "desktopWide": {
+    "profile": "desktop",
+    "drawCalls": 4,
+    "triangles": 9578,
+    "textures": 4,
+    "geometries": 4,
+    "resources": {
+      "profile": "desktop",
+      "geometryBytes": 992370,
+      "triangles": 9578,
+      "depthLevels": [
+        -0.12,
+        -0.08,
+        -0.04,
+        0,
+        0.04,
+        0.08,
+        0.12
+      ],
+      "materialMapBytesWithMipmaps": 699051,
+      "shadowTargetBytesEstimate": 2097152,
+      "actualShadowTargets": [
+        [
+          512,
+          512
+        ]
+      ]
+    },
+    "environmentBytes": 688128,
+    "estimatedTextureBytes": 3484331,
+    "contextLost": false
+  },
+  "desktopClose": {
+    "profile": "desktop",
+    "drawCalls": 4,
+    "triangles": 9578,
+    "textures": 4,
+    "geometries": 4,
+    "resources": {
+      "profile": "desktop",
+      "geometryBytes": 992370,
+      "triangles": 9578,
+      "depthLevels": [
+        -0.12,
+        -0.08,
+        -0.04,
+        0,
+        0.04,
+        0.08,
+        0.12
+      ],
+      "materialMapBytesWithMipmaps": 699051,
+      "shadowTargetBytesEstimate": 2097152,
+      "actualShadowTargets": [
+        [
+          512,
+          512
+        ]
+      ]
+    },
+    "environmentBytes": 688128,
+    "estimatedTextureBytes": 3484331,
+    "contextLost": false
+  },
+  "performanceViewport": [
+    480,
+    720
+  ],
+  "desktopMeasurement": {
+    "status": "partial-timeout (9/12 frames)",
+    "sampleCount": 9,
+    "cpuRenderMs": {
+      "mean": 10.222222223050064,
+      "p95": 35
+    },
+    "renderSubmissionIntervalMs": {
+      "mean": 1594.2666666665011,
+      "p95": 4077.099999997765
+    },
+    "snapshot": {
+      "profile": "desktop",
+      "drawCalls": 4,
+      "triangles": 9578,
+      "textures": 4,
+      "geometries": 4,
+      "resources": {
+        "profile": "desktop",
+        "geometryBytes": 992370,
+        "triangles": 9578,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 699051,
+        "shadowTargetBytesEstimate": 2097152,
+        "actualShadowTargets": [
+          [
+            512,
+            512
+          ]
+        ]
+      },
+      "environmentBytes": 688128,
+      "estimatedTextureBytes": 3484331,
+      "contextLost": false
+    },
+    "limitations": "Partial actual-render sample: software renderer did not complete the requested frame count in 20 seconds. CPU callback duration and submission intervals only; NOT GPU timings or Quest performance."
+  },
+  "approachAndReturn": "passed",
+  "wideCloseWideTour": "passed",
+  "questMeasurement": {
+    "status": "measured",
+    "sampleCount": 12,
+    "cpuRenderMs": {
+      "mean": 3.3333333333333335,
+      "p95": 8.5
+    },
+    "renderSubmissionIntervalMs": {
+      "mean": 1461.9833333333954,
+      "p95": 2611.2000000029802
+    },
+    "snapshot": {
+      "profile": "quest",
+      "drawCalls": 4,
+      "triangles": 6274,
+      "textures": 4,
+      "geometries": 4,
+      "resources": {
+        "profile": "quest",
+        "geometryBytes": 650058,
+        "triangles": 6274,
+        "depthLevels": [
+          -0.12,
+          -0.08,
+          -0.04,
+          0,
+          0.04,
+          0.08,
+          0.12
+        ],
+        "materialMapBytesWithMipmaps": 174763,
+        "shadowTargetBytesEstimate": 524288,
+        "actualShadowTargets": [
+          [
+            256,
+            256
+          ]
+        ]
+      },
+      "environmentBytes": 344064,
+      "estimatedTextureBytes": 1043115,
+      "contextLost": false
+    },
+    "limitations": "CPU time inside WebGLRenderer scene callbacks and intervals between actual render submissions; NOT GPU timer measurements, not idle RAF and not Quest hardware performance."
+  },
+  "reducedMotion": "passed",
+  "mobileOverflow": "passed",
+  "noArabicVectorOrFontRequests": true,
+  "pageErrors": [],
+  "result": "passed"
+}
