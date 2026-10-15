@@ -1,0 +1,14 @@
+{
+  "name": "qariai-competition-recorder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "record": "node record.mjs",
+    "test": "node --test test.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.56.1",
+    "obs-websocket-js": "5.0.6",
+    "pngjs": "7.0.0"
+  }
+}
