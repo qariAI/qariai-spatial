@@ -1,0 +1,41 @@
+{
+  "faceDifferences": 0,
+  "maskDifferences": 0,
+  "otherBandDifferences": 0,
+  "coverageDifferences": 0,
+  "heroHeightDifferences": 297710,
+  "heroRoughnessDifferences": 479090,
+  "faintPixels": 57131,
+  "missingFaintPixels": 0,
+  "counterPixels": 1231077,
+  "components": 2188,
+  "smallComponents": 9,
+  "closedOpenings": 331,
+  "syntheticCoverageDifferences": 0,
+  "syntheticBoundsDifferences": 0,
+  "meshBuilderGuardPassed": true,
+  "raisedIsNull": true,
+  "profile": {
+    "inkPixels": 145179,
+    "modifiedPixels": 479644,
+    "bakeMs": 291.30000000004657,
+    "addedTriangles": 0,
+    "addedGeometryBytes": 0,
+    "addedDraws": 0,
+    "addedTextures": 0,
+    "kind": "lighting-only; no displacement, parallax or physical extrusion"
+  },
+  "baselineBakeMs": 47705.30000000005,
+  "textureBakeMs": 45789.40000000014,
+  "fixture": {
+    "inkPixels": 34,
+    "modifiedPixels": 248,
+    "bakeMs": 2.699999999953434,
+    "addedTriangles": 0,
+    "addedGeometryBytes": 0,
+    "addedDraws": 0,
+    "addedTextures": 0,
+    "kind": "lighting-only; no displacement, parallax or physical extrusion"
+  },
+  "source": "Exact PR28 baker versus v0.2, immutable tile coverage and complete face atlas; counters/openings are mask topology, not inferred sacred-text semantics"
+}

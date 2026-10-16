@@ -1,0 +1,1204 @@
+{
+  "source": "dc95a7cc06c3194318e099b8a3802eb4ae8cc272",
+  "success": false,
+  "errors": [],
+  "captures": [
+    {
+      "view": "wide",
+      "variant": "original",
+      "camera": [
+        0,
+        98,
+        169
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "detail": [
+        0,
+        0,
+        0
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 4,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        18.100000000093132,
+        15.199999999953434,
+        4.800000000046566
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "wide",
+      "variant": "texture",
+      "camera": [
+        0,
+        98,
+        169
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "detail": [
+        0,
+        0,
+        0
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 7,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        55.4000000001397,
+        3.1000000000931323,
+        3.5999999998603016
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "wide",
+      "variant": "physical",
+      "camera": [
+        0,
+        98,
+        169
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "detail": [
+        0,
+        0,
+        0
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 10,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        46.799999999813735,
+        6,
+        3.4000000001396984
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 13893504
+    },
+    {
+      "view": "explore",
+      "variant": "original",
+      "camera": [
+        -3.999999999999961,
+        30.000000000000004,
+        84
+      ],
+      "target": [
+        0,
+        -2.7,
+        44
+      ],
+      "detail": [
+        0.8275643423122904,
+        0.9217535230809146,
+        0.9656770012437212
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 13,
+        "calls": 22,
+        "triangles": 18458,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        21.199999999953434,
+        0.8000000000465661,
+        1
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "explore",
+      "variant": "texture",
+      "camera": [
+        -3.999999999999961,
+        30.000000000000004,
+        84
+      ],
+      "target": [
+        0,
+        -2.7,
+        44
+      ],
+      "detail": [
+        0.8275643423122904,
+        0.9217535230809146,
+        0.9656770012437212
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 16,
+        "calls": 22,
+        "triangles": 18458,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        29.899999999906868,
+        1.6999999999534339,
+        0.30000000004656613
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "explore",
+      "variant": "physical",
+      "camera": [
+        -3.999999999999961,
+        30.000000000000004,
+        84
+      ],
+      "target": [
+        0,
+        -2.7,
+        44
+      ],
+      "detail": [
+        0.8275643423122904,
+        0.9217535230809146,
+        0.9656770012437212
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 19,
+        "calls": 24,
+        "triangles": 163182,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        125.30000000004657,
+        4.400000000139698,
+        2.2999999998137355
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 13893504
+    },
+    {
+      "view": "oblique",
+      "variant": "original",
+      "camera": [
+        12.000000000000004,
+        11.999999999999996,
+        82
+      ],
+      "target": [
+        0,
+        -2.7,
+        44
+      ],
+      "detail": [
+        0.9441933081107368,
+        0.9962639652998949,
+        0.9999999999999999
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 22,
+        "calls": 36,
+        "triangles": 22186,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        81.0999999998603,
+        1.6999999999534339,
+        1.3000000000465661
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "oblique",
+      "variant": "texture",
+      "camera": [
+        12.000000000000004,
+        11.999999999999996,
+        82
+      ],
+      "target": [
+        0,
+        -2.7,
+        44
+      ],
+      "detail": [
+        0.9441933081107368,
+        0.9962639652998949,
+        0.9999999999999999
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 25,
+        "calls": 36,
+        "triangles": 22186,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        110,
+        1.1999999999534339,
+        0.8999999999068677
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "oblique",
+      "variant": "physical",
+      "camera": [
+        12.000000000000004,
+        11.999999999999996,
+        82
+      ],
+      "target": [
+        0,
+        -2.7,
+        44
+      ],
+      "detail": [
+        0.9441933081107368,
+        0.9962639652998949,
+        0.9999999999999999
+      ],
+      "letters": [
+        {
+          "position": [
+            4.9598195365467806e-15,
+            -7,
+            -60
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            63.328350079910415,
+            -7.584956747309095,
+            -37.40938811152401
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            78.9691608867277,
+            -6.739669756529465,
+            13.351256037378864
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            35.144582868522214,
+            -6.530901110519182,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -35.14458286852221,
+            -7.469098889480818,
+            54.05813207414515
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -78.9691608867277,
+            -7.260330243470535,
+            13.351256037378871
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -63.32835007991042,
+            -6.415043252690906,
+            -37.409388111524
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "caption": "Select a letter to illuminate its mirror.",
+      "render": {
+        "frame": 28,
+        "calls": 38,
+        "triangles": 166910,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        81.30000000004657,
+        1.7999999998137355,
+        9
+      ],
+      "canvas": [
+        972,
+        800
+      ],
+      "addedGeometryBytes": 13893504
+    }
+  ],
+  "method": "Actual Living Orbit WebGL with immutable PR28 comparison factories; shared unchanged face atlas; hero auxiliary lane/material swapped; test-only mesh for physical comparison; all views paused/unselected with identical camera/target/detail",
+  "limitations": [
+    "Software WebGL and deterministic 50ms stepping do not establish real-time smoothness, stereo legibility or Quest performance.",
+    "Test-only Fragment mounting avoids development StrictMode duplicate baking. Physical comparator CPU buffers exist only in the harness, never in the v0.2 runtime.",
+    "First frame samples include comparison texture uploads/compilation; warm samples are noisy synchronous browser wall times, not hardware GPU timers."
+  ],
+  "runtime": {
+    "profile": {
+      "inkPixels": 145179,
+      "modifiedPixels": 479644,
+      "bakeMs": 256,
+      "addedTriangles": 0,
+      "addedGeometryBytes": 0,
+      "addedDraws": 0,
+      "addedTextures": 0,
+      "kind": "lighting-only; no displacement, parallax or physical extrusion"
+    },
+    "physicalGroupPresent": false,
+    "render": {
+      "frame": 1,
+      "calls": 57,
+      "triangles": 23698,
+      "points": 8472,
+      "lines": 2184
+    },
+    "memory": {
+      "geometries": 40,
+      "textures": 13
+    }
+  },
+  "elapsedMs": 154982,
+  "comparator": {
+    "oldBakeMs": 33260.59999999986,
+    "physical": {
+      "inkPixels": 145179,
+      "coveredPixels": 145179,
+      "faceRectangles": 16631,
+      "wallRuns": 55731,
+      "triangles": 144724,
+      "bufferBytes": 13893504,
+      "buildMs": 1046.8000000000466,
+      "components": 2188
+    }
+  },
+  "error": "AssertionError [ERR_ASSERTION]: far appearance changed\n    at /workspace/work/orbit-relief-v02/scripts/capture-texture-relief.cjs:61:39"
+}

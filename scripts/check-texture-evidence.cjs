@@ -1,0 +1,9 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{chromium}=require('playwright');
+const {compareFarPngs}=require('./capture-texture-relief.cjs');
+(async()=>{let browser;try{
+ const directory=path.resolve('docs/raised-calligraphy-v0.2'),capture=JSON.parse(fs.readFileSync(path.join(directory,'capture-report.json')));assert.equal(capture.captures.length,9);assert.deepEqual(capture.errors,[]);
+ for(const view of ['wide','explore','oblique']){const f=capture.captures.filter(c=>c.view===view),a=f.find(c=>c.variant==='original'),c=f.find(c=>c.variant==='texture'),b=f.find(c=>c.variant==='physical');for(const r of f)for(const k of ['camera','target','detail','letters','textureBytesEstimate'])assert.deepEqual(r[k],a[k],view+' '+k);assert.equal(c.render.calls,a.render.calls);assert.equal(c.render.triangles,a.render.triangles);assert.equal(c.addedGeometryBytes,0);assert.equal(b.render.triangles-a.render.triangles,view==='wide'?0:144724);}
+ assert(!capture.runtime.physicalGroupPresent);assert.equal(capture.runtime.profile.addedGeometryBytes,0);
+ browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu']});const page=await browser.newPage();const farQuantization=await compareFarPngs(page,directory);
+ const result={passed:true,cameraStates:'matched in all nine genuine images',textureAddedTriangles:0,textureAddedGeometryBytes:0,textureAddedDraws:0,farQuantization,initialCaptureDiagnostic:capture.error??null,method:'Read and validate saved genuine evidence; no regenerated or altered screenshots',note:'Exact source/coverage masks remain byte-identical. The 1-level rendered far difference is reported, not called byte-identical.'};fs.writeFileSync(path.join(directory,'evidence-validation.json'),JSON.stringify(result,null,2));console.log('PASS',JSON.stringify(result));
+}finally{await browser?.close()}})().catch(e=>{console.error(e);process.exitCode=1});

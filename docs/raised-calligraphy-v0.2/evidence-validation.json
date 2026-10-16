@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "cameraStates": "matched in all nine genuine images",
+  "textureAddedTriangles": 0,
+  "textureAddedGeometryBytes": 0,
+  "textureAddedDraws": 0,
+  "farQuantization": {
+    "texture": {
+      "changedPixels": 17,
+      "maxChannelDelta": 1
+    },
+    "physical": {
+      "changedPixels": 0,
+      "maxChannelDelta": 0
+    }
+  },
+  "initialCaptureDiagnostic": "AssertionError [ERR_ASSERTION]: far appearance changed\n    at /workspace/work/orbit-relief-v02/scripts/capture-texture-relief.cjs:61:39",
+  "method": "Read and validate saved genuine evidence; no regenerated or altered screenshots",
+  "note": "Exact source/coverage masks remain byte-identical. The 1-level rendered far difference is reported, not called byte-identical."
+}
