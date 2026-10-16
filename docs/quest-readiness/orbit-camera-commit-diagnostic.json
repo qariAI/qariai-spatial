@@ -1,0 +1,7 @@
+{
+  "success": false,
+  "errors": [],
+  "method": "Actual texture-only Orbit WebGL; deterministic 50ms steps; test-only Fragment avoids StrictMode duplicate atlas bake; wait for committed artwork before control checks",
+  "limitations": "Software rendering; not sustained FPS, stereo or Quest evidence",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(await p.evaluate(()=>Math.abs(getOrbit().camera.position.z-84)<.01))\n"
+}

@@ -1,0 +1,16 @@
+{
+  "source": "dc95a7cc06c3194318e099b8a3802eb4ae8cc272",
+  "success": false,
+  "errors": [
+    "Cannot read properties of null (reading 'textContent')"
+  ],
+  "captures": [],
+  "method": "Actual Living Orbit WebGL with immutable PR28 comparison factories; shared unchanged face atlas; hero auxiliary lane/material swapped; test-only mesh for physical comparison; all views paused/unselected with identical camera/target/detail",
+  "limitations": [
+    "Software WebGL and deterministic 50ms stepping do not establish real-time smoothness, stereo legibility or Quest performance.",
+    "Test-only Fragment mounting avoids development StrictMode duplicate baking. Physical comparator CPU buffers exist only in the harness, never in the v0.2 runtime.",
+    "First frame samples include comparison texture uploads/compilation; warm samples are noisy synchronous browser wall times, not hardware GPU timers."
+  ],
+  "error": "page.waitForFunction: TypeError: Cannot read properties of null (reading 'textContent')\n    at eval (eval at predicate (eval at evaluate (:311:30)), <anonymous>:1:37)\n    at predicate (eval at evaluate (:311:30), <anonymous>:7:27)\n    at next (eval at evaluate (:311:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:311:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at wait (/workspace/work/quest-readiness/scripts/capture-texture-relief.cjs:13:36)\n    at /workspace/work/quest-readiness/scripts/capture-texture-relief.cjs:23:8",
+  "elapsedMs": 51527
+}

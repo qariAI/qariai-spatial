@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "kind": "IWER 2.1.0 emulated XRFrame joint poses, not physical Quest; recovery gate only; no stereo/render-performance claim",
+  "cases": [
+    {
+      "hand": "left",
+      "openPinch": "passed",
+      "closedReconnect": "blocked",
+      "deliberateRecovery": "passed"
+    },
+    {
+      "hand": "right",
+      "openPinch": "passed",
+      "closedReconnect": "blocked",
+      "deliberateRecovery": "passed"
+    }
+  ],
+  "status": "passed"
+}

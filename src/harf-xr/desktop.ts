@@ -1,7 +1,9 @@
+import { preserveExperienceLinks } from '../integration/routes';
 import { inkPath, GOLD_STOPS } from './ink';
 import { BA, bodyPath } from './letters/definition';
 import { progressDisplay } from './progress';
 import { Tracing, GUIDE, DOT, type Point } from './tracing';
+preserveExperienceLinks(document, location.search);
 const board = document.querySelector<SVGSVGElement>('#board')!, guide = document.querySelector<SVGPathElement>('#bodyGuide')!, ink = document.querySelector<SVGGElement>('#ink')!;
 const body = document.querySelector<SVGPathElement>('#bodyGlow')!, dot = document.querySelector<SVGPathElement>('#dotGuide')!, done = document.querySelector<SVGPathElement>('#dotDone')!;
 const start = document.querySelector<SVGCircleElement>('#start')!, label = document.querySelector<SVGTextElement>('#startLabel')!;

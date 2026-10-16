@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "scenarios": [
+    {
+      "hand": "left",
+      "target": "letter",
+      "passed": true
+    },
+    {
+      "hand": "left",
+      "target": "phase",
+      "passed": true
+    },
+    {
+      "hand": "right",
+      "target": "letter",
+      "passed": true
+    },
+    {
+      "hand": "right",
+      "target": "phase",
+      "passed": true
+    }
+  ],
+  "navigation": "allowlisted paths; explicit texture only; default/invalid/duplicate/external values excluded; SVG detour/reload-safe query; session end/timeout retained",
+  "limits": "Deterministic logic tests, not physical Quest evidence"
+}
