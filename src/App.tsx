@@ -3,6 +3,7 @@ import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
 import { Billboard, OrbitControls } from '@react-three/drei';
 import { XRHandModelFactory } from 'three/examples/jsm/webxr/XRHandModelFactory.js';
 import * as THREE from 'three';
+import { OrbitPinch } from './xr/OrbitPinch';
 import { OrbitPracticeLink } from './integration/OrbitPracticeLink';
 import { CalligraphyDepthArt } from './CalligraphyDepthArt';
 
@@ -86,7 +87,7 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
  const {gl,scene}=useThree();
  const hands=useRef<THREE.Group[]>([]);
  const markers=useRef<THREE.Mesh[]>([]);
- const pinched=useRef([false,false]);
+ const pinchGates=useMemo(()=>[new OrbitPinch(),new OrbitPinch()],[]);
  const lastHover=useRef<number|null>(null);
  const lastReport=useRef('');
  const cooldown=useRef([0,0]);
@@ -102,10 +103,47 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
    m.visible=false;scene.add(m);return m;
   });
   hands.current=groups;markers.current=mesh;
-  return()=>{groups.forEach(h=>scene.remove(h));mesh.forEach(m=>{scene.remove(m);m.geometry.dispose();(m.material as THREE.Material).dispose()})};
- },[gl,scene]);
+  const disarm=()=>{
+   pinchGates.forEach(g=>g.loseTracking());
+   mesh.forEach(m=>m.visible=false);
+   if(lastHover.current!==null){lastHover.current=null;onHover(null)}
+  };
+  let session:XRSession|null=null;
+  const sessionChanged=()=>{
+   disarm();
+   session?.removeEventListener('visibilitychange',disarm);
+   session=gl.xr.getSession();
+   session?.addEventListener('visibilitychange',disarm);
+  };
+  const handChanged=groups.map((hand,side)=>{
+   const reset=()=>pinchGates[side].loseTracking();
+   hand.addEventListener('connected',reset);
+   hand.addEventListener('disconnected',reset);
+   return reset;
+  });
+  gl.xr.addEventListener('sessionstart',sessionChanged);
+  gl.xr.addEventListener('sessionend',sessionChanged);
+  sessionChanged();
+  return()=>{
+   session?.removeEventListener('visibilitychange',disarm);
+   gl.xr.removeEventListener('sessionstart',sessionChanged);
+   gl.xr.removeEventListener('sessionend',sessionChanged);
+   disarm();
+   groups.forEach((h,i)=>{
+    h.removeEventListener('connected',handChanged[i]);
+    h.removeEventListener('disconnected',handChanged[i]);
+    scene.remove(h);
+   });
+   mesh.forEach(m=>{scene.remove(m);m.geometry.dispose();(m.material as THREE.Material).dispose()});
+  };
+ },[gl,scene,pinchGates,onHover]);
  useFrame((state)=>{
-  if(!gl.xr.isPresenting){markers.current.forEach(m=>m.visible=false);return}
+  if(!gl.xr.isPresenting||gl.xr.getSession()?.visibilityState!=='visible'){
+   pinchGates.forEach(g=>g.loseTracking());
+   markers.current.forEach(m=>m.visible=false);
+   if(lastHover.current!==null){lastHover.current=null;onHover(null)}
+   return;
+  }
   const now=state.clock.elapsedTime;
   let hovered:number|null=null,best=Infinity,visible=0;
   scene.updateMatrixWorld(true);
@@ -113,12 +151,13 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
    const joints=(hand as THREE.Group & {joints?:Record<string,THREE.Object3D>}).joints;
    const tip=joints?.['index-finger-tip'],thumb=joints?.['thumb-tip'],wrist=joints?.['wrist'];
    const marker=markers.current[side];
-   if(!tip||!thumb||!tip.visible||!thumb.visible){if(marker)marker.visible=false;pinched.current[side]=false;return}
+   if(!hand.visible||!tip||!thumb||!wrist||!tip.visible||!thumb.visible||!wrist.visible){if(marker)marker.visible=false;pinchGates[side].loseTracking();return}
    visible++;
    const finger=new THREE.Vector3(),thumbPos=new THREE.Vector3(),wristPos=new THREE.Vector3();
    tip.getWorldPosition(finger);thumb.getWorldPosition(thumbPos);
    const pinchDistance=finger.distanceTo(thumbPos);
-   const isPinching=pinched.current[side]?pinchDistance<.038:pinchDistance<.026;
+   const pressed=pinchGates[side].update(pinchDistance);
+   const isPinching=pinchGates[side].pinching;
    if(marker){marker.visible=true;marker.position.copy(finger);marker.quaternion.copy(state.camera.quaternion);marker.scale.setScalar(isPinching?1.55:1)}
    const aim=new THREE.Vector3(0,0,-1);
    if(wrist){wrist.getWorldPosition(wristPos);aim.copy(finger).sub(wristPos).normalize()}
@@ -143,12 +182,11 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
     if(hits.length||near){const score=hits.length > 0 ? 0.09 : direct.distanceTo(finger);if(score<targetScore){targetScore=score;targetIndex=null;targetAction=true}}
    }
    if(targetIndex!==null&&targetScore<best){best=targetScore;hovered=targetIndex}
-   if(isPinching&&!pinched.current[side]&&now>cooldown.current[side]&&targetScore<Infinity){
+   if(pressed&&now>cooldown.current[side]&&targetScore<Infinity){
     if(targetAction){onAction();lastActionAt.current=now;lastActionLabel.current='spatial action activated'}
     else if(targetIndex!==null){onPinch(targetIndex);lastActionAt.current=now;lastActionLabel.current='selected '+LETTERS[targetIndex]}
     cooldown.current[side]=now+.35;
    }
-   pinched.current[side]=isPinching;
   });
   if(hovered!==lastHover.current){lastHover.current=hovered;onHover(hovered)}
   const report='Quest XR · tracked hands: '+visible+' · hover: '+(hovered===null?'none':LETTERS[hovered])+(now-lastActionAt.current<2.5?' · last pinch: '+lastActionLabel.current:'');

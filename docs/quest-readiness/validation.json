@@ -1,0 +1,18 @@
+{
+  "base": "6f4fd70a19ae6914d2035752413467867845de0b",
+  "productionBuild": "passed; inherited >500 kB chunk warning",
+  "arabicContent": "eight exact recorded Quran.com source word spans passed; no text changes",
+  "glyphMasks": "24 cases passed: eight excerpts at 55/100/190px",
+  "textureIntegrity": "zero face/native mask/packed coverage/supporting-band differences; tiny/faint components and counters retained",
+  "focusedLogic": "passed; both hands/targets, independent gates, thresholds, cooldown, closed recovery, validated internal query forwarding, session-safe navigation",
+  "browserComponent": "passed actual HandTracking frame callback with synthetic joints/session events; real navigation adapter/Harf links and SVG detour",
+  "webxrEmulation": "passed test-only IWER 2.1.0 XRFrame joint-pose recovery and session re-entry; not a full rendered Quest demonstration",
+  "orbit": "passed actual texture-only WebGL Pause, Explore/Return, mirrored scales, exactly two phases; separate readiness/R3F commit polling",
+  "harf": "passed existing tracing/pinch/session/ink simulations and real desktop SVG/spatial body-dot completion/reset/guide/denial/layout/cleanup",
+  "integration": "passed existing navigation end-event/failure/timeout and completion tests; all three built entries and font HTTP 200",
+  "scope": "passed; 23 other source/assets/configuration files and Orbit outside HandTracking byte-identical",
+  "diagnostics": "legacy Pause readiness failures and initial camera-commit assertion retained separately; no genuine application errors suppressed",
+  "windowsExecution": "not run in this Linux environment; owner checklist provided",
+  "physicalQuest": "pending; tracking quality, input reliability, cold startup, stereo readability, sustained frame time/thermal validation required",
+  "unchanged": "artwork, lighting, cameras, geometry, textures, validators, phase choreography, XR session cleanup, production, PR #28 and PR #29"
+}

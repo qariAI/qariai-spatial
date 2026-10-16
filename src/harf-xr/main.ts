@@ -3,9 +3,11 @@ import { GUIDE, Tracing, Pinch, type Point } from './tracing';
 import { SessionOwner } from './session';
 import './style.css';
 import { endBeforeNavigation } from '../integration/navigation';
+import { experienceHref, preserveExperienceLinks } from '../integration/routes';
 import {progressDisplay} from './progress';
 import { inkPath, GOLD_STOPS } from './ink';
 import { BA } from './letters/definition';
+preserveExperienceLinks(document, location.search);
 const bodyOutline=new Path2D(BA.bodyOutline), dotOutline=new Path2D(BA.dotOutline);
 const host = document.querySelector<HTMLDivElement>('#surface')!, status = document.querySelector<HTMLParagraphElement>('#status')!;
 const enter = document.querySelector<HTMLButtonElement>('#enter')!, leave = document.querySelector<HTMLButtonElement>('#leave')!;
@@ -130,11 +132,11 @@ catch (e) {
     enter.disabled = false;
 } };
 let navigating=false;
-async function navigateFromStudio(path:string){
+async function navigateFromStudio(path:'/'|'/harf-studio.html'){
  if(navigating)return;
  if(ownerSession.starting){status.textContent='VR is starting. Wait before leaving the page.';return;}
  navigating=true;
- try{await endBeforeNavigation(ownerSession.current,()=>location.assign(path));}
+ try{await endBeforeNavigation(ownerSession.current,()=>location.assign(experienceHref(path,location.search)));}
  catch(error){trace.feedback=error instanceof Error?error.message:String(error);status.textContent=trace.feedback;dirty=true;}
  finally{navigating=false;}
 }

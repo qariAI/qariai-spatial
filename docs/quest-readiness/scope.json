@@ -1,0 +1,100 @@
+{
+  "success": true,
+  "base": "6f4fd70a19ae6914d2035752413467867845de0b",
+  "scope": "Only Orbit recovery and internal navigation adapters; all other tracked source/public assets and package/HTML configuration byte-identical",
+  "orbitOutsideHandTracking": "byte-identical",
+  "verified": [
+    {
+      "file": "harf-studio-xr.html",
+      "sha256": "c6e3ccf5ce10cf54aed9887f3e232357c2f2fa55d53ca19722598c3f6bdc3c82"
+    },
+    {
+      "file": "harf-studio.html",
+      "sha256": "92c4ae2f5f0b238c9545181df3bf2a30584d8e76bc5c6a5efaaceb5b2cca6110"
+    },
+    {
+      "file": "index.html",
+      "sha256": "a247e4d3bf0385518bfe3f4c80cf84b69bee164039924e9b8d68fd5046e01b38"
+    },
+    {
+      "file": "package.json",
+      "sha256": "5da45c128ff2b1c46e3000c54c1f1991cbdcdaa50ea2786cc521e42edec97cd9"
+    },
+    {
+      "file": "public/fonts/Amiri-Bold.ttf",
+      "sha256": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b"
+    },
+    {
+      "file": "public/fonts/OFL-Amiri.txt",
+      "sha256": "72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22"
+    },
+    {
+      "file": "public/harf-studio/OFL-Amiri.txt",
+      "sha256": "72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22"
+    },
+    {
+      "file": "src/CalligraphyDepthArt.tsx",
+      "sha256": "59624b9ce15dffb22f2b4d0947f1bfa22eae259d34a62c57fbec868808795938"
+    },
+    {
+      "file": "src/calligraphy/content.ts",
+      "sha256": "b3af1cb17a5f300a4ddc512457359d751a709d22214afeec8b2555ecf04faae4"
+    },
+    {
+      "file": "src/calligraphy/heroBevel.ts",
+      "sha256": "c0d4d673f3979e352973fd06e2661b9294b67db15e1b15616047517fe1f93b70"
+    },
+    {
+      "file": "src/calligraphy/raisedRelief.ts",
+      "sha256": "0cdfcaa98cbfbc373b5241d807f32a5677db28349a150f60fd9aad4e11a1202e"
+    },
+    {
+      "file": "src/calligraphy/textureRelief.ts",
+      "sha256": "3eec79571fd8630a6fab3ba99c78a79921e5971b5016d5f8118557f86df5ccae"
+    },
+    {
+      "file": "src/harf-xr/ink.ts",
+      "sha256": "81b331f23a6b25fab3527acb446c4d889ea7aa2099466f6af5a970e43558ba6a"
+    },
+    {
+      "file": "src/harf-xr/letters/ba.json",
+      "sha256": "8024c81d021abf626405abf549d1d05f6b2d48e3eee5ca68216a6999558bb059"
+    },
+    {
+      "file": "src/harf-xr/letters/definition.ts",
+      "sha256": "6e88967f0aa7e7de2c0ee8032d1aa409193dc5d3bf6eb328af64efabd2150b43"
+    },
+    {
+      "file": "src/harf-xr/progress.ts",
+      "sha256": "b8007c2015d25625af073d141aca40d8903c5ac8eadcc33632b3bf65f8ad319f"
+    },
+    {
+      "file": "src/harf-xr/session.ts",
+      "sha256": "c8f2fedd8334dffa0788ebb50e20788a96d82177b21745d20eb8e3e95a746f0b"
+    },
+    {
+      "file": "src/harf-xr/style.css",
+      "sha256": "7ab5f20f143d6990b904094c2458067a846d26413897f10c3d1a3a26fc55a517"
+    },
+    {
+      "file": "src/harf-xr/tracing.ts",
+      "sha256": "cb09cdf5ef2fc491fa8fe0c475415c51138da76c53a89909815d7b841c619b56"
+    },
+    {
+      "file": "src/integration/navigation.ts",
+      "sha256": "939b5f1f3d19744a28919e4d78fbfc33f540a52146bf72fc8819094ff8537327"
+    },
+    {
+      "file": "src/main.tsx",
+      "sha256": "7e8d9e72e1c9e5dabe84f2061f6f0a249d5614666f454b46d17d09674680c1d2"
+    },
+    {
+      "file": "src/style.css",
+      "sha256": "b21943bb767f4a98786c2b9fe84f41d47403e1e1afc641ade58289e3cd948142"
+    },
+    {
+      "file": "vite.config.ts",
+      "sha256": "a2b732165584fcdd7f7a6c85f388c9e1d78bafebdb4ad6719806812f633e3b9a"
+    }
+  ]
+}
