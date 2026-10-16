@@ -1,0 +1,251 @@
+{
+  "method": "Actual shared application renderer with immutable PR28 comparison factories; warm synchronous software wall times are not GPU timer queries",
+  "runtime": {
+    "profile": {
+      "inkPixels": 145179,
+      "modifiedPixels": 479644,
+      "bakeMs": 256,
+      "addedTriangles": 0,
+      "addedGeometryBytes": 0,
+      "addedDraws": 0,
+      "addedTextures": 0,
+      "kind": "lighting-only; no displacement, parallax or physical extrusion"
+    },
+    "physicalGroupPresent": false,
+    "render": {
+      "frame": 1,
+      "calls": 57,
+      "triangles": 23698,
+      "points": 8472,
+      "lines": 2184
+    },
+    "memory": {
+      "geometries": 40,
+      "textures": 13
+    }
+  },
+  "startup": {
+    "originalAtlasAndPhysicalMs": 47705.30000000005,
+    "textureAtlasAndProfileMs": 45789.40000000014,
+    "profileOnlyMs": 291.30000000004657,
+    "singlePairOnly": true
+  },
+  "profiles": [
+    {
+      "view": "wide",
+      "variant": "original",
+      "render": {
+        "frame": 4,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        18.100000000093132,
+        15.199999999953434,
+        4.800000000046566
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "wide",
+      "variant": "texture",
+      "render": {
+        "frame": 7,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        55.4000000001397,
+        3.1000000000931323,
+        3.5999999998603016
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "wide",
+      "variant": "physical",
+      "render": {
+        "frame": 10,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        46.799999999813735,
+        6,
+        3.4000000001396984
+      ],
+      "addedGeometryBytes": 13893504
+    },
+    {
+      "view": "explore",
+      "variant": "original",
+      "render": {
+        "frame": 13,
+        "calls": 22,
+        "triangles": 18458,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        21.199999999953434,
+        0.8000000000465661,
+        1
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "explore",
+      "variant": "texture",
+      "render": {
+        "frame": 16,
+        "calls": 22,
+        "triangles": 18458,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        29.899999999906868,
+        1.6999999999534339,
+        0.30000000004656613
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "explore",
+      "variant": "physical",
+      "render": {
+        "frame": 19,
+        "calls": 24,
+        "triangles": 163182,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        125.30000000004657,
+        4.400000000139698,
+        2.2999999998137355
+      ],
+      "addedGeometryBytes": 13893504
+    },
+    {
+      "view": "oblique",
+      "variant": "original",
+      "render": {
+        "frame": 22,
+        "calls": 36,
+        "triangles": 22186,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        81.0999999998603,
+        1.6999999999534339,
+        1.3000000000465661
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "oblique",
+      "variant": "texture",
+      "render": {
+        "frame": 25,
+        "calls": 36,
+        "triangles": 22186,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        110,
+        1.1999999999534339,
+        0.8999999999068677
+      ],
+      "addedGeometryBytes": 0
+    },
+    {
+      "view": "oblique",
+      "variant": "physical",
+      "render": {
+        "frame": 28,
+        "calls": 38,
+        "triangles": 166910,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 13
+      },
+      "textureBytesEstimate": 50073600.000000015,
+      "softwareRenderWallMs": [
+        81.30000000004657,
+        1.7999999998137355,
+        9
+      ],
+      "addedGeometryBytes": 13893504
+    }
+  ],
+  "physicalGeometryBytes": 13893504,
+  "textureGeometryBytes": 0,
+  "textureTriangles": 0,
+  "farRenderDifferences": {
+    "texture": {
+      "changedPixels": 17,
+      "maxChannelDelta": 1
+    },
+    "physical": {
+      "changedPixels": 0,
+      "maxChannelDelta": 0
+    }
+  },
+  "limitations": [
+    "Comparison physical geometry exists only in the capture harness. Actual v0.2 runtime never constructs it.",
+    "First comparison frame includes lane upload/shader changes. The samples do not establish sustained FPS or hardware performance.",
+    "Texture memory is an uncompressed RGBA+mips estimate, not a driver memory query."
+  ]
+}

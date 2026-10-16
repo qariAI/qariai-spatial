@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
+import { bakeTextureRelief } from './calligraphy/textureRelief';
 import { buildRaisedRelief } from './calligraphy/raisedRelief';
 import { EXCERPTS } from './calligraphy/content';
 import { paintHeroBevel, type EngravedGlyph } from './calligraphy/heroBevel';
@@ -80,7 +81,7 @@ function drawPhrase(face: CanvasRenderingContext2D, relief: CanvasRenderingConte
   }
 }
 
-export function engravedAtlas(anisotropy: number, maxTextureSize: number, recordHeroMask = false) {
+export function engravedAtlas(anisotropy: number, maxTextureSize: number, recordHeroMask: boolean | 'texture' = false) {
   const face = document.createElement('canvas'); face.width = WIDTH; face.height = HEIGHT;
   const relief = face.cloneNode() as HTMLCanvasElement;
   const c = face.getContext('2d')!, h = relief.getContext('2d')!;
@@ -190,7 +191,8 @@ export function engravedAtlas(anisotropy: number, maxTextureSize: number, record
     resized.getContext('2d')!.drawImage(canvas, 0, 0, resized.width, resized.height);
     return resized;
   });
-  const map = new THREE.CanvasTexture(images[0]), bump = new THREE.CanvasTexture(images[1]);
+  const map = new THREE.CanvasTexture(images[0]);
+  let bump: THREE.Texture = new THREE.CanvasTexture(images[1]);
   map.colorSpace = THREE.SRGBColorSpace;
   for (const texture of [map, bump]) {
     texture.wrapS = THREE.RepeatWrapping;
@@ -198,18 +200,31 @@ export function engravedAtlas(anisotropy: number, maxTextureSize: number, record
     texture.minFilter = THREE.LinearMipmapLinearFilter;
   }
   let raised = null;
+  let textureProfile = null;
   if (mask) {
     if (maxTextureSize < WIDTH) throw Error('Native-mask relief needs a 4096px texture capability; no resampling allowed');
     const hero = BANDS[1], image = inkMask!.getImageData(0, hero.top, WIDTH, hero.bottom - hero.top);
     const alpha = new Uint8Array(WIDTH * image.height);
     for (let i = 0; i < alpha.length; i++) alpha[i] = image.data[i * 4 + 3];
-    raised = buildRaisedRelief({ width: WIDTH, height: image.height, alpha }, hero, HEIGHT);
+    if (recordHeroMask !== 'texture') raised = buildRaisedRelief({ width: WIDTH, height: image.height, alpha }, hero, HEIGHT);
     // B was unused. R=relief, G=roughness and both original atlases' other
     // band lanes remain byte-identical. No extra GPU texture is allocated.
     for (let i = 0; i < alpha.length; i++) packed.data[((hero.top * WIDTH) + i) * 4 + 2] = alpha[i];
-    h.putImageData(packed, 0, 0);
+    if (recordHeroMask === 'texture') textureProfile = bakeTextureRelief(packed.data, alpha, WIDTH, image.height, hero.top);
+    if (recordHeroMask === 'texture') {
+      // Packed A contains roughness, NOT transparency. Canvas2D's internal
+      // premultiplication would quantize faint B-mask values. Upload exact
+      // bytes instead, reversing rows explicitly to retain the existing UVs.
+      const bytes = new Uint8Array(packed.data.length), stride = WIDTH * 4;
+      for (let y = 0; y < HEIGHT; y++) bytes.set(packed.data.subarray(y * stride, (y + 1) * stride), (HEIGHT - 1 - y) * stride);
+      bump.dispose();
+      bump = new THREE.DataTexture(bytes, WIDTH, HEIGHT, THREE.RGBAFormat, THREE.UnsignedByteType);
+      bump.flipY = false; bump.generateMipmaps = true; bump.magFilter = THREE.LinearFilter;
+      bump.minFilter = THREE.LinearMipmapLinearFilter; bump.wrapS = THREE.RepeatWrapping; bump.anisotropy = anisotropy;
+      bump.needsUpdate = true;
+    } else h.putImageData(packed, 0, 0);
   }
-  return { map, bump, heroMask: mask, raised };
+  return { map, bump, heroMask: mask, raised, textureProfile };
 }
 
 // Polar UVs use a shared rectangular atlas. The 0/1 seam is in the gap between
@@ -282,15 +297,17 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const { gl } = useThree();
   const root = useRef<THREE.Group>(null);
   const worldScale = useMemo(() => new THREE.Vector3(), []);
-  const raisedEnabled = new URLSearchParams(window.location.search).get('raisedCalligraphy') === '1';
+  const params = new URLSearchParams(window.location.search);
+  const textureOnly = params.get('calligraphyRelief') === 'texture';
+  const raisedEnabled = !textureOnly && params.get('raisedCalligraphy') === '1';
   const maps = useMemo(() => {
-    const result = engravedAtlas(Math.min(8, gl.capabilities.getMaxAnisotropy()), gl.capabilities.maxTextureSize, raisedEnabled);
+    const result = engravedAtlas(Math.min(8, gl.capabilities.getMaxAnisotropy()), gl.capabilities.maxTextureSize, textureOnly ? 'texture' : raisedEnabled);
     // The proof API retains its native coverage canvas and rectangle ledger;
     // the live component needs only the completed buffers and packed atlas.
     if (result.heroMask) { result.heroMask.width = 1; result.heroMask.height = 1; }
     if (result.raised) result.raised.rectangles.length = 0;
     return result;
-  }, [gl, raisedEnabled]);
+  }, [gl, raisedEnabled, textureOnly]);
   const faces = useMemo(() => BANDS.map(faceGeometry), []);
   const backing = useMemo(bronzeArchitecture, []);
   const lights = useMemo(lightClusters, []);
@@ -298,7 +315,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const details = useMemo(() => BANDS.map(() => ({ value: 0 })), []);
   const materials = useMemo(() => BANDS.map((band, index) => {
     const material = new THREE.MeshStandardMaterial({ map: maps.map, bumpMap: maps.bump, roughnessMap: maps.bump,
-      bumpScale: index === 1 ? .82 : .48, metalness: band.metalness, roughness: .85,
+      bumpScale: index === 1 ? (textureOnly ? .68 : .82) : .48, metalness: band.metalness, roughness: .85,
       emissive: '#b49c77', emissiveMap: maps.map, emissiveIntensity: index === 1 ? .07 : .06 });
     material.userData.detail = details[index];
     material.onBeforeCompile = shader => {
@@ -311,17 +328,35 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
         float turquoise = smoothstep(0.62, 0.88, fract(vMapUv.x * 12.0 + vMapUv.y * 2.0));
         vec3 dustColor = mix(vec3(0.82, 0.61, 0.29), vec3(0.26, 0.63, 0.54), turquoise);
         vec3 distant = vec3(0.022, 0.039, 0.058) + dust * dustColor;
+        ${index === 1 && textureOnly ? `
+          float inkCoverage = texture2D(bumpMap, vBumpMapUv).b;
+          // Relight the existing face only; source texture and coverage stay intact.
+          diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.95, 0.84, 0.60), inkCoverage * 0.66);
+        ` : ''}
         diffuseColor.rgb = mix(distant, diffuseColor.rgb, qariDetail);
         diffuseColor.a = 1.0;
       `);
+      if (index === 1 && textureOnly) {
+        shader.fragmentShader = shader.fragmentShader.replace('#include <roughnessmap_fragment>', `
+          float roughnessFactor = roughness;
+          #ifdef USE_ROUGHNESSMAP
+            vec4 qariSurface = texture2D(roughnessMap, vRoughnessMapUv);
+            roughnessFactor *= mix(qariSurface.a, qariSurface.g, qariDetail);
+          #endif
+        `);
+        shader.fragmentShader = shader.fragmentShader.replace('#include <metalnessmap_fragment>', `
+          #include <metalnessmap_fragment>
+          metalnessFactor = mix(0.46, 0.58, qariDetail);
+        `);
+      }
       shader.fragmentShader = shader.fragmentShader.replace('#include <emissivemap_fragment>', `
         #include <emissivemap_fragment>
         totalEmissiveRadiance = mix(dust * dustColor * 0.52, totalEmissiveRadiance, qariDetail);
       `);
     };
-    material.customProgramCacheKey = () => 'qari-manuscript-distance-v148-packed-relief';
+    material.customProgramCacheKey = () => 'qari-manuscript-distance-v148-packed-relief' + (index === 1 && textureOnly ? '-texture-v02' : '');
     return material;
-  }), [maps, details]);
+  }), [maps, details, textureOnly]);
   const raisedGroup = useRef<THREE.Group>(null);
   const raisedMaterials = useMemo(() => {
     if (!maps.raised) return [];
@@ -379,7 +414,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
         const distance = nearest.length() / scale;
         const target = 1 - THREE.MathUtils.smoothstep(distance, 35, 115);
         details[index].value = THREE.MathUtils.damp(details[index].value, target, 6, Math.min(delta, .05));
-        materials[index].bumpScale = (index === 1 ? .82 : .48) * details[index].value;
+        materials[index].bumpScale = (index === 1 ? (textureOnly ? .68 : .82) : .48) * details[index].value;
       });
     }
     if (raisedGroup.current) {
@@ -401,7 +436,7 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   });
   // Keep the wider deck below even the enlarged seven-letter planes and
   // Saturn's tilted rings; their choreography and transforms stay intact.
-  return <group ref={root} name="calligraphy-depth-art" position={[0, -17.7, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[1, .74, 1]}>
+  return <group ref={root} userData={{ textureProfile: maps.textureProfile }} name="calligraphy-depth-art" position={[0, -17.7, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[1, .74, 1]}>
     {BANDS.map((_, index) => <mesh key={index} geometry={faces[index]} raycast={() => null}>
       <primitive object={materials[index]} attach="material" />
     </mesh>)}

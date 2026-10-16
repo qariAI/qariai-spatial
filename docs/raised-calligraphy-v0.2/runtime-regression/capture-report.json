@@ -1,0 +1,38 @@
+{
+  "source": "dc95a7cc06c3194318e099b8a3802eb4ae8cc272",
+  "success": true,
+  "errors": [],
+  "captures": [],
+  "method": "Actual texture-only runtime: rendered Explore/Return, mirrored pair and exactly two phases; no physical comparator created",
+  "limitations": [
+    "Software WebGL and deterministic 50ms stepping do not establish real-time smoothness, stereo legibility or Quest performance.",
+    "Test-only Fragment mounting avoids development StrictMode duplicate baking. Physical comparator CPU buffers exist only in the harness, never in the v0.2 runtime.",
+    "First frame samples include comparison texture uploads/compilation; warm samples are noisy synchronous browser wall times, not hardware GPU timers."
+  ],
+  "runtime": {
+    "profile": {
+      "inkPixels": 145179,
+      "modifiedPixels": 479644,
+      "bakeMs": 247.80000000004657,
+      "addedTriangles": 0,
+      "addedGeometryBytes": 0,
+      "addedDraws": 0,
+      "addedTextures": 0,
+      "kind": "lighting-only; no displacement, parallax or physical extrusion"
+    },
+    "physicalGroupPresent": false,
+    "render": {
+      "frame": 1,
+      "calls": 57,
+      "triangles": 23698,
+      "points": 8472,
+      "lines": 2184
+    },
+    "memory": {
+      "geometries": 40,
+      "textures": 13
+    }
+  },
+  "elapsedMs": 50444,
+  "regressions": "passed"
+}
