@@ -1,0 +1,70 @@
+{
+  "images": [
+    {
+      "file": "01-launcher.png",
+      "sha256": "c3a7e8beb53092a96bb42baa9f770e6137badb2deecd50d860a0c7c8d2f3c342",
+      "width": 1440,
+      "height": 900,
+      "kind": "actual IWER production-component fixture; NOT full celestial scene",
+      "physicalQuest": false
+    },
+    {
+      "file": "02-menu.png",
+      "sha256": "d3a0c9e7a5c93ea4271e571568f570ceb05e7714bb54269c09c3f14422871f37",
+      "width": 1440,
+      "height": 900,
+      "kind": "actual IWER production-component fixture; NOT full celestial scene",
+      "physicalQuest": false
+    },
+    {
+      "file": "03-inspect.png",
+      "sha256": "aabbef5eaeacae11bf1d9989af08f518264d3d4ca0fee9f8ea0b074a34243dd8",
+      "width": 1440,
+      "height": 900,
+      "kind": "actual IWER production-component fixture; NOT full celestial scene",
+      "physicalQuest": false
+    },
+    {
+      "file": "04-nearer.png",
+      "sha256": "f57f8d01ec5db09dd6e91449dda9afa31ba4ffdbd38590739caf2e6518ef5b88",
+      "width": 1440,
+      "height": 900,
+      "kind": "actual IWER production-component fixture; NOT full celestial scene",
+      "physicalQuest": false
+    },
+    {
+      "file": "05-menu-left.png",
+      "sha256": "b35e3115e8c1989816faf303c1678c772b4e0138726d990049a4f783cf13e020",
+      "width": 1440,
+      "height": 900,
+      "kind": "actual IWER production-component fixture; NOT full celestial scene",
+      "physicalQuest": false
+    },
+    {
+      "file": "full-scene-iwer-artifact.png",
+      "sha256": "bc10657b3e70c0093120b54eae294f6af14eff7b44918c7b530c4444102595a0",
+      "width": 1440,
+      "height": 900,
+      "kind": "actual full-scene IWER capture with artifacts; NOT approved",
+      "physicalQuest": false
+    },
+    {
+      "file": "harf/spatial-complete.png",
+      "sha256": "54eacc8a337de20d4610183b129cef1f83adc6ab57995a7f9c3d1a78d9b80f1b",
+      "width": 1100,
+      "height": 900,
+      "kind": "actual desktop Harf pointer rendering",
+      "physicalQuest": false
+    },
+    {
+      "file": "harf/svg-complete.png",
+      "sha256": "9b90788742e38fda5ffd5ef65c739eabc4bcf30e03601aa279ceed5b8493e3d1",
+      "width": 1100,
+      "height": 900,
+      "kind": "actual desktop Harf pointer rendering",
+      "physicalQuest": false
+    }
+  ],
+  "historicalFilenameNote": "full-scene-emulation-diagnostic.json recorded 01-launcher.png at capture time; its retained raw bytes are full-scene-iwer-artifact.png. Current numbered screenshots belong to the later successful component fixture.",
+  "imageEditing": "none; native renderer readbacks/desktop screenshots"
+}

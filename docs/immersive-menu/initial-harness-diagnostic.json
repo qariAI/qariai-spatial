@@ -1,0 +1,13 @@
+{
+  "success": false,
+  "platform": "linux",
+  "input": "IWER 2.1.0 WEBXR HAND EMULATION — NOT PHYSICAL QUEST",
+  "renderer": "actual application WebGL",
+  "events": [],
+  "errors": [],
+  "screenshots": [],
+  "warnings": [
+    "Screenshot 01-launcher: TimeoutError: page.screenshot: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n"
+  ],
+  "error": "Error: page.evaluate: ReferenceError: IWER is not defined\n    at eval (eval at evaluate (:311:30), <anonymous>:1:135)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}

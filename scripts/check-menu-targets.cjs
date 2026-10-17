@@ -1,0 +1,11 @@
+const {buildSync}=require('esbuild'),assert=require('node:assert/strict'),THREE=require('three'),fs=require('node:fs');
+const code=buildSync({entryPoints:['src/xr/SpatialMenu.tsx'],bundle:true,write:false,format:'cjs'}).outputFiles[0].text,m={exports:{}};new Function('require','module','exports',code)(require,m,m.exports);
+const {SpatialMenuHandle}=m.exports,menu=new SpatialMenuHandle(()=>false,()=>{}),root=new THREE.Group();
+menu.panel=new THREE.Mesh(new THREE.PlaneGeometry(.56,.68),new THREE.MeshBasicMaterial());menu.launcher=new THREE.Mesh(new THREE.PlaneGeometry(.24,.075),new THREE.MeshBasicMaterial());root.add(menu.panel,menu.launcher);root.updateMatrixWorld(true);
+const hit=(x,y)=>menu.hit(new THREE.Raycaster(new THREE.Vector3(x,y,1),new THREE.Vector3(0,0,-1)),new THREE.Vector3(x,y,.018));
+assert.equal(hit(0,0),'open');root.visible=false;assert.equal(hit(0,0),null,'invisible ancestor cannot receive input');root.visible=true;menu.state.open=true;
+for(const [y,action]of[[.205,'pause'],[.09,'inspect'],[-.025,'harf'],[-.20,'close']])assert.equal(hit(0,y),action);
+assert.equal(hit(0,-.11),null,'inter-target gap');assert.equal(hit(.27,.205),null,'outside target bounds');menu.state.inspecting=true;assert.equal(hit(0,.205),'nearer');assert.equal(hit(0,.09),'farther');assert.equal(hit(0,-.025),'return');menu.state.busy=true;assert.equal(hit(0,.205),null);
+const arrays=g=>Object.values(g.attributes).reduce((sum,a)=>sum+a.array.byteLength,0)+(g.index?.array.byteLength??0);
+const report={success:true,checks:['exact row bounds and gaps','near-field and ray targeting','invisible ancestor rejects input','busy input blocked','inspection row mapping'],menuGeometryBytes:arrays(menu.panel.geometry)+arrays(menu.launcher.geometry),menuTriangles:4,simultaneouslyVisibleTriangles:2,estimatedRGBA8TexturesWithMipsMiB:(768*1024+512*128)*4*4/3/1024/1024,limits:'Geometry arrays measured; texture storage estimate excludes driver overhead; not hardware profiling'};
+fs.writeFileSync('docs/immersive-menu/target-tests.json',JSON.stringify(report,null,2));console.log('PASS',JSON.stringify(report));

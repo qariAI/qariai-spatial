@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict'),{buildSync}=require('esbuild'),fs=require('node:fs');
+const load=file=>{const code=buildSync({entryPoints:[file],bundle:true,write:false,format:'cjs'}).outputFiles[0].text,m={exports:{}};new Function('module','exports',code)(m,m.exports);return m.exports};
+const {SpatialMenuState}=load('src/xr/SpatialMenuState.ts'),{OrbitPinch}=load('src/xr/OrbitPinch.ts');
+(async()=>{
+ let paused=false,now=1,resets=0;const menu=new SpatialMenuState(()=>paused,v=>paused=v),hands=[new OrbitPinch(),new OrbitPinch()];menu.resetInput=()=>{resets++;hands.forEach(h=>h.loseTracking())};
+ const press=action=>{now+=.4;return menu.dispatch(action,now)};
+ assert.equal(menu.blocksScene,false);assert(press('open'));assert(menu.blocksScene);assert.equal(menu.dispatch('pause',now),false,'same-frame duplicate rejected');assert.equal(paused,false);
+ hands.forEach(h=>{assert.equal(h.update(.02),false);h.update(.05);h.update(.05)});assert(hands[0].update(.02));assert(press('pause'));assert.equal(paused,true);assert.equal(hands[1].update(.02),false,'other held hand disarmed on menu action');
+ assert(press('pause'));assert.equal(paused,false);assert(press('inspect'));assert.equal(paused,true);for(let i=0;i<9;i++)press('nearer');assert.equal(menu.advance,.6);assert.equal(press('pause'),false);press('farther');assert(Math.abs(menu.advance-.45)<1e-8);press('return');assert.equal(paused,false);assert.equal(menu.advance,0);assert.equal(menu.inspecting,false);
+ press('pause');press('inspect');press('close');assert.equal(paused,true,'inspection restores prior paused state');assert(!menu.blocksScene);assert.equal(menu.advance,0);
+ press('open');press('inspect');press('nearer');menu.interrupt();assert(!menu.open&&!menu.inspecting&&menu.advance===0);assert.equal(paused,true);
+ class Session{listeners=new Set();endCalls=0;addEventListener(_,f){this.listeners.add(f)}removeEventListener(_,f){this.listeners.delete(f)}async end(){this.endCalls++;setTimeout(()=>this.listeners.forEach(f=>f()),5)}}
+ for(const search of ['', '?calligraphyRelief=texture']){press('open');const session=new Session();let destination;now+=.4;const pending=menu.navigate(session,search,p=>destination=p,now);assert(menu.busy&&menu.blocksScene);assert.equal(await menu.navigate(session,search,()=>{},now),false);assert.equal(menu.dispatch('close',now),false);await pending;assert.equal(session.endCalls,1);assert.equal(destination,'/harf-studio-xr.html'+search);assert.equal(session.listeners.size,0);menu.interrupt()}
+ press('open');now+=.4;const stuck=new Session();stuck.end=async()=>{};let escaped=false;assert.equal(await menu.navigate(stuck,'',()=>escaped=true,now,10),false);assert.equal(escaped,false);assert(menu.open&&!menu.busy&&menu.message.includes('Could not'));assert.equal(stuck.listeners.size,0);
+ const report={success:true,checks:['independent recovery gates reused','duplicate/two-hand transition barrier','modal scene focus','pause/resume','bounded 15cm inspection steps and restore of prior pause','interruption/close reset','single safe session teardown','default/texture navigation','timeout failure stays actionable'],inputResets:resets,limits:'Logic simulation, not headset evidence'};
+ fs.mkdirSync('docs/immersive-menu',{recursive:true});fs.writeFileSync('docs/immersive-menu/logic-tests.json',JSON.stringify(report,null,2));console.log('PASS',JSON.stringify(report));
+})().catch(e=>{console.error(e);process.exitCode=1});

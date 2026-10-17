@@ -1,0 +1,13 @@
+{
+  "success": false,
+  "platform": "linux",
+  "input": "IWER 2.1.0 WEBXR HAND EMULATION — NOT PHYSICAL QUEST",
+  "renderer": "actual application WebGL",
+  "events": [],
+  "errors": [],
+  "screenshots": [
+    "01-launcher.png"
+  ],
+  "warnings": [],
+  "error": "Error: page.evaluate: Error: Emulated frame budget exceeded\n    at eval (eval at evaluate (:311:30), <anonymous>:1:179)"
+}
