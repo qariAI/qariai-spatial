@@ -1,0 +1,103 @@
+{
+  "success": true,
+  "platform": "linux",
+  "input": "IWER 2.1.0 WEBXR HAND EMULATION — NOT PHYSICAL QUEST",
+  "renderer": "production menu/hand/letter/phase components in lightweight WebXR fixture; NOT full celestial rendering",
+  "events": [
+    {
+      "input": "right",
+      "target": "qari-xr-menu-launcher",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-letter-0",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.205
+    },
+    {
+      "pause": "observed"
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.205
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.09
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.205
+    },
+    {
+      "inspectionOffset": [
+        -0.0019647088790653226,
+        1.45,
+        -2.250307897335973
+      ],
+      "headsetMatrixUnchanged": true
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": -0.025
+    },
+    {
+      "input": "left",
+      "target": "qari-xr-menu-panel",
+      "row": -0.2
+    },
+    {
+      "input": "right",
+      "target": "qari-action-primary",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-action-primary",
+      "row": 0
+    },
+    {
+      "phaseTransitions": "01→02→01 observed"
+    },
+    {
+      "input": "left",
+      "target": "qari-xr-menu-launcher",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-launcher",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": -0.025
+    },
+    {
+      "menuToHarf": "actual safe XR teardown and internal navigation observed"
+    },
+    {
+      "harfToOrbit": "actual spatial hold action and safe teardown observed"
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "01-launcher.png",
+    "02-menu.png",
+    "03-inspect.png",
+    "04-nearer.png",
+    "05-menu-left.png"
+  ],
+  "warnings": [],
+  "limits": "Linux Chromium SwiftShader emulation; Windows script supplied but Windows execution and physical Quest comfort, tracking, stereo and performance remain pending. Menu fixture uses production interaction components and actual Harf navigation; full celestial rendering is NOT validated by this fixture. Full-scene IWER failure is retained separately."
+}

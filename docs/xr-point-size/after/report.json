@@ -1,0 +1,1917 @@
+{
+  "tag": "after",
+  "root": "/workspace/work/xr-point-size",
+  "settings": {
+    "viewport": [
+      1440,
+      900
+    ],
+    "iwer": "2.1.0",
+    "device": "metaQuest3",
+    "stereoEnabled": false,
+    "head": [
+      0,
+      1.6,
+      0
+    ],
+    "handsInitiallyDisconnected": true,
+    "rendererFlags": [
+      "--no-sandbox",
+      "--use-angle=swiftshader",
+      "--enable-unsafe-swiftshader",
+      "--disable-accelerated-2d-canvas"
+    ],
+    "textureMode": "texture",
+    "strictMode": "temporary harness Fragment, matching original reproduction",
+    "startupRAF": "frozen then restored, matching original harness"
+  },
+  "events": [
+    {
+      "stage": "navigation",
+      "at": 1792243462990
+    },
+    {
+      "stage": "entry",
+      "at": 1792243551864
+    },
+    {
+      "stage": "no-hands-observation-end",
+      "at": 1792243562644
+    }
+  ],
+  "console": [
+    {
+      "at": 1792243463951,
+      "type": "error",
+      "message": "Failed to load resource: net::ERR_FAILED"
+    }
+  ],
+  "errors": [],
+  "requestsFailed": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap",
+      "failure": {
+        "errorText": "net::ERR_FAILED"
+      }
+    }
+  ],
+  "samples": [
+    {
+      "kind": "capabilities",
+      "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "shader": "WebGL GLSL ES 3.00 (OpenGL ES GLSL ES 3.0 Chromium)",
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "pointRange": [
+        1,
+        1023
+      ],
+      "maxTextureSize": 8192
+    },
+    {
+      "kind": "render",
+      "phase": "entry-no-hands",
+      "now": 91592.5,
+      "xrFrames": 1,
+      "renders": 1,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 26,
+        "drawElements": 94
+      },
+      "render": {
+        "frame": 1,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "cpuSubmitMs": 2396.7000000001863
+    },
+    {
+      "kind": "frame",
+      "phase": "entry-no-hands",
+      "now": 91612.39999999944,
+      "xrFrames": 1,
+      "renders": 1,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 26,
+        "drawElements": 94
+      },
+      "render": {
+        "frame": 1,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 2442.199999999255,
+      "intervalMs": null,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "render",
+      "phase": "entry-no-hands",
+      "now": 96077,
+      "xrFrames": 2,
+      "renders": 2,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 52,
+        "drawElements": 188
+      },
+      "render": {
+        "frame": 2,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "cpuSubmitMs": 220.70000000018626
+    },
+    {
+      "kind": "frame",
+      "phase": "entry-no-hands",
+      "now": 96275.29999999981,
+      "xrFrames": 2,
+      "renders": 2,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 52,
+        "drawElements": 188
+      },
+      "render": {
+        "frame": 2,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 227.40000000037253,
+      "intervalMs": 6877.5999999996275,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "render",
+      "phase": "entry-no-hands",
+      "now": 97517,
+      "xrFrames": 3,
+      "renders": 3,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 78,
+        "drawElements": 282
+      },
+      "render": {
+        "frame": 3,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "cpuSubmitMs": 513.5999999996275
+    },
+    {
+      "kind": "frame",
+      "phase": "entry-no-hands",
+      "now": 97519.09999999963,
+      "xrFrames": 3,
+      "renders": 3,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 78,
+        "drawElements": 282
+      },
+      "render": {
+        "frame": 3,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 514.2999999998137,
+      "intervalMs": 957,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "entry-no-hands",
+      "now": 97593.09999999963,
+      "xrFrames": 4,
+      "renders": 4,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 104,
+        "drawElements": 376
+      },
+      "render": {
+        "frame": 4,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 41.19999999925494,
+      "intervalMs": 546.4000000003725,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "entry-no-hands",
+      "now": 98154,
+      "xrFrames": 5,
+      "renders": 5,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 130,
+        "drawElements": 470
+      },
+      "render": {
+        "frame": 5,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 54.799999999813735,
+      "intervalMs": 548,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "entry-no-hands",
+      "now": 99004.79999999981,
+      "xrFrames": 6,
+      "renders": 6,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 156,
+        "drawElements": 564
+      },
+      "render": {
+        "frame": 6,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 32.200000000186265,
+      "intervalMs": 873.3999999994412,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "entry-no-hands",
+      "now": 99570.79999999981,
+      "xrFrames": 7,
+      "renders": 7,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 182,
+        "drawElements": 658
+      },
+      "render": {
+        "frame": 7,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 15.300000000745058,
+      "intervalMs": 582.7999999998137,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "nearer",
+      "now": 99616.89999999944,
+      "xrFrames": 8,
+      "renders": 8,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 208,
+        "drawElements": 752
+      },
+      "render": {
+        "frame": 8,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 20.899999999441206,
+      "intervalMs": 40.60000000055879,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "nearer",
+      "now": 100869.20000000019,
+      "xrFrames": 9,
+      "renders": 9,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 234,
+        "drawElements": 846
+      },
+      "render": {
+        "frame": 9,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 8.5,
+      "intervalMs": 1264.7000000001863,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "nearer",
+      "now": 102142.5,
+      "xrFrames": 10,
+      "renders": 10,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 260,
+        "drawElements": 940
+      },
+      "render": {
+        "frame": 10,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 694.6000000005588,
+      "intervalMs": 586.3999999994412,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "nearer",
+      "now": 102167.29999999981,
+      "xrFrames": 11,
+      "renders": 11,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 286,
+        "drawElements": 1034
+      },
+      "render": {
+        "frame": 11,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 12.200000000186265,
+      "intervalMs": 708,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "farther",
+      "now": 102708.09999999963,
+      "xrFrames": 12,
+      "renders": 12,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 312,
+        "drawElements": 1128
+      },
+      "render": {
+        "frame": 12,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 11.899999999441206,
+      "intervalMs": 541.1000000005588,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "farther",
+      "now": 103428.89999999944,
+      "xrFrames": 13,
+      "renders": 13,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 338,
+        "drawElements": 1222
+      },
+      "render": {
+        "frame": 13,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 10.299999999813735,
+      "intervalMs": 722.3999999994412,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "farther",
+      "now": 104445.29999999981,
+      "xrFrames": 14,
+      "renders": 14,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 364,
+        "drawElements": 1316
+      },
+      "render": {
+        "frame": 14,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 492.40000000037253,
+      "intervalMs": 534.2999999998137,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "farther",
+      "now": 104595,
+      "xrFrames": 15,
+      "renders": 15,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 390,
+        "drawElements": 1410
+      },
+      "render": {
+        "frame": 15,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "callbackMs": 4.7999999998137355,
+      "intervalMs": 637.3000000007451,
+      "viewports": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 720,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    }
+  ],
+  "captures": [
+    {
+      "file": "normal.png",
+      "sha256": "24885e17cc12bf887577a71bd313fea806e5e9cee23b44f07120076ad5131f69",
+      "capture": "normal",
+      "phase": "entry-no-hands",
+      "now": 97028.39999999944,
+      "xrFrames": 3,
+      "renders": 3,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 78,
+        "drawElements": 282
+      },
+      "render": {
+        "frame": 3,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "points": [
+        {
+          "count": 2184,
+          "materialSize": 0.011200000000000002,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.83,
+          "hasMap": false,
+          "sizeUniform": 0.011200000000000002,
+          "scaleUniform": 450,
+          "inFront": 1533,
+          "projectedPxMedian": 1.1533707621639808,
+          "projectedPxMax": 1184.8103881196694,
+          "over16": 48,
+          "over64": 9
+        },
+        {
+          "count": 588,
+          "materialSize": 0.007700000000000001,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.45,
+          "hasMap": false,
+          "sizeUniform": 0.007700000000000001,
+          "scaleUniform": 450,
+          "inFront": 530,
+          "projectedPxMedian": 1.2716167340059568,
+          "projectedPxMax": 136.80180440691797,
+          "over16": 14,
+          "over64": 1
+        },
+        {
+          "count": 36,
+          "materialSize": 0.0049,
+          "scale": [
+            0.014,
+            0.01036,
+            0.014
+          ],
+          "opacity": 0.62,
+          "hasMap": true,
+          "sizeUniform": 0.0049,
+          "scaleUniform": 450,
+          "inFront": 36,
+          "projectedPxMedian": 0.9187500000000001,
+          "projectedPxMax": 1.2187799397039467,
+          "over16": 0,
+          "over64": 0
+        },
+        {
+          "count": 900,
+          "materialSize": 0.0042,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.55,
+          "hasMap": false,
+          "sizeUniform": 0.0042,
+          "scaleUniform": 450,
+          "inFront": 900,
+          "projectedPxMedian": 0.7785090069457903,
+          "projectedPxMax": 0.9799201675010024,
+          "over16": 0,
+          "over64": 0
+        }
+      ],
+      "head": [
+        0,
+        1.600000023841858,
+        0
+      ],
+      "world": [
+        0.014,
+        0,
+        0,
+        0,
+        0,
+        0.014,
+        0,
+        0,
+        0,
+        0,
+        0.014,
+        0,
+        0,
+        1.45,
+        -2.4,
+        1
+      ],
+      "camera": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -0.03150000050663948,
+        1.600000023841858,
+        0,
+        1
+      ],
+      "planets": [
+        [
+          -7.650514524319496,
+          -9,
+          7.777735404744456
+        ],
+        [
+          -7.615184269519534,
+          -9,
+          -12.881293070697335
+        ],
+        [
+          -25.440003198053766,
+          -9,
+          6.693063240114984
+        ],
+        [
+          22.37795885774392,
+          -9,
+          20.867828872476156
+        ],
+        [
+          18.52090939293603,
+          -9,
+          -33.570040381203576
+        ],
+        [
+          -42.486835356134776,
+          -9,
+          -36.40220002431135
+        ]
+      ],
+      "readbackMs": 476.70000000018626
+    },
+    {
+      "file": "nearer.png",
+      "sha256": "87e2d652040bd4e6054ebd375ab5cf3de542c468b22d14959bc7d1fb1f3f5d47",
+      "capture": "nearer",
+      "phase": "nearer",
+      "now": 101455.09999999963,
+      "xrFrames": 10,
+      "renders": 10,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 260,
+        "drawElements": 940
+      },
+      "render": {
+        "frame": 10,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "points": [
+        {
+          "count": 2184,
+          "materialSize": 0.011200000000000002,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.83,
+          "hasMap": false,
+          "sizeUniform": 0.011200000000000002,
+          "scaleUniform": 450,
+          "inFront": 1455,
+          "projectedPxMedian": 1.2075578234573785,
+          "projectedPxMax": 1020.120212211444,
+          "over16": 63,
+          "over64": 14
+        },
+        {
+          "count": 588,
+          "materialSize": 0.007700000000000001,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.45,
+          "hasMap": false,
+          "sizeUniform": 0.007700000000000001,
+          "scaleUniform": 450,
+          "inFront": 491,
+          "projectedPxMedian": 1.4273743609123721,
+          "projectedPxMax": 115.05240342910042,
+          "over16": 27,
+          "over64": 2
+        },
+        {
+          "count": 36,
+          "materialSize": 0.0049,
+          "scale": [
+            0.014,
+            0.01036,
+            0.014
+          ],
+          "opacity": 0.62,
+          "hasMap": true,
+          "sizeUniform": 0.0049,
+          "scaleUniform": 450,
+          "inFront": 36,
+          "projectedPxMedian": 1.1307692238565028,
+          "projectedPxMax": 1.62229411835016,
+          "over16": 0,
+          "over64": 0
+        },
+        {
+          "count": 900,
+          "materialSize": 0.0042,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.55,
+          "hasMap": false,
+          "sizeUniform": 0.0042,
+          "scaleUniform": 450,
+          "inFront": 900,
+          "projectedPxMedian": 0.9556470603316823,
+          "projectedPxMax": 1.278125041741995,
+          "over16": 0,
+          "over64": 0
+        }
+      ],
+      "head": [
+        0,
+        1.600000023841858,
+        -0.44999998807907104
+      ],
+      "world": [
+        0.014,
+        0,
+        0,
+        0,
+        0,
+        0.014,
+        0,
+        0,
+        0,
+        0,
+        0.014,
+        0,
+        0,
+        1.45,
+        -2.4,
+        1
+      ],
+      "camera": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -0.03150000050663948,
+        1.600000023841858,
+        -0.44999998807907104,
+        1
+      ],
+      "planets": [
+        [
+          -7.650514524319496,
+          -9,
+          7.777735404744456
+        ],
+        [
+          -7.615184269519534,
+          -9,
+          -12.881293070697335
+        ],
+        [
+          -25.440003198053766,
+          -9,
+          6.693063240114984
+        ],
+        [
+          22.37795885774392,
+          -9,
+          20.867828872476156
+        ],
+        [
+          18.52090939293603,
+          -9,
+          -33.570040381203576
+        ],
+        [
+          -42.486835356134776,
+          -9,
+          -36.40220002431135
+        ]
+      ],
+      "readbackMs": 673.5
+    },
+    {
+      "file": "farther.png",
+      "sha256": "79a204b7a029e6914b70a557be4892c6488bf4f15e97311b8c19e2486440d873",
+      "capture": "farther",
+      "phase": "farther",
+      "now": 103969.20000000019,
+      "xrFrames": 14,
+      "renders": 14,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 364,
+        "drawElements": 1316
+      },
+      "render": {
+        "frame": 14,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0,
+      "points": [
+        {
+          "count": 2184,
+          "materialSize": 0.011200000000000002,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.83,
+          "hasMap": false,
+          "sizeUniform": 0.011200000000000002,
+          "scaleUniform": 450,
+          "inFront": 1615,
+          "projectedPxMedian": 1.0993124406753718,
+          "projectedPxMax": 573.3253162738145,
+          "over16": 61,
+          "over64": 14
+        },
+        {
+          "count": 588,
+          "materialSize": 0.007700000000000001,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.45,
+          "hasMap": false,
+          "sizeUniform": 0.007700000000000001,
+          "scaleUniform": 450,
+          "inFront": 562,
+          "projectedPxMedian": 1.1361030926414504,
+          "projectedPxMax": 322.01969360801775,
+          "over16": 14,
+          "over64": 2
+        },
+        {
+          "count": 36,
+          "materialSize": 0.0049,
+          "scale": [
+            0.014,
+            0.01036,
+            0.014
+          ],
+          "opacity": 0.62,
+          "hasMap": true,
+          "sizeUniform": 0.0049,
+          "scaleUniform": 450,
+          "inFront": 36,
+          "projectedPxMedian": 0.7736842137624683,
+          "projectedPxMax": 0.97601511982968,
+          "over16": 0,
+          "over64": 0
+        },
+        {
+          "count": 900,
+          "materialSize": 0.0042,
+          "scale": [
+            0.014,
+            0.014,
+            0.014
+          ],
+          "opacity": 0.55,
+          "hasMap": false,
+          "sizeUniform": 0.0042,
+          "scaleUniform": 450,
+          "inFront": 900,
+          "projectedPxMedian": 0.6567704985881113,
+          "projectedPxMax": 0.7945421147514139,
+          "over16": 0,
+          "over64": 0
+        }
+      ],
+      "head": [
+        0,
+        1.600000023841858,
+        0.44999998807907104
+      ],
+      "world": [
+        0.014,
+        0,
+        0,
+        0,
+        0,
+        0.014,
+        0,
+        0,
+        0,
+        0,
+        0.014,
+        0,
+        0,
+        1.45,
+        -2.4,
+        1
+      ],
+      "camera": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -0.03150000050663948,
+        1.600000023841858,
+        0.44999998807907104,
+        1
+      ],
+      "planets": [
+        [
+          -7.650514524319496,
+          -9,
+          7.777735404744456
+        ],
+        [
+          -7.615184269519534,
+          -9,
+          -12.881293070697335
+        ],
+        [
+          -25.440003198053766,
+          -9,
+          6.693063240114984
+        ],
+        [
+          22.37795885774392,
+          -9,
+          20.867828872476156
+        ],
+        [
+          18.52090939293603,
+          -9,
+          -33.570040381203576
+        ],
+        [
+          -42.486835356134776,
+          -9,
+          -36.40220002431135
+        ]
+      ],
+      "readbackMs": 464.6000000005588
+    }
+  ],
+  "started": 1792243455535,
+  "chromium": "154.0.8037.57",
+  "atlasReadyMs": 94373,
+  "lastHeartbeat": {
+    "kind": "heartbeat",
+    "now": 102953,
+    "phase": "farther",
+    "xrFrames": 12,
+    "host": 1792243566070
+  },
+  "final": {
+    "snapshot": {
+      "phase": "farther",
+      "now": 104601.09999999963,
+      "xrFrames": 15,
+      "renders": 15,
+      "gl": {
+        "texImage2D": 0,
+        "texSubImage2D": 15,
+        "generateMipmap": 14,
+        "drawArrays": 390,
+        "drawElements": 1410
+      },
+      "render": {
+        "frame": 15,
+        "calls": 120,
+        "triangles": 47408,
+        "points": 7416,
+        "lines": 4368
+      },
+      "memory": {
+        "geometries": 42,
+        "textures": 15
+      },
+      "programs": 16,
+      "resources": {
+        "geometryBytes": 1382172,
+        "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+      },
+      "session": {
+        "presenting": true,
+        "visibility": "visible",
+        "inputSources": [],
+        "baseLayer": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "canvas": [
+        1440,
+        900
+      ],
+      "contextLost": false,
+      "framebufferStatus": 36053,
+      "framebuffer": "default",
+      "glError": 0
+    },
+    "points": [
+      {
+        "count": 2184,
+        "materialSize": 0.011200000000000002,
+        "scale": [
+          0.014,
+          0.014,
+          0.014
+        ],
+        "opacity": 0.83,
+        "hasMap": false,
+        "sizeUniform": 0.011200000000000002,
+        "scaleUniform": 450,
+        "inFront": 1615,
+        "projectedPxMedian": 1.0993124406753718,
+        "projectedPxMax": 573.3253162738145,
+        "over16": 61,
+        "over64": 14
+      },
+      {
+        "count": 588,
+        "materialSize": 0.007700000000000001,
+        "scale": [
+          0.014,
+          0.014,
+          0.014
+        ],
+        "opacity": 0.45,
+        "hasMap": false,
+        "sizeUniform": 0.007700000000000001,
+        "scaleUniform": 450,
+        "inFront": 562,
+        "projectedPxMedian": 1.1361030926414504,
+        "projectedPxMax": 322.01969360801775,
+        "over16": 14,
+        "over64": 2
+      },
+      {
+        "count": 36,
+        "materialSize": 0.0049,
+        "scale": [
+          0.014,
+          0.01036,
+          0.014
+        ],
+        "opacity": 0.62,
+        "hasMap": true,
+        "sizeUniform": 0.0049,
+        "scaleUniform": 450,
+        "inFront": 36,
+        "projectedPxMedian": 0.7736842137624683,
+        "projectedPxMax": 0.97601511982968,
+        "over16": 0,
+        "over64": 0
+      },
+      {
+        "count": 900,
+        "materialSize": 0.0042,
+        "scale": [
+          0.014,
+          0.014,
+          0.014
+        ],
+        "opacity": 0.55,
+        "hasMap": false,
+        "sizeUniform": 0.0042,
+        "scaleUniform": 450,
+        "inFront": 900,
+        "projectedPxMedian": 0.6567704985881113,
+        "projectedPxMax": 0.7945421147514139,
+        "over16": 0,
+        "over64": 0
+      }
+    ]
+  },
+  "completed": true,
+  "elapsedMs": 112761
+}

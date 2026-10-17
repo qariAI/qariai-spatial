@@ -1,0 +1,109 @@
+{
+  "success": true,
+  "errors": [],
+  "method": "Actual texture-only Orbit WebGL; deterministic 50ms steps; test-only Fragment avoids StrictMode duplicate atlas bake; wait for committed artwork before control checks",
+  "limitations": "Software rendering; not sustained FPS, stereo or Quest evidence",
+  "captures": [
+    {
+      "name": "desktop-wide",
+      "camera": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0.865075617156328,
+        -0.501641482137989,
+        0,
+        0,
+        0.501641482137989,
+        0.865075617156328,
+        0,
+        0,
+        98,
+        169,
+        1
+      ],
+      "render": {
+        "frame": 1,
+        "calls": 57,
+        "triangles": 23698,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "sizes": [
+        0.8,
+        0.55,
+        0.35,
+        0.3
+      ]
+    },
+    {
+      "name": "desktop-explore",
+      "camera": [
+        0.9950371902099893,
+        -6.938893903907228e-18,
+        0.09950371902099797,
+        0,
+        0.06279014247437642,
+        0.77575588867426,
+        -0.6279014247437702,
+        0,
+        -0.07719059597552816,
+        0.631033122099949,
+        0.771905959755289,
+        0,
+        -3.999999999999961,
+        30.000000000000004,
+        84,
+        1
+      ],
+      "render": {
+        "frame": 2,
+        "calls": 22,
+        "triangles": 18458,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 13
+      },
+      "sizes": [
+        0.8,
+        0.55,
+        0.35,
+        0.3
+      ]
+    }
+  ],
+  "resources": {
+    "profile": {
+      "inkPixels": 145179,
+      "modifiedPixels": 479644,
+      "bakeMs": 306.3999999994412,
+      "addedTriangles": 0,
+      "addedGeometryBytes": 0,
+      "addedDraws": 0,
+      "addedTextures": 0,
+      "kind": "lighting-only; no displacement, parallax or physical extrusion"
+    },
+    "physicalGroupPresent": false,
+    "render": {
+      "frame": 3,
+      "calls": 57,
+      "triangles": 23698,
+      "points": 8472,
+      "lines": 2184
+    },
+    "memory": {
+      "geometries": 40,
+      "textures": 13
+    }
+  },
+  "checks": "Pause; Explore/Return exact endpoints; real mirrored pair scales; exactly two phases; texture-mode internal Harf link; actual WebGL render"
+}

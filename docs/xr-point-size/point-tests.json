@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "baseline": "f262034e6b6b0989db8824bf045092736d1830f2",
+  "unchangedArtAndInteractions": "Every tracked src/public file except the two checked App components is identical to the pinned baseline",
+  "scope": "Only Stars and Belt changed; all geometry factories, material JSX and other App components byte-identical. No new GPU objects.",
+  "cases": [
+    {
+      "name": "stars-5200",
+      "count": 5200,
+      "xrCount": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "checks": "desktop unchanged; XR actual uniform/nonuniform/dynamic scale; exit reset; re-entry; identical geometry"
+    },
+    {
+      "name": "stars-1400",
+      "count": 1400,
+      "xrCount": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "checks": "desktop unchanged; XR actual uniform/nonuniform/dynamic scale; exit reset; re-entry; identical geometry"
+    },
+    {
+      "name": "belt",
+      "count": 1800,
+      "xrCount": 900,
+      "positionSHA256": "7b0d5d834531b51b932fd48fb6cf1e34bf5d92be7198f8adcb4b8fefa244b7a1",
+      "checks": "desktop unchanged; XR actual uniform/nonuniform/dynamic scale; exit reset; re-entry; identical geometry"
+    }
+  ]
+}
