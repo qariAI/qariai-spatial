@@ -1,0 +1,243 @@
+{
+  "matched": [
+    {
+      "name": "desktop-normal",
+      "cameraProjectionAndWorldMatch": true,
+      "drawsGeometryTexturesMatch": true,
+      "baseMaterialsMatch": true,
+      "maxDetailDifference": 0,
+      "desktopChangedPixels": 0,
+      "desktopMax8BitChannelDifference": 0,
+      "beforeSHA256": "5c7c2fda40b2391ba615c2e71ca8365f51d4b32ebca5afba613c4b3234147238",
+      "afterSHA256": "5c7c2fda40b2391ba615c2e71ca8365f51d4b32ebca5afba613c4b3234147238"
+    },
+    {
+      "name": "desktop-nearer",
+      "cameraProjectionAndWorldMatch": true,
+      "drawsGeometryTexturesMatch": true,
+      "baseMaterialsMatch": true,
+      "maxDetailDifference": 0.0,
+      "desktopChangedPixels": 0,
+      "desktopMax8BitChannelDifference": 0,
+      "beforeSHA256": "8c8c9bbf88f95bb6d4ee4b0124f960e42fac910ad4e7ac3919cf00fb410a9242",
+      "afterSHA256": "8c8c9bbf88f95bb6d4ee4b0124f960e42fac910ad4e7ac3919cf00fb410a9242"
+    },
+    {
+      "name": "desktop-farther",
+      "cameraProjectionAndWorldMatch": true,
+      "drawsGeometryTexturesMatch": true,
+      "baseMaterialsMatch": true,
+      "maxDetailDifference": 0.0,
+      "desktopChangedPixels": 0,
+      "desktopMax8BitChannelDifference": 0,
+      "beforeSHA256": "8acdbfc47f676bdd5b21fba78dd4cb2e7ca1a60088be14cf83aaf503a2746f08",
+      "afterSHA256": "8acdbfc47f676bdd5b21fba78dd4cb2e7ca1a60088be14cf83aaf503a2746f08"
+    },
+    {
+      "name": "xr-normal",
+      "cameraProjectionAndWorldMatch": true,
+      "drawsGeometryTexturesMatch": true,
+      "baseMaterialsMatch": true,
+      "maxDetailDifference": 3.5328722678307275e-09,
+      "desktopChangedPixels": null,
+      "desktopMax8BitChannelDifference": null,
+      "beforeSHA256": "fb8a8c6c9b6d58f05fe837837808bcdabbdb8a4fdc1d150dc0d70b1302a37327",
+      "afterSHA256": "766ea882b4c857c2fe581968fdb85be9983d14da631e36207b8ef0b3ee334cb8"
+    },
+    {
+      "name": "xr-nearer",
+      "cameraProjectionAndWorldMatch": true,
+      "drawsGeometryTexturesMatch": true,
+      "baseMaterialsMatch": true,
+      "maxDetailDifference": 7.954135305965337e-08,
+      "desktopChangedPixels": null,
+      "desktopMax8BitChannelDifference": null,
+      "beforeSHA256": "84805681fae74c88a49cece85483653758bd43f69e525e7721c666e585b73556",
+      "afterSHA256": "8229b5a75da93993c92524676a917a00a485b72e875c6378c07086b4a6fe1f12"
+    },
+    {
+      "name": "xr-farther",
+      "cameraProjectionAndWorldMatch": true,
+      "drawsGeometryTexturesMatch": true,
+      "baseMaterialsMatch": true,
+      "maxDetailDifference": 4.146456412082114e-08,
+      "desktopChangedPixels": null,
+      "desktopMax8BitChannelDifference": null,
+      "beforeSHA256": "0fedc7589d02afc3591a7d4827a57e29406b4eb4cec84b30054773cf8c2e76f5",
+      "afterSHA256": "42794e9ac127c0d5b6d95226b30ba7e72924d3e8a4db71fbb92d41247f21952e"
+    }
+  ],
+  "pixels": {
+    "desktop-normal": {
+      "beforeBrightPixelsAllRGBAtLeast230": 0,
+      "afterBrightPixelsAllRGBAtLeast230": 0,
+      "limitation": "Whole native framebuffer, includes intended luminous Sun, gold, lettering and menu; not an isolated material or point measurement"
+    },
+    "desktop-nearer": {
+      "beforeBrightPixelsAllRGBAtLeast230": 516,
+      "afterBrightPixelsAllRGBAtLeast230": 516,
+      "limitation": "Whole native framebuffer, includes intended luminous Sun, gold, lettering and menu; not an isolated material or point measurement"
+    },
+    "desktop-farther": {
+      "beforeBrightPixelsAllRGBAtLeast230": 0,
+      "afterBrightPixelsAllRGBAtLeast230": 0,
+      "limitation": "Whole native framebuffer, includes intended luminous Sun, gold, lettering and menu; not an isolated material or point measurement"
+    },
+    "xr-normal": {
+      "beforeBrightPixelsAllRGBAtLeast230": 2929,
+      "afterBrightPixelsAllRGBAtLeast230": 0,
+      "limitation": "Whole native framebuffer, includes intended luminous Sun, gold, lettering and menu; not an isolated material or point measurement"
+    },
+    "xr-nearer": {
+      "beforeBrightPixelsAllRGBAtLeast230": 28980,
+      "afterBrightPixelsAllRGBAtLeast230": 53,
+      "limitation": "Whole native framebuffer, includes intended luminous Sun, gold, lettering and menu; not an isolated material or point measurement"
+    },
+    "xr-farther": {
+      "beforeBrightPixelsAllRGBAtLeast230": 1597,
+      "afterBrightPixelsAllRGBAtLeast230": 0,
+      "limitation": "Whole native framebuffer, includes intended luminous Sun, gold, lettering and menu; not an isolated material or point measurement"
+    }
+  },
+  "attenuation": [
+    {
+      "pose": "xr-normal",
+      "authoredIntensity": 20,
+      "desktopFactor": 0.0015859483728743414,
+      "correctedXRFactor": 0.0015859483728743416,
+      "ratio": 1.0000000000000002,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    },
+    {
+      "pose": "xr-normal",
+      "authoredIntensity": 15,
+      "desktopFactor": 0.0005124108436438456,
+      "correctedXRFactor": 0.0005124108436438459,
+      "ratio": 1.0000000000000007,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    },
+    {
+      "pose": "xr-normal",
+      "authoredIntensity": 160,
+      "desktopFactor": 0.08132391563207815,
+      "correctedXRFactor": 0.08132391563207819,
+      "ratio": 1.0000000000000004,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    },
+    {
+      "pose": "xr-nearer",
+      "authoredIntensity": 20,
+      "desktopFactor": 0.0015859483728743414,
+      "correctedXRFactor": 0.0015859483728743416,
+      "ratio": 1.0000000000000002,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    },
+    {
+      "pose": "xr-nearer",
+      "authoredIntensity": 15,
+      "desktopFactor": 0.0005124108436438456,
+      "correctedXRFactor": 0.0005124108436438459,
+      "ratio": 1.0000000000000007,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    },
+    {
+      "pose": "xr-nearer",
+      "authoredIntensity": 160,
+      "desktopFactor": 0.08132391563207815,
+      "correctedXRFactor": 0.08132391563207819,
+      "ratio": 1.0000000000000004,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    },
+    {
+      "pose": "xr-farther",
+      "authoredIntensity": 20,
+      "desktopFactor": 0.0015859483728743414,
+      "correctedXRFactor": 0.0015859483728743416,
+      "ratio": 1.0000000000000002,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    },
+    {
+      "pose": "xr-farther",
+      "authoredIntensity": 15,
+      "desktopFactor": 0.0005124108436438456,
+      "correctedXRFactor": 0.0005124108436438459,
+      "ratio": 1.0000000000000007,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    },
+    {
+      "pose": "xr-farther",
+      "authoredIntensity": 160,
+      "desktopFactor": 0.08132391563207815,
+      "correctedXRFactor": 0.08132391563207819,
+      "ratio": 1.0000000000000004,
+      "method": "Shader-equation reconstruction from actual positions/light values; final pixels measured separately"
+    }
+  ],
+  "performance": {
+    "before": {
+      "atlasReadyMs": 113710,
+      "elapsedMs": 187660,
+      "phases": {
+        "xr-normal": {
+          "fullyRenderedFrames": 11,
+          "steadyIntervalSamples": 7,
+          "medianFullDrawIntervalMs": 789.5,
+          "maxFullDrawIntervalMs": 1255.800000000745,
+          "medianCallbackMs": 22.399999999441206,
+          "note": "GPU-suppressed warmup, first full frame, capture and following interval excluded; software diagnostic, not Quest FPS"
+        },
+        "xr-nearer": {
+          "fullyRenderedFrames": 10,
+          "steadyIntervalSamples": 6,
+          "medianFullDrawIntervalMs": 1503.8500000000931,
+          "maxFullDrawIntervalMs": 3708.5,
+          "medianCallbackMs": 13.549999999813735,
+          "note": "GPU-suppressed warmup, first full frame, capture and following interval excluded; software diagnostic, not Quest FPS"
+        },
+        "xr-farther": {
+          "fullyRenderedFrames": 8,
+          "steadyIntervalSamples": 4,
+          "medianFullDrawIntervalMs": 954.2499999995343,
+          "maxFullDrawIntervalMs": 1072.6000000005588,
+          "medianCallbackMs": 10.100000000093132,
+          "note": "GPU-suppressed warmup, first full frame, capture and following interval excluded; software diagnostic, not Quest FPS"
+        }
+      }
+    },
+    "after": {
+      "atlasReadyMs": 110561,
+      "elapsedMs": 205210,
+      "phases": {
+        "xr-normal": {
+          "fullyRenderedFrames": 11,
+          "steadyIntervalSamples": 7,
+          "medianFullDrawIntervalMs": 912.7000000001863,
+          "maxFullDrawIntervalMs": 1783.0999999996275,
+          "medianCallbackMs": 19,
+          "note": "GPU-suppressed warmup, first full frame, capture and following interval excluded; software diagnostic, not Quest FPS"
+        },
+        "xr-nearer": {
+          "fullyRenderedFrames": 8,
+          "steadyIntervalSamples": 4,
+          "medianFullDrawIntervalMs": 1919.6500000003725,
+          "maxFullDrawIntervalMs": 4300.699999999255,
+          "medianCallbackMs": 32.0,
+          "note": "GPU-suppressed warmup, first full frame, capture and following interval excluded; software diagnostic, not Quest FPS"
+        },
+        "xr-farther": {
+          "fullyRenderedFrames": 10,
+          "steadyIntervalSamples": 6,
+          "medianFullDrawIntervalMs": 738.25,
+          "maxFullDrawIntervalMs": 1266.7999999998137,
+          "medianCallbackMs": 13.449999999720603,
+          "note": "GPU-suppressed warmup, first full frame, capture and following interval excluded; software diagnostic, not Quest FPS"
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Native LOD/frame callbacks run during GPU-suppressed warmup, stock XR camera/matrix updates retained, then three genuine full frames before capture. No real-time performance inferred from warmup.",
+    "Camera matching is baseline versus correction within each modality; desktop and XR use their existing distinct FOVs. Near XR viewer pose derives from Explore; normal/farther are physical viewer emulation. No production camera edits.",
+    "Only native software-rendered frames; actual Quest stereo, lighting, comfort and text legibility remain hardware review."
+  ]
+}

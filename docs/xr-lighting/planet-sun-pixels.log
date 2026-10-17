@@ -1,0 +1,485 @@
+[
+  {
+    "pose": "xr-normal",
+    "object": "Sun",
+    "pixelCenter": [
+      480.0,
+      501.7500044703484
+    ],
+    "coreRadiusPx": 7.087499999999975,
+    "pixelCount": 158,
+    "beforeMeanRGB": [
+      226.54430379746836,
+      219.83544303797467,
+      196.16455696202533
+    ],
+    "afterMeanRGB": [
+      226.54430379746836,
+      219.83544303797467,
+      196.16455696202533
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 0
+  },
+  {
+    "pose": "xr-normal",
+    "object": "Mercury",
+    "pixelCenter": [
+      458.9629456250225,
+      504.2094959813243
+    ],
+    "coreRadiusPx": 1.237390562248774,
+    "pixelCount": 4,
+    "beforeMeanRGB": [
+      130.5,
+      178.75,
+      156.75
+    ],
+    "afterMeanRGB": [
+      173.0,
+      148.0,
+      119.25
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 53
+  },
+  {
+    "pose": "xr-normal",
+    "object": "Earth",
+    "pixelCenter": [
+      410.50677680231666,
+      503.8525630286407
+    ],
+    "coreRadiusPx": 2.4584863606738794,
+    "pixelCount": 19,
+    "beforeMeanRGB": [
+      75.47368421052632,
+      153.42105263157896,
+      173.1578947368421
+    ],
+    "afterMeanRGB": [
+      43.26315789473684,
+      73.05263157894737,
+      97.10526315789474
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 3,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 247
+  },
+  {
+    "pose": "xr-normal",
+    "object": "Mars",
+    "pixelCenter": [
+      546.8838457822623,
+      508.9225928828607
+    ],
+    "coreRadiusPx": 1.9502095633634156,
+    "pixelCount": 12,
+    "beforeMeanRGB": [
+      118.83333333333333,
+      96.0,
+      63.833333333333336
+    ],
+    "afterMeanRGB": [
+      185.33333333333334,
+      95.91666666666667,
+      58.5
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 84
+  },
+  {
+    "pose": "xr-normal",
+    "object": "Jupiter",
+    "pixelCenter": [
+      520.6559300731021,
+      493.2755581096622
+    ],
+    "coreRadiusPx": 3.95124626868996,
+    "pixelCount": 50,
+    "beforeMeanRGB": [
+      250.4,
+      247.18,
+      241.84
+    ],
+    "afterMeanRGB": [
+      195.58,
+      153.0,
+      106.54
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 35,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 174
+  },
+  {
+    "pose": "xr-normal",
+    "object": "Saturn",
+    "pixelCenter": [
+      388.0065200325971,
+      492.6858317262477
+    ],
+    "coreRadiusPx": 3.653814084851075,
+    "pixelCount": 42,
+    "beforeMeanRGB": [
+      254.47619047619048,
+      254.14285714285714,
+      251.83333333333334
+    ],
+    "afterMeanRGB": [
+      183.5952380952381,
+      155.85714285714286,
+      100.4047619047619
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 42,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 173
+  },
+  {
+    "pose": "xr-normal",
+    "object": "Venus",
+    "pixelCenter": [
+      461.40721913830396,
+      498.13323129435213
+    ],
+    "coreRadiusPx": 1.8128438263885158,
+    "pixelCount": 10,
+    "beforeMeanRGB": [
+      252.3,
+      250.5,
+      246.3
+    ],
+    "afterMeanRGB": [
+      252.3,
+      222.4,
+      140.3
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 7,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 117
+  },
+  {
+    "pose": "xr-nearer",
+    "object": "Sun",
+    "pixelCenter": [
+      455.4628968328818,
+      257.3380347136366
+    ],
+    "coreRadiusPx": 15.131954888659953,
+    "pixelCount": 721,
+    "beforeMeanRGB": [
+      227.0,
+      221.0,
+      199.0
+    ],
+    "afterMeanRGB": [
+      227.0,
+      221.0,
+      199.0
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 0
+  },
+  {
+    "pose": "xr-nearer",
+    "object": "Mercury",
+    "pixelCenter": [
+      411.5115657175655,
+      272.8518005433728
+    ],
+    "coreRadiusPx": 2.7476467880136286,
+    "pixelCount": 24,
+    "beforeMeanRGB": [
+      136.625,
+      183.33333333333334,
+      162.95833333333334
+    ],
+    "afterMeanRGB": [
+      176.91666666666666,
+      151.54166666666666,
+      121.5
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 60
+  },
+  {
+    "pose": "xr-nearer",
+    "object": "Earth",
+    "pixelCenter": [
+      301.4729278649949,
+      274.2354846884324
+    ],
+    "coreRadiusPx": 5.535546127121822,
+    "pixelCount": 97,
+    "beforeMeanRGB": [
+      106.37113402061856,
+      173.30927835051546,
+      199.96907216494844
+    ],
+    "afterMeanRGB": [
+      22.030927835051546,
+      64.8659793814433,
+      103.0721649484536
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 31,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 252
+  },
+  {
+    "pose": "xr-nearer",
+    "object": "Mars",
+    "pixelCenter": [
+      616.3057429578636,
+      295.1669745736418
+    ],
+    "coreRadiusPx": 4.454734161619075,
+    "pixelCount": 62,
+    "beforeMeanRGB": [
+      138.56451612903226,
+      125.41935483870968,
+      81.53225806451613
+    ],
+    "afterMeanRGB": [
+      200.40322580645162,
+      102.70967741935483,
+      58.725806451612904
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 151
+  },
+  {
+    "pose": "xr-nearer",
+    "object": "Jupiter",
+    "pixelCenter": [
+      524.7778540497078,
+      213.2928869845336
+    ],
+    "coreRadiusPx": 7.525348481830327,
+    "pixelCount": 178,
+    "beforeMeanRGB": [
+      254.35393258426967,
+      253.7191011235955,
+      252.80337078651687
+    ],
+    "afterMeanRGB": [
+      200.85393258426967,
+      153.69101123595505,
+      104.20224719101124
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 170,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 194
+  },
+  {
+    "pose": "xr-nearer",
+    "object": "Saturn",
+    "pixelCenter": [
+      264.7620866641088,
+      216.39752752106563
+    ],
+    "coreRadiusPx": 7.224357901576769,
+    "pixelCount": 164,
+    "beforeMeanRGB": [
+      255.0,
+      255.0,
+      253.7378048780488
+    ],
+    "afterMeanRGB": [
+      182.46341463414635,
+      154.59756097560975,
+      99.1829268292683
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 164,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 173
+  },
+  {
+    "pose": "xr-nearer",
+    "object": "Venus",
+    "pixelCenter": [
+      413.55439007525916,
+      239.24418579445032
+    ],
+    "coreRadiusPx": 3.7270361268269996,
+    "pixelCount": 42,
+    "beforeMeanRGB": [
+      255.0,
+      255.0,
+      255.0
+    ],
+    "afterMeanRGB": [
+      252.85714285714286,
+      210.11904761904762,
+      132.5
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 42,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 129
+  },
+  {
+    "pose": "xr-farther",
+    "object": "Sun",
+    "pixelCenter": [
+      480.0,
+      493.5789513152062
+    ],
+    "coreRadiusPx": 5.968421077596202,
+    "pixelCount": 110,
+    "beforeMeanRGB": [
+      226.3272727272727,
+      219.3090909090909,
+      194.92727272727274
+    ],
+    "afterMeanRGB": [
+      226.3272727272727,
+      219.3090909090909,
+      194.92727272727274
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 0
+  },
+  {
+    "pose": "xr-farther",
+    "object": "Mercury",
+    "pixelCenter": [
+      462.4165350005165,
+      495.3100875358781
+    ],
+    "coreRadiusPx": 1.0342519087592366,
+    "pixelCount": 3,
+    "beforeMeanRGB": [
+      138.33333333333334,
+      190.66666666666666,
+      167.33333333333334
+    ],
+    "afterMeanRGB": [
+      176.33333333333334,
+      151.0,
+      121.33333333333333
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 60
+  },
+  {
+    "pose": "xr-farther",
+    "object": "Earth",
+    "pixelCenter": [
+      421.8524149701696,
+      495.0604583251878
+    ],
+    "coreRadiusPx": 2.057107702362694,
+    "pixelCount": 13,
+    "beforeMeanRGB": [
+      68.3076923076923,
+      149.3846153846154,
+      170.3846153846154
+    ],
+    "afterMeanRGB": [
+      47.0,
+      73.3076923076923,
+      97.53846153846153
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 2,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 246
+  },
+  {
+    "pose": "xr-farther",
+    "object": "Mars",
+    "pixelCenter": [
+      535.1170395630381,
+      498.556401700554
+    ],
+    "coreRadiusPx": 1.6071112000653784,
+    "pixelCount": 7,
+    "beforeMeanRGB": [
+      120.85714285714286,
+      97.0,
+      65.42857142857143
+    ],
+    "afterMeanRGB": [
+      186.28571428571428,
+      99.14285714285714,
+      61.857142857142854
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 0,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 84
+  },
+  {
+    "pose": "xr-farther",
+    "object": "Jupiter",
+    "pixelCenter": [
+      515.1453050095258,
+      487.40986091049444
+    ],
+    "coreRadiusPx": 3.4156826576385586,
+    "pixelCount": 38,
+    "beforeMeanRGB": [
+      248.55263157894737,
+      244.21052631578948,
+      236.71052631578948
+    ],
+    "afterMeanRGB": [
+      195.92105263157896,
+      155.1578947368421,
+      109.02631578947368
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 22,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 165
+  },
+  {
+    "pose": "xr-farther",
+    "object": "Saturn",
+    "pixelCenter": [
+      400.32842904455714,
+      486.9683511524393
+    ],
+    "coreRadiusPx": 3.164410219315076,
+    "pixelCount": 30,
+    "beforeMeanRGB": [
+      252.13333333333333,
+      250.73333333333332,
+      246.66666666666666
+    ],
+    "afterMeanRGB": [
+      186.0,
+      158.1,
+      102.7
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 26,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 166
+  },
+  {
+    "pose": "xr-farther",
+    "object": "Venus",
+    "pixelCenter": [
+      464.168215078255,
+      490.98552933578094
+    ],
+    "coreRadiusPx": 1.543639640007976,
+    "pixelCount": 7,
+    "beforeMeanRGB": [
+      253.28571428571428,
+      252.0,
+      249.0
+    ],
+    "afterMeanRGB": [
+      253.28571428571428,
+      224.85714285714286,
+      141.85714285714286
+    ],
+    "beforeNearWhiteAllChannelsAtLeast230": 7,
+    "afterNearWhiteAllChannelsAtLeast230": 0,
+    "maxChannelDelta": 113
+  }
+]
