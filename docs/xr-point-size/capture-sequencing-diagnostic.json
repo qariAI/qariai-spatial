@@ -1,0 +1,8 @@
+{
+  "failure": "Error: head pose host budget 12000ms exceeded",
+  "captures": [
+    "nearer.png"
+  ],
+  "cause": "Harness changed viewer pose before normal frame 3 capture completed. Final harness waits for each native capture before changing pose. One corrected bounded comparison followed.",
+  "elapsedMs": 110355
+}

@@ -1,0 +1,669 @@
+{
+  "method": "Actual full-scene framebuffer sky ROI x=0..1439,y=0..299; max RGB > 30; 8-connected components. Scene/menu below ROI excluded. These are composite pixel measurements, not isolated sprite diameters.",
+  "matched": [
+    {
+      "file": "normal.png",
+      "head": true,
+      "world": true,
+      "camera": true,
+      "planets": true,
+      "resources": true,
+      "memory": true,
+      "drawAndPrimitiveCounts": true
+    },
+    {
+      "file": "nearer.png",
+      "head": true,
+      "world": true,
+      "camera": true,
+      "planets": true,
+      "resources": true,
+      "memory": true,
+      "drawAndPrimitiveCounts": true
+    },
+    {
+      "file": "farther.png",
+      "head": true,
+      "world": true,
+      "camera": true,
+      "planets": true,
+      "resources": true,
+      "memory": true,
+      "drawAndPrimitiveCounts": true
+    }
+  ],
+  "runs": {
+    "before": {
+      "atlasReadyMs": 55497,
+      "elapsedMs": 101285,
+      "frameSamples": 13,
+      "medianInstrumentedIntervalMs": 2147.5,
+      "maxInstrumentedIntervalMs": 8064.799999999814,
+      "medianCallbackMs": 33.949999999953434,
+      "captures": [
+        {
+          "file": "normal.png",
+          "sha256": "fae30a56e1d0098f6ddff0570bb35d08a197b788af6e3a0c2617245234c72afe",
+          "render": {
+            "frame": 3,
+            "calls": 120,
+            "triangles": 47408,
+            "points": 7416,
+            "lines": 4368
+          },
+          "memory": {
+            "geometries": 42,
+            "textures": 15
+          },
+          "resources": {
+            "geometryBytes": 1382172,
+            "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+          },
+          "brightSkyPixels": 432000,
+          "brightSkyFraction": 1.0,
+          "components": 1,
+          "largestComponentPixels": 432000,
+          "largestComponentSpanPx": 1440,
+          "componentSpanP95Px": 1440.0,
+          "pointShaderEstimates": [
+            {
+              "count": 2184,
+              "materialSize": 0.8,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.83,
+              "hasMap": false,
+              "sizeUniform": 0.8,
+              "scaleUniform": 450,
+              "inFront": 1533,
+              "projectedPxMedian": 82.38362586885576,
+              "projectedPxMax": 84629.31343711923,
+              "over16": 1533,
+              "over64": 996
+            },
+            {
+              "count": 588,
+              "materialSize": 0.55,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.45,
+              "hasMap": false,
+              "sizeUniform": 0.55,
+              "scaleUniform": 450,
+              "inFront": 530,
+              "projectedPxMedian": 90.8297667147112,
+              "projectedPxMax": 9771.557457636998,
+              "over16": 530,
+              "over64": 379
+            },
+            {
+              "count": 36,
+              "materialSize": 0.0049,
+              "scale": [
+                0.014,
+                0.01036,
+                0.014
+              ],
+              "opacity": 0.62,
+              "hasMap": true,
+              "sizeUniform": 0.0049,
+              "scaleUniform": 450,
+              "inFront": 36,
+              "projectedPxMedian": 0.9187500000000001,
+              "projectedPxMax": 1.2187799397039467,
+              "over16": 0,
+              "over64": 0
+            },
+            {
+              "count": 900,
+              "materialSize": 0.3,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.55,
+              "hasMap": false,
+              "sizeUniform": 0.3,
+              "scaleUniform": 450,
+              "inFront": 900,
+              "projectedPxMedian": 55.60778621041359,
+              "projectedPxMax": 69.99429767864304,
+              "over16": 900,
+              "over64": 230
+            }
+          ]
+        },
+        {
+          "file": "nearer.png",
+          "sha256": "1e7e293a475ec9fcea72551b856b5e563dde75ec4534e5b1a0e4344877c638f2",
+          "render": {
+            "frame": 9,
+            "calls": 120,
+            "triangles": 47408,
+            "points": 7416,
+            "lines": 4368
+          },
+          "memory": {
+            "geometries": 42,
+            "textures": 15
+          },
+          "resources": {
+            "geometryBytes": 1382172,
+            "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+          },
+          "brightSkyPixels": 429567,
+          "brightSkyFraction": 0.9943680555555555,
+          "components": 1,
+          "largestComponentPixels": 429567,
+          "largestComponentSpanPx": 1440,
+          "componentSpanP95Px": 1440.0,
+          "pointShaderEstimates": [
+            {
+              "count": 2184,
+              "materialSize": 0.8,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.83,
+              "hasMap": false,
+              "sizeUniform": 0.8,
+              "scaleUniform": 450,
+              "inFront": 1455,
+              "projectedPxMedian": 86.25413024695558,
+              "projectedPxMax": 72865.72944367456,
+              "over16": 1455,
+              "over64": 1012
+            },
+            {
+              "count": 588,
+              "materialSize": 0.55,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.45,
+              "hasMap": false,
+              "sizeUniform": 0.55,
+              "scaleUniform": 450,
+              "inFront": 491,
+              "projectedPxMedian": 101.95531149374088,
+              "projectedPxMax": 8218.028816364316,
+              "over16": 491,
+              "over64": 387
+            },
+            {
+              "count": 36,
+              "materialSize": 0.0049,
+              "scale": [
+                0.014,
+                0.01036,
+                0.014
+              ],
+              "opacity": 0.62,
+              "hasMap": true,
+              "sizeUniform": 0.0049,
+              "scaleUniform": 450,
+              "inFront": 36,
+              "projectedPxMedian": 1.1307692238565028,
+              "projectedPxMax": 1.62229411835016,
+              "over16": 0,
+              "over64": 0
+            },
+            {
+              "count": 900,
+              "materialSize": 0.3,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.55,
+              "hasMap": false,
+              "sizeUniform": 0.3,
+              "scaleUniform": 450,
+              "inFront": 900,
+              "projectedPxMedian": 68.26050430940589,
+              "projectedPxMax": 91.29464583871393,
+              "over16": 900,
+              "over64": 538
+            }
+          ]
+        },
+        {
+          "file": "farther.png",
+          "sha256": "ee27e65d61b2c46b178206a08911b2978aebe32d4e4ac782cc97bc2328e93365",
+          "render": {
+            "frame": 13,
+            "calls": 120,
+            "triangles": 47408,
+            "points": 7416,
+            "lines": 4368
+          },
+          "memory": {
+            "geometries": 42,
+            "textures": 15
+          },
+          "resources": {
+            "geometryBytes": 1382172,
+            "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+          },
+          "brightSkyPixels": 431578,
+          "brightSkyFraction": 0.9990231481481482,
+          "components": 1,
+          "largestComponentPixels": 431578,
+          "largestComponentSpanPx": 1440,
+          "componentSpanP95Px": 1440.0,
+          "pointShaderEstimates": [
+            {
+              "count": 2184,
+              "materialSize": 0.8,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.83,
+              "hasMap": false,
+              "sizeUniform": 0.8,
+              "scaleUniform": 450,
+              "inFront": 1615,
+              "projectedPxMedian": 78.52231719109797,
+              "projectedPxMax": 40951.808305272454,
+              "over16": 1615,
+              "over64": 994
+            },
+            {
+              "count": 588,
+              "materialSize": 0.55,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.45,
+              "hasMap": false,
+              "sizeUniform": 0.55,
+              "scaleUniform": 450,
+              "inFront": 562,
+              "projectedPxMedian": 81.15022090296074,
+              "projectedPxMax": 23001.406686286984,
+              "over16": 562,
+              "over64": 360
+            },
+            {
+              "count": 36,
+              "materialSize": 0.0049,
+              "scale": [
+                0.014,
+                0.01036,
+                0.014
+              ],
+              "opacity": 0.62,
+              "hasMap": true,
+              "sizeUniform": 0.0049,
+              "scaleUniform": 450,
+              "inFront": 36,
+              "projectedPxMedian": 0.7736842137624683,
+              "projectedPxMax": 0.97601511982968,
+              "over16": 0,
+              "over64": 0
+            },
+            {
+              "count": 900,
+              "materialSize": 0.3,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.55,
+              "hasMap": false,
+              "sizeUniform": 0.3,
+              "scaleUniform": 450,
+              "inFront": 900,
+              "projectedPxMedian": 46.912178470579384,
+              "projectedPxMax": 56.753008196529564,
+              "over16": 900,
+              "over64": 0
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "atlasReadyMs": 94373,
+      "elapsedMs": 112761,
+      "frameSamples": 14,
+      "medianInstrumentedIntervalMs": 611.8500000000931,
+      "maxInstrumentedIntervalMs": 6877.5999999996275,
+      "medianCallbackMs": 32.200000000186265,
+      "captures": [
+        {
+          "file": "normal.png",
+          "sha256": "24885e17cc12bf887577a71bd313fea806e5e9cee23b44f07120076ad5131f69",
+          "render": {
+            "frame": 3,
+            "calls": 120,
+            "triangles": 47408,
+            "points": 7416,
+            "lines": 4368
+          },
+          "memory": {
+            "geometries": 42,
+            "textures": 15
+          },
+          "resources": {
+            "geometryBytes": 1382172,
+            "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+          },
+          "brightSkyPixels": 937,
+          "brightSkyFraction": 0.0021689814814814814,
+          "components": 285,
+          "largestComponentPixels": 46,
+          "largestComponentSpanPx": 7,
+          "componentSpanP95Px": 3.0,
+          "pointShaderEstimates": [
+            {
+              "count": 2184,
+              "materialSize": 0.011200000000000002,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.83,
+              "hasMap": false,
+              "sizeUniform": 0.011200000000000002,
+              "scaleUniform": 450,
+              "inFront": 1533,
+              "projectedPxMedian": 1.1533707621639808,
+              "projectedPxMax": 1184.8103881196694,
+              "over16": 48,
+              "over64": 9
+            },
+            {
+              "count": 588,
+              "materialSize": 0.007700000000000001,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.45,
+              "hasMap": false,
+              "sizeUniform": 0.007700000000000001,
+              "scaleUniform": 450,
+              "inFront": 530,
+              "projectedPxMedian": 1.2716167340059568,
+              "projectedPxMax": 136.80180440691797,
+              "over16": 14,
+              "over64": 1
+            },
+            {
+              "count": 36,
+              "materialSize": 0.0049,
+              "scale": [
+                0.014,
+                0.01036,
+                0.014
+              ],
+              "opacity": 0.62,
+              "hasMap": true,
+              "sizeUniform": 0.0049,
+              "scaleUniform": 450,
+              "inFront": 36,
+              "projectedPxMedian": 0.9187500000000001,
+              "projectedPxMax": 1.2187799397039467,
+              "over16": 0,
+              "over64": 0
+            },
+            {
+              "count": 900,
+              "materialSize": 0.0042,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.55,
+              "hasMap": false,
+              "sizeUniform": 0.0042,
+              "scaleUniform": 450,
+              "inFront": 900,
+              "projectedPxMedian": 0.7785090069457903,
+              "projectedPxMax": 0.9799201675010024,
+              "over16": 0,
+              "over64": 0
+            }
+          ]
+        },
+        {
+          "file": "nearer.png",
+          "sha256": "87e2d652040bd4e6054ebd375ab5cf3de542c468b22d14959bc7d1fb1f3f5d47",
+          "render": {
+            "frame": 10,
+            "calls": 120,
+            "triangles": 47408,
+            "points": 7416,
+            "lines": 4368
+          },
+          "memory": {
+            "geometries": 42,
+            "textures": 15
+          },
+          "resources": {
+            "geometryBytes": 1382172,
+            "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+          },
+          "brightSkyPixels": 808,
+          "brightSkyFraction": 0.0018703703703703703,
+          "components": 264,
+          "largestComponentPixels": 15,
+          "largestComponentSpanPx": 4,
+          "componentSpanP95Px": 3.0,
+          "pointShaderEstimates": [
+            {
+              "count": 2184,
+              "materialSize": 0.011200000000000002,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.83,
+              "hasMap": false,
+              "sizeUniform": 0.011200000000000002,
+              "scaleUniform": 450,
+              "inFront": 1455,
+              "projectedPxMedian": 1.2075578234573785,
+              "projectedPxMax": 1020.120212211444,
+              "over16": 63,
+              "over64": 14
+            },
+            {
+              "count": 588,
+              "materialSize": 0.007700000000000001,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.45,
+              "hasMap": false,
+              "sizeUniform": 0.007700000000000001,
+              "scaleUniform": 450,
+              "inFront": 491,
+              "projectedPxMedian": 1.4273743609123721,
+              "projectedPxMax": 115.05240342910042,
+              "over16": 27,
+              "over64": 2
+            },
+            {
+              "count": 36,
+              "materialSize": 0.0049,
+              "scale": [
+                0.014,
+                0.01036,
+                0.014
+              ],
+              "opacity": 0.62,
+              "hasMap": true,
+              "sizeUniform": 0.0049,
+              "scaleUniform": 450,
+              "inFront": 36,
+              "projectedPxMedian": 1.1307692238565028,
+              "projectedPxMax": 1.62229411835016,
+              "over16": 0,
+              "over64": 0
+            },
+            {
+              "count": 900,
+              "materialSize": 0.0042,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.55,
+              "hasMap": false,
+              "sizeUniform": 0.0042,
+              "scaleUniform": 450,
+              "inFront": 900,
+              "projectedPxMedian": 0.9556470603316823,
+              "projectedPxMax": 1.278125041741995,
+              "over16": 0,
+              "over64": 0
+            }
+          ]
+        },
+        {
+          "file": "farther.png",
+          "sha256": "79a204b7a029e6914b70a557be4892c6488bf4f15e97311b8c19e2486440d873",
+          "render": {
+            "frame": 14,
+            "calls": 120,
+            "triangles": 47408,
+            "points": 7416,
+            "lines": 4368
+          },
+          "memory": {
+            "geometries": 42,
+            "textures": 15
+          },
+          "resources": {
+            "geometryBytes": 1382172,
+            "textureRGBA8WithMipsEstimateBytes": 54617429.33333334
+          },
+          "brightSkyPixels": 1113,
+          "brightSkyFraction": 0.002576388888888889,
+          "components": 302,
+          "largestComponentPixels": 36,
+          "largestComponentSpanPx": 6,
+          "componentSpanP95Px": 3.0,
+          "pointShaderEstimates": [
+            {
+              "count": 2184,
+              "materialSize": 0.011200000000000002,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.83,
+              "hasMap": false,
+              "sizeUniform": 0.011200000000000002,
+              "scaleUniform": 450,
+              "inFront": 1615,
+              "projectedPxMedian": 1.0993124406753718,
+              "projectedPxMax": 573.3253162738145,
+              "over16": 61,
+              "over64": 14
+            },
+            {
+              "count": 588,
+              "materialSize": 0.007700000000000001,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.45,
+              "hasMap": false,
+              "sizeUniform": 0.007700000000000001,
+              "scaleUniform": 450,
+              "inFront": 562,
+              "projectedPxMedian": 1.1361030926414504,
+              "projectedPxMax": 322.01969360801775,
+              "over16": 14,
+              "over64": 2
+            },
+            {
+              "count": 36,
+              "materialSize": 0.0049,
+              "scale": [
+                0.014,
+                0.01036,
+                0.014
+              ],
+              "opacity": 0.62,
+              "hasMap": true,
+              "sizeUniform": 0.0049,
+              "scaleUniform": 450,
+              "inFront": 36,
+              "projectedPxMedian": 0.7736842137624683,
+              "projectedPxMax": 0.97601511982968,
+              "over16": 0,
+              "over64": 0
+            },
+            {
+              "count": 900,
+              "materialSize": 0.0042,
+              "scale": [
+                0.014,
+                0.014,
+                0.014
+              ],
+              "opacity": 0.55,
+              "hasMap": false,
+              "sizeUniform": 0.0042,
+              "scaleUniform": 450,
+              "inFront": 900,
+              "projectedPxMedian": 0.6567704985881113,
+              "projectedPxMax": 0.7945421147514139,
+              "over16": 0,
+              "over64": 0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "desktop": [
+    {
+      "view": "desktop-wide",
+      "changedPixels": 0,
+      "max8BitChannelDifference": 0,
+      "cameraSizesAndCountsExactlyEqual": true,
+      "limit": "Strict bitwise comparison initially failed Explore; only <=1/255 channel differences are accepted and reported explicitly, with exact metadata checks.",
+      "sha256": "6c1298ba7a2cdcb3b019266cf2366d2b822f1adbff1a24717a6dc82fb051cdd4"
+    },
+    {
+      "view": "desktop-explore",
+      "changedPixels": 2374,
+      "max8BitChannelDifference": 1,
+      "cameraSizesAndCountsExactlyEqual": true,
+      "limit": "Strict bitwise comparison initially failed Explore; only <=1/255 channel differences are accepted and reported explicitly, with exact metadata checks.",
+      "sha256": "c58fae5b5af8eb8aca12067d52165ce65e4491d4b19b183dbbdca7517e795606"
+    }
+  ]
+}
