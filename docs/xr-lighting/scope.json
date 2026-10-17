@@ -1,0 +1,133 @@
+{
+  "baseline": "cde9b8f2b7a042af8e864a9bd16422bcd206e1eb",
+  "success": true,
+  "unchangedFiles": [
+    {
+      "path": "public/fonts/Amiri-Bold.ttf",
+      "sha256": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fonts/OFL-Amiri.txt",
+      "sha256": "72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22",
+      "unchanged": true
+    },
+    {
+      "path": "public/harf-studio/OFL-Amiri.txt",
+      "sha256": "72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22",
+      "unchanged": true
+    },
+    {
+      "path": "src/CalligraphyDepthArt.tsx",
+      "sha256": "59624b9ce15dffb22f2b4d0947f1bfa22eae259d34a62c57fbec868808795938",
+      "unchanged": true
+    },
+    {
+      "path": "src/calligraphy/content.ts",
+      "sha256": "b3af1cb17a5f300a4ddc512457359d751a709d22214afeec8b2555ecf04faae4",
+      "unchanged": true
+    },
+    {
+      "path": "src/calligraphy/heroBevel.ts",
+      "sha256": "c0d4d673f3979e352973fd06e2661b9294b67db15e1b15616047517fe1f93b70",
+      "unchanged": true
+    },
+    {
+      "path": "src/calligraphy/raisedRelief.ts",
+      "sha256": "0cdfcaa98cbfbc373b5241d807f32a5677db28349a150f60fd9aad4e11a1202e",
+      "unchanged": true
+    },
+    {
+      "path": "src/calligraphy/textureRelief.ts",
+      "sha256": "3eec79571fd8630a6fab3ba99c78a79921e5971b5016d5f8118557f86df5ccae",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/desktop.ts",
+      "sha256": "8727cc0d801820fb314d2a4072c7cde4d5c1f0b61ec50195e01edf4b4cc7f895",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/ink.ts",
+      "sha256": "81b331f23a6b25fab3527acb446c4d889ea7aa2099466f6af5a970e43558ba6a",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/letters/ba.json",
+      "sha256": "8024c81d021abf626405abf549d1d05f6b2d48e3eee5ca68216a6999558bb059",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/letters/definition.ts",
+      "sha256": "6e88967f0aa7e7de2c0ee8032d1aa409193dc5d3bf6eb328af64efabd2150b43",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/main.ts",
+      "sha256": "cd223aea099df45d9a38a20be307e3d2c5c4ee38a95c103f4eab5ba33fcba7ef",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/progress.ts",
+      "sha256": "b8007c2015d25625af073d141aca40d8903c5ac8eadcc33632b3bf65f8ad319f",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/session.ts",
+      "sha256": "c8f2fedd8334dffa0788ebb50e20788a96d82177b21745d20eb8e3e95a746f0b",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/style.css",
+      "sha256": "7ab5f20f143d6990b904094c2458067a846d26413897f10c3d1a3a26fc55a517",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/tracing.ts",
+      "sha256": "cb09cdf5ef2fc491fa8fe0c475415c51138da76c53a89909815d7b841c619b56",
+      "unchanged": true
+    },
+    {
+      "path": "src/integration/OrbitPracticeLink.tsx",
+      "sha256": "048dd010a9e0fc19e996fff79de31a3e497bfb092b30c5bb7193bda2840dc0a1",
+      "unchanged": true
+    },
+    {
+      "path": "src/integration/navigation.ts",
+      "sha256": "939b5f1f3d19744a28919e4d78fbfc33f540a52146bf72fc8819094ff8537327",
+      "unchanged": true
+    },
+    {
+      "path": "src/integration/routes.ts",
+      "sha256": "30074baa46b72650c3c727fffa1795a16e02f6ae4c7f333dc6b989ecce98f67d",
+      "unchanged": true
+    },
+    {
+      "path": "src/main.tsx",
+      "sha256": "7e8d9e72e1c9e5dabe84f2061f6f0a249d5614666f454b46d17d09674680c1d2",
+      "unchanged": true
+    },
+    {
+      "path": "src/style.css",
+      "sha256": "b21943bb767f4a98786c2b9fe84f41d47403e1e1afc641ade58289e3cd948142",
+      "unchanged": true
+    },
+    {
+      "path": "src/xr/OrbitPinch.ts",
+      "sha256": "0853bcfa49649c7b737631d64a019be706603feaeb01f02c4410e5dc5adcc9f4",
+      "unchanged": true
+    },
+    {
+      "path": "src/xr/SpatialMenu.tsx",
+      "sha256": "ab0e3242ee18b0ed71dd43cc25565ffdcaee04b4043c9717a50bdf9be08609c5",
+      "unchanged": true
+    },
+    {
+      "path": "src/xr/SpatialMenuState.ts",
+      "sha256": "7a7d1f3dc8c3a2aeb1db6a85cf4b1367028c8040f6f23f97f348d756238c345f",
+      "unchanged": true
+    }
+  ],
+  "AppAllowedChanges": "light names/import and post-transform adapter call only; full normalized equality tested",
+  "capturedSourceMatchesCurrent": true
+}

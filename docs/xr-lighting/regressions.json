@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "checks": [
+    {
+      "command": "node scripts/check-calligraphy-content.mjs",
+      "exitCode": 0,
+      "stdout": "PASS: eight complete excerpts match Quran.com source word spans exactly.\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/check-harf-xr.cjs",
+      "exitCode": 0,
+      "stdout": "PASS tracing direction/proximity/resume/body/dot/reset; pinch hysteresis/debounce/tracking loss; XR lifecycle duplicate/failed/delayed start and cleanup simulation\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/check-harf-ink.cjs",
+      "exitCode": 0,
+      "stdout": "PASS broad-nib width variation, finite/empty/duplicate inputs, visual smoothing, exact endpoints and unmodified validation samples\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/check-integration.cjs",
+      "exitCode": 0,
+      "stdout": "PASS completion presentation preserves raw score; navigation waits for end event and cancels on failure/timeout; listeners cleaned\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/check-quest-readiness.cjs",
+      "exitCode": 0,
+      "stdout": "PASS {\"success\":true,\"scenarios\":[{\"hand\":\"left\",\"target\":\"letter\",\"passed\":true},{\"hand\":\"left\",\"target\":\"phase\",\"passed\":true},{\"hand\":\"right\",\"target\":\"letter\",\"passed\":true},{\"hand\":\"right\",\"target\":\"phase\",\"passed\":true}],\"navigation\":\"allowlisted paths; explicit texture only; default/invalid/duplicate/external values excluded; SVG detour/reload-safe query; session end/timeout retained\",\"limits\":\"Deterministic logic tests, not physical Quest evidence\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/check-spatial-menu.cjs",
+      "exitCode": 0,
+      "stdout": "PASS {\"success\":true,\"checks\":[\"independent recovery gates reused\",\"duplicate/two-hand transition barrier\",\"modal scene focus\",\"pause/resume\",\"bounded 15cm inspection steps and restore of prior pause\",\"interruption/close reset\",\"single safe session teardown\",\"default/texture navigation\",\"timeout failure stays actionable\"],\"inputResets\":34,\"limits\":\"Logic simulation, not headset evidence\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "node scripts/check-menu-targets.cjs",
+      "exitCode": 0,
+      "stdout": "PASS {\"success\":true,\"checks\":[\"exact row bounds and gaps\",\"near-field and ray targeting\",\"invisible ancestor rejects input\",\"busy input blocked\",\"inspection row mapping\"],\"menuGeometryBytes\":280,\"menuTriangles\":4,\"simultaneouslyVisibleTriangles\":2,\"estimatedRGBA8TexturesWithMipsMiB\":4.333333333333333,\"limits\":\"Geometry arrays measured; texture storage estimate excludes driver overhead; not hardware profiling\"}\n",
+      "stderr": ""
+    }
+  ]
+}

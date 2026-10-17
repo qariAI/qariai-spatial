@@ -1,0 +1,26 @@
+
+> qariai-spatial-v1@1.0.0 build
+> tsc --noEmit && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 649 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                        0.74 kB │ gzip:   0.44 kB
+dist/harf-studio-xr.html               1.52 kB │ gzip:   0.85 kB
+dist/harf-studio.html                  7.82 kB │ gzip:   3.48 kB
+dist/assets/harfXR-crZPdSrj.css        0.95 kB │ gzip:   0.54 kB
+dist/assets/orbit-DJKGciIl.css         8.69 kB │ gzip:   2.70 kB
+dist/assets/routes-Bg0YhMm0.js         1.14 kB │ gzip:   0.60 kB
+dist/assets/harfDesktop-BAm-SrtE.js    3.72 kB │ gzip:   1.41 kB
+dist/assets/ink-D0Z2_3VR.js            6.15 kB │ gzip:   2.89 kB
+dist/assets/harfXR-CPYeR1TD.js        11.15 kB │ gzip:   4.86 kB
+dist/assets/orbit-BYuWqnXE.js        394.29 kB │ gzip: 127.32 kB
+dist/assets/navigation-Cl7ZWHjU.js   667.49 kB │ gzip: 172.84 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 41.64s

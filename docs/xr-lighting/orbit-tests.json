@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "errors": [],
+  "method": "Actual texture-only Orbit WebGL; deterministic 50ms steps; test-only Fragment avoids StrictMode duplicate atlas bake; wait for committed artwork before control checks",
+  "limitations": "Software rendering; not sustained FPS, stereo or Quest evidence",
+  "resources": {
+    "profile": {
+      "inkPixels": 145179,
+      "modifiedPixels": 479644,
+      "bakeMs": 385.3999999994412,
+      "addedTriangles": 0,
+      "addedGeometryBytes": 0,
+      "addedDraws": 0,
+      "addedTextures": 0,
+      "kind": "lighting-only; no displacement, parallax or physical extrusion"
+    },
+    "physicalGroupPresent": false,
+    "render": {
+      "frame": 1,
+      "calls": 57,
+      "triangles": 23698,
+      "points": 8472,
+      "lines": 2184
+    },
+    "memory": {
+      "geometries": 40,
+      "textures": 13
+    }
+  },
+  "checks": "Pause; Explore/Return exact endpoints; real mirrored pair scales; exactly two phases; texture-mode internal Harf link; actual WebGL render"
+}

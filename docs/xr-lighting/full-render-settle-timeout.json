@@ -1,0 +1,1802 @@
+{
+  "failure": "TimeoutError: page.waitForFunction: Timeout 65000ms exceeded.",
+  "elapsedMs": 207429,
+  "phase": "xr-nearer native full-draw settling",
+  "renderedFrameSamples": [
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 1,
+      "intervalMs": null,
+      "callbackMs": 118.09999999962747,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 2,
+      "intervalMs": 2493.5,
+      "callbackMs": 62.89999999944121,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 3,
+      "intervalMs": 1656.0999999996275,
+      "callbackMs": 15.600000000558794,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 4,
+      "intervalMs": 39.10000000055879,
+      "callbackMs": 67.8999999994412,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 5,
+      "intervalMs": 1458.2999999998137,
+      "callbackMs": 50.59999999962747,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 6,
+      "intervalMs": 921.2000000001863,
+      "callbackMs": 10.399999999441206,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 7,
+      "intervalMs": 681,
+      "callbackMs": 12.5,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 8,
+      "intervalMs": 894.6999999992549,
+      "callbackMs": 63.40000000037253,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 9,
+      "intervalMs": 711.5,
+      "callbackMs": 14.400000000372529,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 10,
+      "intervalMs": 634.9000000003725,
+      "callbackMs": 12.5,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 11,
+      "intervalMs": 898.5,
+      "callbackMs": 29,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 12,
+      "intervalMs": 904.7000000001863,
+      "callbackMs": 18.899999999441206,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 13,
+      "intervalMs": 964.2000000001863,
+      "callbackMs": 11.399999999441206,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 14,
+      "intervalMs": 948.0999999996275,
+      "callbackMs": 18.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 15,
+      "intervalMs": 1171.7999999998137,
+      "callbackMs": 31.700000000186265,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 16,
+      "intervalMs": 1008.6000000005588,
+      "callbackMs": 26,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 17,
+      "intervalMs": 1568.699999999255,
+      "callbackMs": 46.60000000055879,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 18,
+      "intervalMs": 1217.4000000003725,
+      "callbackMs": 21.40000000037253,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 19,
+      "intervalMs": 1335.0999999996275,
+      "callbackMs": 80.1000000005588,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 20,
+      "intervalMs": 1261.300000000745,
+      "callbackMs": 49.19999999925494,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 21,
+      "intervalMs": 1240.3999999994412,
+      "callbackMs": 65.79999999981374,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 22,
+      "intervalMs": 1498.9000000003725,
+      "callbackMs": 53,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 23,
+      "intervalMs": 1583.8999999994412,
+      "callbackMs": 47.700000000186265,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 24,
+      "intervalMs": 1261.5,
+      "callbackMs": 3.5,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 25,
+      "intervalMs": 1199.5,
+      "callbackMs": 7.2000000001862645,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 26,
+      "intervalMs": 27.40000000037253,
+      "callbackMs": 15.400000000372529,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 27,
+      "intervalMs": 2216.7999999998137,
+      "callbackMs": 51.200000000186265,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 28,
+      "intervalMs": 741.7999999998137,
+      "callbackMs": 1.7000000001862645,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 29,
+      "intervalMs": 2195,
+      "callbackMs": 9.800000000745058,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 30,
+      "intervalMs": 838.1000000005588,
+      "callbackMs": 11,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 31,
+      "intervalMs": 905.5999999996275,
+      "callbackMs": 17.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 32,
+      "intervalMs": 38.60000000055879,
+      "callbackMs": 18.59999999962747,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 33,
+      "intervalMs": 1826.8999999994412,
+      "callbackMs": 12.299999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 34,
+      "intervalMs": 33,
+      "callbackMs": 13.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 35,
+      "intervalMs": 684.2999999998137,
+      "callbackMs": 11.400000000372529,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 36,
+      "intervalMs": 933.7000000001863,
+      "callbackMs": 18.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 37,
+      "intervalMs": 1609.7999999998137,
+      "callbackMs": 16,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 38,
+      "intervalMs": 1031.7000000001863,
+      "callbackMs": 11.700000000186265,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 39,
+      "intervalMs": 885.2999999998137,
+      "callbackMs": 27.5,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 40,
+      "intervalMs": 1135.1000000005588,
+      "callbackMs": 29.700000000186265,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 41,
+      "intervalMs": 924.7999999998137,
+      "callbackMs": 26.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 42,
+      "intervalMs": 974.4000000003725,
+      "callbackMs": 9.599999999627471,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 43,
+      "intervalMs": 23.699999999254942,
+      "callbackMs": 2.800000000745058,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 44,
+      "intervalMs": 1943.2000000001863,
+      "callbackMs": 15.700000000186265,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 45,
+      "intervalMs": 904.1000000005588,
+      "callbackMs": 1541.0999999996275,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 46,
+      "intervalMs": 1979.0999999996275,
+      "callbackMs": 35.40000000037253,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-normal",
+      "frame": 47,
+      "intervalMs": 1383.4000000003725,
+      "callbackMs": 15.099999999627471,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 48,
+      "intervalMs": 1347.699999999255,
+      "callbackMs": 14.800000000745058,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 49,
+      "intervalMs": 2894.300000000745,
+      "callbackMs": 23.09999999962747,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 50,
+      "intervalMs": 2426.699999999255,
+      "callbackMs": 84.80000000074506,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 51,
+      "intervalMs": 2410.2000000001863,
+      "callbackMs": 78.6000000005588,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 52,
+      "intervalMs": 2597.100000000559,
+      "callbackMs": 15.699999999254942,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 53,
+      "intervalMs": 3526.199999999255,
+      "callbackMs": 12.800000000745058,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 54,
+      "intervalMs": 1785.4000000003725,
+      "callbackMs": 25.90000000037253,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 55,
+      "intervalMs": 36.5,
+      "callbackMs": 4.900000000372529,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 56,
+      "intervalMs": 4053.4000000003725,
+      "callbackMs": 32.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 57,
+      "intervalMs": 2131.7999999998137,
+      "callbackMs": 38.5,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 58,
+      "intervalMs": 54.5,
+      "callbackMs": 15.899999999441206,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 59,
+      "intervalMs": 4318.200000000186,
+      "callbackMs": 5.199999999254942,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 60,
+      "intervalMs": 2320.899999999441,
+      "callbackMs": 8.700000000186265,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 61,
+      "intervalMs": 2375.600000000559,
+      "callbackMs": 44.39999999944121,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 62,
+      "intervalMs": 3509.199999999255,
+      "callbackMs": 54.80000000074506,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 63,
+      "intervalMs": 2799.5,
+      "callbackMs": 21,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 64,
+      "intervalMs": 1900.2000000001863,
+      "callbackMs": 48.10000000055879,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 65,
+      "intervalMs": 1587.5,
+      "callbackMs": 20.40000000037253,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 66,
+      "intervalMs": 1721,
+      "callbackMs": 8.200000000186265,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 67,
+      "intervalMs": 31,
+      "callbackMs": 2.6000000005587935,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 68,
+      "intervalMs": 3141.2000000001863,
+      "callbackMs": 8.5,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 69,
+      "intervalMs": 1807.4000000003725,
+      "callbackMs": 9.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 70,
+      "intervalMs": 1886.3999999994412,
+      "callbackMs": 3.400000000372529,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 71,
+      "intervalMs": 1613.9000000003725,
+      "callbackMs": 10.5,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 72,
+      "intervalMs": 24.899999999441206,
+      "callbackMs": 9.800000000745058,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 73,
+      "intervalMs": 3886.800000000745,
+      "callbackMs": 7.199999999254942,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 74,
+      "intervalMs": 2307,
+      "callbackMs": 7.7999999998137355,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 75,
+      "intervalMs": 53.89999999944121,
+      "callbackMs": 10.299999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 76,
+      "intervalMs": 3356,
+      "callbackMs": 14.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 77,
+      "intervalMs": 1850.9000000003725,
+      "callbackMs": 20.09999999962747,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "kind": "frame",
+      "phase": "xr-nearer",
+      "frame": 78,
+      "intervalMs": 1734.2000000001863,
+      "callbackMs": 8.799999999813735,
+      "views": [
+        {
+          "eye": "left",
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 900
+        },
+        {
+          "eye": "right",
+          "x": 480,
+          "y": 0,
+          "width": 0,
+          "height": 900
+        }
+      ]
+    }
+  ],
+  "note": "All XR frames in this failed settling run were fully rendered. Kept as independent severe-latency evidence; not accepted as matched settled comparison."
+}
