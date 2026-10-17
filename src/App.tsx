@@ -3,6 +3,7 @@ import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
 import { Billboard, OrbitControls } from '@react-three/drei';
 import { XRHandModelFactory } from 'three/examples/jsm/webxr/XRHandModelFactory.js';
 import * as THREE from 'three';
+import { SpatialMenu, SpatialMenuHandle } from './xr/SpatialMenu';
 import { OrbitPinch } from './xr/OrbitPinch';
 import { OrbitPracticeLink } from './integration/OrbitPracticeLink';
 import { CalligraphyDepthArt } from './CalligraphyDepthArt';
@@ -83,7 +84,7 @@ function SpatialActions({phase,onAdvance,onBack}:{phase:Phase;onAdvance:()=>void
    </mesh>
  </group>;
 }
-function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:number|null)=>void;onPinch:(i:number)=>void;onAction:()=>void;onDiagnostics:(state:string)=>void}){
+function HandTracking({menu,onHover,onPinch,onAction,onDiagnostics}:{menu?:SpatialMenuHandle;onHover:(i:number|null)=>void;onPinch:(i:number)=>void;onAction:()=>void;onDiagnostics:(state:string)=>void}){
  const {gl,scene}=useThree();
  const hands=useRef<THREE.Group[]>([]);
  const markers=useRef<THREE.Mesh[]>([]);
@@ -108,12 +109,14 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
    mesh.forEach(m=>m.visible=false);
    if(lastHover.current!==null){lastHover.current=null;onHover(null)}
   };
+  if(menu)menu.state.resetInput=disarm;
+  const interrupt=()=>{disarm();menu?.state.interrupt()};
   let session:XRSession|null=null;
   const sessionChanged=()=>{
-   disarm();
-   session?.removeEventListener('visibilitychange',disarm);
+   interrupt();
+   session?.removeEventListener('visibilitychange',interrupt);
    session=gl.xr.getSession();
-   session?.addEventListener('visibilitychange',disarm);
+   session?.addEventListener('visibilitychange',interrupt);
   };
   const handChanged=groups.map((hand,side)=>{
    const reset=()=>pinchGates[side].loseTracking();
@@ -125,10 +128,11 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
   gl.xr.addEventListener('sessionend',sessionChanged);
   sessionChanged();
   return()=>{
-   session?.removeEventListener('visibilitychange',disarm);
+   session?.removeEventListener('visibilitychange',interrupt);
    gl.xr.removeEventListener('sessionstart',sessionChanged);
    gl.xr.removeEventListener('sessionend',sessionChanged);
-   disarm();
+   interrupt();
+   if(menu)menu.state.resetInput=()=>{};
    groups.forEach((h,i)=>{
     h.removeEventListener('connected',handChanged[i]);
     h.removeEventListener('disconnected',handChanged[i]);
@@ -136,7 +140,7 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
    });
    mesh.forEach(m=>{scene.remove(m);m.geometry.dispose();(m.material as THREE.Material).dispose()});
   };
- },[gl,scene,pinchGates,onHover]);
+ },[gl,scene,pinchGates,onHover,menu]);
  useFrame((state)=>{
   if(!gl.xr.isPresenting||gl.xr.getSession()?.visibilityState!=='visible'){
    pinchGates.forEach(g=>g.loseTracking());
@@ -146,6 +150,7 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
   }
   const now=state.clock.elapsedTime;
   let hovered:number|null=null,best=Infinity,visible=0;
+  let menuHover:ReturnType<SpatialMenuHandle['hit']>=null;
   scene.updateMatrixWorld(true);
   hands.current.forEach((hand,side)=>{
    const joints=(hand as THREE.Group & {joints?:Record<string,THREE.Object3D>}).joints;
@@ -162,6 +167,16 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
    const aim=new THREE.Vector3(0,0,-1);
    if(wrist){wrist.getWorldPosition(wristPos);aim.copy(finger).sub(wristPos).normalize()}
    const ray=new THREE.Raycaster(finger,aim,0,3);
+   const menuHit=menu?.hit(ray,finger);
+   if(menu&&(menuHit||menu.state.blocksScene)){
+    if(menuHit)menuHover=menuHit;
+    if(pressed&&now>cooldown.current[side]&&menuHit){
+     if(menuHit==='harf')void menu.state.navigate(gl.xr.getSession(),location.search,path=>location.assign(path),now);
+     else menu.state.dispatch(menuHit,now);
+     cooldown.current[side]=now+.35;
+    }
+    return;
+   }
    let targetIndex:number|null=null,targetAction=false,targetScore=Infinity;
    // Use actual world positions and world scale, never estimated orbit coordinates.
    for(let i=0;i<7;i++){
@@ -188,6 +203,7 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
     cooldown.current[side]=now+.35;
    }
   });
+  if(menu){menu.state.hover=menuHover;if(menu.state.blocksScene)hovered=null}
   if(hovered!==lastHover.current){lastHover.current=hovered;onHover(hovered)}
   const report='Quest XR · tracked hands: '+visible+' · hover: '+(hovered===null?'none':LETTERS[hovered])+(now-lastActionAt.current<2.5?' · last pinch: '+lastActionLabel.current:'');
   if(report!==lastReport.current){lastReport.current=report;onDiagnostics(report)}
@@ -195,7 +211,7 @@ function HandTracking({onHover,onPinch,onAction,onDiagnostics}:{onHover:(i:numbe
  return null;
 }
 function ImmersiveButton(){const {gl}=useThree();const [available,setAvailable]=useState(false);const [inSession,setInSession]=useState(false);useEffect(()=>{let on=true;const xr=(navigator as Navigator & {xr?:{isSessionSupported:(mode:string)=>Promise<boolean>;requestSession:(mode:string,options:object)=>Promise<any>}}).xr;if(!xr)return;xr.isSessionSupported('immersive-vr').then(v=>{if(on)setAvailable(v)}).catch(()=>{});const onStart=()=>setInSession(true),onEnd=()=>setInSession(false);gl.xr.addEventListener('sessionstart',onStart);gl.xr.addEventListener('sessionend',onEnd);return()=>{on=false;gl.xr.removeEventListener('sessionstart',onStart);gl.xr.removeEventListener('sessionend',onEnd)}},[gl]);useEffect(()=>{const btn=document.getElementById('enter-xr') as HTMLButtonElement|null;if(!btn)return;btn.hidden=!available;btn.textContent=inSession?'Exit VR':'Enter Quest VR';btn.onclick=async()=>{if(btn.dataset.xrStarting==='true')return;try{if(gl.xr.isPresenting){await gl.xr.getSession()?.end();return}btn.dataset.xrStarting='true';const session=await (navigator as Navigator & {xr:{requestSession:(mode:string,options:object)=>Promise<any>}}).xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});gl.xr.setFramebufferScaleFactor(0.85);await gl.xr.setSession(session)}catch(e){console.error('WebXR session failed',e);window.alert('Unable to enter VR. Use HTTPS in a supported Quest browser and enable hand tracking.')}finally{delete btn.dataset.xrStarting}};return()=>{btn.onclick=null}},[gl,available,inSession]);return null}
-function WorldAnchor({children}:{children:React.ReactNode}){const {gl}=useThree();const group=useRef<THREE.Group>(null);useFrame(()=>{if(!group.current)return;if(gl.xr.isPresenting){group.current.position.set(0,1.45,-2.4);group.current.scale.setScalar(.014)}else{group.current.position.set(0,15,0);group.current.scale.setScalar(1)}});return <group ref={group}>{children}</group>}
+function WorldAnchor({children,menu}:{children:React.ReactNode;menu?:SpatialMenuHandle}){const {gl}=useThree();const group=useRef<THREE.Group>(null);useFrame(()=>{if(!group.current)return;if(gl.xr.isPresenting){group.current.position.set(0,1.45,-2.4).add(menu?.offset??new THREE.Vector3());group.current.scale.setScalar(.014)}else{group.current.position.set(0,15,0);group.current.scale.setScalar(1)}});return <group ref={group} name="qari-world-anchor">{children}</group>}
 function CameraExploreRig({active}:{active:boolean}){
  const {camera,gl,controls}=useThree();
  const home=useMemo(()=>new THREE.Vector3(0,98,169),[]);
@@ -226,7 +242,10 @@ function CameraExploreRig({active}:{active:boolean}){
  });
  return null;
 }
-function SceneRig({phase,speed,paused,selected,onSelect,handTarget,onHover,onAdvance,onBack,onDiagnostics,exploringPlanet,onExplorePlanet,exploreCalligraphy}:{phase:Phase;speed:number;paused:boolean;selected:Selection;onSelect:(i:number)=>void;handTarget:number|null;onHover:(i:number|null)=>void;onAdvance:()=>void;onBack:()=>void;onDiagnostics:(s:string)=>void;exploringPlanet:PlanetName|null;onExplorePlanet:(p:PlanetName)=>void;exploreCalligraphy:boolean}){return <><WorldAnchor><OrbitalScene exploringPlanet={exploringPlanet} onExplorePlanet={onExplorePlanet} phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/><SpatialActions phase={phase} onAdvance={onAdvance} onBack={onBack}/></WorldAnchor><HandTracking onHover={onHover} onPinch={onSelect} onAction={phase===0?onAdvance:onBack} onDiagnostics={onDiagnostics}/><ImmersiveButton/><OrbitPracticeLink/><CameraExploreRig active={exploreCalligraphy}/><OrbitControls makeDefault enableDamping dampingFactor={.06} minDistance={18} maxDistance={255} maxPolarAngle={1.45} minPolarAngle={.4} enablePan={false}/></>}
+function SceneRig({phase,speed,paused,onPaused,selected,onSelect,handTarget,onHover,onAdvance,onBack,onDiagnostics,exploringPlanet,onExplorePlanet,exploreCalligraphy}:{phase:Phase;speed:number;paused:boolean;onPaused:(v:boolean)=>void;selected:Selection;onSelect:(i:number)=>void;handTarget:number|null;onHover:(i:number|null)=>void;onAdvance:()=>void;onBack:()=>void;onDiagnostics:(s:string)=>void;exploringPlanet:PlanetName|null;onExplorePlanet:(p:PlanetName)=>void;exploreCalligraphy:boolean}){
+ const pauseRef=useRef(paused);pauseRef.current=paused;
+ const menu=useMemo(()=>new SpatialMenuHandle(()=>pauseRef.current,onPaused),[onPaused]);
+ return <><SpatialMenu menu={menu}/><WorldAnchor menu={menu}><OrbitalScene exploringPlanet={exploringPlanet} onExplorePlanet={onExplorePlanet} phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/><SpatialActions phase={phase} onAdvance={onAdvance} onBack={onBack}/></WorldAnchor><HandTracking menu={menu} onHover={onHover} onPinch={onSelect} onAction={phase===0?onAdvance:onBack} onDiagnostics={onDiagnostics}/><ImmersiveButton/><OrbitPracticeLink/><CameraExploreRig active={exploreCalligraphy}/><OrbitControls makeDefault enableDamping dampingFactor={.06} minDistance={18} maxDistance={255} maxPolarAngle={1.45} minPolarAngle={.4} enablePan={false}/></>}
 
 const traceGuides:Record<Letter,{name:string;instruction:string}>= {
  'ك':{name:'Kāf',instruction:'Illustrative study guide. Verify the source stroke order before educational use.'},
@@ -252,5 +271,5 @@ export default function App(){const fontReady=useLoadedArabicFont();const [phase
   window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key);
  },[]);
 const exploreNext=()=>setExploringPlanet(current=>current===null?PLANETS[0].name:PLANETS[(PLANETS.findIndex(p=>p.name===current)+1)%PLANETS.length].name);const selectedLetter=selected===null?null:LETTERS[selected];const mirror=selected===null?null:LETTERS[6-selected];const caption=selectedLetter?(selected===3?'ي is the center of the mirrored sequence.':`Mirrored pair: ${selectedLetter} ↔ ${mirror}`):'Select a letter to illuminate its mirror.';
- return <main className="app" onPointerMove={e=>{if(handMode)setCursor({x:e.clientX,y:e.clientY})}}><div className="canvas"><Canvas camera={{position:[0,98,169],fov:43,near:.1,far:1000}} dpr={[1,1.7]} gl={{antialias:true,alpha:false}}><Suspense fallback={null}>{fontReady&&<SceneRig key={resetKey} phase={phase} speed={speed} paused={paused||trace!==null} selected={selected} onSelect={select} handTarget={handTarget} onHover={setHandTarget} onAdvance={()=>setPhase(1)} onBack={()=>{setPhase(0);setSelected(null)}} onDiagnostics={setXrDiagnostics} exploringPlanet={exploringPlanet} onExplorePlanet={setExploringPlanet} exploreCalligraphy={exploreCalligraphy}/>}</Suspense></Canvas></div><div className="vignette"/><header className="top"><div><strong>QARI<span>AI</span> / SPATIAL</strong><small>THE LIVING ORBIT · REACT / WEBXR</small></div><div className="orbit-links"><div className="top-tag">✧ The letters lead · The universe responds</div><a id="practice-calligraphy" className="practice-link" href="/harf-studio-xr.html">✎ Practice Calligraphy / Harf Studio</a></div></header><section className="stage-ui" aria-live="polite"><div className="step">✧ {phase===0?'MIRRORED LETTERS':'THE LIVING ORBIT'} &nbsp; {phase===0?'01':'02'} / 02</div><p>{exploringPlanet?`Exploring ${exploringPlanet} · Click a planet or select Next planet to discover another.`:phase===0?caption:'The letters awaken — a continuous, luminous celestial dance.'}</p><div className="primary-actions">{phase===0?<><button className="gold" onClick={()=>setPhase(1)}>◎ Bring the letters into orbit →</button>{selectedLetter&&<button onClick={()=>setTrace(selectedLetter)}>✎ Trace {selectedLetter} →</button>}</>:<><button className="gold" onClick={()=>{setPhase(0);setSelected(null)}}>↺ Explore letters again</button></>}</div></section><nav className="tools" aria-label="Scene controls"><button onClick={()=>{setExploreCalligraphy(false);setExploringPlanet(null);setResetKey(n=>n+1)}}>↺ Reset view</button><button onClick={()=>setExploreCalligraphy(v=>!v)}>{exploreCalligraphy?"↩ Return to Orbit":"✧ Explore Calligraphy"}</button><button onClick={exploreNext}>{exploringPlanet?`◎ ${exploringPlanet} · Next planet`:"◎ Explore planets"}</button><button onClick={()=>setPaused(v=>!v)}>{paused?'▶ Resume motion':'Ⅱ Pause motion'}</button><button onClick={()=>setSpeed(v=>v===1?2:v===2?.5:1)}>{speed}× Speed</button><button aria-pressed={handMode} onClick={()=>setHandMode(v=>!v)}>{handMode?'◉ Hand Mode On':'◎ Hand Mode'}</button><button id="enter-xr" hidden>Enter Quest VR</button></nav>{handMode&&<><div className="hand-hint">Desktop hand simulation · click a letter · keys 1–7 select · Space pauses · Esc closes</div><div className="finger" style={{left:cursor.x,top:cursor.y}} /></>}{trace&&<><div className="trace-shade" onClick={closeTrace}/><TracePanel key={trace} letter={trace} onClose={closeTrace}/></>}<div className="xr-diagnostics" aria-live="off">{xrDiagnostics}</div><div className="build-note">Quest hand tracking requires HTTPS, a supported headset browser, and enabled hand input. Desktop mode is mouse simulation.</div></main>
+ return <main className="app" onPointerMove={e=>{if(handMode)setCursor({x:e.clientX,y:e.clientY})}}><div className="canvas"><Canvas camera={{position:[0,98,169],fov:43,near:.1,far:1000}} dpr={[1,1.7]} gl={{antialias:true,alpha:false}}><Suspense fallback={null}>{fontReady&&<SceneRig key={resetKey} phase={phase} speed={speed} paused={paused||trace!==null} onPaused={setPaused} selected={selected} onSelect={select} handTarget={handTarget} onHover={setHandTarget} onAdvance={()=>setPhase(1)} onBack={()=>{setPhase(0);setSelected(null)}} onDiagnostics={setXrDiagnostics} exploringPlanet={exploringPlanet} onExplorePlanet={setExploringPlanet} exploreCalligraphy={exploreCalligraphy}/>}</Suspense></Canvas></div><div className="vignette"/><header className="top"><div><strong>QARI<span>AI</span> / SPATIAL</strong><small>THE LIVING ORBIT · REACT / WEBXR</small></div><div className="orbit-links"><div className="top-tag">✧ The letters lead · The universe responds</div><a id="practice-calligraphy" className="practice-link" href="/harf-studio-xr.html">✎ Practice Calligraphy / Harf Studio</a></div></header><section className="stage-ui" aria-live="polite"><div className="step">✧ {phase===0?'MIRRORED LETTERS':'THE LIVING ORBIT'} &nbsp; {phase===0?'01':'02'} / 02</div><p>{exploringPlanet?`Exploring ${exploringPlanet} · Click a planet or select Next planet to discover another.`:phase===0?caption:'The letters awaken — a continuous, luminous celestial dance.'}</p><div className="primary-actions">{phase===0?<><button className="gold" onClick={()=>setPhase(1)}>◎ Bring the letters into orbit →</button>{selectedLetter&&<button onClick={()=>setTrace(selectedLetter)}>✎ Trace {selectedLetter} →</button>}</>:<><button className="gold" onClick={()=>{setPhase(0);setSelected(null)}}>↺ Explore letters again</button></>}</div></section><nav className="tools" aria-label="Scene controls"><button onClick={()=>{setExploreCalligraphy(false);setExploringPlanet(null);setResetKey(n=>n+1)}}>↺ Reset view</button><button onClick={()=>setExploreCalligraphy(v=>!v)}>{exploreCalligraphy?"↩ Return to Orbit":"✧ Explore Calligraphy"}</button><button onClick={exploreNext}>{exploringPlanet?`◎ ${exploringPlanet} · Next planet`:"◎ Explore planets"}</button><button onClick={()=>setPaused(v=>!v)}>{paused?'▶ Resume motion':'Ⅱ Pause motion'}</button><button onClick={()=>setSpeed(v=>v===1?2:v===2?.5:1)}>{speed}× Speed</button><button aria-pressed={handMode} onClick={()=>setHandMode(v=>!v)}>{handMode?'◉ Hand Mode On':'◎ Hand Mode'}</button><button id="enter-xr" hidden>Enter Quest VR</button></nav>{handMode&&<><div className="hand-hint">Desktop hand simulation · click a letter · keys 1–7 select · Space pauses · Esc closes</div><div className="finger" style={{left:cursor.x,top:cursor.y}} /></>}{trace&&<><div className="trace-shade" onClick={closeTrace}/><TracePanel key={trace} letter={trace} onClose={closeTrace}/></>}<div className="xr-diagnostics" aria-live="off">{xrDiagnostics}</div><div className="build-note">Quest hand tracking requires HTTPS, a supported headset browser, and enabled hand input. Desktop mode is mouse simulation.</div></main>
 }

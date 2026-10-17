@@ -1,0 +1,92 @@
+{
+  "success": false,
+  "platform": "linux",
+  "input": "IWER 2.1.0 WEBXR HAND EMULATION — NOT PHYSICAL QUEST",
+  "renderer": "production menu/hand/letter/phase components in lightweight WebXR fixture; NOT full celestial rendering",
+  "events": [
+    {
+      "input": "right",
+      "target": "qari-xr-menu-launcher",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-letter-0",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.205
+    },
+    {
+      "pause": "observed"
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.205
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.09
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.205
+    },
+    {
+      "inspectionOffset": [
+        -0.001965305315427076,
+        1.45,
+        -2.250262454566285
+      ],
+      "headsetMatrixUnchanged": true
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": -0.025
+    },
+    {
+      "input": "left",
+      "target": "qari-xr-menu-panel",
+      "row": -0.2
+    },
+    {
+      "input": "right",
+      "target": "qari-action-primary",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-action-primary",
+      "row": 0
+    },
+    {
+      "phaseTransitions": "01→02→01 observed"
+    },
+    {
+      "input": "left",
+      "target": "qari-xr-menu-launcher",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-launcher",
+      "row": 0
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "01-launcher.png",
+    "02-menu.png",
+    "03-inspect.png",
+    "04-nearer.png",
+    "05-menu-left.png"
+  ],
+  "warnings": [],
+  "error": "Error: page.evaluate: Error: No active XR session\n    at eval (eval at evaluate (:311:30), <anonymous>:1:102)\n    at new Promise (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:4)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}

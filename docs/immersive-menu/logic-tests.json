@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "checks": [
+    "independent recovery gates reused",
+    "duplicate/two-hand transition barrier",
+    "modal scene focus",
+    "pause/resume",
+    "bounded 15cm inspection steps and restore of prior pause",
+    "interruption/close reset",
+    "single safe session teardown",
+    "default/texture navigation",
+    "timeout failure stays actionable"
+  ],
+  "inputResets": 34,
+  "limits": "Logic simulation, not headset evidence"
+}

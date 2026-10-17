@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "checks": [
+    "exact row bounds and gaps",
+    "near-field and ray targeting",
+    "invisible ancestor rejects input",
+    "busy input blocked",
+    "inspection row mapping"
+  ],
+  "menuGeometryBytes": 280,
+  "menuTriangles": 4,
+  "simultaneouslyVisibleTriangles": 2,
+  "estimatedRGBA8TexturesWithMipsMiB": 4.333333333333333,
+  "limits": "Geometry arrays measured; texture storage estimate excludes driver overhead; not hardware profiling"
+}

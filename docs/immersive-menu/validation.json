@@ -1,0 +1,18 @@
+{
+  "base": "87a8a840e0044d5ed8b1f151b2d6558ac9e061d2",
+  "productionBuild": "passed; inherited large chunk warning",
+  "arabicContent": "eight exact recorded source spans passed",
+  "glyphIntegrity": "24 fresh native-alpha cases passed; all text/font/ring/mask/atlas/material/shader source bytes unchanged",
+  "menuLogicAndTargets": "passed; near/ray bounds, invisible ancestors, modal focus, duplicate guard, pause restore, input resets, limits, safe-navigation success/default/timeout",
+  "actualMenuComponentIwer": "passed both hands, opening/closing, actual blocked letter selection, pause/resume, inspection, unchanged headset matrix, closed recovery, phase actions, session re-entry and real Harf navigation/return",
+  "fullSceneIwer": "BLOCKED: severe render artifacts and a 12-second XR frame budget exceeded; no scene/artwork workaround applied; not established as emulator-only",
+  "windowsExecution": "not performed in Linux cloud; reproducible Windows script and prerequisites provided",
+  "questHardware": "pending comfort, tracking, native stereo, performance and full visual review",
+  "desktopOrbit": "passed actual WebGL Pause/Explore/Return/mirrored scales/exactly two phases; original wide counters retained",
+  "harf": "existing tracing/session/pinch/ink simulations and real SVG/spatial body-dot-completion/reset/denial/layout/cleanup passed; initial concurrent navigation timeout retained in notes; standalone rerun passed",
+  "integration": "existing session-end/completion/failure/timeout tests passed; all built entry pages and bundled font HTTP 200",
+  "existingPR30Recovery": "logic and actual browser callbacks/navigation passed",
+  "scope": "passed; only App XR adapters and two new menu modules changed; desktop controls/cameras/art/Harf bytes unchanged",
+  "evidence": "five genuine successful IWER component canvas captures; separate failed full-scene capture; Harf genuine desktop captures; image-provenance.json",
+  "safety": "no merge, production deployment, other PR modifications, Android or competition footage changes"
+}
