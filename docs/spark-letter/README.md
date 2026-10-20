@@ -2,6 +2,10 @@
 
 Isolated draft PR #34, branch `prototype/spark-letter-study-v0.1`. Opt-in route `/spark-letter/index.html`. Living Orbit baseline remains PR #33 at `ad10ee39ee0f16262e7b3654b24bad23a34351ff`.
 
+## New design proof — approval before implementation
+
+[Surface 09: labelled 2D material proof, exact-outline audit and resolution limits](proof-09/README.md). This is documentation only; the running Surface 08 study described below is unchanged.
+
 ## Owner-directed refinement
 
 Surface 08 is a deliberately narrow finish pass: **satin sapphire sidewalls and finer, less repetitive panel engraving**. Geometry, framing, the three existing colour regions, face material, environment, direct lights, exposure and glow are fixed.
