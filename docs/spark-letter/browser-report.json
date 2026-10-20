@@ -6,6 +6,8 @@
   "captures": [
     "compare-wide.png",
     "original-wide.png",
+    "hybrid-wide.png",
+    "original-close.png",
     "hybrid-close.png",
     "original-oblique.png",
     "hybrid-oblique.png"
@@ -53,11 +55,11 @@
             "rawBytes": 1769472,
             "rgba8WithMipsEstimate": 2359296,
             "coverageSamples": 71539,
-            "perimeterSamples": 15631,
-            "channelSamples": 4456,
+            "perimeterSamples": 21465,
+            "channelSamples": 4506,
             "opacity": "all surface texels opaque; no geometry discard or displacement",
             "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-            "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient"
+            "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient"
           },
           "floatingPresentation": true,
           "bevelDirection": "inward",
@@ -120,9 +122,9 @@
         "originalFacePreserved": true,
         "sculptureUsesOriginalFaceOverlay": false,
         "settled": true,
-        "readyMs": 9721.800000000745,
+        "readyMs": 4746.199999999255,
         "render": {
-          "frame": 76,
+          "frame": 84,
           "calls": 8,
           "triangles": 11982,
           "points": 260,
@@ -132,7 +134,7 @@
           "geometries": 6,
           "textures": 12
         },
-        "frameSamples": 3
+        "frameSamples": 6
       },
       "camera": {
         "position": [
@@ -167,16 +169,28 @@
       },
       "frames": [
         {
-          "intervalMs": 201.59999999962747,
-          "submitMs": 5.099999999627471
+          "intervalMs": 227.40000000037253,
+          "submitMs": 2.2000000001862645
         },
         {
-          "intervalMs": 312.1000000005588,
-          "submitMs": 41.5
+          "intervalMs": 254.59999999962747,
+          "submitMs": 4.800000000745058
         },
         {
-          "intervalMs": 1142.7000000001863,
-          "submitMs": 9.299999999813735
+          "intervalMs": 329,
+          "submitMs": 4.5
+        },
+        {
+          "intervalMs": 102,
+          "submitMs": 4.099999999627471
+        },
+        {
+          "intervalMs": 319,
+          "submitMs": 30.299999999813735
+        },
+        {
+          "intervalMs": 247.20000000018626,
+          "submitMs": 3.800000000745058
         }
       ],
       "textures": [
@@ -307,11 +321,11 @@
             "rawBytes": 1769472,
             "rgba8WithMipsEstimate": 2359296,
             "coverageSamples": 71539,
-            "perimeterSamples": 15631,
-            "channelSamples": 4456,
+            "perimeterSamples": 21465,
+            "channelSamples": 4506,
             "opacity": "all surface texels opaque; no geometry discard or displacement",
             "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-            "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient"
+            "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient"
           },
           "floatingPresentation": true,
           "bevelDirection": "inward",
@@ -374,9 +388,9 @@
         "originalFacePreserved": true,
         "sculptureUsesOriginalFaceOverlay": false,
         "settled": true,
-        "readyMs": 9721.800000000745,
+        "readyMs": 4746.199999999255,
         "render": {
-          "frame": 83,
+          "frame": 97,
           "calls": 3,
           "triangles": 4,
           "points": 260,
@@ -386,7 +400,7 @@
           "geometries": 6,
           "textures": 12
         },
-        "frameSamples": 2
+        "frameSamples": 7
       },
       "camera": {
         "position": [
@@ -421,12 +435,32 @@
       },
       "frames": [
         {
-          "intervalMs": 1901.3999999994412,
-          "submitMs": 3.3999999994412065
+          "intervalMs": 174.70000000018626,
+          "submitMs": 1.7000000001862645
         },
         {
-          "intervalMs": 504.30000000074506,
-          "submitMs": 20.5
+          "intervalMs": 212.09999999962747,
+          "submitMs": 8.800000000745058
+        },
+        {
+          "intervalMs": 424.5,
+          "submitMs": 3.2000000001862645
+        },
+        {
+          "intervalMs": 227.30000000074506,
+          "submitMs": 5
+        },
+        {
+          "intervalMs": 198.19999999925494,
+          "submitMs": 4
+        },
+        {
+          "intervalMs": 158,
+          "submitMs": 11.700000000186265
+        },
+        {
+          "intervalMs": 142.80000000074506,
+          "submitMs": 3.2999999998137355
         }
       ],
       "textures": [
@@ -575,11 +609,11 @@
             "rawBytes": 1769472,
             "rgba8WithMipsEstimate": 2359296,
             "coverageSamples": 71539,
-            "perimeterSamples": 15631,
-            "channelSamples": 4456,
+            "perimeterSamples": 21465,
+            "channelSamples": 4506,
             "opacity": "all surface texels opaque; no geometry discard or displacement",
             "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-            "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient"
+            "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient"
           },
           "floatingPresentation": true,
           "bevelDirection": "inward",
@@ -642,9 +676,9 @@
         "originalFacePreserved": true,
         "sculptureUsesOriginalFaceOverlay": false,
         "settled": true,
-        "readyMs": 9721.800000000745,
+        "readyMs": 4746.199999999255,
         "render": {
-          "frame": 91,
+          "frame": 110,
           "calls": 5,
           "triangles": 11940,
           "points": 260,
@@ -654,7 +688,7 @@
           "geometries": 6,
           "textures": 12
         },
-        "frameSamples": 3
+        "frameSamples": 5
       },
       "camera": {
         "position": [
@@ -689,16 +723,24 @@
       },
       "frames": [
         {
-          "intervalMs": 914.0999999996275,
-          "submitMs": 75.09999999962747
-        },
-        {
-          "intervalMs": 401.5,
-          "submitMs": 5.699999999254942
-        },
-        {
-          "intervalMs": 645.6000000005588,
+          "intervalMs": 223.79999999981374,
           "submitMs": 9.700000000186265
+        },
+        {
+          "intervalMs": 226,
+          "submitMs": 1.099999999627471
+        },
+        {
+          "intervalMs": 451.09999999962747,
+          "submitMs": 8.600000000558794
+        },
+        {
+          "intervalMs": 343.20000000018626,
+          "submitMs": 3.2999999998137355
+        },
+        {
+          "intervalMs": 6.6000000005587935,
+          "submitMs": 1.7999999998137355
         }
       ],
       "textures": [
@@ -738,6 +780,24 @@
           "estimatedBytes": 32768
         },
         {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
           "width": 256,
           "height": 256,
           "type": 1009,
@@ -772,12 +832,16 @@
         }
       ],
       "sparkResources": {
-        "active": 0,
+        "active": 19,
         "capacity": 16384,
         "accumulators": [
           {
             "capacity": 0,
             "count": 19
+          },
+          {
+            "capacity": 0,
+            "count": 0
           }
         ],
         "geometryBytes": 3320
@@ -825,11 +889,11 @@
             "rawBytes": 1769472,
             "rgba8WithMipsEstimate": 2359296,
             "coverageSamples": 71539,
-            "perimeterSamples": 15631,
-            "channelSamples": 4456,
+            "perimeterSamples": 21465,
+            "channelSamples": 4506,
             "opacity": "all surface texels opaque; no geometry discard or displacement",
             "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-            "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient"
+            "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient"
           },
           "floatingPresentation": true,
           "bevelDirection": "inward",
@@ -892,11 +956,11 @@
         "originalFacePreserved": true,
         "sculptureUsesOriginalFaceOverlay": false,
         "settled": true,
-        "readyMs": 9721.800000000745,
+        "readyMs": 4746.199999999255,
         "render": {
-          "frame": 96,
-          "calls": 4,
-          "triangles": 42,
+          "frame": 127,
+          "calls": 3,
+          "triangles": 4,
           "points": 260,
           "lines": 0
         },
@@ -904,7 +968,7 @@
           "geometries": 6,
           "textures": 12
         },
-        "frameSamples": 2
+        "frameSamples": 11
       },
       "camera": {
         "position": [
@@ -939,12 +1003,48 @@
       },
       "frames": [
         {
-          "intervalMs": 18.700000000186265,
-          "submitMs": 0.5
+          "intervalMs": 469.09999999962747,
+          "submitMs": 1.5
         },
         {
-          "intervalMs": 1169.699999999255,
-          "submitMs": 3.2999999998137355
+          "intervalMs": 100,
+          "submitMs": 0.599999999627471
+        },
+        {
+          "intervalMs": 217,
+          "submitMs": 0.900000000372529
+        },
+        {
+          "intervalMs": 168,
+          "submitMs": 1.099999999627471
+        },
+        {
+          "intervalMs": 115.79999999981374,
+          "submitMs": 0.7999999998137355
+        },
+        {
+          "intervalMs": 119,
+          "submitMs": 5.6000000005587935
+        },
+        {
+          "intervalMs": 212.29999999981374,
+          "submitMs": 7.800000000745058
+        },
+        {
+          "intervalMs": 64.6000000005588,
+          "submitMs": 2.7999999998137355
+        },
+        {
+          "intervalMs": 188.79999999981374,
+          "submitMs": 5.2000000001862645
+        },
+        {
+          "intervalMs": 99.59999999962747,
+          "submitMs": 2.8999999994412065
+        },
+        {
+          "intervalMs": 115.20000000018626,
+          "submitMs": 2.2999999998137355
         }
       ],
       "textures": [
@@ -1041,11 +1141,11 @@
         "accumulators": [
           {
             "capacity": 0,
-            "count": 0
+            "count": 19
           },
           {
             "capacity": 2048,
-            "count": 19
+            "count": 0
           }
         ],
         "geometryBytes": 3320
@@ -1093,11 +1193,11 @@
             "rawBytes": 1769472,
             "rgba8WithMipsEstimate": 2359296,
             "coverageSamples": 71539,
-            "perimeterSamples": 15631,
-            "channelSamples": 4456,
+            "perimeterSamples": 21465,
+            "channelSamples": 4506,
             "opacity": "all surface texels opaque; no geometry discard or displacement",
             "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-            "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient"
+            "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient"
           },
           "floatingPresentation": true,
           "bevelDirection": "inward",
@@ -1160,11 +1260,11 @@
         "originalFacePreserved": true,
         "sculptureUsesOriginalFaceOverlay": false,
         "settled": true,
-        "readyMs": 9721.800000000745,
+        "readyMs": 4746.199999999255,
         "render": {
-          "frame": 101,
-          "calls": 5,
-          "triangles": 11940,
+          "frame": 143,
+          "calls": 6,
+          "triangles": 11978,
           "points": 260,
           "lines": 0
         },
@@ -1172,7 +1272,7 @@
           "geometries": 6,
           "textures": 12
         },
-        "frameSamples": 3
+        "frameSamples": 8
       },
       "camera": {
         "position": [
@@ -1207,16 +1307,36 @@
       },
       "frames": [
         {
-          "intervalMs": 618.6000000005588,
-          "submitMs": 81
+          "intervalMs": 196.19999999925494,
+          "submitMs": 5.2000000001862645
         },
         {
-          "intervalMs": 1908.0999999996275,
-          "submitMs": 6.7000000001862645
+          "intervalMs": 144,
+          "submitMs": 2
         },
         {
-          "intervalMs": 464.40000000037253,
-          "submitMs": 1.099999999627471
+          "intervalMs": 187.30000000074506,
+          "submitMs": 3.099999999627471
+        },
+        {
+          "intervalMs": 106.19999999925494,
+          "submitMs": 4.900000000372529
+        },
+        {
+          "intervalMs": 299.80000000074506,
+          "submitMs": 0.900000000372529
+        },
+        {
+          "intervalMs": 246.59999999962747,
+          "submitMs": 1
+        },
+        {
+          "intervalMs": 198.59999999962747,
+          "submitMs": 7.1000000005587935
+        },
+        {
+          "intervalMs": 192.1000000005588,
+          "submitMs": 1.2999999998137355
         }
       ],
       "textures": [
@@ -1256,6 +1376,24 @@
           "estimatedBytes": 32768
         },
         {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
           "width": 256,
           "height": 256,
           "type": 1009,
@@ -1290,9 +1428,13 @@
         }
       ],
       "sparkResources": {
-        "active": 0,
+        "active": 19,
         "capacity": 16384,
         "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          },
           {
             "capacity": 0,
             "count": 19
@@ -1343,11 +1485,11 @@
             "rawBytes": 1769472,
             "rgba8WithMipsEstimate": 2359296,
             "coverageSamples": 71539,
-            "perimeterSamples": 15631,
-            "channelSamples": 4456,
+            "perimeterSamples": 21465,
+            "channelSamples": 4506,
             "opacity": "all surface texels opaque; no geometry discard or displacement",
             "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-            "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient"
+            "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient"
           },
           "floatingPresentation": true,
           "bevelDirection": "inward",
@@ -1410,11 +1552,319 @@
         "originalFacePreserved": true,
         "sculptureUsesOriginalFaceOverlay": false,
         "settled": true,
-        "readyMs": 9721.800000000745,
+        "readyMs": 4746.199999999255,
         "render": {
-          "frame": 110,
+          "frame": 160,
           "calls": 3,
           "triangles": 4,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 6,
+          "textures": 12
+        },
+        "frameSamples": 12
+      },
+      "camera": {
+        "position": [
+          2.8,
+          1.071875,
+          5.8
+        ],
+        "quaternion": [
+          -0.026458376928255888,
+          0.22290704607424847,
+          0.006052324195185316,
+          0.9744617860504391
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 270.79999999981374,
+          "submitMs": 3.7000000001862645
+        },
+        {
+          "intervalMs": 208.5,
+          "submitMs": 0.8999999994412065
+        },
+        {
+          "intervalMs": 223.29999999981374,
+          "submitMs": 1.5
+        },
+        {
+          "intervalMs": 79.70000000018626,
+          "submitMs": 0.900000000372529
+        },
+        {
+          "intervalMs": 92.70000000018626,
+          "submitMs": 4.2000000001862645
+        },
+        {
+          "intervalMs": 140.79999999981374,
+          "submitMs": 1
+        },
+        {
+          "intervalMs": 76.70000000018626,
+          "submitMs": 1.2000000001862645
+        },
+        {
+          "intervalMs": 125.09999999962747,
+          "submitMs": 2.5
+        },
+        {
+          "intervalMs": 81.70000000018626,
+          "submitMs": 0.7000000001862645
+        },
+        {
+          "intervalMs": 137.29999999981374,
+          "submitMs": 1.2999999998137355
+        },
+        {
+          "intervalMs": 128.1000000005588,
+          "submitMs": 1
+        },
+        {
+          "intervalMs": 114,
+          "submitMs": 12.299999999813735
+        }
+      ],
+      "textures": [
+        {
+          "width": 384,
+          "height": 512,
+          "depth": 1,
+          "type": 1016,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1572864
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        },
+        {
+          "width": 384,
+          "height": 576,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 1179648
+        },
+        {
+          "width": 384,
+          "height": 576,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 1179648
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1048576
+        }
+      ],
+      "sparkResources": {
+        "active": 0,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          },
+          {
+            "capacity": 2048,
+            "count": 0
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "hybrid",
+      "view": "oblique",
+      "report": {
+        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "hybrid",
+        "view": "oblique",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "sculpture": {
+          "kind": "physical extrusion of original font vectors; not raster tracing",
+          "glyph": "uni0643",
+          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+          "components": 2,
+          "triangles": 11940,
+          "geometryBytes": 1146240,
+          "depth": 0.2,
+          "bevel": 0.012,
+          "crown": {
+            "height": 0.004,
+            "width": 0.055,
+            "xyUnchanged": true
+          },
+          "finish": "designed sapphire perimeter with localized amber/coral/turquoise highlights and restrained iridescent sheen",
+          "surface": {
+            "width": 384,
+            "height": 576,
+            "rawBytes": 1769472,
+            "rgba8WithMipsEstimate": 2359296,
+            "coverageSamples": 71539,
+            "perimeterSamples": 21465,
+            "channelSamples": 4506,
+            "opacity": "all surface texels opaque; no geometry discard or displacement",
+            "channels": "auxiliary bump/roughness shading, not physically cut grooves",
+            "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient"
+          },
+          "floatingPresentation": true,
+          "bevelDirection": "inward",
+          "bounds": [
+            [
+              -0.8343843817710876,
+              -0.5289109349250793,
+              -0.11999999731779099
+            ],
+            [
+              0.8090990781784058,
+              1.9543254375457764,
+              0.12399999797344208
+            ]
+          ],
+          "sourceBoundsWorld": [
+            [
+              -0.834384375,
+              -0.5289109375000001
+            ],
+            [
+              0.809134955357143,
+              1.9543397887323943
+            ]
+          ],
+          "uvTransform": {
+            "scale": 0.0029906250000000002,
+            "tx": -0.9824203125,
+            "ty": -0.48554687500000004,
+            "baseline": 156.25
+          },
+          "environment": {
+            "width": 384,
+            "height": 512,
+            "type": 1016
+          },
+          "shadowMap": [
+            512,
+            512
+          ],
+          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+        },
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 19,
+        "packedUsedBytes": 304,
+        "packedCapacityBytes": 32768,
+        "boundarySamples": 19,
+        "depthRange": [
+          -0.22,
+          -0.22
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": false,
+        "originalFacePreserved": true,
+        "sculptureUsesOriginalFaceOverlay": false,
+        "settled": true,
+        "readyMs": 4746.199999999255,
+        "render": {
+          "frame": 175,
+          "calls": 5,
+          "triangles": 11940,
           "points": 260,
           "lines": 0
         },
@@ -1457,24 +1907,24 @@
       },
       "frames": [
         {
-          "intervalMs": 615,
-          "submitMs": 28.09999999962747
+          "intervalMs": 326.59999999962747,
+          "submitMs": 2.2999999998137355
         },
         {
-          "intervalMs": 492,
-          "submitMs": 6.8999999994412065
+          "intervalMs": 63.700000000186265,
+          "submitMs": 0.599999999627471
         },
         {
-          "intervalMs": 206.79999999981374,
-          "submitMs": 1.800000000745058
+          "intervalMs": 86.40000000037253,
+          "submitMs": 1.400000000372529
         },
         {
-          "intervalMs": 176.5,
-          "submitMs": 2.2000000001862645
+          "intervalMs": 115.20000000018626,
+          "submitMs": 3
         },
         {
-          "intervalMs": 435.1000000005588,
-          "submitMs": 52.39999999944121
+          "intervalMs": 892.5999999996275,
+          "submitMs": 7.7000000001862645
         }
       ],
       "textures": [
@@ -1516,7 +1966,7 @@
         {
           "width": 2048,
           "height": 1,
-          "depth": 1,
+          "depth": 0,
           "type": 1014,
           "format": 1033,
           "mips": false,
@@ -1525,7 +1975,7 @@
         {
           "width": 2048,
           "height": 1,
-          "depth": 1,
+          "depth": 0,
           "type": 1009,
           "format": 1023,
           "mips": false,
@@ -1566,7 +2016,7 @@
         }
       ],
       "sparkResources": {
-        "active": 0,
+        "active": 19,
         "capacity": 16384,
         "accumulators": [
           {
@@ -1574,258 +2024,8 @@
             "count": 19
           },
           {
-            "capacity": 2048,
+            "capacity": 0,
             "count": 0
-          }
-        ],
-        "geometryBytes": 3320
-      }
-    },
-    {
-      "mode": "hybrid",
-      "view": "oblique",
-      "report": {
-        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
-        "letter": "ك",
-        "codepoints": [
-          "U+0643"
-        ],
-        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
-        "spark": "2.3.1",
-        "three": "180",
-        "mode": "hybrid",
-        "view": "oblique",
-        "breathing": false,
-        "ready": true,
-        "errors": [],
-        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
-        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
-        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
-        "sculpture": {
-          "kind": "physical extrusion of original font vectors; not raster tracing",
-          "glyph": "uni0643",
-          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
-          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
-          "components": 2,
-          "triangles": 11940,
-          "geometryBytes": 1146240,
-          "depth": 0.2,
-          "bevel": 0.012,
-          "crown": {
-            "height": 0.004,
-            "width": 0.055,
-            "xyUnchanged": true
-          },
-          "finish": "designed sapphire perimeter with localized amber/coral/turquoise highlights and restrained iridescent sheen",
-          "surface": {
-            "width": 384,
-            "height": 576,
-            "rawBytes": 1769472,
-            "rgba8WithMipsEstimate": 2359296,
-            "coverageSamples": 71539,
-            "perimeterSamples": 15631,
-            "channelSamples": 4456,
-            "opacity": "all surface texels opaque; no geometry discard or displacement",
-            "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-            "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient"
-          },
-          "floatingPresentation": true,
-          "bevelDirection": "inward",
-          "bounds": [
-            [
-              -0.8343843817710876,
-              -0.5289109349250793,
-              -0.11999999731779099
-            ],
-            [
-              0.8090990781784058,
-              1.9543254375457764,
-              0.12399999797344208
-            ]
-          ],
-          "sourceBoundsWorld": [
-            [
-              -0.834384375,
-              -0.5289109375000001
-            ],
-            [
-              0.809134955357143,
-              1.9543397887323943
-            ]
-          ],
-          "uvTransform": {
-            "scale": 0.0029906250000000002,
-            "tx": -0.9824203125,
-            "ty": -0.48554687500000004,
-            "baseline": 156.25
-          },
-          "environment": {
-            "width": 384,
-            "height": 512,
-            "type": 1016
-          },
-          "shadowMap": [
-            512,
-            512
-          ],
-          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
-        },
-        "inkBounds": [
-          79,
-          14,
-          175,
-          158
-        ],
-        "splats": 19,
-        "packedUsedBytes": 304,
-        "packedCapacityBytes": 32768,
-        "boundarySamples": 19,
-        "depthRange": [
-          -0.22,
-          -0.22
-        ],
-        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
-        "samplingCentersInMask": true,
-        "faceSharedIdentity": false,
-        "originalFacePreserved": true,
-        "sculptureUsesOriginalFaceOverlay": false,
-        "settled": true,
-        "readyMs": 9721.800000000745,
-        "render": {
-          "frame": 118,
-          "calls": 5,
-          "triangles": 11940,
-          "points": 260,
-          "lines": 0
-        },
-        "memory": {
-          "geometries": 6,
-          "textures": 12
-        },
-        "frameSamples": 3
-      },
-      "camera": {
-        "position": [
-          2.8,
-          1.071875,
-          5.8
-        ],
-        "quaternion": [
-          -0.026458376928255888,
-          0.22290704607424847,
-          0.006052324195185316,
-          0.9744617860504391
-        ],
-        "projection": [
-          1.1397918820992796,
-          0,
-          0,
-          0,
-          0,
-          3.171594802363213,
-          0,
-          0,
-          0,
-          0,
-          -1.003338898163606,
-          -1,
-          0,
-          0,
-          -0.2003338898163606,
-          0
-        ]
-      },
-      "frames": [
-        {
-          "intervalMs": 1635.6000000005588,
-          "submitMs": 49.799999999813735
-        },
-        {
-          "intervalMs": 749.5,
-          "submitMs": 1.1000000005587935
-        },
-        {
-          "intervalMs": 304.59999999962747,
-          "submitMs": 35.200000000186265
-        }
-      ],
-      "textures": [
-        {
-          "width": 384,
-          "height": 512,
-          "depth": 1,
-          "type": 1016,
-          "format": 1023,
-          "mips": false,
-          "estimatedBytes": 1572864
-        },
-        {
-          "width": 2048,
-          "height": 1,
-          "depth": 1,
-          "type": 1014,
-          "format": 1033,
-          "mips": false,
-          "estimatedBytes": 32768
-        },
-        {
-          "width": 4096,
-          "height": 1,
-          "type": 1014,
-          "format": 1033,
-          "mips": false,
-          "estimatedBytes": 65536
-        },
-        {
-          "width": 2048,
-          "height": 1,
-          "depth": 1,
-          "type": 1014,
-          "format": 1033,
-          "mips": false,
-          "estimatedBytes": 32768
-        },
-        {
-          "width": 256,
-          "height": 256,
-          "type": 1009,
-          "format": 1023,
-          "mips": true,
-          "estimatedBytes": 349525.3333333333
-        },
-        {
-          "width": 384,
-          "height": 576,
-          "type": 1009,
-          "format": 1023,
-          "mips": true,
-          "estimatedBytes": 1179648
-        },
-        {
-          "width": 384,
-          "height": 576,
-          "type": 1009,
-          "format": 1023,
-          "mips": true,
-          "estimatedBytes": 1179648
-        },
-        {
-          "width": 512,
-          "height": 512,
-          "depth": 1,
-          "type": 1009,
-          "format": 1023,
-          "mips": false,
-          "estimatedBytes": 1048576
-        }
-      ],
-      "sparkResources": {
-        "active": 0,
-        "capacity": 16384,
-        "accumulators": [
-          {
-            "capacity": 0,
-            "count": 19
           }
         ],
         "geometryBytes": 3320
@@ -1840,11 +2040,11 @@
     "rawBytes": 1769472,
     "rgba8WithMipsEstimate": 2359296,
     "coverageSamples": 71539,
-    "perimeterSamples": 15631,
-    "channelSamples": 4456,
+    "perimeterSamples": 21465,
+    "channelSamples": 4506,
     "opacity": "all surface texels opaque; no geometry discard or displacement",
     "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-    "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient",
+    "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient",
     "opaque": true,
     "protectedOpening": true,
     "outsideZero": true,
@@ -1902,11 +2102,11 @@
         "rawBytes": 1769472,
         "rgba8WithMipsEstimate": 2359296,
         "coverageSamples": 71539,
-        "perimeterSamples": 15631,
-        "channelSamples": 4456,
+        "perimeterSamples": 21465,
+        "channelSamples": 4506,
         "opacity": "all surface texels opaque; no geometry discard or displacement",
         "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-        "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient"
+        "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient"
       },
       "floatingPresentation": true,
       "bevelDirection": "inward",
@@ -1969,7 +2169,7 @@
     "originalFacePreserved": true,
     "sculptureUsesOriginalFaceOverlay": false,
     "settled": true,
-    "readyMs": 9721.800000000745,
+    "readyMs": 4746.199999999255,
     "render": {
       "frame": 34,
       "calls": 3,
@@ -1990,9 +2190,5 @@
     "vectorPixels": 4395,
     "intersectionOverUnion": 0.9715374271627073,
     "note": "Native glyph hinting/AA vs exact unhinted source curves; not byte identity of different representations"
-  },
-  "warnings": [
-    "Optional screenshot hybrid/wide: page.screenshot: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n",
-    "Optional screenshot original/close: page.screenshot: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n"
-  ]
+  }
 }

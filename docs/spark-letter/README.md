@@ -4,9 +4,9 @@ Isolated draft PR #34, branch `prototype/spark-letter-study-v0.1`. Opt-in route 
 
 ## Owner-directed refinement
 
-The owner requested a **dark sapphire perimeter**, localized amber/coral/turquoise highlights, fine engraved channels, subtle texture and softer face-to-wall transitions. This pass replaces the previous full-face colour sweep with deliberately placed colour fields and a dark inset border on the same floating solid letter.
+The owner requested a **dark sapphire perimeter**, localized amber/coral/turquoise highlights, fine engraved channels, subtle texture and softer face-to-wall transitions. The current refinement strengthens the sapphire rim slightly, narrows the amber/coral/turquoise fields into smaller localized highlights and deepens channel valleys with a restrained offset shoulder highlight. The same solid letter, contours and open spaces remain unchanged.
 
-`surface-design.js` derives auxiliary interior distance from the unchanged font outline. This drives the sapphire edge, a fine inset valley and restrained reflected lip. Three small, nonscriptural channel curves are confined to stroke interiors; they affect colour, bump and roughness only. They do not cut or replace the Arabic contours. Fine brushed/grain relief and physical clearcoat/iridescence respond to the existing studio lighting. Colour fields are static, reflections are view-dependent. Side/bevel normals are averaged at shared positions and meet the cap smoothly; no positions or triangle counts change in this pass.
+`surface-design.js` derives auxiliary interior distance from the unchanged font outline. This drives the sapphire edge, a fine inset valley and restrained reflected lip. Three small, nonscriptural channel curves are confined to stroke interiors; they affect colour, bump and roughness only. They do not cut or replace the Arabic contours. Fine brushed/grain relief and physical clearcoat/iridescence respond to the existing studio lighting. Colour fields are static, reflections are view-dependent. Side/bevel normals are averaged at shared positions and meet the cap smoothly; no positions or triangle counts change. Surface 05 changes only auxiliary pixel generation; geometry, normals, materials and lighting are unchanged from surface 04.
 
 **The new fine engraving is bump shading, not physically cut channels.** The underlying solid extrusion and shallow crown remain real geometry from phase 3. The exact font path, detached internal component, silhouette and open spaces are retained. Spark remains a sparse secondary light fringe.
 
@@ -16,16 +16,18 @@ Prior iterations are preserved: [phase 1](phase1/README.md) Spark shell, [phase 
 
 | View | Original face | Surface study |
 | --- | --- | --- |
-| Wide | [Original](original-wide.png) | [Paired comparison](compare-wide.png) |
-| Close | Current capture unavailable; [previous unchanged face](phase3/original-close.png) | [Sculpture](hybrid-close.png) |
+| Wide | [Original](original-wide.png) | [Sculpture](hybrid-wide.png) |
+| Close | [Original](original-close.png) | [Sculpture](hybrid-close.png) |
 | Oblique | [Original](original-oblique.png) | [Sculpture](hybrid-oblique.png) |
 
 ![Matched wide comparison](compare-wide.png)
+[Previous surface 04, same native oblique camera](surface04-native-oblique.png) → [Current surface 05](sculpture-native-oblique.png)
+
 ![Direct native sculpture canvas](sculpture-native-oblique.png)
 
-Five of seven real 1600×1000 full-page captures succeeded with matching A/B camera endpoints and projection. Standalone sculpture-wide and original-close screenshots hit their bounded 8-second timeout; stale prior images were removed. The paired wide image contains the current sculpture. All seven camera/projection and interaction checks passed; no repeated lengthy capture retries were attempted. The additional native image is an actual WebGL canvas readback without HTML compositing, not a generated image or retouched artwork. SwiftShader can omit some HTML text in full-page images; direct canvas capture avoids that software-compositor artifact. No GPU draws are skipped. Timing windows precede readbacks, but concurrent build work and software-renderer load make these sparse samples unsuitable for a before/after performance claim. Breathing light is off for comparisons. Existing Wide/Close/Oblique controls and reduced-motion behavior remain.
+All seven real 1600×1000 full-page captures succeeded with matching A/B camera endpoints and projection. The additional native image is an actual WebGL canvas readback without HTML compositing, not a generated image or retouched artwork. SwiftShader can omit some HTML text in full-page images; direct canvas capture avoids that software-compositor artifact. No GPU draws are skipped. Timing windows precede readbacks. Sparse software-renderer samples remain unsuitable for a hardware performance claim. Breathing light is off for comparisons. Existing Wide/Close/Oblique controls and reduced-motion behavior remain.
 
-**Assessment:** the dark edge separates the silhouette from the coloured face, while the inset channels and smoother shoulders give more intentional surface structure. Amber is concentrated along the lower sweep, coral at its turn and the internal component, and turquoise on the upper stem. Small reflective details can alias in close software captures. This remains a font-derived study, not bespoke interwoven calligraphy or authenticated Thuluth. Physical Quest performance and stereo remain unverified. Stop for owner visual review.
+**Assessment:** the stronger sapphire perimeter separates the silhouette from the coloured face, while the inset channels and smoother shoulders give more intentional surface structure. Amber is concentrated along the lower sweep, coral at its turn and the internal component, and turquoise on the upper stem. Small reflective details can alias in close software captures. This remains a font-derived study, not bespoke interwoven calligraphy or authenticated Thuluth. Physical Quest performance and stereo remain unverified. Stop for owner visual review.
 
 ## Original Arabic contours and physical crown
 
@@ -41,7 +43,7 @@ Five of seven real 1600×1000 full-page captures succeeded with matching A/B cam
 
 ## Measured resource envelope
 
-Physical letter: **11,940 triangles / 1,146,240 bytes (~1.093 MiB)**, unchanged from phase 3. This pass adds **zero geometry bytes, triangles or draw calls**. Limits remain 20,000 triangles / 2 MiB.
+Physical letter: **11,940 triangles / 1,146,240 bytes (~1.093 MiB)**, unchanged from phase 3. This pass adds **zero geometry bytes, triangles, draw calls or texture bytes** relative to surface 04. Limits remain 20,000 triangles / 2 MiB.
 
 Body depth is 0.20, inward bevel size 0.012, end bevel thickness 0.020 and cap crown at most 0.004. This is a desktop study scale, not a headset-scale comfort claim.
 

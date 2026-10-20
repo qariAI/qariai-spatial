@@ -20,23 +20,26 @@ export function designSurface(outline,worldScale){
  const lines=document.createElement('canvas');lines.width=w;lines.height=h;const pen=lines.getContext('2d',{willReadFrequently:true});pen.setTransform(sx,0,0,-sy,-xmin*sx,ymax*sy);pen.strokeStyle='#fff';pen.lineWidth=2.4;pen.lineCap='round';
  for(const path of ['M91 57 C230 36 479 29 568 118','M575 182 C574 320 527 598 488 748','M115 321 C181 312 257 319 293 377 C315 409 233 410 205 428 C203 454 246 485 284 546'])pen.stroke(new Path2D(path));
  const channel=pen.getImageData(0,0,w,h).data,pigmentBytes=new Uint8Array(w*h*4),reliefBytes=new Uint8Array(w*h*4);
- const sapphire=new THREE.Color('#163c69'),perimeter=new THREE.Color('#102b50'),amber=new THREE.Color('#ffc079'),coral=new THREE.Color('#ef777e'),turquoise=new THREE.Color('#32c7c5'),ivory=new THREE.Color('#e8d4a7'),colour=new THREE.Color();
+ const sapphire=new THREE.Color('#163c69'),perimeter=new THREE.Color('#163f78'),amber=new THREE.Color('#ffc079'),coral=new THREE.Color('#ef777e'),turquoise=new THREE.Color('#32c7c5'),ivory=new THREE.Color('#e8d4a7'),colour=new THREE.Color();
  let changed=0,edgeSamples=0,engravedSamples=0;const coarseRatio=worldPixel/.0043;
  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
   const i=y*w+x,u=x/(w-1),v=1-y/(h-1),d=distance[i]*worldPixel;
-  const warm=spot(u,v,.24,.08,.44,.13),rose=spot(u,v,.80,.19,.27,.24)+.7*spot(u,v,.32,.48,.22,.19),teal=spot(u,v,.82,.74,.20,.31)+.65*spot(u,v,.39,.67,.18,.13);
+  const warm=spot(u,v,.24,.08,.30,.095),rose=spot(u,v,.80,.19,.19,.17)+.7*spot(u,v,.32,.48,.16,.13),teal=spot(u,v,.84,.80,.15,.22)+.65*spot(u,v,.39,.67,.13,.10);
   colour.copy(sapphire);colour.lerp(amber,Math.min(.94,warm*.98));colour.lerp(coral,Math.min(.88,rose*.87));colour.lerp(turquoise,Math.min(.94,teal*.94));
-  const core=smooth(.011,.030,d);colour.lerp(perimeter,1-core);if(core<.9&&alpha[i])edgeSamples++;
+  const core=smooth(.017,.043,d);colour.lerp(perimeter,1-core);if(core<.9&&alpha[i])edgeSamples++;
   const interior=smooth(.016,.025,d),trace=channel[i*4+3]/255*interior;
   const inset=Math.exp(-(((d-.034)/(.0017*coarseRatio))**2))*.52*interior;
-  const groove=Math.min(1,trace*.82+inset*.6);
-  // A fine reflected lip around the dark valley; never a disconnected dot or mark.
-  const lip=Math.exp(-(((d-.037)/(.0013*coarseRatio))**2))*.28*core;
-  colour.multiplyScalar(1-.48*groove);colour.lerp(ivory,lip*.32);colour.convertLinearToSRGB();
+  const groove=Math.min(1,trace*.94+inset*.85);
+  // A restrained lip on the key-light-facing channel shoulder. It remains
+  // within the same interior margin, never becoming a separate mark.
+  const adjacent=channel[(Math.min(h-1,y+1)*w+Math.max(0,x-1))*4+3]/255;
+  const shoulder=Math.max(0,adjacent-channel[i*4+3]/255)*interior;
+  const lip=Math.exp(-(((d-.037)/(.0013*coarseRatio))**2))*.42*core+shoulder*.36;
+  colour.multiplyScalar(1-.64*groove);colour.lerp(ivory,lip*.50);colour.convertLinearToSRGB();
   const p=((h-1-y)*w+x)*4; // Explicit row order matches canonical cap UVs.
   pigmentBytes.set([Math.round(colour.r*255),Math.round(colour.g*255),Math.round(colour.b*255),255],p);
   const grain=((Math.imul(x,374761393)^Math.imul(y,668265263))>>>0)%5;
-  const brushed=.5+.5*Math.sin(x*.63+y*.045),height=225-60*groove+grain*.16;
+  const brushed=.5+.5*Math.sin(x*.63+y*.045),height=225-84*groove+18*lip+grain*.16;
   const rough=core<.55?190:Math.round(143+23*groove+3*brushed+grain*.25);
   reliefBytes.set([Math.round(height),rough,255,255],p);
   if(alpha[i]){changed++;if(groove>.15)engravedSamples++}
@@ -44,6 +47,6 @@ export function designSurface(outline,worldScale){
  const pigment=new THREE.DataTexture(pigmentBytes,w,h);pigment.colorSpace=THREE.SRGBColorSpace;
  const relief=new THREE.DataTexture(reliefBytes,w,h);
  for(const texture of [pigment,relief]){texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.generateMipmaps=true;texture.needsUpdate=true}
- const info={width:w,height:h,rawBytes:pigmentBytes.byteLength+reliefBytes.byteLength,rgba8WithMipsEstimate:(pigmentBytes.byteLength+reliefBytes.byteLength)*4/3,coverageSamples:changed,perimeterSamples:edgeSamples,channelSamples:engravedSamples,opacity:'all surface texels opaque; no geometry discard or displacement',channels:'auxiliary bump/roughness shading, not physically cut grooves',palette:'dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient'};
+ const info={width:w,height:h,rawBytes:pigmentBytes.byteLength+reliefBytes.byteLength,rgba8WithMipsEstimate:(pigmentBytes.byteLength+reliefBytes.byteLength)*4/3,coverageSamples:changed,perimeterSamples:edgeSamples,channelSamples:engravedSamples,opacity:'all surface texels opaque; no geometry discard or displacement',channels:'auxiliary bump/roughness shading, not physically cut grooves',palette:'stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient'};
  return{pigment,relief,info,dispose(){pigment.dispose();relief.dispose()}};
 }
