@@ -1,12 +1,11 @@
 {
-  "success": true,
+  "success": false,
   "errors": [],
   "captures": [
     "sculpture-native-close.png",
-    "side-native.png",
-    "rear-native.png"
+    "side-native.png"
   ],
-  "limits": "Linux SwiftShader; not Windows or Quest. Focused follow-up after the full comparison harness reached its overall time budget.",
+  "limits": "Linux SwiftShader; not Windows or Quest. Focused material/inspection check; broad comparison harness is not rerun after its prior overall timeout.",
   "initial": {
     "report": {
       "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
@@ -46,6 +45,11 @@
           "height": 576,
           "rawBytes": 1769472,
           "rgba8WithMipsEstimate": 2359296,
+          "engraving": {
+            "curves": 7,
+            "samples": 832,
+            "method": "sparse variable-length curved incisions; no periodic panel hatch"
+          },
           "panels": {
             "count": 3,
             "finishes": [
@@ -62,7 +66,7 @@
           },
           "coverageSamples": 71539,
           "perimeterSamples": 21465,
-          "channelSamples": 7686,
+          "channelSamples": 7247,
           "opacity": "all surface texels opaque; no geometry discard or displacement",
           "channels": "auxiliary bump/roughness shading, not physically cut grooves",
           "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient"
@@ -131,9 +135,9 @@
         "custom": false
       },
       "settled": true,
-      "readyMs": 4516.39999999851,
+      "readyMs": 14817.29999999702,
       "render": {
-        "frame": 36,
+        "frame": 35,
         "calls": 5,
         "triangles": 11940,
         "points": 260,
@@ -143,7 +147,7 @@
         "geometries": 5,
         "textures": 10
       },
-      "frameSamples": 3
+      "frameSamples": 2
     },
     "camera": {
       "position": [
@@ -179,15 +183,11 @@
     "frames": [
       {
         "intervalMs": null,
-        "submitMs": 2814.5
+        "submitMs": 12971.199999999255
       },
       {
-        "intervalMs": 2830.199999999255,
-        "submitMs": 33.30000000074506
-      },
-      {
-        "intervalMs": 71.39999999850988,
-        "submitMs": 13.300000000745058
+        "intervalMs": 13041.60000000149,
+        "submitMs": 18.599999997764826
       }
     ],
     "textures": [
@@ -264,21 +264,22 @@
       "geometryBytes": 3320
     }
   },
+  "unchangedShapeCameraRegionsAndBudget": true,
   "drag": true,
   "wheel": true,
   "home": true,
   "cancel": true,
   "sculpture-native-close.png": {
     "position": [
-      -0.00007920025245477879,
-      0.7219005241738137,
-      4.799993044094429
+      -0.00007318360595882223,
+      0.7218985851657237,
+      4.799993582943138
     ],
     "quaternion": [
-      -0.0000026587719580571573,
-      -0.00000825003825201948,
-      -2.193497035819229e-11,
-      0.9999999999624338
+      -0.0000024567913802864043,
+      -0.000007623302478182579,
+      -1.8728863818315685e-11,
+      0.9999999999679248
     ],
     "projection": [
       1.1397918820992796,
@@ -301,15 +302,15 @@
   },
   "side-native.png": {
     "position": [
-      4.038861129227791,
-      0.7218750000319876,
-      2.5936400797292776
+      4.039036747294691,
+      0.7218750000024857,
+      2.5934712246548526
     ],
     "quaternion": [
-      -2.9242192030860927e-12,
-      0.4794011402904878,
-      1.5974026723442918e-12,
-      0.8775958903095319
+      -2.2722873868257407e-13,
+      0.47942280369903795,
+      1.2413470623021152e-13,
+      0.8775840559703405
     ],
     "projection": [
       1.1397918820992796,
@@ -330,36 +331,5 @@
       0
     ]
   },
-  "rear-native.png": {
-    "position": [
-      0.19973095548113654,
-      0.7218750000000004,
-      -4.795800091916295
-    ],
-    "quaternion": [
-      -7.21998283971357e-19,
-      0.9997834485240181,
-      3.4687264279815164e-17,
-      0.020809998976983407
-    ],
-    "projection": [
-      1.1397918820992796,
-      0,
-      0,
-      0,
-      0,
-      3.171594802363213,
-      0,
-      0,
-      0,
-      0,
-      -1.003338898163606,
-      -1,
-      0,
-      0,
-      -0.2003338898163606,
-      0
-    ]
-  },
-  "preset": true
+  "timeout": true
 }

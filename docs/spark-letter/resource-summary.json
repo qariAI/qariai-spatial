@@ -1,6 +1,6 @@
 {
   "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
-  "studyAssetBytes": 4798116,
+  "studyAssetBytes": 4799059,
   "mainBuiltAssets": [
     {
       "file": "harfDesktop-BAm-SrtE.js",
@@ -49,7 +49,7 @@
     "maxTriangles": 20000,
     "maxBytes": 2097152
   },
-  "note": "Surface 07 preserves geometry and texture allocations. One extra card is drawn only during environment baking; direct scene lights unchanged. Full software capture reached its overall budget; focused inspection passed. No hardware FPS/VRAM claim.",
+  "note": "Surface 08 only changes sidewall material uniforms and auxiliary engraving pixels. Current focused checks passed through front/side capture, then hit their 120s overall budget; remaining rear/preset checks incomplete. Geometry, framing, lighting, colour regions and texture allocation remain unchanged. No hardware timing/VRAM claim.",
   "textureEstimateRangeBytes": [
     5461333.333333333,
     5502293.333333333
@@ -65,6 +65,11 @@
     "height": 576,
     "rawBytes": 1769472,
     "rgba8WithMipsEstimate": 2359296,
+    "engraving": {
+      "curves": 7,
+      "samples": 832,
+      "method": "sparse variable-length curved incisions; no periodic panel hatch"
+    },
     "panels": {
       "count": 3,
       "finishes": [
@@ -81,18 +86,10 @@
     },
     "coverageSamples": 71539,
     "perimeterSamples": 21465,
-    "channelSamples": 7686,
+    "channelSamples": 7247,
     "opacity": "all surface texels opaque; no geometry discard or displacement",
     "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-    "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient",
-    "opaque": true,
-    "protectedOpening": true,
-    "outsideZero": true,
-    "finite": true,
-    "roughMin": 80,
-    "roughMax": 193,
-    "metalMin": 164,
-    "metalMax": 195
+    "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient"
   },
   "hybridSteadyDrawCalls": 5,
   "deltaFromSurface04": {
@@ -113,5 +110,11 @@
     "drawCalls": 0,
     "surfaceTextureBytes": 0,
     "bakedEnvironmentCards": 1
+  },
+  "deltaFromSurface07": {
+    "triangles": 0,
+    "geometryBytes": 0,
+    "drawCalls": 0,
+    "surfaceTextureBytes": 0
   }
 }

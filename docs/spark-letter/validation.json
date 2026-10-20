@@ -1,32 +1,9 @@
 {
   "build": "production TypeScript/Vite passed; inherited >500 kB warning",
   "sourceContours": "fontTools exact source/path/hash/components pass",
-  "nativeReference": {
-    "different": 0,
-    "maxDelta": 0,
-    "alphaDifferent": 0
-  },
-  "nativeVectorProof": {
-    "lostNativeCore": 0,
-    "filledNativeGap": 0,
-    "nativePixels": 4402,
-    "vectorPixels": 4395,
-    "intersectionOverUnion": 0.9715374271627073,
-    "note": "Native glyph hinting/AA vs exact unhinted source curves; not byte identity of different representations"
-  },
-  "browserStudy": false,
   "screenshots": [
-    "compare-wide.png",
-    "original-wide.png",
-    "hybrid-wide.png",
-    "original-close.png",
-    "hybrid-close.png",
-    "original-oblique.png",
-    "hybrid-oblique.png",
-    "inspection-orbit.png",
     "sculpture-native-close.png",
-    "side-native.png",
-    "rear-native.png"
+    "side-native.png"
   ],
   "nativeCanvas": "sculpture-native-close.png",
   "regressions": [
@@ -47,6 +24,11 @@
     "height": 576,
     "rawBytes": 1769472,
     "rgba8WithMipsEstimate": 2359296,
+    "engraving": {
+      "curves": 7,
+      "samples": 832,
+      "method": "sparse variable-length curved incisions; no periodic panel hatch"
+    },
     "panels": {
       "count": 3,
       "finishes": [
@@ -63,80 +45,90 @@
     },
     "coverageSamples": 71539,
     "perimeterSamples": 21465,
-    "channelSamples": 7686,
+    "channelSamples": 7247,
     "opacity": "all surface texels opaque; no geometry discard or displacement",
     "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-    "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient",
-    "opaque": true,
-    "protectedOpening": true,
-    "outsideZero": true,
-    "finite": true,
-    "roughMin": 80,
-    "roughMax": 193,
-    "metalMin": 164,
-    "metalMax": 195
+    "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient"
   },
   "unchangedMainBuiltAssets": 8,
   "physicalGeometryDelta": 0,
-  "captureLimitations": "Full 180s harness saved all eight comparison/drag images, then timed out during interaction checks. Separate 120s focused run passed controls and saved native front/side/rear. Software evidence only; not Quest.",
+  "captureLimitations": "Current Close/Side captured; focused run timed out during remaining rear/preset chapter. No repeated lengthy capture run. Root broad-comparison report is historical surface 07 evidence.",
   "inspection": {
-    "success": true,
     "drag": true,
     "wheel": true,
     "home": true,
     "cancel": true,
-    "preset": true
+    "preset": null
   },
-  "inspectionOrbitCamera": [
-    -1.661737904788239,
-    2.4066533570453443,
-    6.00020194120667
-  ],
-  "fullHarnessTimeout": true,
-  "closeFraming": {
-    "points": [
-      [
-        -0.19329767183162125,
-        -0.8062980024878158,
-        0.9626206278535296
+  "currentFocusedSuccess": false,
+  "currentFocusedTimeout": true,
+  "unchangedShapeCameraRegionsAndBudget": true,
+  "surface08": "Satin sapphire sidewall uniforms; seven sparse unequal curved incisions replace periodic hatching. No geometry, camera, lighting, colour-region or glow changes.",
+  "historicalSurface07Evidence": {
+    "nativeReference": {
+      "different": 0,
+      "maxDelta": 0,
+      "alphaDifferent": 0
+    },
+    "nativeVectorProof": {
+      "lostNativeCore": 0,
+      "filledNativeGap": 0,
+      "nativePixels": 4402,
+      "vectorPixels": 4395,
+      "intersectionOverUnion": 0.9715374271627073,
+      "note": "Native glyph hinting/AA vs exact unhinted source curves; not byte identity of different representations"
+    },
+    "browserStudy": false,
+    "fullHarnessTimeout": true,
+    "closeFraming": {
+      "points": [
+        [
+          -0.19329767183162125,
+          -0.8062980024878158,
+          0.9626206278535296
+        ],
+        [
+          -0.20338420540653165,
+          -0.848371721205757,
+          0.9604958935165707
+        ],
+        [
+          -0.19329767183162125,
+          0.7944783341506929,
+          0.9626206278535296
+        ],
+        [
+          -0.20338420540653165,
+          0.8359352866117153,
+          0.9604958935165707
+        ],
+        [
+          0.18743995154969725,
+          -0.8062980024878158,
+          0.9626206278535296
+        ],
+        [
+          0.19722082136913557,
+          -0.848371721205757,
+          0.9604958935165707
+        ],
+        [
+          0.18743995154969725,
+          0.7944783341506929,
+          0.9626206278535296
+        ],
+        [
+          0.19722082136913557,
+          0.8359352866117153,
+          0.9604958935165707
+        ]
       ],
-      [
-        -0.20338420540653165,
-        -0.848371721205757,
-        0.9604958935165707
-      ],
-      [
-        -0.19329767183162125,
-        0.7944783341506929,
-        0.9626206278535296
-      ],
-      [
-        -0.20338420540653165,
-        0.8359352866117153,
-        0.9604958935165707
-      ],
-      [
-        0.18743995154969725,
-        -0.8062980024878158,
-        0.9626206278535296
-      ],
-      [
-        0.19722082136913557,
-        -0.848371721205757,
-        0.9604958935165707
-      ],
-      [
-        0.18743995154969725,
-        0.7944783341506929,
-        0.9626206278535296
-      ],
-      [
-        0.19722082136913557,
-        0.8359352866117153,
-        0.9604958935165707
-      ]
-    ],
-    "inside": true
-  },
-  "surface07": "Defined pigment regions, stronger divisions, selective fine etching, larger non-clipping Close preset, and one baked rear reflection card. Original glyph geometry and both components unchanged."
+      "inside": true
+    },
+    "inspectionOrbitCamera": [
+      -1.661737904788239,
+      2.4066533570453443,
+      6.00020194120667
+    ]
+  }
 }

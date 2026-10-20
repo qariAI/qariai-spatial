@@ -29,6 +29,21 @@ export function designSurface(outline,worldScale){
  for(const [fill,path] of panelPaths){panelPen.fillStyle=fill;panelPen.fill(new Path2D(path))}
  const soft=document.createElement('canvas');soft.width=w;soft.height=h;const softPen=soft.getContext('2d',{willReadFrequently:true});softPen.filter='blur(1px)';softPen.drawImage(panels,0,0);
  const panelPixels=softPen.getImageData(0,0,w,h).data,panelSamples=[0,0,0];
+ // Sparse, unequal flowing incisions replace the periodic hatch. These are
+ // nonscriptural material details, gated by existing panel and glyph interiors.
+ const etchCanvas=document.createElement('canvas');etchCanvas.width=w;etchCanvas.height=h;const etchPen=etchCanvas.getContext('2d',{willReadFrequently:true});etchPen.setTransform(sx,0,0,-sy,-xmin*sx,ymax*sy);etchPen.strokeStyle='#fff';etchPen.lineCap='round';
+ const etchPaths=[
+  [1.1,'M123 60 C179 44 262 44 319 53'],
+  [.9,'M235 65 C308 55 385 57 436 69'],
+  [.8,'M362 48 Q413 48 464 65'],
+  [1.0,'M139 327 Q191 323 237 340'],
+  [1.2,'M217 410 Q230 390 258 379'],
+  [.8,'M223 438 Q205 430 206 415'],
+  [.7,'M160 332 Q190 330 205 336']
+ ];
+ for(const [width,path] of etchPaths){etchPen.lineWidth=width;etchPen.stroke(new Path2D(path))}
+ const etchPixels=etchPen.getImageData(0,0,w,h).data;let etchSamples=0;
+
  const panelAt=(x,y)=>{const p=(Math.max(0,Math.min(h-1,y))*w+Math.max(0,Math.min(w-1,x)))*4;return Math.max(panelPixels[p],panelPixels[p+1],panelPixels[p+2])/255};
  const channel=pen.getImageData(0,0,w,h).data,pigmentBytes=new Uint8Array(w*h*4),reliefBytes=new Uint8Array(w*h*4);
  const sapphire=new THREE.Color('#163c69'),perimeter=new THREE.Color('#163f78'),amber=new THREE.Color('#ffc079'),coral=new THREE.Color('#ef777e'),turquoise=new THREE.Color('#32c7c5'),ivory=new THREE.Color('#e8d4a7'),colour=new THREE.Color(),panelColour=new THREE.Color();
@@ -48,9 +63,8 @@ export function designSurface(outline,worldScale){
   panelColour.setRGB(panelPalette[0].r*polished+panelPalette[1].r*satin+panelPalette[2].r*engraved,panelPalette[0].g*polished+panelPalette[1].g*satin+panelPalette[2].g*engraved,panelPalette[0].b*polished+panelPalette[1].b*satin+panelPalette[2].b*engraved);
   const total=weights.reduce((a,b)=>a+b,0);if(total>0){panelColour.multiplyScalar(1/total);colour.lerp(panelColour,Math.min(1,total)*.86)}
   const panelEdge=Math.max(Math.abs(panelAt(x+1,y)-panelAt(x-1,y)),Math.abs(panelAt(x,y+1)-panelAt(x,y-1)))*interior;
-  const hatch=(.5+.5*Math.sin(x*.77+y*.12+Math.sin(y*.04)*.8))**10*engraved;
-  const sweepEtch=(.5+.5*Math.sin(y*1.1+Math.sin(x*.009)*8))**16*polished*.32;
-  const groove=Math.min(1,trace*.94+inset*.85+panelEdge*.28+hatch*.23+sweepEtch*.18);
+  const etch=etchPixels[i*4+3]/255*(polished*.55+engraved*.9);if(etch>.06)etchSamples++;
+  const groove=Math.min(1,trace*.94+inset*.85+panelEdge*.28+etch*.22);
   // A restrained lip on the key-light-facing channel shoulder. It remains
   // within the same interior margin, never becoming a separate mark.
   const adjacent=channel[(Math.min(h-1,y+1)*w+Math.max(0,x-1))*4+3]/255;
@@ -60,7 +74,7 @@ export function designSurface(outline,worldScale){
   const p=((h-1-y)*w+x)*4; // Explicit row order matches canonical cap UVs.
   pigmentBytes.set([Math.round(colour.r*255),Math.round(colour.g*255),Math.round(colour.b*255),255],p);
   const grain=((Math.imul(x,374761393)^Math.imul(y,668265263))>>>0)%5;
-  const brushed=.5+.5*Math.sin(x*.63+y*.045),height=225-84*groove+18*lip-5*panel+grain*(.16+.3*engraved);
+  const brushed=.5+.3*Math.sin(x*.31+y*.027)+.2*Math.sin(x*.173-y*.019),height=225-84*groove+18*lip-5*panel+grain*(.16+.3*engraved);
   const rough=core<.55?190:Math.round(114*(1-panel)+80*polished+153*satin+174*engraved+15*groove+3*brushed+grain*.25);
   const metal=Math.round(177*(1-panel)+195*polished+184*satin+164*engraved);
   reliefBytes.set([Math.round(height),rough,metal,255],p);
@@ -69,6 +83,6 @@ export function designSurface(outline,worldScale){
  const pigment=new THREE.DataTexture(pigmentBytes,w,h);pigment.colorSpace=THREE.SRGBColorSpace;
  const relief=new THREE.DataTexture(reliefBytes,w,h);
  for(const texture of [pigment,relief]){texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.generateMipmaps=true;texture.needsUpdate=true}
- const info={width:w,height:h,rawBytes:pigmentBytes.byteLength+reliefBytes.byteLength,rgba8WithMipsEstimate:(pigmentBytes.byteLength+reliefBytes.byteLength)*4/3,panels:{count:3,finishes:['polished','satin','fine engraved'],samples:panelSamples,method:'interior-gated auxiliary material/bump pockets; no physical cuts or new geometry'},coverageSamples:changed,perimeterSamples:edgeSamples,channelSamples:engravedSamples,opacity:'all surface texels opaque; no geometry discard or displacement',channels:'auxiliary bump/roughness shading, not physically cut grooves',palette:'sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient'};
+ const info={width:w,height:h,rawBytes:pigmentBytes.byteLength+reliefBytes.byteLength,rgba8WithMipsEstimate:(pigmentBytes.byteLength+reliefBytes.byteLength)*4/3,engraving:{curves:etchPaths.length,samples:etchSamples,method:'sparse variable-length curved incisions; no periodic panel hatch'},panels:{count:3,finishes:['polished','satin','fine engraved'],samples:panelSamples,method:'interior-gated auxiliary material/bump pockets; no physical cuts or new geometry'},coverageSamples:changed,perimeterSamples:edgeSamples,channelSamples:engravedSamples,opacity:'all surface texels opaque; no geometry discard or displacement',channels:'auxiliary bump/roughness shading, not physically cut grooves',palette:'sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient'};
  return{pigment,relief,info,dispose(){pigment.dispose();relief.dispose()}};
 }
