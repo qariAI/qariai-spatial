@@ -2,7 +2,11 @@
 
 Isolated draft PR #34, branch `prototype/spark-letter-study-v0.1`. Opt-in route `/spark-letter/index.html`. Living Orbit baseline remains PR #33 at `ad10ee39ee0f16262e7b3654b24bad23a34351ff`.
 
-## Current — channel profile and finish separation, finish 12
+## Current — diagnosed bump attenuation, finish 13
+
+[Map/shader diagnosis](map-audit-13/README.md) and [Finish 13 report](finish-13/README.md). The maps contain detail, but inherited bumpScale .005 attenuates the normal response. The experimental material alone tests .5 with identical maps and geometry. Use `finish=proof`, label **EXPERIMENTAL FINISH · 13**. Stop for owner review.
+
+## Previous — channel profile and finish separation, finish 12
 
 [Finish 12 report](finish-12/README.md): more defined symmetric auxiliary channel shoulders and clearer polished/satin/engraved roughness separation. Use `?mode=hybrid&view=close&finish=proof`; the label reads **EXPERIMENTAL FINISH · 12**. Geometry, framing, palette, lighting and default Surface 08 remain fixed. Stop for owner visual review.
 

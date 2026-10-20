@@ -1,0 +1,89 @@
+{
+  "info": {
+    "finishRevision": 12,
+    "materialResponse": "symmetric channel shoulders and deeper auxiliary valleys; distinct polished, satin and fine-engraved roughness, unchanged pigment treatment",
+    "proofBaseLinearReflectanceCalibration": 1.7,
+    "bakeMs": 4846.10000000149,
+    "width": 384,
+    "height": 576,
+    "rawBytes": 1769472,
+    "rgba8WithMipsEstimate": 2359296,
+    "engraving": {
+      "curves": 13,
+      "samples": 2283,
+      "primary": 3,
+      "branches": 10,
+      "omittedHairlines": 8,
+      "omittedBranches": 7,
+      "branchWidth": 1.6,
+      "proofSvgSha256": "3cda3686e96fe3ac51279900f7c80d0460d98c0b4531c659a3267a4ff3512500",
+      "method": "proof-09 exact ornament path centres; resolution-limited selection, panel-owned coverage"
+    },
+    "panels": {
+      "count": 3,
+      "finishes": [
+        "polished",
+        "satin",
+        "fine engraved"
+      ],
+      "samples": [
+        10483,
+        4443,
+        4072
+      ],
+      "method": "interior-gated auxiliary material/bump pockets; no physical cuts or new geometry"
+    },
+    "coverageSamples": 71539,
+    "perimeterSamples": 21465,
+    "channelSamples": 6931,
+    "opacity": "all surface texels opaque; no geometry discard or displacement",
+    "channels": "auxiliary bump/roughness shading, not physically cut grooves",
+    "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient"
+  },
+  "channels": {
+    "pigment": {
+      "min": 20,
+      "p50": 40,
+      "p95": 198,
+      "max": 218
+    },
+    "height": {
+      "min": 157,
+      "p50": 225,
+      "p95": 225,
+      "max": 231
+    },
+    "roughness": {
+      "min": 62,
+      "p50": 124,
+      "p95": 190,
+      "max": 190
+    },
+    "metalness": {
+      "min": 112,
+      "p50": 112,
+      "p95": 157,
+      "max": 157
+    }
+  },
+  "gradientSamples": 14183,
+  "tiltEstimates": [
+    {
+      "scale": 0.005,
+      "oneTexelEstimateDegrees": {
+        "p50": 0.015114428611226863,
+        "p95": 0.04832125636715567,
+        "max": 0.08977027420351714
+      }
+    },
+    {
+      "scale": 0.5,
+      "oneTexelEstimateDegrees": {
+        "p50": 1.5110924450785992,
+        "p95": 4.820719019361848,
+        "max": 8.904641258651033
+      }
+    }
+  ],
+  "limits": "One-texel finite differences on source map at flat, orthogonal surface. Not measured framebuffer normals; screen derivatives, perspective, crown and mip filtering differ."
+}
