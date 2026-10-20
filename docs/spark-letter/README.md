@@ -2,7 +2,11 @@
 
 Isolated draft PR #34, branch `prototype/spark-letter-study-v0.1`. Opt-in route `/spark-letter/index.html`. Living Orbit baseline remains PR #33 at `ad10ee39ee0f16262e7b3654b24bad23a34351ff`.
 
-## Current — approved proof baked for feasibility review
+## Current — experimental satin response, finish 11
+
+[Finish 11 changes, checks and capture limitations](finish-11/README.md). Use `?mode=hybrid&view=close&finish=proof`; the header reads **EXPERIMENTAL FINISH · 11**. This revision reduces painted channel contrast and rebalances the existing roughness/metalness maps. Geometry, framing, palette, default Surface 08 and lighting remain unchanged. Browser integrity checks pass, but both optional native captures timed out; visual improvement remains for owner review.
+
+## Previous — proof baked for feasibility review
 
 [Surface 10: opt-in experimental bake, genuine initial trial captures, retained/omitted detail and resource checks](bake-10/README.md). The owner approved continuation from [the exact-outline 2D design proof](proof-09/README.md). The working Surface 08 finish remains the default. Only `finish=proof` loads the experimental maps; geometry, framing, material parameters and lighting stay fixed. The calibrated candidate could not be reliably captured here and is not visually approved.
 

@@ -1,0 +1,18 @@
+{
+  "baseline": "2d2bd8f077197fc1305a25aca1c6d460079d940b",
+  "unchangedFiles": {
+    "public/spark-letter/surface-design.js": "63e0c99fc6140e4621f64ea84cfdb83148016c7dc91af2d5b34788aa145ff857",
+    "public/spark-letter/sculpture.js": "255274786f4d3f17c31f1d9f898a91b6e1cd79f6a378db064f4dd98d8316fb32",
+    "public/spark-letter/kaf-outline.json": "7a58cc1ad838bd9f8d5417e727a8c100009785a250d680f1d122ddd4f437a99a",
+    "public/spark-letter/crowned-cap.js": "432e9e6be663984aef39169fdbd80aa72691b0e20327352abc4404ccf7f85606",
+    "public/spark-letter/orbit-inspection.js": "64d14742aca6a2f56f73c79adcec53898b22a998f789fc5d2021e48dcb8a6d3a",
+    "public/spark-letter/engraving-design.js": "7688847e6ddf5cd192a55c16a0bd7875f174f171e6e84b70cac8654d4194758a",
+    "public/spark-letter/index.html": "d72261bc80b891c9a23d3864d5e52b95d2dac383d35446a07acfd960d25ebe36",
+    "public/spark-letter/study.css": "4867c04449059777a193b39fe8ad3e3ad55d3337910d67f7ebc40c54d3a08904",
+    "public/spark-letter/source-letter.js": "ce82f0dafcb1d15737d4048eab5b901f7ef99418416a6860ed931adbae97e184"
+  },
+  "studyOnlyChange": "experimental header label",
+  "geometryCameraLightingAndDefaultFinishUnchanged": true,
+  "glyphComponents": 2,
+  "changes": "experimental packed pigment, bump, roughness and metalness map values only; no new regions or ornament paths"
+}

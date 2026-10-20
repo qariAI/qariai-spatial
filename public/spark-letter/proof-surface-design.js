@@ -63,19 +63,22 @@ export function designSurface(outline,worldScale){
   const adjacent=etchAt(x-1,y+1,weights);
   const shoulder=Math.max(0,adjacent-etch)*interior;
   const lip=Math.exp(-(((d-.037)/(.0013*coarseRatio))**2))*.42*core+shoulder*.36;
-  colour.multiplyScalar((1-.52*groove)*(1-.035*panel));colour.lerp(division,Math.min(.78,panelEdge*1.5+etch*.62));colour.lerp(ivory,lip*.48+panelEdge*.06);colour.convertLinearToSRGB();
+  // Keep pigment continuous across an incision. Most edge contrast comes from
+  // the shallow height valley and its shoulder responding to the existing light.
+  // No broad painted dark line or bright ivory stripe is added to the face.
+  colour.multiplyScalar(1-.12*groove);colour.lerp(division,Math.min(.22,panelEdge*.32+etch*.08));colour.lerp(ivory,lip*.10+panelEdge*.025);colour.convertLinearToSRGB();
   const p=((h-1-y)*w+x)*4; // Explicit row order matches canonical cap UVs.
   pigmentBytes.set([Math.round(colour.r*255),Math.round(colour.g*255),Math.round(colour.b*255),255],p);
   const grain=((Math.imul(x,374761393)^Math.imul(y,668265263))>>>0)%5;
-  const brushed=.5+.3*Math.sin(x*.31+y*.027)+.2*Math.sin(x*.173-y*.019),height=225-84*groove+18*lip-5*panel+grain*(.16+.3*engraved);
-  const rough=core<.55?190:Math.round(114*(1-panel)+80*polished+153*satin+174*engraved+15*groove+3*brushed+grain*.25);
-  const metal=Math.round(177*(1-panel)+195*polished+184*satin+164*engraved);
+  const brushed=.5+.3*Math.sin(x*.31+y*.027)+.2*Math.sin(x*.173-y*.019),height=225-48*groove+14*lip-5*panel+grain*(.10+.16*engraved);
+  const rough=core<.55?190:Math.round(122*(1-panel)+102*polished+132*satin+145*engraved+9*groove+2*brushed+grain*.18);
+  const metal=Math.round(112*(1-panel)+157*polished+133*satin+118*engraved);
   reliefBytes.set([Math.round(height),rough,metal,255],p);
   if(alpha[i]){changed++;if(groove>.15)engravedSamples++}
  }
  const pigment=new THREE.DataTexture(pigmentBytes,w,h);pigment.colorSpace=THREE.SRGBColorSpace;
  const relief=new THREE.DataTexture(reliefBytes,w,h);
  for(const texture of [pigment,relief]){texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.generateMipmaps=true;texture.needsUpdate=true}
- const info={proofBaseLinearReflectanceCalibration:1.7,bakeMs:performance.now()-bakedAt,width:w,height:h,rawBytes:pigmentBytes.byteLength+reliefBytes.byteLength,rgba8WithMipsEstimate:(pigmentBytes.byteLength+reliefBytes.byteLength)*4/3,engraving:{curves:design.spines.length+design.branches.flat().length,samples:etchSamples,primary:3,branches:10,omittedHairlines:design.omittedHairlines,omittedBranches:design.omittedBranches,branchWidth:design.branchWidth,proofSvgSha256:design.proofSvgSha256,method:'proof-09 exact ornament path centres; resolution-limited selection, panel-owned coverage'},panels:{count:3,finishes:['polished','satin','fine engraved'],samples:panelSamples,method:'interior-gated auxiliary material/bump pockets; no physical cuts or new geometry'},coverageSamples:changed,perimeterSamples:edgeSamples,channelSamples:engravedSamples,opacity:'all surface texels opaque; no geometry discard or displacement',channels:'auxiliary bump/roughness shading, not physically cut grooves',palette:'sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient'};
+ const info={finishRevision:11,materialResponse:'lower partial-metal coverage for satin diffuse/reflection balance; shallow light-responsive channels with minimal pigment contrast',proofBaseLinearReflectanceCalibration:1.7,bakeMs:performance.now()-bakedAt,width:w,height:h,rawBytes:pigmentBytes.byteLength+reliefBytes.byteLength,rgba8WithMipsEstimate:(pigmentBytes.byteLength+reliefBytes.byteLength)*4/3,engraving:{curves:design.spines.length+design.branches.flat().length,samples:etchSamples,primary:3,branches:10,omittedHairlines:design.omittedHairlines,omittedBranches:design.omittedBranches,branchWidth:design.branchWidth,proofSvgSha256:design.proofSvgSha256,method:'proof-09 exact ornament path centres; resolution-limited selection, panel-owned coverage'},panels:{count:3,finishes:['polished','satin','fine engraved'],samples:panelSamples,method:'interior-gated auxiliary material/bump pockets; no physical cuts or new geometry'},coverageSamples:changed,perimeterSamples:edgeSamples,channelSamples:engravedSamples,opacity:'all surface texels opaque; no geometry discard or displacement',channels:'auxiliary bump/roughness shading, not physically cut grooves',palette:'sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient'};
  return{pigment,relief,info,dispose(){pigment.dispose();relief.dispose()}};
 }
