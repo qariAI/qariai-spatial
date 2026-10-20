@@ -1,0 +1,26 @@
+{
+  "proofSourceSha256": "3cda3686e96fe3ac51279900f7c80d0460d98c0b4531c659a3267a4ff3512500",
+  "primaryPathsExact": true,
+  "retainedBranchesExactCentres": true,
+  "primaryCount": 3,
+  "branchCount": 10,
+  "omittedSecondary": 7,
+  "omittedHairlines": 8,
+  "decorativeBranchWidthChange": [
+    1.2,
+    1.6
+  ],
+  "newArabicPaths": false,
+  "mapSize": [
+    384,
+    576
+  ],
+  "extraLetterTriangles": 0,
+  "extraTextureBytes": 0,
+  "originalDefaultMapFactoryByteIdentical": true,
+  "geometryMaterialsLightingCodeIdenticalAfterFactorySelectionRemoval": true,
+  "cameraInteractionCodeIdenticalExceptExperimentalLabel": true,
+  "selection": "single exact finish=proof value; invalid/duplicate absent use original; proof module lazy-loaded",
+  "calibratedVisualCapture": "not obtained; experimental only",
+  "finalBuild": "passed; eight main built assets byte-identical; final default/experimental static files copied exactly"
+}

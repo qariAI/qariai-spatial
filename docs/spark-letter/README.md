@@ -1,10 +1,12 @@
-# Letter / Light — satin sapphire and sparse engraving
+# Letter / Light — proof-to-texture feasibility study
 
 Isolated draft PR #34, branch `prototype/spark-letter-study-v0.1`. Opt-in route `/spark-letter/index.html`. Living Orbit baseline remains PR #33 at `ad10ee39ee0f16262e7b3654b24bad23a34351ff`.
 
-## New design proof — approval before implementation
+## Current — approved proof baked for feasibility review
 
-[Surface 09: labelled 2D material proof, exact-outline audit and resolution limits](proof-09/README.md). This is documentation only; the running Surface 08 study described below is unchanged.
+[Surface 10: opt-in experimental bake, genuine initial trial captures, retained/omitted detail and resource checks](bake-10/README.md). The owner approved continuation from [the exact-outline 2D design proof](proof-09/README.md). The working Surface 08 finish remains the default. Only `finish=proof` loads the experimental maps; geometry, framing, material parameters and lighting stay fixed. The calibrated candidate could not be reliably captured here and is not visually approved.
+
+Surface 08 remains the default baseline; its earlier evidence below is **not evidence of the experimental bake**.
 
 ## Owner-directed refinement
 
