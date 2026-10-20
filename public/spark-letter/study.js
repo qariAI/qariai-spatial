@@ -6,7 +6,7 @@ const started=performance.now(),stage=document.querySelector('#stage'),status=do
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const params=new URLSearchParams(location.search);let mode=['original','hybrid'].includes(params.get('mode'))?params.get('mode'):'compare',view=['close','oblique'].includes(params.get('view'))?params.get('view'):'wide',breathing=false;
 const UNIT=4.4,STEP=2,LAYERS=4,MAX_SPLATS=12000;let renderer,spark,mesh,face,materials=[],disposed=false,frames=[],captureUntil=0;
-const report={kind:'isolated physical Amiri sculpture with secondary Spark light; NOT Quest validated',letter:'ك',codepoints:['U+0643'],baseline:'ad10ee39ee0f16262e7b3654b24bad23a34351ff',spark:'2.3.1',three:THREE.REVISION,mode,view,breathing:false,ready:false,errors:[]};
+const report={kind:'isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated',letter:'ك',codepoints:['U+0643'],baseline:'ad10ee39ee0f16262e7b3654b24bad23a34351ff',spark:'2.3.1',three:THREE.REVISION,mode,view,breathing:false,ready:false,errors:[]};
 window.letterStudy={report};
 const hash=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(n=>n.toString(16).padStart(2,'0')).join('');
 function failure(error){report.errors.push(String(error));status.textContent='Study unavailable';const box=document.querySelector('#failure');box.hidden=false;box.textContent='The Spark study could not render. Living Orbit has not been changed. '+String(error)}
@@ -51,7 +51,7 @@ try{
  const starsGeometry=new THREE.BufferGeometry();starsGeometry.setAttribute('position',new THREE.BufferAttribute(stars,3));const starsMaterial=new THREE.PointsMaterial({color:'#8daaa6',size:.012,transparent:true,opacity:.37});materials.push(starsMaterial);scene.add(new THREE.Points(starsGeometry,starsMaterial));
  function setState(nextMode=mode,nextView=view,instant=false){mode=nextMode;view=nextView;report.mode=mode;report.view=view;original.visible=mode!=='hybrid';hybrid.visible=mode!=='original';original.position.x=mode==='compare'?-2.35:0;hybrid.position.x=mode==='compare'?2.35:0;
   document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
-  const labels=document.querySelector('#labels');labels.classList.toggle('single',mode!=='compare');labels.lastElementChild.textContent=mode==='original'?'01 / ORIGINAL':mode==='hybrid'?'02 / SCULPTED GOLD + BRONZE':'02 / SCULPTED GOLD + BRONZE';
+  const labels=document.querySelector('#labels');labels.classList.toggle('single',mode!=='compare');labels.lastElementChild.textContent=mode==='original'?'01 / ORIGINAL':mode==='hybrid'?'02 / IRIDESCENT SCULPTURE':'02 / IRIDESCENT SCULPTURE';
   const width=stage.clientWidth,height=stage.clientHeight,aspect=width/height;
   const distance=mode==='compare'?Math.max(12,9/aspect):Math.max(7,5/aspect);
   cameraGoal.set(view==='oblique'?2.8:0,centerY+(view==='oblique'?.35:0),view==='wide'?distance:view==='close'?(mode==='compare'?10:6.4):(mode==='compare'?10:5.8));

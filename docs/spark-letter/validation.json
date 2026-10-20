@@ -33,5 +33,8 @@
     "spatial menu state",
     "independent pinch recovery/navigation"
   ],
-  "limits": "Software browser evidence only; no physical Quest or Windows hardware timing claim."
+  "limits": "Software browser evidence only; no physical Quest or Windows hardware timing claim.",
+  "physicalCrown": "synthetic projected hole/cap area, XY bounds, positive winding, finite normalized normals and bounded Z all pass",
+  "ownerColourChoice": "vivid iridescent colours",
+  "guard": "20,000 triangles / 2 MiB unchanged; finer rejected candidate not published"
 }
