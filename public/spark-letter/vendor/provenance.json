@@ -1,0 +1,48 @@
+{
+  "spark": {
+    "version": "2.3.1",
+    "package": "@sparkjsdev/spark",
+    "source": "https://registry.npmjs.org/@sparkjsdev/spark/-/spark-2.3.1.tgz",
+    "tarballSHA256": "63b7ee3c9e253f43071ba50c74d2fcd3768852ef4dcf3c75e1983af70263bd5b",
+    "license": "MIT"
+  },
+  "three": {
+    "version": "0.180.0",
+    "source": "https://registry.npmjs.org/three/-/three-0.180.0.tgz",
+    "tarballSHA256": "ad66d724565ee29a2467277fa84daa5ed0211d6b8d446e9ef29f6bae0cd14144",
+    "license": "MIT"
+  },
+  "files": [
+    {
+      "file": "LICENSE-spark.txt",
+      "bytes": 1088,
+      "sha256": "51829693e5dccd9ca1daa093991faac3aaa93238eb8fd5f5cb4130af85791d64"
+    },
+    {
+      "file": "LICENSE-three.txt",
+      "bytes": 1081,
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+    },
+    {
+      "file": "Pass.js",
+      "bytes": 4218,
+      "sha256": "444b409c235ead986893c472e720da1b779a56985c7d10b279c7944b52bd61c5"
+    },
+    {
+      "file": "spark.module.min.js",
+      "bytes": 2671267,
+      "sha256": "2d65ef810f06be91a31a6b617d170ce0f46b54be6e973a36f5ae810fb952f2a6"
+    },
+    {
+      "file": "three.core.js",
+      "bytes": 1403455,
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20"
+    },
+    {
+      "file": "three.module.js",
+      "bytes": 603113,
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+    }
+  ],
+  "notes": "Unmodified npm distribution modules. Deliberately isolated from root Three 0.160.1. No CDN runtime requests. See license files."
+}
