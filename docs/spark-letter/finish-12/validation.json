@@ -1,0 +1,20 @@
+{
+  "baseline": "e1df929f4e45ee4b717bd8fce3f1f0a471ac15c5",
+  "fontVectorSource": "PASS",
+  "projectedCapCountersAndNormals": "PASS",
+  "eightQuranExcerpts": "PASS",
+  "studyScopeVendorChecks": "PASS",
+  "browserGlyphRegionsAndBudget": true,
+  "originalFaceDifferentBytes": 0,
+  "pageErrors": [],
+  "nativeCaptures": [
+    "close.png",
+    "oblique.png"
+  ],
+  "bakeMs": 4498.699999999255,
+  "visualAssessment": "Subtle change; channels still faint. No substantial improvement claim. Owner review required.",
+  "physicalQuest": "NOT TESTED",
+  "build": "PASS; inherited >500 kB chunk advisory",
+  "mainBuiltAssetsByteIdentical": 8,
+  "staticStudyCopies": "PASS"
+}

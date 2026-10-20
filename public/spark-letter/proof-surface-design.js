@@ -58,10 +58,11 @@ export function designSurface(outline,worldScale){
   const panelEdge=Math.max(Math.abs(panelAt(x+1,y)-panelAt(x-1,y)),Math.abs(panelAt(x,y+1)-panelAt(x,y-1)))*interior;
   const etch=etchAt(x,y,weights);if(etch>.06)etchSamples++;
   const groove=Math.min(1,inset*.85+panelEdge*.28+etch*.60);
-  // A restrained lip on the key-light-facing channel shoulder. It remains
-  // within the same interior margin, never becoming a separate mark.
-  const adjacent=etchAt(x-1,y+1,weights);
-  const shoulder=Math.max(0,adjacent-etch)*interior;
+  // Symmetric shoulders, rather than a painted key-light-facing stripe.
+  // Existing scene lighting determines which slope catches light while orbiting.
+  // Gate both sides to the original panel and glyph interior at this texel.
+  const adjacent=Math.max(etchAt(x-1,y,weights),etchAt(x+1,y,weights),etchAt(x,y-1,weights),etchAt(x,y+1,weights));
+  const shoulder=Math.max(0,adjacent-etch)*interior*panel;
   const lip=Math.exp(-(((d-.037)/(.0013*coarseRatio))**2))*.42*core+shoulder*.36;
   // Keep pigment continuous across an incision. Most edge contrast comes from
   // the shallow height valley and its shoulder responding to the existing light.
@@ -70,8 +71,8 @@ export function designSurface(outline,worldScale){
   const p=((h-1-y)*w+x)*4; // Explicit row order matches canonical cap UVs.
   pigmentBytes.set([Math.round(colour.r*255),Math.round(colour.g*255),Math.round(colour.b*255),255],p);
   const grain=((Math.imul(x,374761393)^Math.imul(y,668265263))>>>0)%5;
-  const brushed=.5+.3*Math.sin(x*.31+y*.027)+.2*Math.sin(x*.173-y*.019),height=225-48*groove+14*lip-5*panel+grain*(.10+.16*engraved);
-  const rough=core<.55?190:Math.round(122*(1-panel)+102*polished+132*satin+145*engraved+9*groove+2*brushed+grain*.18);
+  const brushed=.5+.3*Math.sin(x*.31+y*.027)+.2*Math.sin(x*.173-y*.019),height=225-42*groove-26*etch+18*lip-5*panel+grain*(.10+.16*engraved);
+  const rough=core<.55?190:Math.round(122*(1-panel)+82*polished+143*satin+168*engraved+18*etch-20*shoulder+2*brushed+grain*.18);
   const metal=Math.round(112*(1-panel)+157*polished+133*satin+118*engraved);
   reliefBytes.set([Math.round(height),rough,metal,255],p);
   if(alpha[i]){changed++;if(groove>.15)engravedSamples++}
@@ -79,6 +80,6 @@ export function designSurface(outline,worldScale){
  const pigment=new THREE.DataTexture(pigmentBytes,w,h);pigment.colorSpace=THREE.SRGBColorSpace;
  const relief=new THREE.DataTexture(reliefBytes,w,h);
  for(const texture of [pigment,relief]){texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.generateMipmaps=true;texture.needsUpdate=true}
- const info={finishRevision:11,materialResponse:'lower partial-metal coverage for satin diffuse/reflection balance; shallow light-responsive channels with minimal pigment contrast',proofBaseLinearReflectanceCalibration:1.7,bakeMs:performance.now()-bakedAt,width:w,height:h,rawBytes:pigmentBytes.byteLength+reliefBytes.byteLength,rgba8WithMipsEstimate:(pigmentBytes.byteLength+reliefBytes.byteLength)*4/3,engraving:{curves:design.spines.length+design.branches.flat().length,samples:etchSamples,primary:3,branches:10,omittedHairlines:design.omittedHairlines,omittedBranches:design.omittedBranches,branchWidth:design.branchWidth,proofSvgSha256:design.proofSvgSha256,method:'proof-09 exact ornament path centres; resolution-limited selection, panel-owned coverage'},panels:{count:3,finishes:['polished','satin','fine engraved'],samples:panelSamples,method:'interior-gated auxiliary material/bump pockets; no physical cuts or new geometry'},coverageSamples:changed,perimeterSamples:edgeSamples,channelSamples:engravedSamples,opacity:'all surface texels opaque; no geometry discard or displacement',channels:'auxiliary bump/roughness shading, not physically cut grooves',palette:'sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient'};
+ const info={finishRevision:12,materialResponse:'symmetric channel shoulders and deeper auxiliary valleys; distinct polished, satin and fine-engraved roughness, unchanged pigment treatment',proofBaseLinearReflectanceCalibration:1.7,bakeMs:performance.now()-bakedAt,width:w,height:h,rawBytes:pigmentBytes.byteLength+reliefBytes.byteLength,rgba8WithMipsEstimate:(pigmentBytes.byteLength+reliefBytes.byteLength)*4/3,engraving:{curves:design.spines.length+design.branches.flat().length,samples:etchSamples,primary:3,branches:10,omittedHairlines:design.omittedHairlines,omittedBranches:design.omittedBranches,branchWidth:design.branchWidth,proofSvgSha256:design.proofSvgSha256,method:'proof-09 exact ornament path centres; resolution-limited selection, panel-owned coverage'},panels:{count:3,finishes:['polished','satin','fine engraved'],samples:panelSamples,method:'interior-gated auxiliary material/bump pockets; no physical cuts or new geometry'},coverageSamples:changed,perimeterSamples:edgeSamples,channelSamples:engravedSamples,opacity:'all surface texels opaque; no geometry discard or displacement',channels:'auxiliary bump/roughness shading, not physically cut grooves',palette:'sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient'};
  return{pigment,relief,info,dispose(){pigment.dispose();relief.dispose()}};
 }

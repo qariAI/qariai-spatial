@@ -26,7 +26,7 @@ try{
  const plane=new THREE.PlaneGeometry(UNIT,UNIT),faceMaterial=new THREE.MeshBasicMaterial({map:face,transparent:true,depthWrite:false,side:THREE.DoubleSide});materials.push(faceMaterial);
  for(const group of [original]){const f=new THREE.Mesh(plane,faceMaterial);f.position.z=.13;f.renderOrder=10;group.add(f)}
  const sculpture=await buildSculpture({fontHash:report.fontHash,unit:UNIT,mask,scene,renderer});hybrid.add(sculpture.group);report.sculpture=sculpture.info;
- if(sculpture.info.surface.engraving.proofSvgSha256)document.querySelector('.edition').textContent='EXPERIMENTAL FINISH · 11';
+ if(sculpture.info.surface.engraving.proofSvgSha256)document.querySelector('.edition').textContent='EXPERIMENTAL FINISH · 12';
  spark=new SparkRenderer({renderer,maxStdDev:Math.sqrt(5),enableLod:false,maxPixelRadius:24});scene.add(spark);
  const center=new THREE.Vector3(),scale=new THREE.Vector3(),quaternion=new THREE.Quaternion(),color=new THREE.Color();const coverage=(x,y)=>x<0||y<0||x>=256||y>=256?0:mask.data[(y*256+x)*4+3];
  let count=0,boundarySamples=0;const positions=[];let minY=256,maxY=0,minX=256,maxX=0;for(let y=0;y<256;y++)for(let x=0;x<256;x++)if(coverage(x,y)>=128){minY=Math.min(minY,y);maxY=Math.max(maxY,y);minX=Math.min(minX,x);maxX=Math.max(maxX,x)}const centerY=(128-(minY+maxY)/2)/256*UNIT;report.inkBounds=[minX,minY,maxX,maxY];

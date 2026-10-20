@@ -2,7 +2,11 @@
 
 Isolated draft PR #34, branch `prototype/spark-letter-study-v0.1`. Opt-in route `/spark-letter/index.html`. Living Orbit baseline remains PR #33 at `ad10ee39ee0f16262e7b3654b24bad23a34351ff`.
 
-## Current — experimental satin response, finish 11
+## Current — channel profile and finish separation, finish 12
+
+[Finish 12 report](finish-12/README.md): more defined symmetric auxiliary channel shoulders and clearer polished/satin/engraved roughness separation. Use `?mode=hybrid&view=close&finish=proof`; the label reads **EXPERIMENTAL FINISH · 12**. Geometry, framing, palette, lighting and default Surface 08 remain fixed. Stop for owner visual review.
+
+## Previous — experimental satin response, finish 11
 
 [Finish 11 changes, checks and capture limitations](finish-11/README.md). Use `?mode=hybrid&view=close&finish=proof`; the header reads **EXPERIMENTAL FINISH · 11**. This revision reduces painted channel contrast and rebalances the existing roughness/metalness maps. Geometry, framing, palette, default Surface 08 and lighting remain unchanged. Browser integrity checks pass, but both optional native captures timed out; visual improvement remains for owner review.
 
