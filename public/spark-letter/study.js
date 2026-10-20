@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {SparkRenderer,SplatMesh} from '@sparkjsdev/spark';
 import {arabicTexture,samplingMask} from './source-letter.js';
 import {buildSculpture} from './sculpture.js';
+import {enableInspection} from './orbit-inspection.js';
 const started=performance.now(),stage=document.querySelector('#stage'),status=document.querySelector('#status');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const params=new URLSearchParams(location.search);let mode=['original','hybrid'].includes(params.get('mode'))?params.get('mode'):'compare',view=['close','oblique'].includes(params.get('view'))?params.get('view'):'wide',breathing=false;
@@ -14,6 +15,7 @@ try{
  const font=await document.fonts.load('700 174px Amiri');if(!font.length||!document.fonts.check('700 174px Amiri'))throw Error('Bundled Amiri did not load; refusing fallback lettering');
  renderer=new THREE.WebGLRenderer({antialias:false,alpha:false,powerPreference:'high-performance'});renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFShadowMap;renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#03090e');renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;stage.append(renderer.domElement);
  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.1,60),target=new THREE.Vector3(),cameraGoal=new THREE.Vector3();
+ let inspection;
  const original=new THREE.Group(),hybrid=new THREE.Group();scene.add(original,hybrid);
  const nativeFace=arabicTexture('ك'),source=nativeFace.image.getContext('2d').getImageData(0,0,256,256),mask=samplingMask('ك');
  // Freeze the original canvas readback once. Canvas GPU/CPU readback paths can
@@ -55,8 +57,9 @@ try{
   const width=stage.clientWidth,height=stage.clientHeight,aspect=width/height;
   const distance=mode==='compare'?Math.max(12,9/aspect):Math.max(7,5/aspect);
   cameraGoal.set(view==='oblique'?2.8:0,centerY+(view==='oblique'?.35:0),view==='wide'?distance:view==='close'?(mode==='compare'?10:6.4):(mode==='compare'?10:5.8));
-  if(instant)camera.position.copy(cameraGoal);target.set(0,centerY,0);report.settled=false;
+  if(instant)camera.position.copy(cameraGoal);target.set(0,centerY,0);inspection?.reset();report.inspection={custom:false};report.settled=false;
  }
+ inspection=enableInspection({element:stage,goal:cameraGoal,target,onChange(){report.inspection={custom:true};document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'))},onReset(){setState(mode,view)}});
  const resize=()=>{renderer.setSize(stage.clientWidth,stage.clientHeight);camera.aspect=stage.clientWidth/stage.clientHeight;camera.updateProjectionMatrix();setState(mode,view,true)};resize();window.addEventListener('resize',resize);
  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setState(b.dataset.mode,view)));document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setState(mode,b.dataset.view)));
  document.querySelector('#motion').addEventListener('click',e=>{breathing=!breathing;report.breathing=breathing;e.currentTarget.textContent=breathing?'Pause breathing light':'Enable breathing light';e.currentTarget.setAttribute('aria-pressed',String(breathing))});
@@ -73,7 +76,7 @@ try{
  window.letterStudy.capture=()=>{captureUntil=performance.now()+2000;renderer.render(scene,camera);return renderer.domElement.toDataURL('image/png')};
  window.letterStudy.faceBytes=()=>Array.from(source.data);window.letterStudy.maskBytes=()=>Array.from(mask.data);window.letterStudy.currentFaceBytes=()=>Array.from(face.image.data);
  report.ready=true;report.readyMs=performance.now()-started;status.textContent=`Ready · Sculpted Amiri kāf · ${report.sculpture.triangles.toLocaleString()} triangles · ${count} light splats · Desktop study`;
- window.addEventListener('pagehide',()=>{disposed=true;renderer.setAnimationLoop(null);mesh.dispose();sculpture.dispose();spark.dispose();face.dispose();plane.dispose();starsGeometry.dispose();materials.forEach(m=>m.dispose());renderer.dispose()},{once:true});
+ window.addEventListener('pagehide',()=>{disposed=true;inspection.dispose();renderer.setAnimationLoop(null);mesh.dispose();sculpture.dispose();spark.dispose();face.dispose();plane.dispose();starsGeometry.dispose();materials.forEach(m=>m.dispose());renderer.dispose()},{once:true});
  renderer.domElement.addEventListener('webglcontextlost',()=>failure('WebGL context lost; reload to retry'));
  function collectTextures(s){const textures=new Set([s.environment,mesh.packedSplats?.source,spark.orderingTexture,...spark.accumulators.flatMap(a=>a.getTextures())].filter(Boolean));s.traverse(o=>{if(o.shadow?.map?.texture)textures.add(o.shadow.map.texture);if(o.shadow?.map?.depthTexture)textures.add(o.shadow.map.depthTexture);for(const mat of [].concat(o.material||[]))for(const t of Object.values(mat))if(t?.isTexture)textures.add(t)});return [...textures].map(t=>({width:t.image?.width,height:t.image?.height,depth:t.image?.depth,type:t.type,format:t.format,mips:t.generateMipmaps,estimatedBytes:(t.image?.width||0)*(t.image?.height||0)*(t.image?.depth||1)*(t.format===THREE.RGFormat||t.format===THREE.RGIntegerFormat?2:t.format===THREE.RedFormat||t.format===THREE.RedIntegerFormat?1:4)*(t.type===THREE.UnsignedByteType?1:t.type===THREE.HalfFloatType?2:4)*(t.generateMipmaps?4/3:1)}));}
 }catch(error){failure(error);console.error(error)}

@@ -1,16 +1,18 @@
-# Letter / Light — sapphire and engraved light
+# Letter / Light — inset finishes and free inspection
 
 Isolated draft PR #34, branch `prototype/spark-letter-study-v0.1`. Opt-in route `/spark-letter/index.html`. Living Orbit baseline remains PR #33 at `ad10ee39ee0f16262e7b3654b24bad23a34351ff`.
 
 ## Owner-directed refinement
 
-The owner requested a **dark sapphire perimeter**, localized amber/coral/turquoise highlights, fine engraved channels, subtle texture and softer face-to-wall transitions. The current refinement strengthens the sapphire rim slightly, narrows the amber/coral/turquoise fields into smaller localized highlights and deepens channel valleys with a restrained offset shoulder highlight. The same solid letter, contours and open spaces remain unchanged.
+The owner requested a few flowing inset panels, distinct satin/polished/finely engraved finishes, more visible view-dependent reflections and drag-to-orbit inspection. Surface 06 adds three conservative **surface-mask pockets** within the existing strokes: a polished flowing lower sweep, a satin stem insert and a finely engraved region on the detached component. These are non-scriptural surface ornaments, not new lettering or cuts through the letter.
 
-`surface-design.js` derives auxiliary interior distance from the unchanged font outline. This drives the sapphire edge, a fine inset valley and restrained reflected lip. Three small, nonscriptural channel curves are confined to stroke interiors; they affect colour, bump and roughness only. They do not cut or replace the Arabic contours. Fine brushed/grain relief and physical clearcoat/iridescence respond to the existing studio lighting. Colour fields are static, reflections are view-dependent. Side/bevel normals are averaged at shared positions and meet the cap smoothly; no positions or triangle counts change. Surface 05 changes only auxiliary pixel generation; geometry, normals, materials and lighting are unchanged from surface 04.
+All pockets are gated by the original outline's interior distance. Their edges are softened in the auxiliary mask. Pigment remains localized amber, coral and turquoise with a sapphire perimeter. The existing two maps now pack colour plus **height / roughness / metalness**. Polished, satin and engraved regions have different specular widths and metal response; the small engraved area has restrained hatching/grain. A clearer physical clearcoat and thin-film response use the existing studio environment. Pigment and the subtle shoulder accent are static; physical environment reflections and film response change with viewing angle. No full-face rainbow was added.
 
-**The new fine engraving is bump shading, not physically cut channels.** The underlying solid extrusion and shallow crown remain real geometry from phase 3. The exact font path, detached internal component, silhouette and open spaces are retained. Spark remains a sparse secondary light fringe.
+**Inset panel depth and fine engraving are bump shading, not new physical cuts.** The existing solid extrusion, inward bevel and shallow crown remain unchanged. Both Arabic components, original curves, XY silhouette, open spaces and tessellation are preserved. Spark remains a secondary light fringe. A hard, overly reflective early panel trial was softened before final capture.
 
-Prior iterations are preserved: [phase 1](phase1/README.md) Spark shell, [phase 2](phase2/README.md) gold/bronze, and [phase 3](phase3/README.md) floating iridescent sculpture at `21cb127`. Nothing is integrated into Living Orbit or Harf.
+Drag on the canvas to orbit; scroll to inspect. Arrow keys rotate, +/- zoom, Home restores the last preset. View buttons restore the original Wide/Close/Oblique endpoints. Single-pointer capture is released on up, cancel, lost capture or window blur. Orbit pitch and distance are bounded; no automatic rotation or inertia is introduced. This is desktop/touch study inspection, not a new XR interaction or any change to Living Orbit's cameras.
+
+Earlier studies remain under [phase 1](phase1/README.md), [phase 2](phase2/README.md), [phase 3](phase3/README.md), plus the retained surface 04/05 native captures below. Nothing is integrated into Living Orbit or Harf.
 
 ## Genuine visual evidence
 
@@ -21,13 +23,15 @@ Prior iterations are preserved: [phase 1](phase1/README.md) Spark shell, [phase 
 | Oblique | [Original](original-oblique.png) | [Sculpture](hybrid-oblique.png) |
 
 ![Matched wide comparison](compare-wide.png)
-[Previous surface 04, same native oblique camera](surface04-native-oblique.png) → [Current surface 05](sculpture-native-oblique.png)
+[Surface 04](surface04-native-oblique.png) → [Previous surface 05](surface05-native-oblique.png) → [Current surface 06, same native oblique camera](sculpture-native-oblique.png)
 
 ![Direct native sculpture canvas](sculpture-native-oblique.png)
 
-All seven real 1600×1000 full-page captures succeeded with matching A/B camera endpoints and projection. The additional native image is an actual WebGL canvas readback without HTML compositing, not a generated image or retouched artwork. SwiftShader can omit some HTML text in full-page images; direct canvas capture avoids that software-compositor artifact. No GPU draws are skipped. Timing windows precede readbacks. Sparse software-renderer samples remain unsuitable for a hardware performance claim. Breathing light is off for comparisons. Existing Wide/Close/Oblique controls and reduced-motion behavior remain.
+All seven matched preset captures and one pointer-driven inspection capture at 1600×1000 succeeded with matching A/B camera endpoints and projection. The additional native image is an actual WebGL canvas readback without HTML compositing, not a generated image or retouched artwork. SwiftShader can omit some HTML text in full-page images; direct canvas capture avoids that software-compositor artifact. No GPU draws are skipped. Timing windows precede readbacks. Sparse software-renderer samples remain unsuitable for a hardware performance claim. Breathing light is off for comparisons. Existing Wide/Close/Oblique controls and reduced-motion behavior remain.
 
-**Assessment:** the stronger sapphire perimeter separates the silhouette from the coloured face, while the inset channels and smoother shoulders give more intentional surface structure. Amber is concentrated along the lower sweep, coral at its turn and the internal component, and turquoise on the upper stem. Small reflective details can alias in close software captures. This remains a font-derived study, not bespoke interwoven calligraphy or authenticated Thuluth. Physical Quest performance and stereo remain unverified. Stop for owner visual review.
+[Genuine drag-to-orbit inspection](inspection-orbit.png) shows another viewing angle produced by real pointer events, not a camera replacement in the application. The browser report records its camera and tests restoration, wheel zoom, keyboard control and pointer cancellation.
+
+**Assessment:** the pockets add local finish changes without altering the letter. Some distinctions are subtle from the wide view and become clearer when approached or orbited; the finish remains intentionally restrained. This is a font-derived study, not bespoke calligraphy or an authenticated Thuluth composition. Small reflection/bump detail can alias in software captures. Physical Quest performance and stereo remain unverified. Stop for owner visual review.
 
 ## Original Arabic contours and physical crown
 
@@ -43,11 +47,11 @@ All seven real 1600×1000 full-page captures succeeded with matching A/B camera 
 
 ## Measured resource envelope
 
-Physical letter: **11,940 triangles / 1,146,240 bytes (~1.093 MiB)**, unchanged from phase 3. This pass adds **zero geometry bytes, triangles, draw calls or texture bytes** relative to surface 04. Limits remain 20,000 triangles / 2 MiB.
+Physical letter: **11,940 triangles / 1,146,240 bytes (~1.093 MiB)**, unchanged from phase 3. This pass adds **zero geometry bytes, triangles, draw calls or texture bytes** relative to surfaces 04/05. Limits remain 20,000 triangles / 2 MiB.
 
 Body depth is 0.20, inward bevel size 0.012, end bevel thickness 0.020 and cap crown at most 0.004. This is a desktop study scale, not a headset-scale comfort claim.
 
-The unchanged 384×512 HDR environment and 512×512 self-shadow map remain. Two **384×576 RGBA8 surface maps** replace three 128×128 maps. Their combined raw payload is **1,769,472 bytes (1.6875 MiB)**; with mipmaps the estimate is **2.25 MiB**, an increase of **2.0625 MiB** over the prior unmipped surface maps. Bump and roughness share one texture. All map alpha values remain opaque; no discard, displacement, parallax or new contour is introduced. The floor remains absent. Secondary splat count remains small and raster-dependent (19 in the controlled run); it was 4,516 in phase 1. Runtime draw counts, texture dimensions, packed capacity and sparse timing samples are in `browser-report.json` and `resource-summary.json`. Texture sums are incomplete uncompressed estimates, not driver VRAM; software frame intervals are not Windows hardware or Quest FPS.
+The unchanged 384×512 HDR environment and 512×512 self-shadow map remain. Two **384×576 RGBA8 surface maps** replace three 128×128 maps. Their combined raw payload is **1,769,472 bytes (1.6875 MiB)**; with mipmaps the estimate is **2.25 MiB**, an increase of **2.0625 MiB** over the prior unmipped surface maps. Bump, roughness, metalness and clearcoat roughness share one packed texture. Additional material sampling/shader work is not claimed free; no hardware performance conclusion follows from equal allocation. All map alpha values remain opaque; no discard, displacement, parallax or new contour is introduced. The floor remains absent. Secondary splat count remains small and raster-dependent (19 in the controlled run); it was 4,516 in phase 1. Runtime draw counts, texture dimensions, packed capacity and sparse timing samples are in `browser-report.json` and `resource-summary.json`. Texture sums are incomplete uncompressed estimates, not driver VRAM; software frame intervals are not Windows hardware or Quest FPS.
 
 Spark 2.3.1 and Three 0.180.0 remain isolated in page-local licensed vendor modules. Root application dependencies still use Three 0.160.1. All existing main application sources and built JS/CSS assets remain unchanged. The opt-in assets load only on this page; no startup or performance benefit for Orbit is claimed.
 
@@ -63,7 +67,7 @@ npm run build
 
 Extraction needs development-only fontTools. The browser harness uses existing Playwright/Chromium and explicit SwiftShader for reproducibility; CHROMIUM_PATH can select an installed browser. These captures do not constitute a Windows hardware run.
 
-Auxiliary-map tests verify opaque texels, finite distance data, a protected synthetic opening, zero outside distance, channel/perimeter presence and the unchanged geometry budget.
+Auxiliary-map tests verify opaque texels, finite distance data, a protected synthetic opening, zero outside distance, all three panel finishes, roughness/metalness separation and the unchanged geometry budget. Real browser pointer/keyboard tests cover orbit, wheel zoom, Home restoration, pointer cancellation and preset restoration.
 
 Existing eight recorded Qur'anic excerpts, Harf tracing/body/dot/pinch/session, ink/smoothing, integration completion/navigation, menu state and recovery checks pass. Production TypeScript/Vite build passes with its inherited chunk-size warning. Original Orbit/Harf built assets match the pinned baseline byte-for-byte.
 

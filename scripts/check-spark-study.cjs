@@ -16,9 +16,11 @@ report.surfaceValidation=await p.evaluate(async()=>{
  const textures=[surface.pigment,surface.relief];const opaque=textures.every(t=>t.image.data.every((v,i)=>i%4!==3||v===255));
  const alpha=new Uint8Array(81);for(let y=1;y<8;y++)for(let x=1;x<8;x++)alpha[y*9+x]=255;alpha[4*9+4]=0;
  const distances=distanceInside(alpha,9,9);const protectedOpening=distances[40]===0;const outsideZero=distances.every((v,i)=>alpha[i]||v===0);const finite=distances.every(Number.isFinite);
- const result={...surface.info,opaque,protectedOpening,outsideZero,finite};surface.dispose();return result;
+ let roughMin=255,roughMax=0,metalMin=255,metalMax=0;for(let i=0;i<surface.relief.image.data.length;i+=4){const a=surface.relief.image.data;roughMin=Math.min(roughMin,a[i+1]);roughMax=Math.max(roughMax,a[i+1]);metalMin=Math.min(metalMin,a[i+2]);metalMax=Math.max(metalMax,a[i+2])}
+ const result={...surface.info,opaque,protectedOpening,outsideZero,finite,roughMin,roughMax,metalMin,metalMax};surface.dispose();return result;
 });
 assert.equal(report.surfaceValidation.opaque,true);assert.equal(report.surfaceValidation.protectedOpening,true);assert.equal(report.surfaceValidation.outsideZero,true);assert.equal(report.surfaceValidation.finite,true);
+assert(report.surfaceValidation.panels.samples.every(n=>n>20),'Every panel finish needs real coverage');assert(report.surfaceValidation.roughMin<100&&report.surfaceValidation.roughMax>160);assert(report.surfaceValidation.metalMax-report.surfaceValidation.metalMin>20);
 assert.equal(report.surfaceValidation.rawBytes,1769472);assert(report.surfaceValidation.channelSamples>0);assert(report.surfaceValidation.perimeterSamples>0);
 assert.equal(initial.sculpture.triangles,11940,'Surface refinement must not add triangles');assert.equal(initial.sculpture.geometryBytes,1146240,'Surface refinement must not add vertex buffers');
 // Compare with the unchanged original drawing routine evaluated in the same browser.
@@ -45,6 +47,20 @@ for(const [mode,view] of [['compare','wide'],['original','wide'],['hybrid','wide
 // Check that camera poses match for each A/B pair and source bytes remain exact.
 for(const view of ['wide','close','oblique']){const a=report.metrics.find(x=>x.mode==='original'&&x.view===view),b=report.metrics.find(x=>x.mode==='hybrid'&&x.view===view);assert(a&&b);const delta=Math.max(...a.camera.position.map((v,i)=>Math.abs(v-b.camera.position[i])));assert(delta<.002,'Matched camera drift');assert.deepEqual(a.camera.projection,b.camera.projection)}
 assert.equal(digest(Buffer.from(await p.evaluate(()=>window.letterStudy.currentFaceBytes()))),initial.faceHash);
+// Real pointer/keyboard events, not an inspection API bypass.
+await p.evaluate(()=>window.letterStudy.setState('hybrid','oblique',true));await p.waitForTimeout(600);
+const inspectBefore=await p.evaluate(()=>window.letterStudy.measure().camera.position);
+const box=await p.locator('#stage').boundingBox();const cx=box.x+box.width/2,cy=box.y+box.height/2;
+await p.mouse.move(cx,cy);await p.mouse.down();await p.mouse.move(cx+120,cy+35,{steps:12});await p.mouse.up();await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});
+const inspectAfter=await p.evaluate(()=>({position:window.letterStudy.measure().camera.position,custom:window.letterStudy.report.inspection.custom}));assert(inspectAfter.custom);assert(Math.hypot(...inspectBefore.map((v,i)=>v-inspectAfter.position[i]))>.5,'Drag did not orbit');
+report.inspectionOrbitCamera=inspectAfter.position;
+try{await safe(p.screenshot({path:path.join(out,'inspection-orbit.png'),timeout:8000}),10000);report.captures.push('inspection-orbit.png')}catch(e){(report.warnings??=[]).push('Optional inspection screenshot: '+e.message)}
+const radius=pos=>Math.hypot(pos[0],pos[1]-.721875,pos[2]);await p.mouse.wheel(0,100);await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});const zoomed=await p.evaluate(()=>window.letterStudy.measure().camera.position);assert(radius(zoomed)>radius(inspectAfter.position)*1.05,'Wheel did not zoom');
+await p.locator('#stage').press('Home');await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});const restored=await p.evaluate(()=>window.letterStudy.measure().camera.position);assert(Math.max(...restored.map((v,i)=>Math.abs(v-inspectBefore[i])))<.002,'Home did not restore preset');
+await p.locator('#stage').press('ArrowRight');await p.locator('#stage').press('+');await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});assert(await p.evaluate(()=>window.letterStudy.report.inspection.custom));
+await p.mouse.move(cx,cy);await p.mouse.down();await p.dispatchEvent('#stage','pointercancel',{pointerId:1});await p.mouse.up();assert.equal(await p.locator('#stage').evaluate(e=>e.classList.contains('dragging')),false);
+await p.getByRole('button',{name:'Oblique',exact:true}).click();await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});assert.equal(await p.evaluate(()=>window.letterStudy.report.inspection.custom),false);
+report.inspection={drag:true,wheel:true,keyboard:true,homeRestoresPreset:true,cancelReleasesCapture:true,presetRestores:true};
 await p.getByRole('button',{name:'Enable breathing light',exact:true}).click();assert.equal(await p.evaluate(()=>window.letterStudy.report.breathing),true);await p.getByRole('button',{name:'Pause breathing light',exact:true}).click();assert.equal(await p.evaluate(()=>window.letterStudy.report.breathing),false);
 await p.setViewportSize({width:390,height:844});await p.waitForTimeout(600);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.equal(await p.evaluate(()=>document.querySelectorAll('canvas').length),1);
 assert.deepEqual(report.errors,[]);report.success=true;

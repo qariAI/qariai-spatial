@@ -1,6 +1,6 @@
 {
   "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
-  "studyAssetBytes": 4792094,
+  "studyAssetBytes": 4797243,
   "mainBuiltAssets": [
     {
       "file": "harfDesktop-BAm-SrtE.js",
@@ -49,7 +49,7 @@
     "maxTriangles": 20000,
     "maxBytes": 2097152
   },
-  "note": "Surface-only refinement; unchanged geometry and texture allocation. Sparse SwiftShader samples are not a controlled hardware FPS/VRAM measurement.",
+  "note": "Inset finish maps reuse prior texture allocation and geometry. Additional metalness/clearcoat map sampling and CPU auxiliary mask work are not free. Sparse SwiftShader timing is not measured hardware FPS/VRAM.",
   "textureEstimateRangeBytes": [
     5461333.333333333,
     5502293.333333333
@@ -65,19 +65,43 @@
     "height": 576,
     "rawBytes": 1769472,
     "rgba8WithMipsEstimate": 2359296,
+    "panels": {
+      "count": 3,
+      "finishes": [
+        "polished",
+        "satin",
+        "fine engraved"
+      ],
+      "samples": [
+        7578,
+        3174,
+        4072
+      ],
+      "method": "interior-gated auxiliary material/bump pockets; no physical cuts or new geometry"
+    },
     "coverageSamples": 71539,
     "perimeterSamples": 21465,
-    "channelSamples": 4506,
+    "channelSamples": 7441,
     "opacity": "all surface texels opaque; no geometry discard or displacement",
     "channels": "auxiliary bump/roughness shading, not physically cut grooves",
     "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient",
     "opaque": true,
     "protectedOpening": true,
     "outsideZero": true,
-    "finite": true
+    "finite": true,
+    "roughMin": 80,
+    "roughMax": 192,
+    "metalMin": 164,
+    "metalMax": 195
   },
   "hybridSteadyDrawCalls": 5,
   "deltaFromSurface04": {
+    "triangles": 0,
+    "geometryBytes": 0,
+    "drawCalls": 0,
+    "surfaceTextureBytes": 0
+  },
+  "deltaFromSurface05": {
     "triangles": 0,
     "geometryBytes": 0,
     "drawCalls": 0,

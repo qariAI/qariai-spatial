@@ -17,7 +17,7 @@ export async function buildSculpture({fontHash,unit,mask,scene,renderer}){
  const data=new SVGLoader().parse(`<svg xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="${outline.path}"/></svg>`);
  const shapes=data.paths.flatMap(p=>SVGLoader.createShapes(p));if(shapes.length!==2)throw Error('Detached kāf component or topology lost');
  const surface=designSurface(outline,scale);
- const gold=new THREE.MeshPhysicalMaterial({color:'#fff',map:surface.pigment,bumpMap:surface.relief,bumpScale:.005,roughnessMap:surface.relief,metalness:.64,roughness:.48,clearcoat:.38,clearcoatRoughness:.22,iridescence:.28,iridescenceIOR:1.3,iridescenceThicknessRange:[220,380],envMapIntensity:1.1});
+ const gold=new THREE.MeshPhysicalMaterial({color:'#fff',map:surface.pigment,bumpMap:surface.relief,bumpScale:.005,roughnessMap:surface.relief,metalnessMap:surface.relief,metalness:1,roughness:1,clearcoat:.45,clearcoatRoughness:.6,clearcoatRoughnessMap:surface.relief,iridescence:.4,iridescenceIOR:1.3,iridescenceThicknessRange:[220,480],envMapIntensity:1.1});
  const bronze=new THREE.MeshPhysicalMaterial({color:'#16355c',metalness:.78,roughness:.34,iridescence:.22,iridescenceThicknessRange:[240,360],envMapIntensity:1});
  const group=new THREE.Group();group.name='font-derived-kaf-sculpture';const geometries=[];let triangles=0,bytes=0;
  const depth=.20,bevel=.012;
