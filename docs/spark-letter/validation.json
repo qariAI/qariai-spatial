@@ -18,8 +18,6 @@
   "screenshots": [
     "compare-wide.png",
     "original-wide.png",
-    "hybrid-wide.png",
-    "original-close.png",
     "hybrid-close.png",
     "original-oblique.png",
     "hybrid-oblique.png"
@@ -36,5 +34,28 @@
   "limits": "Software browser evidence only; no physical Quest or Windows hardware timing claim.",
   "physicalCrown": "synthetic projected hole/cap area, XY bounds, positive winding, finite normalized normals and bounded Z all pass",
   "ownerColourChoice": "vivid iridescent colours",
-  "guard": "20,000 triangles / 2 MiB unchanged; finer rejected candidate not published"
+  "guard": "20,000 triangles / 2 MiB unchanged; finer rejected candidate not published",
+  "warnings": [
+    "Optional screenshot hybrid/wide: page.screenshot: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n",
+    "Optional screenshot original/close: page.screenshot: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n"
+  ],
+  "surfaceValidation": {
+    "width": 384,
+    "height": 576,
+    "rawBytes": 1769472,
+    "rgba8WithMipsEstimate": 2359296,
+    "coverageSamples": 71539,
+    "perimeterSamples": 15631,
+    "channelSamples": 4456,
+    "opacity": "all surface texels opaque; no geometry discard or displacement",
+    "channels": "auxiliary bump/roughness shading, not physically cut grooves",
+    "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient",
+    "opaque": true,
+    "protectedOpening": true,
+    "outsideZero": true,
+    "finite": true
+  },
+  "unchangedMainBuiltAssets": 8,
+  "physicalGeometryDelta": 0,
+  "captureLimitations": "Five of seven page captures succeeded. Two bounded optional captures timed out; stale images removed. Native WebGL oblique capture succeeded. HTML software compositor can omit text."
 }

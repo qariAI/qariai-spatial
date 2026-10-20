@@ -51,7 +51,7 @@ try{
  const starsGeometry=new THREE.BufferGeometry();starsGeometry.setAttribute('position',new THREE.BufferAttribute(stars,3));const starsMaterial=new THREE.PointsMaterial({color:'#8daaa6',size:.012,transparent:true,opacity:.37});materials.push(starsMaterial);scene.add(new THREE.Points(starsGeometry,starsMaterial));
  function setState(nextMode=mode,nextView=view,instant=false){mode=nextMode;view=nextView;report.mode=mode;report.view=view;original.visible=mode!=='hybrid';hybrid.visible=mode!=='original';original.position.x=mode==='compare'?-2.35:0;hybrid.position.x=mode==='compare'?2.35:0;
   document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
-  const labels=document.querySelector('#labels');labels.classList.toggle('single',mode!=='compare');labels.lastElementChild.textContent=mode==='original'?'01 / ORIGINAL':mode==='hybrid'?'02 / IRIDESCENT SCULPTURE':'02 / IRIDESCENT SCULPTURE';
+  const labels=document.querySelector('#labels');labels.classList.toggle('single',mode!=='compare');labels.lastElementChild.textContent=mode==='original'?'01 / ORIGINAL':mode==='hybrid'?'02 / SAPPHIRE + ENGRAVED LIGHT':'02 / SAPPHIRE + ENGRAVED LIGHT';
   const width=stage.clientWidth,height=stage.clientHeight,aspect=width/height;
   const distance=mode==='compare'?Math.max(12,9/aspect):Math.max(7,5/aspect);
   cameraGoal.set(view==='oblique'?2.8:0,centerY+(view==='oblique'?.35:0),view==='wide'?distance:view==='close'?(mode==='compare'?10:6.4):(mode==='compare'?10:5.8));

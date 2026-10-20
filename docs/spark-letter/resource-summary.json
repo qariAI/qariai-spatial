@@ -1,6 +1,6 @@
 {
   "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
-  "studyAssetBytes": 4787259,
+  "studyAssetBytes": 4791871,
   "mainBuiltAssets": [
     {
       "file": "harfDesktop-BAm-SrtE.js",
@@ -49,14 +49,32 @@
     "maxTriangles": 20000,
     "maxBytes": 2097152
   },
-  "note": "Study-only physical sculpture. Runtime texture/draw and software timing evidence in browser-report.json; not measured headset VRAM/FPS.",
+  "note": "Surface-only refinement: previous geometry unchanged. Sparse SwiftShader timing collected alongside other validation workloads; not a performance comparison or hardware FPS/VRAM measurement.",
   "textureEstimateRangeBytes": [
-    3298645.333333333,
-    3339605.333333333
+    5461333.333333333,
+    5502293.333333333
   ],
-  "deltaFromPhase2": {
-    "triangles": 3628,
-    "geometryBytes": 348288,
-    "bodyDepth": -0.14
-  }
+  "deltaFromPhase3": {
+    "triangles": 0,
+    "geometryBytes": 0,
+    "drawCalls": 0,
+    "surfaceTextureMipEstimateBytes": 2162688
+  },
+  "surface": {
+    "width": 384,
+    "height": 576,
+    "rawBytes": 1769472,
+    "rgba8WithMipsEstimate": 2359296,
+    "coverageSamples": 71539,
+    "perimeterSamples": 15631,
+    "channelSamples": 4456,
+    "opacity": "all surface texels opaque; no geometry discard or displacement",
+    "channels": "auxiliary bump/roughness shading, not physically cut grooves",
+    "palette": "dark sapphire perimeter with localized amber/coral/turquoise fields; no full-face rainbow gradient",
+    "opaque": true,
+    "protectedOpening": true,
+    "outsideZero": true,
+    "finite": true
+  },
+  "hybridSteadyDrawCalls": 5
 }

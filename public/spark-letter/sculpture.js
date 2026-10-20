@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {SVGLoader} from './vendor/SVGLoader.js';
 import {crownCap} from './crowned-cap.js';
+import {designSurface} from './surface-design.js';
 // Convert the original font curves, not a raster tracing, into shallow solid relief.
 export async function buildSculpture({fontHash,unit,mask,scene,renderer}){
  const outline=await (await fetch('./kaf-outline.json')).json();
@@ -15,21 +16,9 @@ export async function buildSculpture({fontHash,unit,mask,scene,renderer}){
  const tx=(128-outline.advance*174/outline.unitsPerEm/2-128)*unit/256,ty=(128-baseline)*unit/256;
  const data=new SVGLoader().parse(`<svg xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="${outline.path}"/></svg>`);
  const shapes=data.paths.flatMap(p=>SVGLoader.createShapes(p));if(shapes.length!==2)throw Error('Detached kāf component or topology lost');
- const pixels=new Uint8Array(128*128*4);let seed=94;for(let i=0;i<128*128;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const rough=225+Math.round(3*Math.sin((i%128)*.44))+(seed%3);pixels.set([128,rough,128,255],i*4)}
- const roughness=new THREE.DataTexture(pixels,128,128);roughness.needsUpdate=true;roughness.wrapS=roughness.wrapT=THREE.RepeatWrapping;
- // Owner-selected iridescent palette. This is a surface map only: no text,
- // image-generated lettering or geometric alteration is introduced.
- const pigmentBytes=new Uint8Array(128*128*4),filmBytes=new Uint8Array(128*128*4);
- const palette=['#ffc16c','#ee6d91','#873de0','#284ead','#11bec2','#a4e9d1'].map(c=>new THREE.Color(c)),colour=new THREE.Color();
- for(let y=0;y<128;y++)for(let x=0;x<128;x++){
-  const t=THREE.MathUtils.clamp(.77*y/127+.23*x/127,0,1)*(palette.length-1),i=Math.min(palette.length-2,Math.floor(t));colour.copy(palette[i]).lerp(palette[i+1],THREE.MathUtils.smoothstep(t-i,0,1)).convertLinearToSRGB();const p=(y*128+x)*4;
-  pigmentBytes.set([Math.round(colour.r*255),Math.round(colour.g*255),Math.round(colour.b*255),255],p);
-  const thickness=Math.round(110+110*y/127);filmBytes.set([255,thickness,255,255],p);
- }
- const pigment=new THREE.DataTexture(pigmentBytes,128,128);pigment.colorSpace=THREE.SRGBColorSpace;pigment.magFilter=pigment.minFilter=THREE.LinearFilter;pigment.needsUpdate=true;
- const film=new THREE.DataTexture(filmBytes,128,128);film.magFilter=film.minFilter=THREE.LinearFilter;film.needsUpdate=true;
- const gold=new THREE.MeshPhysicalMaterial({color:'#ffffff',map:pigment,metalness:.72,roughness:.31,roughnessMap:roughness,clearcoat:.48,clearcoatRoughness:.16,iridescence:.8,iridescenceIOR:1.3,iridescenceThicknessRange:[160,470],iridescenceThicknessMap:film,envMapIntensity:1.05});
- const bronze=new THREE.MeshPhysicalMaterial({color:'#263b5d',metalness:.85,roughness:.3,iridescence:.65,iridescenceThicknessRange:[210,420],envMapIntensity:1.1});
+ const surface=designSurface(outline,scale);
+ const gold=new THREE.MeshPhysicalMaterial({color:'#fff',map:surface.pigment,bumpMap:surface.relief,bumpScale:.005,roughnessMap:surface.relief,metalness:.64,roughness:.48,clearcoat:.38,clearcoatRoughness:.22,iridescence:.28,iridescenceIOR:1.3,iridescenceThicknessRange:[220,380],envMapIntensity:1.1});
+ const bronze=new THREE.MeshPhysicalMaterial({color:'#16355c',metalness:.78,roughness:.34,iridescence:.22,iridescenceThicknessRange:[240,360],envMapIntensity:1});
  const group=new THREE.Group();group.name='font-derived-kaf-sculpture';const geometries=[];let triangles=0,bytes=0;
  const depth=.20,bevel=.012;
  const [xmin,ymin,xmax,ymax]=outline.bounds;
@@ -50,6 +39,6 @@ export async function buildSculpture({fontHash,unit,mask,scene,renderer}){
  const rim=new THREE.PointLight('#8bc7b7',8,15,2);rim.position.set(3,1,2);scene.add(rim);scene.add(new THREE.HemisphereLight('#b2c2d5','#352a20',.5));
  // Floating presentation: no floor or decorative backing object.
  const bounds=new THREE.Box3().setFromObject(group);
- const info={kind:'physical extrusion of original font vectors; not raster tracing',glyph:outline.glyph,pathHash:outline.pathSha256,fontHash,components:shapes.length,triangles,geometryBytes:bytes,depth,bevel,crown:{height:.004,width:.055,xyUnchanged:true},finish:'owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment',floatingPresentation:true,bevelDirection:'inward',bounds:[bounds.min.toArray(),bounds.max.toArray()],sourceBoundsWorld:[[xmin*scale+tx,ymin*scale+ty],[xmax*scale+tx,ymax*scale+ty]],uvTransform:{scale,tx,ty,baseline},environment:{width:environment.width,height:environment.height,type:environment.texture.type},shadowMap:[512,512],limits:'Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested.'};
- return{group,info,dispose(){geometries.forEach(g=>g.dispose());gold.dispose();bronze.dispose();roughness.dispose();pigment.dispose();film.dispose();environment.dispose();key.shadow.dispose()}};
+ const info={kind:'physical extrusion of original font vectors; not raster tracing',glyph:outline.glyph,pathHash:outline.pathSha256,fontHash,components:shapes.length,triangles,geometryBytes:bytes,depth,bevel,crown:{height:.004,width:.055,xyUnchanged:true},finish:'designed sapphire perimeter with localized amber/coral/turquoise highlights and restrained iridescent sheen',surface:surface.info,floatingPresentation:true,bevelDirection:'inward',bounds:[bounds.min.toArray(),bounds.max.toArray()],sourceBoundsWorld:[[xmin*scale+tx,ymin*scale+ty],[xmax*scale+tx,ymax*scale+ty]],uvTransform:{scale,tx,ty,baseline},environment:{width:environment.width,height:environment.height,type:environment.texture.type},shadowMap:[512,512],limits:'Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested.'};
+ return{group,info,dispose(){geometries.forEach(g=>g.dispose());gold.dispose();bronze.dispose();surface.dispose();environment.dispose();key.shadow.dispose()}};
 }
