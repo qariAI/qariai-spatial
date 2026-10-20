@@ -1,18 +1,18 @@
-# Letter / Light — inset finishes and free inspection
+# Letter / Light — defined material regions and close inspection
 
 Isolated draft PR #34, branch `prototype/spark-letter-study-v0.1`. Opt-in route `/spark-letter/index.html`. Living Orbit baseline remains PR #33 at `ad10ee39ee0f16262e7b3654b24bad23a34351ff`.
 
 ## Owner-directed refinement
 
-The owner requested a few flowing inset panels, distinct satin/polished/finely engraved finishes, more visible view-dependent reflections and drag-to-orbit inspection. Surface 06 adds three conservative **surface-mask pockets** within the existing strokes: a polished flowing lower sweep, a satin stem insert and a finely engraved region on the detached component. These are non-scriptural surface ornaments, not new lettering or cuts through the letter.
+The owner requested a few flowing inset panels, distinct satin/polished/finely engraved finishes, more visible view-dependent reflections and drag-to-orbit inspection. Surface 07 strengthens three **surface-mask pockets** within the existing strokes: a polished flowing lower sweep, a satin stem insert and a finely engraved region on the detached component. These are non-scriptural surface ornaments, not new lettering or cuts through the letter.
 
-All pockets are gated by the original outline's interior distance. Their edges are softened in the auxiliary mask. Pigment remains localized amber, coral and turquoise with a sapphire perimeter. The existing two maps now pack colour plus **height / roughness / metalness**. Polished, satin and engraved regions have different specular widths and metal response; the small engraved area has restrained hatching/grain. A clearer physical clearcoat and thin-film response use the existing studio environment. Pigment and the subtle shoulder accent are static; physical environment reflections and film response change with viewing angle. No full-face rainbow was added.
+All pockets are gated by the original outline's interior distance. Their edges are softened in the auxiliary mask. The three regions now carry defined amber, turquoise and coral pigments over a darker sapphire field. Broad spot gradients are reduced; stronger dark-blue boundary valleys separate the regions. The lower pocket is broader and more flowing, with selective fine etching; the stem insert is more legible. The existing two maps now pack colour plus **height / roughness / metalness**. Polished, satin and engraved regions have different specular widths and metal response; the small engraved area has restrained hatching/grain. Physical clearcoat and thin-film response use the studio environment. After owner evidence showed the rear too dark, one rear reflection card was added to the baked studio environment. It is not a new visible object or per-frame scene light; environment resolution, direct lights and draw count stay unchanged. Pigment and the subtle shoulder accent are static; physical environment reflections and film response change with viewing angle. No full-face rainbow was added.
 
-**Inset panel depth and fine engraving are bump shading, not new physical cuts.** The existing solid extrusion, inward bevel and shallow crown remain unchanged. Both Arabic components, original curves, XY silhouette, open spaces and tessellation are preserved. Spark remains a secondary light fringe. A hard, overly reflective early panel trial was softened before final capture.
+**Inset panel depth and fine engraving are bump shading, not new physical cuts.** The existing solid extrusion, inward bevel and shallow crown remain unchanged. Both Arabic components, original curves, XY silhouette, open spaces and tessellation are preserved. Spark remains a secondary light fringe.
 
-Drag on the canvas to orbit; scroll to inspect. Arrow keys rotate, +/- zoom, Home restores the last preset. View buttons restore the original Wide/Close/Oblique endpoints. Single-pointer capture is released on up, cancel, lost capture or window blur. Orbit pitch and distance are bounded; no automatic rotation or inertia is introduced. This is desktop/touch study inspection, not a new XR interaction or any change to Living Orbit's cameras.
+Drag on the canvas to orbit; scroll to inspect. Arrow keys rotate, +/- zoom, Home restores the last preset. Wide and Oblique retain their previous endpoints. Close now frames the single letter at distance 4.8 instead of 6.4 (comparison mode 8.4 instead of 10), making the complete letter about one third larger without cropping. The same new Close pose is used for both original and sculpture; the browser test projects all eight bounding-box corners inside the frame. Single-pointer capture is released on up, cancel, lost capture or window blur. Orbit pitch and distance are bounded; no automatic rotation or inertia is introduced. This is desktop/touch study inspection, not a new XR interaction or any change to Living Orbit's cameras.
 
-Earlier studies remain under [phase 1](phase1/README.md), [phase 2](phase2/README.md), [phase 3](phase3/README.md), plus the retained surface 04/05 native captures below. Nothing is integrated into Living Orbit or Harf.
+Earlier studies remain under [phase 1](phase1/README.md), [phase 2](phase2/README.md), [phase 3](phase3/README.md), plus the retained surface 04/05/06 native captures below. Nothing is integrated into Living Orbit or Harf.
 
 ## Genuine visual evidence
 
@@ -23,15 +23,15 @@ Earlier studies remain under [phase 1](phase1/README.md), [phase 2](phase2/READM
 | Oblique | [Original](original-oblique.png) | [Sculpture](hybrid-oblique.png) |
 
 ![Matched wide comparison](compare-wide.png)
-[Surface 04](surface04-native-oblique.png) → [Previous surface 05](surface05-native-oblique.png) → [Current surface 06, same native oblique camera](sculpture-native-oblique.png)
+[Surface 04](surface04-native-oblique.png) → [Previous surface 05](surface05-native-oblique.png) → [Previous surface 06](surface06-native-oblique.png) → [Current surface 07, same oblique preset](hybrid-oblique.png)
 
-![Direct native sculpture canvas](sculpture-native-oblique.png)
+![Current native close canvas](sculpture-native-close.png)
 
-All seven matched preset captures and one pointer-driven inspection capture at 1600×1000 succeeded with matching A/B camera endpoints and projection. The additional native image is an actual WebGL canvas readback without HTML compositing, not a generated image or retouched artwork. SwiftShader can omit some HTML text in full-page images; direct canvas capture avoids that software-compositor artifact. No GPU draws are skipped. Timing windows precede readbacks. Sparse software-renderer samples remain unsuitable for a hardware performance claim. Breathing light is off for comparisons. Existing Wide/Close/Oblique controls and reduced-motion behavior remain.
+All seven matched preset captures and one pointer-driven inspection capture at 1600×1000 were saved, with matching A/B camera endpoints and projection. The complete harness then reached its 180-second overall budget during the interaction chapter, so its report remains **timeout / success:false**. It was not repeatedly rerun. A separate focused inspection run covers the controls and native front/side/rear captures; see `inspection-focused-report.json` (**passed**, including native close, side and rear images). The additional native image is an actual WebGL canvas readback without HTML compositing, not a generated image or retouched artwork. SwiftShader can omit some HTML text in full-page images; direct canvas capture avoids that software-compositor artifact. No GPU draws are skipped. Timing windows precede readbacks. Sparse software-renderer samples remain unsuitable for a hardware performance claim. Breathing light is off for comparisons. Existing Wide/Close/Oblique controls and reduced-motion behavior remain; only the Close framing is intentionally changed.
 
-[Genuine drag-to-orbit inspection](inspection-orbit.png) shows another viewing angle produced by real pointer events, not a camera replacement in the application. The browser report records its camera and tests restoration, wheel zoom, keyboard control and pointer cancellation.
+[Genuine drag-to-orbit inspection](inspection-orbit.png), [side](side-native.png) and [rear](rear-native.png) show actual views produced by pointer/keyboard events. The rear is naturally reversed when seen from behind; neither geometry nor UVs are flipped to fake a front view. These are study-only camera controls, not a replacement for the application camera. The browser report records its camera and tests restoration, wheel zoom, keyboard control and pointer cancellation.
 
-**Assessment:** the pockets add local finish changes without altering the letter. Some distinctions are subtle from the wide view and become clearer when approached or orbited; the finish remains intentionally restrained. This is a font-derived study, not bespoke calligraphy or an authenticated Thuluth composition. Small reflection/bump detail can alias in software captures. Physical Quest performance and stereo remain unverified. Stop for owner visual review.
+**Assessment:** the three coloured regions and dark divisions read more clearly than the preceding largely smooth gradient. Close now reveals selective etching, and rear reflection coverage makes full orbit inspection useful. Reflections still vary strongly with angle and some side/rear orientations are darker; this is not uniformly self-lit artwork. This is a font-derived study, not bespoke calligraphy or an authenticated Thuluth composition. Small reflection/bump detail can alias in software captures. Physical Quest performance and stereo remain unverified. Stop for owner visual review.
 
 ## Original Arabic contours and physical crown
 
@@ -47,7 +47,7 @@ All seven matched preset captures and one pointer-driven inspection capture at 1
 
 ## Measured resource envelope
 
-Physical letter: **11,940 triangles / 1,146,240 bytes (~1.093 MiB)**, unchanged from phase 3. This pass adds **zero geometry bytes, triangles, draw calls or texture bytes** relative to surfaces 04/05. Limits remain 20,000 triangles / 2 MiB.
+Physical letter: **11,940 triangles / 1,146,240 bytes (~1.093 MiB)**, unchanged from phase 3. This pass adds **zero geometry bytes, triangles, draw calls or texture bytes** relative to surfaces 04/05/06. Limits remain 20,000 triangles / 2 MiB.
 
 Body depth is 0.20, inward bevel size 0.012, end bevel thickness 0.020 and cap crown at most 0.004. This is a desktop study scale, not a headset-scale comfort claim.
 
@@ -62,12 +62,14 @@ python scripts/extract-spark-letter.py --check
 node scripts/check-spark-crown.cjs
 node scripts/check-spark-study-scope.cjs
 node scripts/check-spark-study.cjs
+# Focused inspection: start Vite on 5314 first, or set STUDY_URL
+node scripts/check-spark-inspection.cjs
 npm run build
 ```
 
 Extraction needs development-only fontTools. The browser harness uses existing Playwright/Chromium and explicit SwiftShader for reproducibility; CHROMIUM_PATH can select an installed browser. These captures do not constitute a Windows hardware run.
 
-Auxiliary-map tests verify opaque texels, finite distance data, a protected synthetic opening, zero outside distance, all three panel finishes, roughness/metalness separation and the unchanged geometry budget. Real browser pointer/keyboard tests cover orbit, wheel zoom, Home restoration, pointer cancellation and preset restoration.
+Auxiliary-map tests verify opaque texels, finite distance data, a protected synthetic opening, zero outside distance, all three panel finishes, roughness/metalness separation and the unchanged geometry budget. Real browser pointer/keyboard tests cover orbit, wheel zoom, Home restoration, pointer cancellation, preset restoration and side/rear views. Close-framing projection verifies no bounding-box clipping.
 
 Existing eight recorded Qur'anic excerpts, Harf tracing/body/dot/pinch/session, ink/smoothing, integration completion/navigation, menu state and recovery checks pass. Production TypeScript/Vite build passes with its inherited chunk-size warning. Original Orbit/Harf built assets match the pinned baseline byte-for-byte.
 

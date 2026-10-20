@@ -14,7 +14,7 @@
     "intersectionOverUnion": 0.9715374271627073,
     "note": "Native glyph hinting/AA vs exact unhinted source curves; not byte identity of different representations"
   },
-  "browserStudy": true,
+  "browserStudy": false,
   "screenshots": [
     "compare-wide.png",
     "original-wide.png",
@@ -23,9 +23,12 @@
     "hybrid-close.png",
     "original-oblique.png",
     "hybrid-oblique.png",
-    "inspection-orbit.png"
+    "inspection-orbit.png",
+    "sculpture-native-close.png",
+    "side-native.png",
+    "rear-native.png"
   ],
-  "nativeCanvas": "sculpture-native-oblique.png",
+  "nativeCanvas": "sculpture-native-close.png",
   "regressions": [
     "eight recorded Quran spans",
     "Harf direction/proximity/body/dot/reset/pinch/session",
@@ -52,42 +55,88 @@
         "fine engraved"
       ],
       "samples": [
-        7578,
-        3174,
+        10483,
+        4443,
         4072
       ],
       "method": "interior-gated auxiliary material/bump pockets; no physical cuts or new geometry"
     },
     "coverageSamples": 71539,
     "perimeterSamples": 21465,
-    "channelSamples": 7441,
+    "channelSamples": 7686,
     "opacity": "all surface texels opaque; no geometry discard or displacement",
     "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-    "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient",
+    "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient",
     "opaque": true,
     "protectedOpening": true,
     "outsideZero": true,
     "finite": true,
     "roughMin": 80,
-    "roughMax": 192,
+    "roughMax": 193,
     "metalMin": 164,
     "metalMax": 195
   },
   "unchangedMainBuiltAssets": 8,
   "physicalGeometryDelta": 0,
-  "captureLimitations": "Seven matched preset page captures plus real drag-orbit capture succeeded. Software HTML compositing may omit interface text; not Quest evidence.",
+  "captureLimitations": "Full 180s harness saved all eight comparison/drag images, then timed out during interaction checks. Separate 120s focused run passed controls and saved native front/side/rear. Software evidence only; not Quest.",
   "inspection": {
+    "success": true,
     "drag": true,
     "wheel": true,
-    "keyboard": true,
-    "homeRestoresPreset": true,
-    "cancelReleasesCapture": true,
-    "presetRestores": true
+    "home": true,
+    "cancel": true,
+    "preset": true
   },
   "inspectionOrbitCamera": [
-    -1.6612764163417506,
-    2.406512574418803,
-    6.000347076329597
+    -1.661737904788239,
+    2.4066533570453443,
+    6.00020194120667
   ],
-  "surface06": "Three interior-gated auxiliary finish pockets; shared packed height/roughness/metalness texture; geometry and font curves unchanged. Study-only orbit controls."
+  "fullHarnessTimeout": true,
+  "closeFraming": {
+    "points": [
+      [
+        -0.19329767183162125,
+        -0.8062980024878158,
+        0.9626206278535296
+      ],
+      [
+        -0.20338420540653165,
+        -0.848371721205757,
+        0.9604958935165707
+      ],
+      [
+        -0.19329767183162125,
+        0.7944783341506929,
+        0.9626206278535296
+      ],
+      [
+        -0.20338420540653165,
+        0.8359352866117153,
+        0.9604958935165707
+      ],
+      [
+        0.18743995154969725,
+        -0.8062980024878158,
+        0.9626206278535296
+      ],
+      [
+        0.19722082136913557,
+        -0.848371721205757,
+        0.9604958935165707
+      ],
+      [
+        0.18743995154969725,
+        0.7944783341506929,
+        0.9626206278535296
+      ],
+      [
+        0.19722082136913557,
+        0.8359352866117153,
+        0.9604958935165707
+      ]
+    ],
+    "inside": true
+  },
+  "surface07": "Defined pigment regions, stronger divisions, selective fine etching, larger non-clipping Close preset, and one baked rear reflection card. Original glyph geometry and both components unchanged."
 }

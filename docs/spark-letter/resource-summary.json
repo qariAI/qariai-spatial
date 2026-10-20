@@ -1,6 +1,6 @@
 {
   "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
-  "studyAssetBytes": 4797243,
+  "studyAssetBytes": 4798116,
   "mainBuiltAssets": [
     {
       "file": "harfDesktop-BAm-SrtE.js",
@@ -49,7 +49,7 @@
     "maxTriangles": 20000,
     "maxBytes": 2097152
   },
-  "note": "Inset finish maps reuse prior texture allocation and geometry. Additional metalness/clearcoat map sampling and CPU auxiliary mask work are not free. Sparse SwiftShader timing is not measured hardware FPS/VRAM.",
+  "note": "Surface 07 preserves geometry and texture allocations. One extra card is drawn only during environment baking; direct scene lights unchanged. Full software capture reached its overall budget; focused inspection passed. No hardware FPS/VRAM claim.",
   "textureEstimateRangeBytes": [
     5461333.333333333,
     5502293.333333333
@@ -73,24 +73,24 @@
         "fine engraved"
       ],
       "samples": [
-        7578,
-        3174,
+        10483,
+        4443,
         4072
       ],
       "method": "interior-gated auxiliary material/bump pockets; no physical cuts or new geometry"
     },
     "coverageSamples": 71539,
     "perimeterSamples": 21465,
-    "channelSamples": 7441,
+    "channelSamples": 7686,
     "opacity": "all surface texels opaque; no geometry discard or displacement",
     "channels": "auxiliary bump/roughness shading, not physically cut grooves",
-    "palette": "stronger sapphire perimeter; tightened amber/coral/turquoise fields; no full-face rainbow gradient",
+    "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient",
     "opaque": true,
     "protectedOpening": true,
     "outsideZero": true,
     "finite": true,
     "roughMin": 80,
-    "roughMax": 192,
+    "roughMax": 193,
     "metalMin": 164,
     "metalMax": 195
   },
@@ -106,5 +106,12 @@
     "geometryBytes": 0,
     "drawCalls": 0,
     "surfaceTextureBytes": 0
+  },
+  "deltaFromSurface06": {
+    "triangles": 0,
+    "geometryBytes": 0,
+    "drawCalls": 0,
+    "surfaceTextureBytes": 0,
+    "bakedEnvironmentCards": 1
   }
 }

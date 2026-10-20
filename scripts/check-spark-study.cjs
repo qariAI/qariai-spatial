@@ -42,6 +42,10 @@ await p.waitForTimeout(2500);
 for(const [mode,view] of [['compare','wide'],['original','wide'],['hybrid','wide'],['original','close'],['hybrid','close'],['original','oblique'],['hybrid','oblique']]){
  await p.evaluate(([m,v])=>window.letterStudy.setState(m,v,true),[mode,view]);await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});await p.waitForTimeout(1400);
  const measurement=await p.evaluate(()=>window.letterStudy.measure());report.metrics.push({mode,view,...measurement});
+ if(mode==='hybrid'&&view==='close'){
+  report.closeFraming=await p.evaluate(async()=>{const T=await import('/spark-letter/vendor/three.module.js'),m=window.letterStudy.measure(),c=new T.PerspectiveCamera();c.position.fromArray(m.camera.position);c.quaternion.fromArray(m.camera.quaternion);c.projectionMatrix.fromArray(m.camera.projection);c.updateMatrixWorld();const bounds=m.report.sculpture.bounds,points=[];for(const x of [bounds[0][0],bounds[1][0]])for(const y of [bounds[0][1],bounds[1][1]])for(const z of [bounds[0][2],bounds[1][2]])points.push(new T.Vector3(x,y,z).project(c).toArray());return{points,inside:points.every(p=>Math.abs(p[0])<.98&&Math.abs(p[1])<.98&&p[2]>-1&&p[2]<1)}});assert(report.closeFraming.inside,'Close preset clips the original letter bounds');
+ }
+
  try{await safe(p.screenshot({path:path.join(out,mode+'-'+view+'.png'),timeout:8000}),10000);report.captures.push(mode+'-'+view+'.png')}catch(e){(report.warnings??=[]).push('Optional screenshot '+mode+'/'+view+': '+e.message)}
 }
 // Check that camera poses match for each A/B pair and source bytes remain exact.
@@ -61,6 +65,15 @@ await p.locator('#stage').press('ArrowRight');await p.locator('#stage').press('+
 await p.mouse.move(cx,cy);await p.mouse.down();await p.dispatchEvent('#stage','pointercancel',{pointerId:1});await p.mouse.up();assert.equal(await p.locator('#stage').evaluate(e=>e.classList.contains('dragging')),false);
 await p.getByRole('button',{name:'Oblique',exact:true}).click();await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});assert.equal(await p.evaluate(()=>window.letterStudy.report.inspection.custom),false);
 report.inspection={drag:true,wheel:true,keyboard:true,homeRestoresPreset:true,cancelReleasesCapture:true,presetRestores:true};
+// Real keyboard-driven side and rear views. Native captures avoid compositor omissions.
+await p.evaluate(()=>window.letterStudy.setState('hybrid','close',true));await p.locator('#stage').focus();
+for(let i=0;i<10;i++)await p.locator('#stage').press('ArrowRight');await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});
+for(const [name,steps] of [['side-native.png',0],['rear-native.png',21]]){
+ for(let i=0;i<steps;i++)await p.locator('#stage').press('ArrowRight');await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});
+ const state=await p.evaluate(()=>window.letterStudy.measure());(report.orbitViews??=[]).push({name,camera:state.camera,render:state.report.render});
+ try{const png=await safe(p.evaluate(()=>window.letterStudy.capture()),10000);fs.writeFileSync(path.join(out,name),Buffer.from(png.split(',')[1],'base64'));report.captures.push(name)}catch(e){(report.warnings??=[]).push('Optional '+name+': '+e.message)}
+}
+
 await p.getByRole('button',{name:'Enable breathing light',exact:true}).click();assert.equal(await p.evaluate(()=>window.letterStudy.report.breathing),true);await p.getByRole('button',{name:'Pause breathing light',exact:true}).click();assert.equal(await p.evaluate(()=>window.letterStudy.report.breathing),false);
 await p.setViewportSize({width:390,height:844});await p.waitForTimeout(600);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.equal(await p.evaluate(()=>document.querySelectorAll('canvas').length),1);
 assert.deepEqual(report.errors,[]);report.success=true;

@@ -1,0 +1,365 @@
+{
+  "success": true,
+  "errors": [],
+  "captures": [
+    "sculpture-native-close.png",
+    "side-native.png",
+    "rear-native.png"
+  ],
+  "limits": "Linux SwiftShader; not Windows or Quest. Focused follow-up after the full comparison harness reached its overall time budget.",
+  "initial": {
+    "report": {
+      "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+      "letter": "ك",
+      "codepoints": [
+        "U+0643"
+      ],
+      "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+      "spark": "2.3.1",
+      "three": "180",
+      "mode": "hybrid",
+      "view": "close",
+      "breathing": false,
+      "ready": true,
+      "errors": [],
+      "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+      "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+      "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+      "sculpture": {
+        "kind": "physical extrusion of original font vectors; not raster tracing",
+        "glyph": "uni0643",
+        "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "components": 2,
+        "triangles": 11940,
+        "geometryBytes": 1146240,
+        "depth": 0.2,
+        "bevel": 0.012,
+        "crown": {
+          "height": 0.004,
+          "width": 0.055,
+          "xyUnchanged": true
+        },
+        "finish": "designed sapphire perimeter with localized amber/coral/turquoise highlights and restrained iridescent sheen",
+        "surface": {
+          "width": 384,
+          "height": 576,
+          "rawBytes": 1769472,
+          "rgba8WithMipsEstimate": 2359296,
+          "panels": {
+            "count": 3,
+            "finishes": [
+              "polished",
+              "satin",
+              "fine engraved"
+            ],
+            "samples": [
+              10483,
+              4443,
+              4072
+            ],
+            "method": "interior-gated auxiliary material/bump pockets; no physical cuts or new geometry"
+          },
+          "coverageSamples": 71539,
+          "perimeterSamples": 21465,
+          "channelSamples": 7686,
+          "opacity": "all surface texels opaque; no geometry discard or displacement",
+          "channels": "auxiliary bump/roughness shading, not physically cut grooves",
+          "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient"
+        },
+        "floatingPresentation": true,
+        "bevelDirection": "inward",
+        "bounds": [
+          [
+            -0.8343843817710876,
+            -0.5289109349250793,
+            -0.11999999731779099
+          ],
+          [
+            0.8090990781784058,
+            1.9543254375457764,
+            0.12399999797344208
+          ]
+        ],
+        "sourceBoundsWorld": [
+          [
+            -0.834384375,
+            -0.5289109375000001
+          ],
+          [
+            0.809134955357143,
+            1.9543397887323943
+          ]
+        ],
+        "uvTransform": {
+          "scale": 0.0029906250000000002,
+          "tx": -0.9824203125,
+          "ty": -0.48554687500000004,
+          "baseline": 156.25
+        },
+        "environment": {
+          "width": 384,
+          "height": 512,
+          "type": 1016
+        },
+        "shadowMap": [
+          512,
+          512
+        ],
+        "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+      },
+      "inkBounds": [
+        79,
+        14,
+        175,
+        158
+      ],
+      "splats": 19,
+      "packedUsedBytes": 304,
+      "packedCapacityBytes": 32768,
+      "boundarySamples": 19,
+      "depthRange": [
+        -0.22,
+        -0.22
+      ],
+      "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+      "samplingCentersInMask": true,
+      "faceSharedIdentity": false,
+      "originalFacePreserved": true,
+      "sculptureUsesOriginalFaceOverlay": false,
+      "inspection": {
+        "custom": false
+      },
+      "settled": true,
+      "readyMs": 4516.39999999851,
+      "render": {
+        "frame": 36,
+        "calls": 5,
+        "triangles": 11940,
+        "points": 260,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 5,
+        "textures": 10
+      },
+      "frameSamples": 3
+    },
+    "camera": {
+      "position": [
+        0,
+        0.721875,
+        4.8
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "projection": [
+        1.1397918820992796,
+        0,
+        0,
+        0,
+        0,
+        3.171594802363213,
+        0,
+        0,
+        0,
+        0,
+        -1.003338898163606,
+        -1,
+        0,
+        0,
+        -0.2003338898163606,
+        0
+      ]
+    },
+    "frames": [
+      {
+        "intervalMs": null,
+        "submitMs": 2814.5
+      },
+      {
+        "intervalMs": 2830.199999999255,
+        "submitMs": 33.30000000074506
+      },
+      {
+        "intervalMs": 71.39999999850988,
+        "submitMs": 13.300000000745058
+      }
+    ],
+    "textures": [
+      {
+        "width": 384,
+        "height": 512,
+        "depth": 1,
+        "type": 1016,
+        "format": 1023,
+        "mips": false,
+        "estimatedBytes": 1572864
+      },
+      {
+        "width": 2048,
+        "height": 1,
+        "depth": 1,
+        "type": 1014,
+        "format": 1033,
+        "mips": false,
+        "estimatedBytes": 32768
+      },
+      {
+        "width": 2048,
+        "height": 1,
+        "depth": 1,
+        "type": 1014,
+        "format": 1033,
+        "mips": false,
+        "estimatedBytes": 32768
+      },
+      {
+        "width": 256,
+        "height": 256,
+        "type": 1009,
+        "format": 1023,
+        "mips": true,
+        "estimatedBytes": 349525.3333333333
+      },
+      {
+        "width": 384,
+        "height": 576,
+        "type": 1009,
+        "format": 1023,
+        "mips": true,
+        "estimatedBytes": 1179648
+      },
+      {
+        "width": 384,
+        "height": 576,
+        "type": 1009,
+        "format": 1023,
+        "mips": true,
+        "estimatedBytes": 1179648
+      },
+      {
+        "width": 512,
+        "height": 512,
+        "depth": 1,
+        "type": 1009,
+        "format": 1023,
+        "mips": false,
+        "estimatedBytes": 1048576
+      }
+    ],
+    "sparkResources": {
+      "active": 0,
+      "capacity": 16384,
+      "accumulators": [
+        {
+          "capacity": 0,
+          "count": 19
+        }
+      ],
+      "geometryBytes": 3320
+    }
+  },
+  "drag": true,
+  "wheel": true,
+  "home": true,
+  "cancel": true,
+  "sculpture-native-close.png": {
+    "position": [
+      -0.00007920025245477879,
+      0.7219005241738137,
+      4.799993044094429
+    ],
+    "quaternion": [
+      -0.0000026587719580571573,
+      -0.00000825003825201948,
+      -2.193497035819229e-11,
+      0.9999999999624338
+    ],
+    "projection": [
+      1.1397918820992796,
+      0,
+      0,
+      0,
+      0,
+      3.171594802363213,
+      0,
+      0,
+      0,
+      0,
+      -1.003338898163606,
+      -1,
+      0,
+      0,
+      -0.2003338898163606,
+      0
+    ]
+  },
+  "side-native.png": {
+    "position": [
+      4.038861129227791,
+      0.7218750000319876,
+      2.5936400797292776
+    ],
+    "quaternion": [
+      -2.9242192030860927e-12,
+      0.4794011402904878,
+      1.5974026723442918e-12,
+      0.8775958903095319
+    ],
+    "projection": [
+      1.1397918820992796,
+      0,
+      0,
+      0,
+      0,
+      3.171594802363213,
+      0,
+      0,
+      0,
+      0,
+      -1.003338898163606,
+      -1,
+      0,
+      0,
+      -0.2003338898163606,
+      0
+    ]
+  },
+  "rear-native.png": {
+    "position": [
+      0.19973095548113654,
+      0.7218750000000004,
+      -4.795800091916295
+    ],
+    "quaternion": [
+      -7.21998283971357e-19,
+      0.9997834485240181,
+      3.4687264279815164e-17,
+      0.020809998976983407
+    ],
+    "projection": [
+      1.1397918820992796,
+      0,
+      0,
+      0,
+      0,
+      3.171594802363213,
+      0,
+      0,
+      0,
+      0,
+      -1.003338898163606,
+      -1,
+      0,
+      0,
+      -0.2003338898163606,
+      0
+    ]
+  },
+  "preset": true
+}

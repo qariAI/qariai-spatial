@@ -56,7 +56,7 @@ try{
   const labels=document.querySelector('#labels');labels.classList.toggle('single',mode!=='compare');labels.lastElementChild.textContent=mode==='original'?'01 / ORIGINAL':mode==='hybrid'?'02 / SAPPHIRE + ENGRAVED LIGHT':'02 / SAPPHIRE + ENGRAVED LIGHT';
   const width=stage.clientWidth,height=stage.clientHeight,aspect=width/height;
   const distance=mode==='compare'?Math.max(12,9/aspect):Math.max(7,5/aspect);
-  cameraGoal.set(view==='oblique'?2.8:0,centerY+(view==='oblique'?.35:0),view==='wide'?distance:view==='close'?(mode==='compare'?10:6.4):(mode==='compare'?10:5.8));
+  cameraGoal.set(view==='oblique'?2.8:0,centerY+(view==='oblique'?.35:0),view==='wide'?distance:view==='close'?(mode==='compare'?8.4:4.8):(mode==='compare'?10:5.8));
   if(instant)camera.position.copy(cameraGoal);target.set(0,centerY,0);inspection?.reset();report.inspection={custom:false};report.settled=false;
  }
  inspection=enableInspection({element:stage,goal:cameraGoal,target,onChange(){report.inspection={custom:true};document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'))},onReset(){setState(mode,view)}});
