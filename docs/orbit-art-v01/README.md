@@ -2,6 +2,10 @@
 
 Isolated branch `prototype/orbit-sculpture-starfield-v0.1`, based on the approved study head `7980a3e1cd2e3de4f2af073ae9a1000b4d14e454`. Draft targets `prototype/spark-letter-study-v0.1`; no earlier branch/PR is changed. This is the first in-scene visual feasibility review, not final artwork or Quest release approval.
 
+## Current — material visibility revision 2
+
+[Targeted kāf visibility update, genuine matched views and unchanged resource counts](visibility-v02/README.md). The shared sculptural faces now have stronger local material response and a small pigment-mapped surface-emission floor. Geometry, scene lighting, background and choreography stay fixed. Earlier captures below are the initial, darker integration.
+
 ## Open the existing experience
 
 Use the branch preview's root with **`/?calligraphyRelief=texture&orbitArt=study`**. Remove `orbitArt=study` for the original view. Invalid/duplicate values remain original. The mode is carried through internal Orbit → Harf → Orbit links; no return URLs, external navigation or arbitrary query forwarding.
@@ -16,7 +20,7 @@ There is **no new Letter / Light link, panel or section in the experience**. The
 - The two original seeded star shells retain all 6,600 positions and original XR draw-count reductions. Shader-defined soft circular dots add low-amplitude twinkling, cool white with sparse warm accents, and very slow desktop rotation. Pause freezes all of it. Field rotation stops in XR for comfort; twinkling continues unless paused.
 - Particle size uses actual world scale and the active XR eye viewport, with a hardware-bounded 16-pixel maximum. No per-frame CPU position rewrite or star texture. The belt remains untouched.
 
-## Genuine rendering evidence
+## Initial integration rendering evidence
 
 [Wide](wide.png) · [Selected mirrored kāf](selected-kaf.png) · [Explore Calligraphy](explore.png)
 
@@ -24,7 +28,7 @@ There is **no new Letter / Light link, panel or section in the experience**. The
 
 These are native canvas captures of the full application, not composited illustrations. The test uses the existing deterministic stepping technique, with development StrictMode replaced by Fragment **in the harness only** to avoid duplicate atlas baking. Application cameras, geometry, shaders and gesture validators are not substituted. GPU drawing is enabled for these captures.
 
-The letters are visibly **darker than the original glowing sprites at normal orbital distance**. Their fine surface channels are too small to judge there. This preview demonstrates integration and sharing, not final visual balance. Owner review is required before extending the treatment to the remaining letters. The animated background follows the reference's general softness/depth direction, not an exact Spark asset reproduction.
+At the initial integration commit, the letters were visibly **darker than the original glowing sprites at normal orbital distance**; the targeted revision above improves visibility without changing scene lighting. Their fine surface channels are too small to judge there. This preview demonstrates integration and sharing, not final visual balance. Owner review is required before extending the treatment to the remaining letters. The animated background follows the reference's general softness/depth direction, not an exact Spark asset reproduction.
 
 ## Validation
 
