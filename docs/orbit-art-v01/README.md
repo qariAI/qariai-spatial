@@ -2,7 +2,11 @@
 
 Isolated branch `prototype/orbit-sculpture-starfield-v0.1`, based on the approved study head `7980a3e1cd2e3de4f2af073ae9a1000b4d14e454`. Draft targets `prototype/spark-letter-study-v0.1`; no earlier branch/PR is changed. This is the first in-scene visual feasibility review, not final artwork or Quest release approval.
 
-## Current — material visibility revision 2
+## Current — all seven sculptural letters
+
+[Exact additional outlines, original dot/counter checks, actual all-seven selection tests and resource comparison](letters-v03/README.md). The existing ل، ف، ي now share the reviewed sapphire/gold material language. ك, background, camera, lighting and choreography remain fixed. Quest performance and owner visual approval are pending.
+
+## Previous — material visibility revision 2
 
 [Targeted kāf visibility update, genuine matched views and unchanged resource counts](visibility-v02/README.md). The shared sculptural faces now have stronger local material response and a small pigment-mapped surface-emission floor. Geometry, scene lighting, background and choreography stay fixed. Earlier captures below are the initial, darker integration.
 
