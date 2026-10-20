@@ -1,0 +1,34 @@
+{
+  "beforeCommit": "94fc447cea0646f7c52deed74a6359f33caf80fe",
+  "captures": [
+    {
+      "view": "close",
+      "identicalCamera": true,
+      "dimensions": [
+        1600,
+        575
+      ],
+      "changedPixels": 13503,
+      "meanAbsoluteByteDifference": [
+        0.03182173913043478,
+        0.025882608695652173,
+        0.027167391304347827
+      ]
+    },
+    {
+      "view": "oblique",
+      "identicalCamera": true,
+      "dimensions": [
+        1600,
+        575
+      ],
+      "changedPixels": 8301,
+      "meanAbsoluteByteDifference": [
+        0.019532608695652175,
+        0.019468478260869566,
+        0.01651195652173913
+      ]
+    }
+  ],
+  "limits": "Canvas framebuffer comparison. Pixel changes alone are not an artistic-quality metric; source maps and geometry verified separately. No hardware FPS claim."
+}

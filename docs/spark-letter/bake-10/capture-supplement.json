@@ -1,0 +1,7 @@
+{
+  "captureOnly": true,
+  "checks": "Integrity checks are in report.json; this is one short native-capture supplement.",
+  "success": false,
+  "captures": [],
+  "error": "TimeoutError: page.waitForFunction: Timeout 20000ms exceeded."
+}

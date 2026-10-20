@@ -1,0 +1,1348 @@
+{
+  "success": true,
+  "renderer": "Linux Chromium / SwiftShader; NOT Windows or Quest",
+  "captureMethod": "Fixed matched camera endpoints via test API; no GPU draws skipped. Screenshot waits bounded; timing windows precede each screenshot.",
+  "errors": [],
+  "captures": [
+    "compare-wide.png",
+    "original-wide.png",
+    "hybrid-wide.png",
+    "original-close.png",
+    "hybrid-close.png",
+    "original-oblique.png",
+    "hybrid-oblique.png"
+  ],
+  "metrics": [
+    {
+      "mode": "compare",
+      "view": "wide",
+      "report": {
+        "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "compare",
+        "view": "wide",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 4516,
+        "packedUsedBytes": 72256,
+        "packedCapacityBytes": 131072,
+        "boundarySamples": 129,
+        "depthRange": [
+          -0.22,
+          0.095
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": true,
+        "settled": true,
+        "readyMs": 3647.399999999907,
+        "render": {
+          "frame": 65,
+          "calls": 6,
+          "triangles": 9040,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 4,
+          "textures": 8
+        },
+        "frameSamples": 5
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          12
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 297.70000000018626,
+          "submitMs": 2.2999999998137355
+        },
+        {
+          "intervalMs": 283.19999999995343,
+          "submitMs": 0.8000000000465661
+        },
+        {
+          "intervalMs": 281.80000000004657,
+          "submitMs": 0.8999999999068677
+        },
+        {
+          "intervalMs": 269.0999999998603,
+          "submitMs": 27.800000000046566
+        },
+        {
+          "intervalMs": 352.10000000009313,
+          "submitMs": 1
+        }
+      ],
+      "textures": [
+        {
+          "width": 2048,
+          "height": 4,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 131072
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        }
+      ],
+      "sparkResources": {
+        "active": 4516,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 4516
+          },
+          {
+            "capacity": 0,
+            "count": 4516
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "original",
+      "view": "wide",
+      "report": {
+        "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "original",
+        "view": "wide",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 4516,
+        "packedUsedBytes": 72256,
+        "packedCapacityBytes": 131072,
+        "boundarySamples": 129,
+        "depthRange": [
+          -0.22,
+          0.095
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": true,
+        "settled": true,
+        "readyMs": 3647.399999999907,
+        "render": {
+          "frame": 78,
+          "calls": 3,
+          "triangles": 4,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 4,
+          "textures": 8
+        },
+        "frameSamples": 8
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          7
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 611.3999999999069,
+          "submitMs": 2.199999999953434
+        },
+        {
+          "intervalMs": 583.3000000000466,
+          "submitMs": 0.7999999998137355
+        },
+        {
+          "intervalMs": 308.30000000004657,
+          "submitMs": 0.5
+        },
+        {
+          "intervalMs": 110.5999999998603,
+          "submitMs": 1.6000000000931323
+        },
+        {
+          "intervalMs": 145.70000000018626,
+          "submitMs": 1
+        },
+        {
+          "intervalMs": 102.39999999990687,
+          "submitMs": 5
+        },
+        {
+          "intervalMs": 37.800000000046566,
+          "submitMs": 1
+        },
+        {
+          "intervalMs": 84.0999999998603,
+          "submitMs": 0.6999999999534339
+        }
+      ],
+      "textures": [
+        {
+          "width": 2048,
+          "height": 4,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 131072
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 3,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 98304
+        },
+        {
+          "width": 2048,
+          "height": 3,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 24576
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        }
+      ],
+      "sparkResources": {
+        "active": 0,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 4516
+          },
+          {
+            "capacity": 6144,
+            "count": 0
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "hybrid",
+      "view": "wide",
+      "report": {
+        "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "hybrid",
+        "view": "wide",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 4516,
+        "packedUsedBytes": 72256,
+        "packedCapacityBytes": 131072,
+        "boundarySamples": 129,
+        "depthRange": [
+          -0.22,
+          0.095
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": true,
+        "settled": true,
+        "readyMs": 3647.399999999907,
+        "render": {
+          "frame": 97,
+          "calls": 4,
+          "triangles": 9036,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 4,
+          "textures": 8
+        },
+        "frameSamples": 10
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          7
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 131.69999999995343,
+          "submitMs": 7.600000000093132
+        },
+        {
+          "intervalMs": 104.5999999998603,
+          "submitMs": 0.8000000000465661
+        },
+        {
+          "intervalMs": 69.9000000001397,
+          "submitMs": 0.7000000001862645
+        },
+        {
+          "intervalMs": 92.19999999995343,
+          "submitMs": 34.5999999998603
+        },
+        {
+          "intervalMs": 137.19999999995343,
+          "submitMs": 1.6000000000931323
+        },
+        {
+          "intervalMs": 122.69999999995343,
+          "submitMs": 2.1000000000931323
+        },
+        {
+          "intervalMs": 37.5,
+          "submitMs": 1.1999999999534339
+        },
+        {
+          "intervalMs": 88,
+          "submitMs": 6.100000000093132
+        },
+        {
+          "intervalMs": 412.70000000018626,
+          "submitMs": 1.6999999999534339
+        },
+        {
+          "intervalMs": 276.19999999995343,
+          "submitMs": 1.3000000000465661
+        }
+      ],
+      "textures": [
+        {
+          "width": 2048,
+          "height": 4,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 131072
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        }
+      ],
+      "sparkResources": {
+        "active": 4516,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 4516
+          },
+          {
+            "capacity": 0,
+            "count": 4516
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "original",
+      "view": "close",
+      "report": {
+        "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "original",
+        "view": "close",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 4516,
+        "packedUsedBytes": 72256,
+        "packedCapacityBytes": 131072,
+        "boundarySamples": 129,
+        "depthRange": [
+          -0.22,
+          0.095
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": true,
+        "settled": true,
+        "readyMs": 3647.399999999907,
+        "render": {
+          "frame": 109,
+          "calls": 3,
+          "triangles": 4,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 4,
+          "textures": 8
+        },
+        "frameSamples": 8
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          6.4
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 400.5,
+          "submitMs": 17.300000000046566
+        },
+        {
+          "intervalMs": 344.69999999995343,
+          "submitMs": 0.7000000001862645
+        },
+        {
+          "intervalMs": 320.80000000004657,
+          "submitMs": 2.4000000001396984
+        },
+        {
+          "intervalMs": 331,
+          "submitMs": 1.4000000001396984
+        },
+        {
+          "intervalMs": 102.5,
+          "submitMs": 0.5
+        },
+        {
+          "intervalMs": 134.39999999990687,
+          "submitMs": 1.5
+        },
+        {
+          "intervalMs": 119.39999999990687,
+          "submitMs": 1.5
+        },
+        {
+          "intervalMs": 117.9000000001397,
+          "submitMs": 1.1000000000931323
+        }
+      ],
+      "textures": [
+        {
+          "width": 2048,
+          "height": 4,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 131072
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 3,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 98304
+        },
+        {
+          "width": 2048,
+          "height": 3,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 24576
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        }
+      ],
+      "sparkResources": {
+        "active": 0,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 4516
+          },
+          {
+            "capacity": 6144,
+            "count": 0
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "hybrid",
+      "view": "close",
+      "report": {
+        "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "hybrid",
+        "view": "close",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 4516,
+        "packedUsedBytes": 72256,
+        "packedCapacityBytes": 131072,
+        "boundarySamples": 129,
+        "depthRange": [
+          -0.22,
+          0.095
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": true,
+        "settled": true,
+        "readyMs": 3647.399999999907,
+        "render": {
+          "frame": 127,
+          "calls": 4,
+          "triangles": 9036,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 4,
+          "textures": 8
+        },
+        "frameSamples": 10
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          6.4
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 182.20000000018626,
+          "submitMs": 2.2999999998137355
+        },
+        {
+          "intervalMs": 150,
+          "submitMs": 0.6999999999534339
+        },
+        {
+          "intervalMs": 44.199999999953434,
+          "submitMs": 0.6999999999534339
+        },
+        {
+          "intervalMs": 100.19999999995343,
+          "submitMs": 1.3999999999068677
+        },
+        {
+          "intervalMs": 115.69999999995343,
+          "submitMs": 1.3000000000465661
+        },
+        {
+          "intervalMs": 107.60000000009313,
+          "submitMs": 0.6000000000931323
+        },
+        {
+          "intervalMs": 89.80000000004657,
+          "submitMs": 4.400000000139698
+        },
+        {
+          "intervalMs": 58.89999999990687,
+          "submitMs": 1.1000000000931323
+        },
+        {
+          "intervalMs": 342.39999999990687,
+          "submitMs": 2.1000000000931323
+        },
+        {
+          "intervalMs": 311.5,
+          "submitMs": 28.800000000046566
+        }
+      ],
+      "textures": [
+        {
+          "width": 2048,
+          "height": 4,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 131072
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        }
+      ],
+      "sparkResources": {
+        "active": 4516,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 4516
+          },
+          {
+            "capacity": 0,
+            "count": 4516
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "original",
+      "view": "oblique",
+      "report": {
+        "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "original",
+        "view": "oblique",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 4516,
+        "packedUsedBytes": 72256,
+        "packedCapacityBytes": 131072,
+        "boundarySamples": 129,
+        "depthRange": [
+          -0.22,
+          0.095
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": true,
+        "settled": true,
+        "readyMs": 3647.399999999907,
+        "render": {
+          "frame": 133,
+          "calls": 3,
+          "triangles": 4,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 4,
+          "textures": 8
+        },
+        "frameSamples": 2
+      },
+      "camera": {
+        "position": [
+          2.8,
+          1.071875,
+          5.8
+        ],
+        "quaternion": [
+          -0.026458376928255888,
+          0.22290704607424847,
+          0.006052324195185316,
+          0.9744617860504391
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 395.5,
+          "submitMs": 2.4000000001396984
+        },
+        {
+          "intervalMs": 521.6999999999534,
+          "submitMs": 1.1000000000931323
+        }
+      ],
+      "textures": [
+        {
+          "width": 2048,
+          "height": 4,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 131072
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 3,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 98304
+        },
+        {
+          "width": 2048,
+          "height": 3,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 24576
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        }
+      ],
+      "sparkResources": {
+        "active": 0,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 4516
+          },
+          {
+            "capacity": 6144,
+            "count": 0
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "hybrid",
+      "view": "oblique",
+      "report": {
+        "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "hybrid",
+        "view": "oblique",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 4516,
+        "packedUsedBytes": 72256,
+        "packedCapacityBytes": 131072,
+        "boundarySamples": 129,
+        "depthRange": [
+          -0.22,
+          0.095
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": true,
+        "settled": true,
+        "readyMs": 3647.399999999907,
+        "render": {
+          "frame": 146,
+          "calls": 4,
+          "triangles": 9036,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 4,
+          "textures": 8
+        },
+        "frameSamples": 7
+      },
+      "camera": {
+        "position": [
+          2.8,
+          1.071875,
+          5.8
+        ],
+        "quaternion": [
+          -0.026458376928255888,
+          0.22290704607424847,
+          0.006052324195185316,
+          0.9744617860504391
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 267.60000000009313,
+          "submitMs": 1.0999999998603016
+        },
+        {
+          "intervalMs": 204.5,
+          "submitMs": 2
+        },
+        {
+          "intervalMs": 103.89999999990687,
+          "submitMs": 0.5999999998603016
+        },
+        {
+          "intervalMs": 614.3000000000466,
+          "submitMs": 6.7999999998137355
+        },
+        {
+          "intervalMs": 9.399999999906868,
+          "submitMs": 0.8000000000465661
+        },
+        {
+          "intervalMs": 114.30000000004657,
+          "submitMs": 0.5
+        },
+        {
+          "intervalMs": 150.9000000001397,
+          "submitMs": 1.6000000000931323
+        }
+      ],
+      "textures": [
+        {
+          "width": 2048,
+          "height": 4,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 131072
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        }
+      ],
+      "sparkResources": {
+        "active": 4516,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 4516
+          },
+          {
+            "capacity": 0,
+            "count": 4516
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    }
+  ],
+  "scope": {},
+  "chromium": "154.0.8037.57",
+  "originalRoutineComparison": {
+    "different": 0,
+    "maxDelta": 0,
+    "alphaDifferent": 0
+  },
+  "maskTopology": {
+    "components": 2,
+    "pixels": 4886,
+    "sizes": [
+      3751,
+      1135
+    ]
+  },
+  "initial": {
+    "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+    "letter": "ك",
+    "codepoints": [
+      "U+0643"
+    ],
+    "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+    "spark": "2.3.1",
+    "three": "180",
+    "mode": "compare",
+    "view": "wide",
+    "breathing": false,
+    "ready": true,
+    "errors": [],
+    "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+    "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+    "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+    "inkBounds": [
+      79,
+      14,
+      175,
+      158
+    ],
+    "splats": 4516,
+    "packedUsedBytes": 72256,
+    "packedCapacityBytes": 131072,
+    "boundarySamples": 129,
+    "depthRange": [
+      -0.22,
+      0.095
+    ],
+    "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+    "samplingCentersInMask": true,
+    "faceSharedIdentity": true,
+    "settled": true,
+    "readyMs": 3647.399999999907,
+    "render": {
+      "frame": 2,
+      "calls": 5,
+      "triangles": 9,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 4,
+      "textures": 7
+    },
+    "frameSamples": 1
+  }
+}

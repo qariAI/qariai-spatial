@@ -1,0 +1,12 @@
+{
+  "triangles": 11940,
+  "geometryBytes": 1146240,
+  "mapRawBytes": 1769472,
+  "mapMipEstimateBytes": 2359296,
+  "mapBakeElapsedMs": 2978,
+  "proofBaseLinearReflectanceCalibration": 1.7,
+  "extraTriangles": 0,
+  "extraGeometryBytes": 0,
+  "extraTextureBytes": 0,
+  "note": "Elapsed map bake measured with shared software-renderer/build load. Not a controlled performance comparison or Quest result."
+}

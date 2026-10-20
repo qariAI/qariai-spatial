@@ -1,0 +1,14 @@
+{
+  "build": "PASS; inherited >500 kB chunk advisory",
+  "mainBuiltAssetsByteIdentical": 8,
+  "staticStudyCopies": "PASS",
+  "sourceVectorHashBoundsComponents": "PASS",
+  "projectedCapCountersAndNormals": "PASS",
+  "eightQuranExcerpts": "PASS",
+  "studyScopeVendorChecks": "PASS",
+  "browserGlyphRegionsBudgetAndSourceFace": "PASS",
+  "browserPageErrors": [],
+  "nativeScreenshots": "NOT OBTAINED: close and oblique 10-second optional readback timeouts",
+  "visualImprovement": "UNVERIFIED; owner review required",
+  "physicalQuest": "NOT TESTED"
+}

@@ -1,0 +1,21 @@
+{
+  "baseline": "94fc447cea0646f7c52deed74a6359f33caf80fe",
+  "fontVectorSource": "PASS",
+  "projectedCapCountersAndNormals": "PASS",
+  "eightQuranExcerpts": "PASS",
+  "studyScopeVendorChecks": "PASS",
+  "browserGlyphRegionsAndBudget": true,
+  "originalFaceDifferentBytes": 0,
+  "pageErrors": [],
+  "actualMaterialBumpScale": 0.5,
+  "nativeCaptures": [
+    "close.png",
+    "oblique.png"
+  ],
+  "identicalBeforeAfterCameras": "PASS; comparison.json",
+  "visualAssessment": "Amber channels show visible light/shadow relief, particularly Oblique. Still restrained; owner review required.",
+  "physicalQuest": "NOT TESTED",
+  "build": "PASS; inherited >500 kB chunk advisory",
+  "mainBuiltAssetsByteIdentical": 8,
+  "staticStudyCopies": "PASS"
+}

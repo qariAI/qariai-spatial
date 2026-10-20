@@ -1,0 +1,81 @@
+// Real browser comparison. New opt-in study only; never drives Orbit or Harf.
+const {chromium}=require('playwright'),{spawn}=require('child_process'),{transformSync}=require('esbuild'),fs=require('fs'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto');
+const out=process.env.STUDY_OUT||'docs/spark-letter',url=process.env.STUDY_URL||'http://127.0.0.1:5312/spark-letter/index.html';
+const digest=b=>crypto.createHash('sha256').update(b).digest('hex'),safe=(p,ms)=>Promise.race([p,new Promise((_,reject)=>{const t=setTimeout(()=>reject(Error('Bounded capture timeout')),ms);t.unref()})]);
+(async()=>{let b,server;fs.mkdirSync(out,{recursive:true});const report={success:false,renderer:'Linux Chromium / SwiftShader; NOT Windows or Quest',captureMethod:'Fixed matched camera endpoints via test API; no GPU draws skipped. Screenshot waits bounded; timing windows precede each screenshot.',errors:[],captures:[],metrics:[],scope:{}};const hard=setTimeout(()=>{fs.writeFileSync(path.join(out,'browser-report.json'),JSON.stringify({...report,timeout:true},null,2));server?.kill();process.exit(2)},180000);try{
+if(!process.env.STUDY_URL){server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','5312'],{stdio:'ignore'});for(let i=0;i<80;i++){try{if((await fetch(url)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}}
+b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-accelerated-2d-canvas']});report.chromium=b.version();const p=await b.newPage({viewport:{width:1600,height:1000}});p.on('pageerror',e=>report.errors.push(e.message));
+const app=fs.readFileSync('src/App.tsx','utf8'),routine=app.match(/function arabicTexture\([\s\S]*?\n}/)[0];
+await p.route('**/__original-letter.js',r=>r.fulfill({contentType:'application/javascript',body:transformSync("import * as THREE from '/spark-letter/vendor/three.module.js';export "+routine,{loader:'ts'}).code}));
+await p.goto(url,{waitUntil:'domcontentloaded',timeout:45000});await p.waitForFunction(()=>window.letterStudy?.report.ready||window.letterStudy?.report.errors.length,null,{timeout:45000});
+const initial=await p.evaluate(()=>window.letterStudy.report);assert.equal(initial.ready,true,initial.errors.join(';'));assert.equal(initial.faceHash,initial.sourceHashAfterConstruction);assert.equal(initial.originalFacePreserved,true);assert.equal(initial.sculptureUsesOriginalFaceOverlay,false);assert.equal(initial.sculpture.components,2);assert(initial.sculpture.triangles>100&&initial.sculpture.triangles<=20000);assert(initial.sculpture.geometryBytes<2*1024*1024);assert.equal(initial.sculpture.crown.xyUnchanged,true);assert.equal(initial.sculpture.floatingPresentation,true);assert(initial.sculpture.finish.includes('iridescent'));for(let axis=0;axis<2;axis++){assert(initial.sculpture.bounds[0][axis]>=initial.sculpture.sourceBoundsWorld[0][axis]-.004);assert(initial.sculpture.bounds[1][axis]<=initial.sculpture.sourceBoundsWorld[1][axis]+.004)}assert.equal(initial.samplingCentersInMask,true);assert(initial.splats>0&&initial.splats<=12000);assert.equal(initial.fontHash,digest(fs.readFileSync('public/fonts/Amiri-Bold.ttf')));
+// Exercise real auxiliary surface buffers and a synthetic protected opening.
+report.surfaceValidation=await p.evaluate(async()=>{
+ const {designSurface,distanceInside}=await import('/spark-letter/surface-design.js');
+ const outline=await(await fetch('/spark-letter/kaf-outline.json')).json();const surface=designSurface(outline,.002990625);
+ const textures=[surface.pigment,surface.relief];const opaque=textures.every(t=>t.image.data.every((v,i)=>i%4!==3||v===255));
+ const alpha=new Uint8Array(81);for(let y=1;y<8;y++)for(let x=1;x<8;x++)alpha[y*9+x]=255;alpha[4*9+4]=0;
+ const distances=distanceInside(alpha,9,9);const protectedOpening=distances[40]===0;const outsideZero=distances.every((v,i)=>alpha[i]||v===0);const finite=distances.every(Number.isFinite);
+ let roughMin=255,roughMax=0,metalMin=255,metalMax=0;for(let i=0;i<surface.relief.image.data.length;i+=4){const a=surface.relief.image.data;roughMin=Math.min(roughMin,a[i+1]);roughMax=Math.max(roughMax,a[i+1]);metalMin=Math.min(metalMin,a[i+2]);metalMax=Math.max(metalMax,a[i+2])}
+ const result={...surface.info,opaque,protectedOpening,outsideZero,finite,roughMin,roughMax,metalMin,metalMax};surface.dispose();return result;
+});
+assert.equal(report.surfaceValidation.opaque,true);assert.equal(report.surfaceValidation.protectedOpening,true);assert.equal(report.surfaceValidation.outsideZero,true);assert.equal(report.surfaceValidation.finite,true);
+assert(report.surfaceValidation.panels.samples.every(n=>n>20),'Every panel finish needs real coverage');assert(report.surfaceValidation.roughMin<100&&report.surfaceValidation.roughMax>160);assert(report.surfaceValidation.metalMax-report.surfaceValidation.metalMin>20);
+assert.equal(report.surfaceValidation.rawBytes,1769472);assert(report.surfaceValidation.channelSamples>0);assert(report.surfaceValidation.perimeterSamples>0);
+assert.equal(initial.sculpture.triangles,11940,'Surface refinement must not add triangles');assert.equal(initial.sculpture.geometryBytes,1146240,'Surface refinement must not add vertex buffers');
+// Compare with the unchanged original drawing routine evaluated in the same browser.
+const actual=await p.evaluate(async()=>{const {arabicTexture}=await import('/__original-letter.js');const t=arabicTexture('ك'),bytes=t.image.getContext('2d').getImageData(0,0,256,256).data;const frozen=window.letterStudy.faceBytes();let different=0,maxDelta=0,alphaDifferent=0;for(let i=0;i<bytes.length;i++){const delta=Math.abs(bytes[i]-frozen[i]);if(delta)different++;maxDelta=Math.max(maxDelta,delta);if(i%4===3&&delta)alphaDifferent++}t.dispose();return{different,maxDelta,alphaDifferent}});report.originalRoutineComparison=actual;assert.equal(actual.different,0,'Original native face differs from reference');
+const mask=await p.evaluate(()=>window.letterStudy.maskBytes());report.maskTopology=topology(mask);assert(report.maskTopology.components>=2,'The detached internal kāf component must remain present');
+report.initial=initial;
+const vectorProof=await p.evaluate(async()=>{
+ const o=await(await fetch('/spark-letter/kaf-outline.json')).json(),s=174/o.unitsPerEm;
+ const a=document.createElement('canvas'),b=document.createElement('canvas');a.width=a.height=b.width=b.height=256;const x=a.getContext('2d',{willReadFrequently:true}),y=b.getContext('2d',{willReadFrequently:true});
+ x.font='bold 174px Amiri, serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle='#fff';x.fillText('ك',128,132);const m=x.measureText('ك');
+ x.textBaseline='alphabetic';const alphabetic=x.measureText('ك');const baseline=132+alphabetic.actualBoundingBoxAscent-m.actualBoundingBoxAscent;y.fillStyle='#fff';y.setTransform(s,0,0,-s,128-o.advance*s/2,baseline);y.fill(new Path2D(o.path));
+ const aa=x.getImageData(0,0,256,256).data,bb=y.getImageData(0,0,256,256).data;let intersection=0,union=0,native=0,vector=0,lostNativeCore=0,filledNativeGap=0;
+ for(let i=3;i<aa.length;i+=4){const A=aa[i]>=128,B=bb[i]>=128;if(A)native++;if(B)vector++;if(A&&B)intersection++;if(A||B)union++}
+ for(let yy=1;yy<255;yy++)for(let xx=1;xx<255;xx++){const at=(yy*256+xx)*4+3,A=aa[at]>=128,B=bb[at]>=128;if(A===B)continue;let full=true,empty=true;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const filled=aa[((yy+dy)*256+xx+dx)*4+3]>=128;full=full&&filled;empty=empty&&!filled}if(A&&!B&&full)lostNativeCore++;if(!A&&B&&empty)filledNativeGap++;}
+ return{lostNativeCore,filledNativeGap,nativePixels:native,vectorPixels:vector,intersectionOverUnion:intersection/union,note:'Native glyph hinting/AA vs exact unhinted source curves; not byte identity of different representations'};
+});report.vectorRasterProof=vectorProof;assert(vectorProof.intersectionOverUnion>.95,'Gross vector/native silhouette mismatch');assert.equal(vectorProof.lostNativeCore,0,'A source stroke interior was lost');assert.equal(vectorProof.filledNativeGap,0,'A protected source gap was filled');
+// Let shader creation finish, then measure ordinary frames before any capture.
+await p.waitForTimeout(2500);
+for(const [mode,view] of [['compare','wide'],['original','wide'],['hybrid','wide'],['original','close'],['hybrid','close'],['original','oblique'],['hybrid','oblique']]){
+ await p.evaluate(([m,v])=>window.letterStudy.setState(m,v,true),[mode,view]);await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});await p.waitForTimeout(1400);
+ const measurement=await p.evaluate(()=>window.letterStudy.measure());report.metrics.push({mode,view,...measurement});
+ if(mode==='hybrid'&&view==='close'){
+  report.closeFraming=await p.evaluate(async()=>{const T=await import('/spark-letter/vendor/three.module.js'),m=window.letterStudy.measure(),c=new T.PerspectiveCamera();c.position.fromArray(m.camera.position);c.quaternion.fromArray(m.camera.quaternion);c.projectionMatrix.fromArray(m.camera.projection);c.updateMatrixWorld();const bounds=m.report.sculpture.bounds,points=[];for(const x of [bounds[0][0],bounds[1][0]])for(const y of [bounds[0][1],bounds[1][1]])for(const z of [bounds[0][2],bounds[1][2]])points.push(new T.Vector3(x,y,z).project(c).toArray());return{points,inside:points.every(p=>Math.abs(p[0])<.98&&Math.abs(p[1])<.98&&p[2]>-1&&p[2]<1)}});assert(report.closeFraming.inside,'Close preset clips the original letter bounds');
+ }
+
+ try{await safe(p.screenshot({path:path.join(out,mode+'-'+view+'.png'),timeout:8000}),10000);report.captures.push(mode+'-'+view+'.png')}catch(e){(report.warnings??=[]).push('Optional screenshot '+mode+'/'+view+': '+e.message)}
+}
+// Check that camera poses match for each A/B pair and source bytes remain exact.
+for(const view of ['wide','close','oblique']){const a=report.metrics.find(x=>x.mode==='original'&&x.view===view),b=report.metrics.find(x=>x.mode==='hybrid'&&x.view===view);assert(a&&b);const delta=Math.max(...a.camera.position.map((v,i)=>Math.abs(v-b.camera.position[i])));assert(delta<.002,'Matched camera drift');assert.deepEqual(a.camera.projection,b.camera.projection)}
+assert.equal(digest(Buffer.from(await p.evaluate(()=>window.letterStudy.currentFaceBytes()))),initial.faceHash);
+// Real pointer/keyboard events, not an inspection API bypass.
+await p.evaluate(()=>window.letterStudy.setState('hybrid','oblique',true));await p.waitForTimeout(600);
+const inspectBefore=await p.evaluate(()=>window.letterStudy.measure().camera.position);
+const box=await p.locator('#stage').boundingBox();const cx=box.x+box.width/2,cy=box.y+box.height/2;
+await p.mouse.move(cx,cy);await p.mouse.down();await p.mouse.move(cx+120,cy+35,{steps:12});await p.mouse.up();await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});
+const inspectAfter=await p.evaluate(()=>({position:window.letterStudy.measure().camera.position,custom:window.letterStudy.report.inspection.custom}));assert(inspectAfter.custom);assert(Math.hypot(...inspectBefore.map((v,i)=>v-inspectAfter.position[i]))>.5,'Drag did not orbit');
+report.inspectionOrbitCamera=inspectAfter.position;
+try{await safe(p.screenshot({path:path.join(out,'inspection-orbit.png'),timeout:8000}),10000);report.captures.push('inspection-orbit.png')}catch(e){(report.warnings??=[]).push('Optional inspection screenshot: '+e.message)}
+const radius=pos=>Math.hypot(pos[0],pos[1]-.721875,pos[2]);await p.mouse.wheel(0,100);await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});const zoomed=await p.evaluate(()=>window.letterStudy.measure().camera.position);assert(radius(zoomed)>radius(inspectAfter.position)*1.05,'Wheel did not zoom');
+await p.locator('#stage').press('Home');await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});const restored=await p.evaluate(()=>window.letterStudy.measure().camera.position);assert(Math.max(...restored.map((v,i)=>Math.abs(v-inspectBefore[i])))<.002,'Home did not restore preset');
+await p.locator('#stage').press('ArrowRight');await p.locator('#stage').press('+');await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});assert(await p.evaluate(()=>window.letterStudy.report.inspection.custom));
+await p.mouse.move(cx,cy);await p.mouse.down();await p.dispatchEvent('#stage','pointercancel',{pointerId:1});await p.mouse.up();assert.equal(await p.locator('#stage').evaluate(e=>e.classList.contains('dragging')),false);
+await p.getByRole('button',{name:'Oblique',exact:true}).click();await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});assert.equal(await p.evaluate(()=>window.letterStudy.report.inspection.custom),false);
+report.inspection={drag:true,wheel:true,keyboard:true,homeRestoresPreset:true,cancelReleasesCapture:true,presetRestores:true};
+// Real keyboard-driven side and rear views. Native captures avoid compositor omissions.
+await p.evaluate(()=>window.letterStudy.setState('hybrid','close',true));await p.locator('#stage').focus();
+for(let i=0;i<10;i++)await p.locator('#stage').press('ArrowRight');await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});
+for(const [name,steps] of [['side-native.png',0],['rear-native.png',21]]){
+ for(let i=0;i<steps;i++)await p.locator('#stage').press('ArrowRight');await p.waitForFunction(()=>window.letterStudy.report.settled,null,{timeout:18000});
+ const state=await p.evaluate(()=>window.letterStudy.measure());(report.orbitViews??=[]).push({name,camera:state.camera,render:state.report.render});
+ try{const png=await safe(p.evaluate(()=>window.letterStudy.capture()),10000);fs.writeFileSync(path.join(out,name),Buffer.from(png.split(',')[1],'base64'));report.captures.push(name)}catch(e){(report.warnings??=[]).push('Optional '+name+': '+e.message)}
+}
+
+await p.getByRole('button',{name:'Enable breathing light',exact:true}).click();assert.equal(await p.evaluate(()=>window.letterStudy.report.breathing),true);await p.getByRole('button',{name:'Pause breathing light',exact:true}).click();assert.equal(await p.evaluate(()=>window.letterStudy.report.breathing),false);
+await p.setViewportSize({width:390,height:844});await p.waitForTimeout(600);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.equal(await p.evaluate(()=>document.querySelectorAll('canvas').length),1);
+assert.deepEqual(report.errors,[]);report.success=true;
+}catch(e){report.failure=String(e);process.exitCode=1}finally{fs.writeFileSync(path.join(out,'browser-report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({success:report.success,failure:report.failure,initial:report.initial,reference:report.originalRoutineComparison,topology:report.maskTopology,captures:report.captures}));await safe(b?.close(),5000).catch(()=>{});server?.kill();clearTimeout(hard)}})();
+function topology(rgba){const n=256,seen=new Uint8Array(n*n);let components=0,pixels=0;const sizes=[];for(let p=0;p<n*n;p++){if(seen[p]||rgba[p*4+3]<128)continue;components++;let size=0,queue=[p];seen[p]=1;for(let k=0;k<queue.length;k++){const q=queue[k];size++;pixels++;for(const v of [q%n?q-1:-1,q%n<n-1?q+1:-1,q>=n?q-n:-1,q<n*(n-1)?q+n:-1])if(v>=0&&!seen[v]&&rgba[v*4+3]>=128){seen[v]=1;queue.push(v)}}sizes.push(size)}return{components,pixels,sizes:sizes.sort((a,b)=>b-a)}}

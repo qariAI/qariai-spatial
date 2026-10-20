@@ -1,0 +1,18 @@
+{
+  "kind": "Documentation-only 2D proposal; not runtime render evidence",
+  "glyphPathExact": true,
+  "glyphPathSha256": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+  "fontSha256": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+  "contours": 2,
+  "panelPathsExact": true,
+  "glyphClippingPresent": true,
+  "runtimeBaseline": "107551eebe5db66009705df7e98d16a19cb7acf7",
+  "runtimeTrackedFilesChanged": false,
+  "resolutionWarning": "Some hairlines are below one current surface-map texel; bake feasibility is not established.",
+  "files": {
+    "face-proof.svg": "3cda3686e96fe3ac51279900f7c80d0460d98c0b4531c659a3267a4ff3512500",
+    "labelled-proof.svg": "240997c261c7a5d09cb01112f62ac4a9069338bd64d98a31a1e73d4f7e0da394",
+    "face-proof.png": "8d93fe05e474d28aadd2e180565937b5f602cb38b02de0a365c81f2dbe3084bf",
+    "labelled-proof.png": "903ca993368e03346b168e51c233813579f15bf298ee5a3ee876a4d3fa523ea4"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "initialRasterProof": {
+    "nativePixels": 4402,
+    "vectorPixels": 4395,
+    "intersectionOverUnion": 0.786918545602275,
+    "note": "Native glyph hinting/AA vs exact unhinted source curves; not byte identity of different representations"
+  },
+  "initialFailure": "AssertionError [ERR_ASSERTION]: Vector does not match native glyph silhouette",
+  "resolution": "Use the actual Canvas middle/alphabetic baseline conversion. Preserve true source curves; verify strict raster core/gap retention separately from platform antialiasing."
+}

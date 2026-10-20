@@ -1,0 +1,47 @@
+{
+  "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+  "studyAssetBytes": 4702513,
+  "mainBuiltAssets": [
+    {
+      "file": "harfDesktop-BAm-SrtE.js",
+      "sha256": "ed376515d1dcf74e44f38968fc3f81078391b4f7c0c4fa22f9cfc1ab720d0ca3",
+      "baselineByteIdentical": true
+    },
+    {
+      "file": "harfXR-CPYeR1TD.js",
+      "sha256": "4674311eb1e1cf584c4cdf14ff4fbaa56788a7f1eedd5280368e6fa918ec05ab",
+      "baselineByteIdentical": true
+    },
+    {
+      "file": "harfXR-crZPdSrj.css",
+      "sha256": "ee54c2187854454689403acd82de8607aae8ae3eff86926e95af8f528ac68e70",
+      "baselineByteIdentical": true
+    },
+    {
+      "file": "ink-D0Z2_3VR.js",
+      "sha256": "b5c362f3dcc41a428599c8bd8cc56f502622864584abc57e5a5a77a11ccd8da7",
+      "baselineByteIdentical": true
+    },
+    {
+      "file": "navigation-Cl7ZWHjU.js",
+      "sha256": "5f316cea50e9921a93a0ac71d9b920e4231bbdc4a2dc9f8e29b4de802eb8c41c",
+      "baselineByteIdentical": true
+    },
+    {
+      "file": "orbit-BYuWqnXE.js",
+      "sha256": "79ab3838e9a7d082ae78a5c91a4b49efe77123be219bd75638d0553b55b93d2a",
+      "baselineByteIdentical": true
+    },
+    {
+      "file": "orbit-DJKGciIl.css",
+      "sha256": "dc37e65cd9ffed8d291b7fd959d8bc3eddb12715ec79d5a88465519248ccac0e",
+      "baselineByteIdentical": true
+    },
+    {
+      "file": "routes-Bg0YhMm0.js",
+      "sha256": "91daec62e1d495ee47969fe289ea9a7fc47d79c9c52caaed83c30b787439a2ba",
+      "baselineByteIdentical": true
+    }
+  ],
+  "note": "Main build excludes separate public study; texture estimates and runtime counts in browser-report.json."
+}

@@ -1,0 +1,2064 @@
+{
+  "success": true,
+  "renderer": "Linux Chromium / SwiftShader; NOT Windows or Quest",
+  "captureMethod": "Fixed matched camera endpoints via test API; no GPU draws skipped. Screenshot waits bounded; timing windows precede each screenshot.",
+  "errors": [],
+  "captures": [
+    "compare-wide.png",
+    "original-wide.png",
+    "hybrid-wide.png",
+    "original-close.png",
+    "hybrid-close.png",
+    "original-oblique.png",
+    "hybrid-oblique.png"
+  ],
+  "metrics": [
+    {
+      "mode": "compare",
+      "view": "wide",
+      "report": {
+        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "compare",
+        "view": "wide",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "sculpture": {
+          "kind": "physical extrusion of original font vectors; not raster tracing",
+          "glyph": "uni0643",
+          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+          "components": 2,
+          "triangles": 11940,
+          "geometryBytes": 1146240,
+          "depth": 0.2,
+          "bevel": 0.012,
+          "crown": {
+            "height": 0.004,
+            "width": 0.055,
+            "xyUnchanged": true
+          },
+          "finish": "owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment",
+          "floatingPresentation": true,
+          "bevelDirection": "inward",
+          "bounds": [
+            [
+              -0.8343843817710876,
+              -0.5289109349250793,
+              -0.11999999731779099
+            ],
+            [
+              0.8090990781784058,
+              1.9543254375457764,
+              0.12399999797344208
+            ]
+          ],
+          "sourceBoundsWorld": [
+            [
+              -0.834384375,
+              -0.5289109375000001
+            ],
+            [
+              0.809134955357143,
+              1.9543397887323943
+            ]
+          ],
+          "uvTransform": {
+            "scale": 0.0029906250000000002,
+            "tx": -0.9824203125,
+            "ty": -0.48554687500000004,
+            "baseline": 156.25
+          },
+          "environment": {
+            "width": 384,
+            "height": 512,
+            "type": 1016
+          },
+          "shadowMap": [
+            512,
+            512
+          ],
+          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+        },
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 19,
+        "packedUsedBytes": 304,
+        "packedCapacityBytes": 32768,
+        "boundarySamples": 19,
+        "depthRange": [
+          -0.22,
+          -0.22
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": false,
+        "originalFacePreserved": true,
+        "sculptureUsesOriginalFaceOverlay": false,
+        "settled": true,
+        "readyMs": 4628.899999999907,
+        "render": {
+          "frame": 105,
+          "calls": 8,
+          "triangles": 11982,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 6,
+          "textures": 13
+        },
+        "frameSamples": 9
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          12
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 111.10000000009313,
+          "submitMs": 1.400000000372529
+        },
+        {
+          "intervalMs": 153.1999999997206,
+          "submitMs": 3.2999999998137355
+        },
+        {
+          "intervalMs": 206,
+          "submitMs": 7
+        },
+        {
+          "intervalMs": 86.39999999990687,
+          "submitMs": 0.8999999999068677
+        },
+        {
+          "intervalMs": 161.8000000002794,
+          "submitMs": 36.10000000009313
+        },
+        {
+          "intervalMs": 191.1999999997206,
+          "submitMs": 13.699999999720603
+        },
+        {
+          "intervalMs": 210.5,
+          "submitMs": 43.90000000037253
+        },
+        {
+          "intervalMs": 170,
+          "submitMs": 1.3000000002793968
+        },
+        {
+          "intervalMs": 117.70000000018626,
+          "submitMs": 3.6999999997206032
+        }
+      ],
+      "textures": [
+        {
+          "width": 384,
+          "height": 512,
+          "depth": 1,
+          "type": 1016,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1572864
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1048576
+        }
+      ],
+      "sparkResources": {
+        "active": 19,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          },
+          {
+            "capacity": 0,
+            "count": 19
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "original",
+      "view": "wide",
+      "report": {
+        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "original",
+        "view": "wide",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "sculpture": {
+          "kind": "physical extrusion of original font vectors; not raster tracing",
+          "glyph": "uni0643",
+          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+          "components": 2,
+          "triangles": 11940,
+          "geometryBytes": 1146240,
+          "depth": 0.2,
+          "bevel": 0.012,
+          "crown": {
+            "height": 0.004,
+            "width": 0.055,
+            "xyUnchanged": true
+          },
+          "finish": "owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment",
+          "floatingPresentation": true,
+          "bevelDirection": "inward",
+          "bounds": [
+            [
+              -0.8343843817710876,
+              -0.5289109349250793,
+              -0.11999999731779099
+            ],
+            [
+              0.8090990781784058,
+              1.9543254375457764,
+              0.12399999797344208
+            ]
+          ],
+          "sourceBoundsWorld": [
+            [
+              -0.834384375,
+              -0.5289109375000001
+            ],
+            [
+              0.809134955357143,
+              1.9543397887323943
+            ]
+          ],
+          "uvTransform": {
+            "scale": 0.0029906250000000002,
+            "tx": -0.9824203125,
+            "ty": -0.48554687500000004,
+            "baseline": 156.25
+          },
+          "environment": {
+            "width": 384,
+            "height": 512,
+            "type": 1016
+          },
+          "shadowMap": [
+            512,
+            512
+          ],
+          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+        },
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 19,
+        "packedUsedBytes": 304,
+        "packedCapacityBytes": 32768,
+        "boundarySamples": 19,
+        "depthRange": [
+          -0.22,
+          -0.22
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": false,
+        "originalFacePreserved": true,
+        "sculptureUsesOriginalFaceOverlay": false,
+        "settled": true,
+        "readyMs": 4628.899999999907,
+        "render": {
+          "frame": 121,
+          "calls": 3,
+          "triangles": 4,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 6,
+          "textures": 13
+        },
+        "frameSamples": 10
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          7
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 488.6999999997206,
+          "submitMs": 2.1000000000931323
+        },
+        {
+          "intervalMs": 135.89999999990687,
+          "submitMs": 25.100000000093132
+        },
+        {
+          "intervalMs": 450.5,
+          "submitMs": 0.6000000000931323
+        },
+        {
+          "intervalMs": 109.70000000018626,
+          "submitMs": 1.8999999999068677
+        },
+        {
+          "intervalMs": 100.39999999990687,
+          "submitMs": 2.5
+        },
+        {
+          "intervalMs": 170.39999999990687,
+          "submitMs": 3.7999999998137355
+        },
+        {
+          "intervalMs": 119.3000000002794,
+          "submitMs": 2.400000000372529
+        },
+        {
+          "intervalMs": 39.39999999990687,
+          "submitMs": 1
+        },
+        {
+          "intervalMs": 99.29999999981374,
+          "submitMs": 1.7000000001862645
+        },
+        {
+          "intervalMs": 157.70000000018626,
+          "submitMs": 4.899999999906868
+        }
+      ],
+      "textures": [
+        {
+          "width": 384,
+          "height": 512,
+          "depth": 1,
+          "type": 1016,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1572864
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1048576
+        }
+      ],
+      "sparkResources": {
+        "active": 0,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          },
+          {
+            "capacity": 2048,
+            "count": 0
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "hybrid",
+      "view": "wide",
+      "report": {
+        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "hybrid",
+        "view": "wide",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "sculpture": {
+          "kind": "physical extrusion of original font vectors; not raster tracing",
+          "glyph": "uni0643",
+          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+          "components": 2,
+          "triangles": 11940,
+          "geometryBytes": 1146240,
+          "depth": 0.2,
+          "bevel": 0.012,
+          "crown": {
+            "height": 0.004,
+            "width": 0.055,
+            "xyUnchanged": true
+          },
+          "finish": "owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment",
+          "floatingPresentation": true,
+          "bevelDirection": "inward",
+          "bounds": [
+            [
+              -0.8343843817710876,
+              -0.5289109349250793,
+              -0.11999999731779099
+            ],
+            [
+              0.8090990781784058,
+              1.9543254375457764,
+              0.12399999797344208
+            ]
+          ],
+          "sourceBoundsWorld": [
+            [
+              -0.834384375,
+              -0.5289109375000001
+            ],
+            [
+              0.809134955357143,
+              1.9543397887323943
+            ]
+          ],
+          "uvTransform": {
+            "scale": 0.0029906250000000002,
+            "tx": -0.9824203125,
+            "ty": -0.48554687500000004,
+            "baseline": 156.25
+          },
+          "environment": {
+            "width": 384,
+            "height": 512,
+            "type": 1016
+          },
+          "shadowMap": [
+            512,
+            512
+          ],
+          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+        },
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 19,
+        "packedUsedBytes": 304,
+        "packedCapacityBytes": 32768,
+        "boundarySamples": 19,
+        "depthRange": [
+          -0.22,
+          -0.22
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": false,
+        "originalFacePreserved": true,
+        "sculptureUsesOriginalFaceOverlay": false,
+        "settled": true,
+        "readyMs": 4628.899999999907,
+        "render": {
+          "frame": 137,
+          "calls": 6,
+          "triangles": 11978,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 6,
+          "textures": 13
+        },
+        "frameSamples": 8
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          7
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 198.8000000002794,
+          "submitMs": 6.2000000001862645
+        },
+        {
+          "intervalMs": 86.89999999990687,
+          "submitMs": 0.6000000000931323
+        },
+        {
+          "intervalMs": 412,
+          "submitMs": 3.2999999998137355
+        },
+        {
+          "intervalMs": 9.799999999813735,
+          "submitMs": 1
+        },
+        {
+          "intervalMs": 81.70000000018626,
+          "submitMs": 4.2999999998137355
+        },
+        {
+          "intervalMs": 191.1999999997206,
+          "submitMs": 0.6000000000931323
+        },
+        {
+          "intervalMs": 215.90000000037253,
+          "submitMs": 1.5
+        },
+        {
+          "intervalMs": 200.39999999990687,
+          "submitMs": 2.1999999997206032
+        }
+      ],
+      "textures": [
+        {
+          "width": 384,
+          "height": 512,
+          "depth": 1,
+          "type": 1016,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1572864
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1048576
+        }
+      ],
+      "sparkResources": {
+        "active": 19,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          },
+          {
+            "capacity": 0,
+            "count": 19
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "original",
+      "view": "close",
+      "report": {
+        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "original",
+        "view": "close",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "sculpture": {
+          "kind": "physical extrusion of original font vectors; not raster tracing",
+          "glyph": "uni0643",
+          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+          "components": 2,
+          "triangles": 11940,
+          "geometryBytes": 1146240,
+          "depth": 0.2,
+          "bevel": 0.012,
+          "crown": {
+            "height": 0.004,
+            "width": 0.055,
+            "xyUnchanged": true
+          },
+          "finish": "owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment",
+          "floatingPresentation": true,
+          "bevelDirection": "inward",
+          "bounds": [
+            [
+              -0.8343843817710876,
+              -0.5289109349250793,
+              -0.11999999731779099
+            ],
+            [
+              0.8090990781784058,
+              1.9543254375457764,
+              0.12399999797344208
+            ]
+          ],
+          "sourceBoundsWorld": [
+            [
+              -0.834384375,
+              -0.5289109375000001
+            ],
+            [
+              0.809134955357143,
+              1.9543397887323943
+            ]
+          ],
+          "uvTransform": {
+            "scale": 0.0029906250000000002,
+            "tx": -0.9824203125,
+            "ty": -0.48554687500000004,
+            "baseline": 156.25
+          },
+          "environment": {
+            "width": 384,
+            "height": 512,
+            "type": 1016
+          },
+          "shadowMap": [
+            512,
+            512
+          ],
+          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+        },
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 19,
+        "packedUsedBytes": 304,
+        "packedCapacityBytes": 32768,
+        "boundarySamples": 19,
+        "depthRange": [
+          -0.22,
+          -0.22
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": false,
+        "originalFacePreserved": true,
+        "sculptureUsesOriginalFaceOverlay": false,
+        "settled": true,
+        "readyMs": 4628.899999999907,
+        "render": {
+          "frame": 142,
+          "calls": 4,
+          "triangles": 42,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 6,
+          "textures": 13
+        },
+        "frameSamples": 1
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          6.4
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 816,
+          "submitMs": 30.299999999813735
+        }
+      ],
+      "textures": [
+        {
+          "width": 384,
+          "height": 512,
+          "depth": 1,
+          "type": 1016,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1572864
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1048576
+        }
+      ],
+      "sparkResources": {
+        "active": 0,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          },
+          {
+            "capacity": 2048,
+            "count": 19
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "hybrid",
+      "view": "close",
+      "report": {
+        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "hybrid",
+        "view": "close",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "sculpture": {
+          "kind": "physical extrusion of original font vectors; not raster tracing",
+          "glyph": "uni0643",
+          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+          "components": 2,
+          "triangles": 11940,
+          "geometryBytes": 1146240,
+          "depth": 0.2,
+          "bevel": 0.012,
+          "crown": {
+            "height": 0.004,
+            "width": 0.055,
+            "xyUnchanged": true
+          },
+          "finish": "owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment",
+          "floatingPresentation": true,
+          "bevelDirection": "inward",
+          "bounds": [
+            [
+              -0.8343843817710876,
+              -0.5289109349250793,
+              -0.11999999731779099
+            ],
+            [
+              0.8090990781784058,
+              1.9543254375457764,
+              0.12399999797344208
+            ]
+          ],
+          "sourceBoundsWorld": [
+            [
+              -0.834384375,
+              -0.5289109375000001
+            ],
+            [
+              0.809134955357143,
+              1.9543397887323943
+            ]
+          ],
+          "uvTransform": {
+            "scale": 0.0029906250000000002,
+            "tx": -0.9824203125,
+            "ty": -0.48554687500000004,
+            "baseline": 156.25
+          },
+          "environment": {
+            "width": 384,
+            "height": 512,
+            "type": 1016
+          },
+          "shadowMap": [
+            512,
+            512
+          ],
+          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+        },
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 19,
+        "packedUsedBytes": 304,
+        "packedCapacityBytes": 32768,
+        "boundarySamples": 19,
+        "depthRange": [
+          -0.22,
+          -0.22
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": false,
+        "originalFacePreserved": true,
+        "sculptureUsesOriginalFaceOverlay": false,
+        "settled": true,
+        "readyMs": 4628.899999999907,
+        "render": {
+          "frame": 153,
+          "calls": 5,
+          "triangles": 11940,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 6,
+          "textures": 13
+        },
+        "frameSamples": 4
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          6.4
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 897.3999999999069,
+          "submitMs": 1.1000000000931323
+        },
+        {
+          "intervalMs": 122.39999999990687,
+          "submitMs": 2.7000000001862645
+        },
+        {
+          "intervalMs": 334.70000000018626,
+          "submitMs": 1.6000000000931323
+        },
+        {
+          "intervalMs": 248.60000000009313,
+          "submitMs": 1.6999999997206032
+        }
+      ],
+      "textures": [
+        {
+          "width": 384,
+          "height": 512,
+          "depth": 1,
+          "type": 1016,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1572864
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1048576
+        }
+      ],
+      "sparkResources": {
+        "active": 0,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "original",
+      "view": "oblique",
+      "report": {
+        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "original",
+        "view": "oblique",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "sculpture": {
+          "kind": "physical extrusion of original font vectors; not raster tracing",
+          "glyph": "uni0643",
+          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+          "components": 2,
+          "triangles": 11940,
+          "geometryBytes": 1146240,
+          "depth": 0.2,
+          "bevel": 0.012,
+          "crown": {
+            "height": 0.004,
+            "width": 0.055,
+            "xyUnchanged": true
+          },
+          "finish": "owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment",
+          "floatingPresentation": true,
+          "bevelDirection": "inward",
+          "bounds": [
+            [
+              -0.8343843817710876,
+              -0.5289109349250793,
+              -0.11999999731779099
+            ],
+            [
+              0.8090990781784058,
+              1.9543254375457764,
+              0.12399999797344208
+            ]
+          ],
+          "sourceBoundsWorld": [
+            [
+              -0.834384375,
+              -0.5289109375000001
+            ],
+            [
+              0.809134955357143,
+              1.9543397887323943
+            ]
+          ],
+          "uvTransform": {
+            "scale": 0.0029906250000000002,
+            "tx": -0.9824203125,
+            "ty": -0.48554687500000004,
+            "baseline": 156.25
+          },
+          "environment": {
+            "width": 384,
+            "height": 512,
+            "type": 1016
+          },
+          "shadowMap": [
+            512,
+            512
+          ],
+          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+        },
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 19,
+        "packedUsedBytes": 304,
+        "packedCapacityBytes": 32768,
+        "boundarySamples": 19,
+        "depthRange": [
+          -0.22,
+          -0.22
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": false,
+        "originalFacePreserved": true,
+        "sculptureUsesOriginalFaceOverlay": false,
+        "settled": true,
+        "readyMs": 4628.899999999907,
+        "render": {
+          "frame": 161,
+          "calls": 3,
+          "triangles": 4,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 6,
+          "textures": 13
+        },
+        "frameSamples": 4
+      },
+      "camera": {
+        "position": [
+          2.8,
+          1.071875,
+          5.8
+        ],
+        "quaternion": [
+          -0.026458376928255888,
+          0.22290704607424847,
+          0.006052324195185316,
+          0.9744617860504391
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 1441.0999999996275,
+          "submitMs": 15.800000000279397
+        },
+        {
+          "intervalMs": 637.1000000000931,
+          "submitMs": 1.8999999999068677
+        },
+        {
+          "intervalMs": 272.10000000009313,
+          "submitMs": 4.5
+        },
+        {
+          "intervalMs": 324.5,
+          "submitMs": 1.2999999998137355
+        }
+      ],
+      "textures": [
+        {
+          "width": 384,
+          "height": 512,
+          "depth": 1,
+          "type": 1016,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1572864
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1048576
+        }
+      ],
+      "sparkResources": {
+        "active": 0,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          },
+          {
+            "capacity": 2048,
+            "count": 0
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    },
+    {
+      "mode": "hybrid",
+      "view": "oblique",
+      "report": {
+        "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "hybrid",
+        "view": "oblique",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "sculpture": {
+          "kind": "physical extrusion of original font vectors; not raster tracing",
+          "glyph": "uni0643",
+          "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+          "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+          "components": 2,
+          "triangles": 11940,
+          "geometryBytes": 1146240,
+          "depth": 0.2,
+          "bevel": 0.012,
+          "crown": {
+            "height": 0.004,
+            "width": 0.055,
+            "xyUnchanged": true
+          },
+          "finish": "owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment",
+          "floatingPresentation": true,
+          "bevelDirection": "inward",
+          "bounds": [
+            [
+              -0.8343843817710876,
+              -0.5289109349250793,
+              -0.11999999731779099
+            ],
+            [
+              0.8090990781784058,
+              1.9543254375457764,
+              0.12399999797344208
+            ]
+          ],
+          "sourceBoundsWorld": [
+            [
+              -0.834384375,
+              -0.5289109375000001
+            ],
+            [
+              0.809134955357143,
+              1.9543397887323943
+            ]
+          ],
+          "uvTransform": {
+            "scale": 0.0029906250000000002,
+            "tx": -0.9824203125,
+            "ty": -0.48554687500000004,
+            "baseline": 156.25
+          },
+          "environment": {
+            "width": 384,
+            "height": 512,
+            "type": 1016
+          },
+          "shadowMap": [
+            512,
+            512
+          ],
+          "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+        },
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 19,
+        "packedUsedBytes": 304,
+        "packedCapacityBytes": 32768,
+        "boundarySamples": 19,
+        "depthRange": [
+          -0.22,
+          -0.22
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": false,
+        "originalFacePreserved": true,
+        "sculptureUsesOriginalFaceOverlay": false,
+        "settled": true,
+        "readyMs": 4628.899999999907,
+        "render": {
+          "frame": 175,
+          "calls": 5,
+          "triangles": 11940,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 6,
+          "textures": 13
+        },
+        "frameSamples": 5
+      },
+      "camera": {
+        "position": [
+          2.8,
+          1.071875,
+          5.8
+        ],
+        "quaternion": [
+          -0.026458376928255888,
+          0.22290704607424847,
+          0.006052324195185316,
+          0.9744617860504391
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 259.10000000009313,
+          "submitMs": 10.200000000186265
+        },
+        {
+          "intervalMs": 427.39999999990687,
+          "submitMs": 3.1000000000931323
+        },
+        {
+          "intervalMs": 359.89999999990687,
+          "submitMs": 0.8000000002793968
+        },
+        {
+          "intervalMs": 147.3000000002794,
+          "submitMs": 6.399999999906868
+        },
+        {
+          "intervalMs": 567.8999999999069,
+          "submitMs": 1.1000000000931323
+        }
+      ],
+      "textures": [
+        {
+          "width": 384,
+          "height": 512,
+          "depth": 1,
+          "type": 1016,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1572864
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 4096,
+          "height": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 1,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1014,
+          "format": 1033,
+          "mips": false,
+          "estimatedBytes": 32768
+        },
+        {
+          "width": 2048,
+          "height": 1,
+          "depth": 0,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 8192
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true,
+          "estimatedBytes": 349525.3333333333
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 128,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 65536
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "depth": 1,
+          "type": 1009,
+          "format": 1023,
+          "mips": false,
+          "estimatedBytes": 1048576
+        }
+      ],
+      "sparkResources": {
+        "active": 19,
+        "capacity": 16384,
+        "accumulators": [
+          {
+            "capacity": 0,
+            "count": 19
+          },
+          {
+            "capacity": 0,
+            "count": 0
+          }
+        ],
+        "geometryBytes": 3320
+      }
+    }
+  ],
+  "scope": {},
+  "chromium": "154.0.8037.57",
+  "originalRoutineComparison": {
+    "different": 0,
+    "maxDelta": 0,
+    "alphaDifferent": 0
+  },
+  "maskTopology": {
+    "components": 2,
+    "pixels": 4886,
+    "sizes": [
+      3751,
+      1135
+    ]
+  },
+  "initial": {
+    "kind": "isolated iridescent Amiri sculpture with secondary Spark light; NOT Quest validated",
+    "letter": "ك",
+    "codepoints": [
+      "U+0643"
+    ],
+    "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+    "spark": "2.3.1",
+    "three": "180",
+    "mode": "compare",
+    "view": "wide",
+    "breathing": false,
+    "ready": true,
+    "errors": [],
+    "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+    "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+    "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+    "sculpture": {
+      "kind": "physical extrusion of original font vectors; not raster tracing",
+      "glyph": "uni0643",
+      "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+      "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+      "components": 2,
+      "triangles": 11940,
+      "geometryBytes": 1146240,
+      "depth": 0.2,
+      "bevel": 0.012,
+      "crown": {
+        "height": 0.004,
+        "width": 0.055,
+        "xyUnchanged": true
+      },
+      "finish": "owner-selected vivid iridescent teal/blue/violet/amber; physical thin-film plus procedural pigment",
+      "floatingPresentation": true,
+      "bevelDirection": "inward",
+      "bounds": [
+        [
+          -0.8343843817710876,
+          -0.5289109349250793,
+          -0.11999999731779099
+        ],
+        [
+          0.8090990781784058,
+          1.9543254375457764,
+          0.12399999797344208
+        ]
+      ],
+      "sourceBoundsWorld": [
+        [
+          -0.834384375,
+          -0.5289109375000001
+        ],
+        [
+          0.809134955357143,
+          1.9543397887323943
+        ]
+      ],
+      "uvTransform": {
+        "scale": 0.0029906250000000002,
+        "tx": -0.9824203125,
+        "ty": -0.48554687500000004,
+        "baseline": 156.25
+      },
+      "environment": {
+        "width": 384,
+        "height": 512,
+        "type": 1016
+      },
+      "shadowMap": [
+        512,
+        512
+      ],
+      "limits": "Curve tessellation is approximate. Font-derived geometry, not bespoke calligrapher artwork. Quest hardware untested."
+    },
+    "inkBounds": [
+      79,
+      14,
+      175,
+      158
+    ],
+    "splats": 19,
+    "packedUsedBytes": 304,
+    "packedCapacityBytes": 32768,
+    "boundarySamples": 19,
+    "depthRange": [
+      -0.22,
+      -0.22
+    ],
+    "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+    "samplingCentersInMask": true,
+    "faceSharedIdentity": false,
+    "originalFacePreserved": true,
+    "sculptureUsesOriginalFaceOverlay": false,
+    "settled": true,
+    "readyMs": 4628.899999999907,
+    "render": {
+      "frame": 34,
+      "calls": 3,
+      "triangles": 5,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 6,
+      "textures": 12
+    },
+    "frameSamples": 1
+  },
+  "vectorRasterProof": {
+    "lostNativeCore": 0,
+    "filledNativeGap": 0,
+    "nativePixels": 4402,
+    "vectorPixels": 4395,
+    "intersectionOverUnion": 0.9715374271627073,
+    "note": "Native glyph hinting/AA vs exact unhinted source curves; not byte identity of different representations"
+  }
+}
