@@ -1,0 +1,179 @@
+{
+  "success": false,
+  "renderer": "Linux Chromium / SwiftShader; NOT Windows or Quest",
+  "errors": [],
+  "captures": [],
+  "metrics": [
+    {
+      "mode": "compare",
+      "view": "wide",
+      "report": {
+        "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+        "letter": "ك",
+        "codepoints": [
+          "U+0643"
+        ],
+        "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+        "spark": "2.3.1",
+        "three": "180",
+        "mode": "compare",
+        "view": "wide",
+        "breathing": false,
+        "ready": true,
+        "errors": [],
+        "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "inkBounds": [
+          79,
+          14,
+          175,
+          158
+        ],
+        "splats": 4516,
+        "packedUsedBytes": 72256,
+        "packedCapacityBytes": 131072,
+        "boundarySamples": 129,
+        "depthRange": [
+          -0.22,
+          0.095
+        ],
+        "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+        "samplingCentersInMask": true,
+        "faceSharedIdentity": true,
+        "settled": true,
+        "readyMs": 2792.600000000093,
+        "render": {
+          "frame": 57,
+          "calls": 6,
+          "triangles": 9040,
+          "points": 260,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 4,
+          "textures": 8
+        },
+        "frameSamples": 2
+      },
+      "camera": {
+        "position": [
+          0,
+          0.721875,
+          12
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "projection": [
+          1.1397918820992796,
+          0,
+          0,
+          0,
+          0,
+          3.171594802363213,
+          0,
+          0,
+          0,
+          0,
+          -1.003338898163606,
+          -1,
+          0,
+          0,
+          -0.2003338898163606,
+          0
+        ]
+      },
+      "frames": [
+        {
+          "intervalMs": 2770.100000000093,
+          "submitMs": 4.600000000093132
+        },
+        {
+          "intervalMs": 264.80000000004657,
+          "submitMs": 0.7000000001862645
+        }
+      ],
+      "textures": [
+        {
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mips": true
+        }
+      ]
+    }
+  ],
+  "scope": {},
+  "chromium": "154.0.8037.57",
+  "originalRoutineComparison": {
+    "different": 0,
+    "maxDelta": 0,
+    "alphaDifferent": 0
+  },
+  "maskTopology": {
+    "components": 2,
+    "pixels": 4886,
+    "sizes": [
+      3751,
+      1135
+    ]
+  },
+  "initial": {
+    "kind": "isolated font-derived Spark letter study; NOT Quest validated",
+    "letter": "ك",
+    "codepoints": [
+      "U+0643"
+    ],
+    "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
+    "spark": "2.3.1",
+    "three": "180",
+    "mode": "compare",
+    "view": "wide",
+    "breathing": false,
+    "ready": true,
+    "errors": [],
+    "faceHash": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+    "maskHash": "5eed13caeb7c0d0bf740337110e954ae535cb4595ca9caaa927f0d6b682d427f",
+    "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+    "inkBounds": [
+      79,
+      14,
+      175,
+      158
+    ],
+    "splats": 4516,
+    "packedUsedBytes": 72256,
+    "packedCapacityBytes": 131072,
+    "boundarySamples": 129,
+    "depthRange": [
+      -0.22,
+      0.095
+    ],
+    "sourceHashAfterConstruction": "e591994b0c432c04c876c7a04846da3ab57822dffd1064d8b6ffb2cea86fa690",
+    "samplingCentersInMask": true,
+    "faceSharedIdentity": true,
+    "settled": true,
+    "readyMs": 2792.600000000093,
+    "render": {
+      "frame": 2,
+      "calls": 5,
+      "triangles": 9,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 4,
+      "textures": 7
+    },
+    "frameSamples": 1
+  },
+  "warnings": [
+    "Optional screenshot compare/wide: page.screenshot: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n"
+  ],
+  "failure": "TimeoutError: page.waitForFunction: Timeout 18000ms exceeded."
+}

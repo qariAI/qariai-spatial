@@ -1,6 +1,6 @@
 {
   "baseline": "ad10ee39ee0f16262e7b3654b24bad23a34351ff",
-  "studyAssetBytes": 4702513,
+  "studyAssetBytes": 4783377,
   "mainBuiltAssets": [
     {
       "file": "harfDesktop-BAm-SrtE.js",
@@ -43,5 +43,15 @@
       "baselineByteIdentical": true
     }
   ],
-  "note": "Main build excludes separate public study; texture estimates and runtime counts in browser-report.json."
+  "physicalGeometry": {
+    "triangles": 8312,
+    "bytes": 797952,
+    "maxTriangles": 20000,
+    "maxBytes": 2097152
+  },
+  "note": "Study-only physical sculpture. Runtime texture/draw and software timing evidence in browser-report.json; not measured headset VRAM/FPS.",
+  "textureEstimateRangeBytes": [
+    3167573.333333333,
+    3208533.333333333
+  ]
 }

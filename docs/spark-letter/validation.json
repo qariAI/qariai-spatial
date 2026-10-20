@@ -1,0 +1,37 @@
+{
+  "build": "production TypeScript/Vite passed; inherited >500 kB warning",
+  "sourceContours": "fontTools exact source/path/hash/components pass",
+  "nativeReference": {
+    "different": 0,
+    "maxDelta": 0,
+    "alphaDifferent": 0
+  },
+  "nativeVectorProof": {
+    "lostNativeCore": 0,
+    "filledNativeGap": 0,
+    "nativePixels": 4402,
+    "vectorPixels": 4395,
+    "intersectionOverUnion": 0.9715374271627073,
+    "note": "Native glyph hinting/AA vs exact unhinted source curves; not byte identity of different representations"
+  },
+  "browserStudy": true,
+  "screenshots": [
+    "compare-wide.png",
+    "original-wide.png",
+    "hybrid-wide.png",
+    "original-close.png",
+    "hybrid-close.png",
+    "original-oblique.png",
+    "hybrid-oblique.png"
+  ],
+  "nativeCanvas": "sculpture-native-oblique.png",
+  "regressions": [
+    "eight recorded Quran spans",
+    "Harf direction/proximity/body/dot/reset/pinch/session",
+    "Harf broad-nib/smoothing",
+    "integration navigation/completion",
+    "spatial menu state",
+    "independent pinch recovery/navigation"
+  ],
+  "limits": "Software browser evidence only; no physical Quest or Windows hardware timing claim."
+}

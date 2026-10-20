@@ -1,77 +1,67 @@
-# Letter / Light — isolated Spark feasibility study
+# Letter / Light — real sculptural depth
 
-Base: PR #33, `ad10ee39ee0f16262e7b3654b24bad23a34351ff`.
-Branch: `prototype/spark-letter-study-v0.1`.
-Opt-in route: `/spark-letter/index.html`. No menu link is added to the existing applications.
+Updated isolated draft PR #34 on `prototype/spark-letter-study-v0.1`. Baseline Living Orbit remains PR #33 at `ad10ee39ee0f16262e7b3654b24bad23a34351ff`. Opt-in page: `/spark-letter/index.html`. No new link is added inside Orbit or Harf.
 
-## What this proves
+## What changed after visual review
 
-The existing Amiri **ك** face can coexist with a small, shallow Gaussian-splat shell using the real Spark renderer. The original and hybrid share one immutable native-face texture. Four mask-sampled depth courses add bronze/gold edges and occasional restrained turquoise samples. Wide, Close and Oblique controls provide matched comparisons; optional breathing light changes the shell tint by ±3.5%, never the letter face. Motion is off initially. Reduced-motion preference makes camera transitions instant.
+The first Spark shell remained visually flat because its original opaque face covered most depth. It is preserved in [phase1](phase1/README.md) and commit `0ee06b3eb8cf20b34121efa9433d4d1b932d7c5b`.
 
-This is a conservative **font-derived study**, not bespoke Thuluth, an approved calligraphic composition, a reconstructed 3D glyph or a Qur'anic inscription. No text-to-image model, invented ligatures, substituted font, new verse or letter sequence is involved. The single code point is U+0643.
+The current **Sculpture** treatment has genuine shallow 3D solids from the bundled Amiri kāf's exact vector curves. It removes the face-image overlay from that treatment. Gold metallic caps, bronze walls, a narrow inward bevel, studio environment reflections, directional/point lighting and a receiving plane make thickness and cast shadows visible. A sparse, secondary Spark light fringe replaces the former four-layer shell. **Original** still shows the original native face for A/B comparison.
 
-**Visual assessment:** the frontal improvement is deliberately modest because the original face remains authoritative. The oblique view visibly exposes shallow gold/bronze depth, but edge courses remain somewhat ribbed and the inherited 256px face softens when magnified. The shell has assigned colors, not a physically lit metallic BRDF or genuine cast relief shadows. It does not yet match the sophistication of a finished sculptural calligraphy asset. Do not expand this to all letters or replace the approved Orbit treatment without visual approval. Spark alone does not supply authentic calligrapher-designed geometry.
+The single letter is **ك / U+0643**. This is a font-derived material study, not original commissioned Thuluth, a Qur'anic verse, an invented ligature or a historically authenticated calligraphic composition. It does not create a new object or phase inside Living Orbit.
 
-## Genuine comparison evidence
+## Text and contour integrity
 
-All images below are uncomposited Chromium screenshots of the actual application/Spark rendering, at 1600×1000, with breathing light off. Original and hybrid use identical camera/projection endpoints for each view. The existing original-face pixels and a deterministic background are shared.
+- Font is the unchanged bundled `public/fonts/Amiri-Bold.ttf`, version 1.002, SHA-256 `65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b`. Existing OFL remains in `public/fonts/OFL-Amiri.txt`.
+- `scripts/extract-spark-letter.py` uses fontTools `SVGPathPen` directly on U+0643 / glyph `uni0643`. No raster tracing, resampling, simplification, stretching or manual redrawing. `--check` reconstructs and compares the complete path, bounds, component count and provenance.
+- `kaf-outline.json` locks exact original curve commands and SHA-256 `2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4`. There are two contours and both become separate meshes, retaining the detached inner component.
+- Extrusion is uniform in depth. A 0.007-unit bevel cuts inward; the body boundary remains at the source contour. Runtime tests require the complete XY geometry bounds to remain inside the transformed source bounds (0.004 numerical tolerance). Curve tessellation is approximate, at 12 segments per curve; the original analytic path stays unchanged in the asset.
+- Registration uses Canvas's actual conversion from middle to alphabetic baseline, not the curve's maximum Y. An initial test caught a several-pixel registration error caused by mixing true curve extrema with conservative font metrics; it was corrected before final screenshots.
+- Native font filling and unhinted vector filling differ at antialiased edges. Tests report intersection/union and require zero lost native stroke-interior pixels and zero filled native gap-interior pixels, using a one-pixel edge neighbourhood at the original 256px raster scale. Exact source-path verification is separate. Final native/vector raster intersection-over-union is 0.97154, with zero lost stroke-core and zero filled gap-core pixels; this is reported rather than claiming identical antialiasing. This is **not** a claim that a lit, tessellated 3D sculpture has the same pixels as a glowing 2D image.
+- Original-mode face pixels still match an independently evaluated original `src/App.tsx` drawing routine byte-for-byte within the controlled browser. They are frozen once into RGBA storage. Platform-dependent rasterization is not normalized or asserted universal.
+- The shadow-free native sampling mask is used only for secondary light samples. Gaussian tails are soft; they are not the authoritative letter representation.
 
-| View | Original | Spark-assisted |
+## Genuine matched evidence
+
+| View | Original face | Solid sculpture |
 | --- | --- | --- |
-| Wide | [Original](original-wide.png) | [Hybrid](hybrid-wide.png) |
-| Close | [Original](original-close.png) | [Hybrid](hybrid-close.png) |
-| Oblique | [Original](original-oblique.png) | [Hybrid](hybrid-oblique.png) |
+| Wide | [Original](original-wide.png) | [Sculpture](hybrid-wide.png) |
+| Close | [Original](original-close.png) | [Sculpture](hybrid-close.png) |
+| Oblique | [Original](original-oblique.png) | [Sculpture](hybrid-oblique.png) |
 
-![Wide comparison](compare-wide.png)
-![Hybrid oblique view](hybrid-oblique.png)
+![Matched wide comparison](compare-wide.png)
+![Native sculpture canvas](sculpture-native-oblique.png)
 
-The first framing experiment clipped the letter and was corrected before these final images. A subsequent recapture hit an 18-second animated-camera settling timeout on SwiftShader; its diagnostic is retained in `framing-recapture-timeout.json`. Final capture uses fixed endpoints through a test-only-facing study API, without skipping GPU draws or changing the source face. All seven final screenshots succeeded. No emulated or physical hand input is claimed; this page is a desktop visual study. Camera UI remains smoothly animated during ordinary use.
+The image immediately above is a direct, uncomposited WebGL canvas capture. Some full-page SwiftShader screenshots omit portions of HTML text because of the software compositor; the native canvas avoids that capture artifact. It does not retouch or reconstruct the object.
 
-## Arabic and source provenance
+These are actual 1600×1000 browser captures, not generated images or composites. A/B endpoints/projections are identical within each view. The capture API moves to fixed study-camera endpoints; it never skips rendering. Timing samples precede screenshots. The page UI uses smooth camera transitions and respects reduced motion. Breathing light starts off and affects only secondary splat tint.
 
-- Existing routine: `src/App.tsx`, `arabicTexture`, at the pinned base. `public/spark-letter/source-letter.js` preserves its drawing commands and coordinates; only TypeScript syntax/export are adapted.
-- Font: unchanged bundled `public/fonts/Amiri-Bold.ttf`, SHA-256 `65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b`; existing OFL in `public/fonts/OFL-Amiri.txt`.
-- The native canvas is read once and frozen into a shared RGBA DataTexture. This avoids repeated Canvas GPU/CPU readback rounding of faint glow pixels. sRGB, original dimensions, filtering and vertical UV orientation are retained.
-- In the final controlled software-Canvas run, all **262,144 RGBA bytes** match an independently evaluated copy of the unchanged original drawing routine: zero differing bytes, including alpha. The RGBA upload is unchanged after splat construction and view changes.
-- A separate shadow-free sampling mask uses the same font, anchor, size and stroke. It never modifies the original face. At alpha ≥128 its two connected components contain 3,751 and 1,135 pixels, preserving the detached internal kāf component.
-- Every splat center is sampled from coverage ≥230. Smaller edge splats limit spill. Gaussian support is soft: this center test is **not** a proof that every rendered Gaussian tail lies inside the glyph. No source contours are altered, and this is not an approved method for representing fine Qur'anic marks with splats alone.
-- Runtime/source hashes are recorded in `browser-report.json`. Native rasterization hashes are renderer/platform-specific; do not treat the SwiftShader hash as a universal Windows/Quest font signature.
+**Assessment:** the gold/bronze thickness now reads clearly in the oblique view, with real shadows and crisp source-derived edges. The gold face responds to lighting rather than carrying a baked glow. It remains a relatively simple extruded font study, not the complex interwoven calligraphy of the longer-term reference. The lighting/environment and inward bevel are approximations for this proof; close specular aliasing and sustained headset quality still require review. Do not expand or integrate without owner approval.
 
-## Dependency isolation and reproducibility
+## Resource envelope
 
-Living Orbit remains on Three 0.160.1. Spark 2.3.1 requires Three ≥0.180.0, so the independent static page vendors Three 0.180.0 and Spark 2.3.1 via a page-local import map. Root package.json, lock state, Vite configuration and all application sources are unchanged. The study has no runtime CDN dependency and no external font request.
+- Source-derived physical geometry: **8,312 triangles / 797,952 bytes (~0.761 MiB)** of typed vertex arrays. Guard: 20,000 triangles and 2 MiB. These are real stored contour solids, unlike splat quads.
+- Physical depth: 0.34 study units, plus 0.012 bevel thickness at each end. This is a desktop study scale, not a headset comfort claim.
+- Secondary Spark samples: runtime report records the renderer/platform-dependent count (19 in the controlled final configuration), compared with 4,516 in phase 1. Source-mask sampling can vary with rasterization. Original contours do not vary with that sampling.
+- One 512×512 shadow map and one bounded HDR studio environment, generated once. Generated environment dimensions/types and enumerated textures appear in `browser-report.json`. Enumerated texture sums are approximately 3.02–3.06 MiB in this run. They are uncompressed estimates, not measured driver VRAM, and exclude unobservable overhead.
+- Runtime draw/triangle counts, shader-ready timing, texture dimensions and sparse frame intervals are recorded separately per view. They include the retained comparison engine, lighting and receiving plane. They do not predict integrated Orbit overhead or real Quest FPS.
+- Main application sources, font, package.json and Vite configuration remain unchanged. Existing eight built application JS/CSS assets remain byte-identical to the baseline. Only the opt-in page loads the separate Three 0.180.0/Spark 2.3.1 modules.
 
-Published npm modules are unmodified. Versions, tarball URLs, SHA-256 checksums, per-file sizes/hashes and MIT license texts live in `public/spark-letter/vendor/`. The source distribution currently advertises newer documentation examples; 2.3.1 was the npm release available for this proof. Vendor updates must be deliberate and revalidated; this static vendoring is suitable for a reproducible prototype, not a recommendation to carry a second Three version into the integrated scene.
-
-All study assets total **4,702,513 bytes** before transport compression in this revision (see current `resource-summary.json` for authoritative totals). They are loaded only on the opt-in route. The original application's eight built JS/CSS assets are byte-identical to the pinned baseline build; the public study is copied alongside them by the unchanged production build.
-
-## Resource and timing evidence
-
-- **4,516 splats**, maximum generation guard 12,000. Four sample depths from −0.22 to +0.095 study units; not a measured physical extrusion or headset-scale object.
-- Packed used payload **72,256 bytes**; packed CPU capacity **131,072 bytes**. Spark renderer ordering capacity is **16,384 splats**. Those are distinct quantities.
-- The same comparison runtime reports original-only **3 calls / 4 triangles**, hybrid-only **4 calls / 9,036 triangles**, and side-by-side **6 calls / 9,040 triangles**. The shell contributes 9,032 submitted triangles (two per splat), not 9,032 stored contour triangles. Original-only still retains Spark's allocated runtime and is not an engine-free Orbit performance baseline.
-- Scene geometry-array inventory: **3,320 bytes**; uploaded geometry/texture counts in the final run: **4 / 8**. These are browser counters and visible geometry-array sizes, not total worker, engine, framebuffer or driver memory.
-- Enumerated face/packed/ordering/accumulator texture estimates are approximately **0.55–0.67 MiB**, varying with retained accumulator state. This is an incomplete uncompressed estimate, not measured VRAM. See dimensions/type/depth in `browser-report.json`.
-- Final single-page JavaScript-ready time: **3.65 seconds**, excluding completion of every deferred shader/GPU task. It is not time to stable first presentation.
-- Sparse pre-capture SwiftShader samples: original wide ~106.5 ms, hybrid wide ~107.5 ms; original close ~126.9 ms, hybrid close ~103.9 ms. These short, asynchronous software samples are **not proof of equal performance**, an optimization, Windows results or Quest FPS. Compare mode ~281.8 ms has only three retained interval samples.
-- Measurements precede screenshots, and the capture helper excludes post-readback samples. Spark's own necessary GPU/worker sorting remains part of the real rendering path. No manual finish/readPixels instrumentation is used in these timing windows.
-
-## Checks
-
-`node scripts/check-spark-study.cjs` validates real Spark initialization, source-byte identity against the original drawing routine, detached component retention, sampling centers, budget, matching camera endpoints, unchanged source upload, breathing-light controls and narrow layout. It captures the seven genuine images with bounded optional screenshots. It does not validate physical Quest stereo, hands, comfort or sustained thermal performance.
-
-Also passed: production TypeScript/Vite build (inherited >500 kB chunk warning), eight recorded Qur'anic content spans, Harf body/dot/direction/session simulations, broad-nib/smoothing checks, integration navigation/completion, spatial menu state and independent pinch recovery checks. Existing application assets and source are unchanged; no full celestial scene rendering test was repeated for this isolated page.
-
-Run from the repository root:
+## Checks and reproduction
 
 ```sh
-npm run build
+python scripts/extract-spark-letter.py --check
 node scripts/check-spark-study-scope.cjs
 node scripts/check-spark-study.cjs
+npm run build
 ```
 
-The browser script needs Playwright available as in the existing project checks; use CHROMIUM_PATH on Windows. It currently uses an explicit SwiftShader lane for reproducibility. Do not describe that run as Windows hardware acceleration or Quest validation.
+Extraction/checking requires development-only fontTools; runtime does not. Browser checks use Playwright/Chromium as with existing project checks; CHROMIUM_PATH selects an installed browser. The supplied capture script explicitly uses SwiftShader for reproducibility. That is not a Windows hardware or Quest validation claim.
+
+Existing Arabic content, Harf body/dot/direction/pinch/session, ink/smoothing, integration navigation/completion, menu state and independent pinch-recovery regressions also run. The production build retains its inherited >500 kB chunk warning. No source shader, artwork, lighting or camera inside Living Orbit is changed.
+
+The renderer and its SVGLoader are unmodified published Three distribution modules. Source URLs, checksums, versions and MIT licenses are in `public/spark-letter/vendor/`. The bundled Amiri remains under its original OFL. Nothing was generated as sacred lettering, and no external CDN or AI image is placed on the object.
 
 ## Review boundary
 
-Open the branch preview's `/spark-letter/index.html`, then inspect **Compare → Spark study → Close → Oblique → Original**. The form and face should remain recognizable while oblique depth changes. A shader-based metallic face, high-resolution replacement face, new letter geometry, many-letter migration, WebXR entry or integration would be separate decisions. Living Orbit, Harf Studio, the competition film, other PRs, main, Android and production remain unchanged. No merge or production deployment.
+Open **Sculpture → Close → Oblique**, then switch to **Original**. This page is desktop-first and adds no immersive entry or gesture behavior. Physical Quest performance/stereo/comfort and any future application integration remain pending. Living Orbit, Harf Studio, competition footage, earlier PRs, main, Android and production are unchanged. No merge or production deployment. Stop for owner visual approval.
