@@ -7,6 +7,15 @@ type ExperiencePath = typeof PATHS[number];
 export function requestedPractice(search:string):PracticeId|null{const values=new URLSearchParams(search).getAll('practice');return values.length===1&&Object.prototype.hasOwnProperty.call(PRACTICES,values[0])?values[0] as PracticeId:null;}
 export function initialPracticeSelection(search:string):number|null{const mode=requestedPractice(search);return mode?PRACTICES[mode].index:null;}
 
+// An inspection intent only, never a correctness credential. Keep the existing
+// inspector accessible; no source/rule approval can be supplied through a URL.
+export function initialInspectionSelection(search:string,hash:string):number|null{
+ return orbitArtEnabled(search)&&hash==='#inspect-practice'?initialPracticeSelection(search):null;
+}
+export function inspectionHref(search:string):string|null{
+ return orbitArtEnabled(search)&&requestedPractice(search)?experienceHref('/',search)+'#inspect-practice':null;
+}
+
 // Carry only the explicitly selected, supported treatment. No return URL,
 // storage, arbitrary query forwarding or external navigation is accepted.
 export function experienceHref(path: ExperiencePath, search: string): string {

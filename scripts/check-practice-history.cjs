@@ -1,7 +1,7 @@
 const fs=require('fs'),assert=require('assert/strict'),{spawn,execFileSync}=require('child_process'),{chromium}=require('playwright');
 const base='c7ea4589954f5a7c3e8cfa1e21541bef6a23531c';
-const old=execFileSync('git',['show',base+':src/harf-xr/free-practice.ts'],{encoding:'utf8'}),current=fs.readFileSync('src/harf-xr/free-practice.ts','utf8');assert.equal(current.split('const undo=')[0],old.split('let pointer:')[0],'exact original form, transform, palette and ungraded presentation');
-const out='docs/orbit-art-v01/practice-history-v01';
+const old=execFileSync('git',['show',base+':src/harf-xr/free-practice.ts'],{encoding:'utf8'}),current=fs.readFileSync('src/harf-xr/free-practice.ts','utf8');assert.equal(current.replace("import {installGuideCompletion} from './guide-validation/completion';\n",'').replace("import type {Point} from './guide-validation/engine';\n",'').split('const undo=')[0],old.split('let pointer:')[0],'exact original form, transform, palette and ungraded presentation');
+const out=process.env.PRACTICE_HISTORY_ARTIFACTS||'docs/orbit-art-v01/practice-history-v01';fs.mkdirSync(out,{recursive:true});
 (async()=>{let browser;const report={success:false,errors:[],cases:[],limits:'Desktop practice history only. No grading, Quest or full-scene rendering claim.'};const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','5328','--strictPort']);const hard=setTimeout(()=>{server.kill();process.exit(2)},120000);try{
  await new Promise(r=>setTimeout(r,1400));browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});const p=await browser.newPage({viewport:{width:1100,height:900}});p.setDefaultTimeout(12000);p.on('pageerror',e=>report.errors.push(e.message));
  for(const mode of ['kaf','lam','fa','ya']){

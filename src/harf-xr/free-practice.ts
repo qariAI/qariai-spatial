@@ -1,3 +1,5 @@
+import {installGuideCompletion} from './guide-validation/completion';
+import type {Point} from './guide-validation/engine';
 import kaf from '../orbit-art/generated/kaf-outline.json';
 import outlines from '../orbit-art/generated/letter-outlines.json';
 import {PRACTICES} from '../integration/practice';
@@ -53,10 +55,13 @@ const undo=document.createElement('button'),redo=document.createElement('button'
 undo.id='undoStroke';undo.textContent='Undo last stroke';
 redo.id='redoStroke';redo.textContent='Redo';
 document.querySelector('#reset')!.after(undo,redo);
-type Stroke={path:SVGPathElement;samples:number};
+const updateCompletion=installGuideCompletion(mode,outline.pathSha256,board,feedback);
+type Stroke={path:SVGPathElement;samples:number;points:Point[];canceled:boolean};
 const history:Stroke[]=[],future:Stroke[]=[];
 let pointer:number|null=null,path:SVGPathElement|null=null,points:string[]=[],visible=true,total=0,active:Stroke|null=null;
 function historyButtons(){undo.disabled=pointer!==null||history.length===0;redo.disabled=pointer!==null||future.length===0;}
+function score(active=false,canceled=false){updateCompletion(history,active,canceled);}
+const sourcePoint=(p:Point):Point=>({x:(p.x-450)/scale+(xmin+xmax)/2,y:(265-p.y)/scale+(ymin+ymax)/2});
 historyButtons();
 function point(event:PointerEvent){const matrix=board.getScreenCTM();if(!matrix)return null;const p=board.createSVGPoint();p.x=event.clientX;p.y=event.clientY;const q=p.matrixTransform(matrix.inverse());return Number.isFinite(q.x)&&Number.isFinite(q.y)?q:null;}
 function release(){const prior=pointer;pointer=null;path=null;points=[];active=null;historyButtons();if(prior!==null&&board.hasPointerCapture(prior))board.releasePointerCapture(prior);}
@@ -64,22 +69,24 @@ board.addEventListener('pointerdown',event=>{
  if(pointer!==null||!event.isPrimary||event.button!==0)return;
  event.preventDefault();if(total>=12000){feedback.textContent='Choose Try again to start a fresh practice sheet.';return}
  const p=point(event);if(!p)return;
- pointer=event.pointerId;board.setPointerCapture(pointer);path=document.createElementNS(ns,'path');path.setAttribute('fill','none');path.setAttribute('stroke','#ffd183');path.setAttribute('stroke-width','8');path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');points=[`M${p.x} ${p.y}`,`L${p.x+.001} ${p.y}`];path.setAttribute('d',points.join(' '));ink.append(path);active={path,samples:1};history.push(active);future.length=0;total++;historyButtons();
+ pointer=event.pointerId;board.setPointerCapture(pointer);path=document.createElementNS(ns,'path');path.setAttribute('fill','none');path.setAttribute('stroke','#ffd183');path.setAttribute('stroke-width','8');path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');points=[`M${p.x} ${p.y}`,`L${p.x+.001} ${p.y}`];path.setAttribute('d',points.join(' '));ink.append(path);active={path,samples:1,points:[sourcePoint(p)],canceled:false};history.push(active);future.length=0;total++;historyButtons();score(true);
 });
-board.addEventListener('pointermove',event=>{if(event.pointerId!==pointer||!path||total>=12000)return;event.preventDefault();const p=point(event);if(!p)return;points.push(`L${p.x} ${p.y}`);path.setAttribute('d',points.join(' '));total++;active!.samples++;});
-board.addEventListener('pointerup',release);board.addEventListener('pointercancel',release);board.addEventListener('lostpointercapture',release);
-document.querySelector<HTMLButtonElement>('#reset')!.onclick=()=>{release();ink.replaceChildren();history.length=0;future.length=0;total=0;historyButtons();feedback.textContent='Fresh sheet · Free practice, not graded.';};
+board.addEventListener('pointermove',event=>{if(event.pointerId!==pointer||!path||total>=12000)return;event.preventDefault();const p=point(event);if(!p)return;points.push(`L${p.x} ${p.y}`);path.setAttribute('d',points.join(' '));total++;active!.samples++;active!.points.push(sourcePoint(p));});
+board.addEventListener('pointerup',event=>{if(event.pointerId!==pointer)return;release();score();});
+const cancel=(event:PointerEvent)=>{if(event.pointerId!==pointer)return;if(active)active.canceled=true;release();score(false,true);};
+board.addEventListener('pointercancel',cancel);board.addEventListener('lostpointercapture',cancel);
+document.querySelector<HTMLButtonElement>('#reset')!.onclick=()=>{release();ink.replaceChildren();history.length=0;future.length=0;total=0;historyButtons();feedback.textContent='Fresh sheet · Free practice, not graded.';score();};
 undo.onclick=()=>{
  if(pointer!==null)return;
  const stroke=history.pop();if(!stroke)return;
  stroke.path.remove();future.push(stroke);total-=stroke.samples;historyButtons();
- feedback.textContent='Last stroke undone · Free practice, not graded.';
+ feedback.textContent='Last stroke undone · Free practice, not graded.';score();
 };
 redo.onclick=()=>{
  if(pointer!==null)return;
  const stroke=future.pop();if(!stroke)return;
  ink.append(stroke.path);history.push(stroke);total+=stroke.samples;historyButtons();
- feedback.textContent='Stroke restored · Free practice, not graded.';
+ feedback.textContent='Stroke restored · Free practice, not graded.';score();
 };
 document.querySelector<HTMLButtonElement>('#guideToggle')!.onclick=event=>{visible=!visible;form.setAttribute('visibility',visible?'visible':'hidden');const button=event.currentTarget as HTMLButtonElement;button.textContent=visible?'Hide guide':'Show guide';button.setAttribute('aria-pressed',String(visible));};
 window.addEventListener('pagehide',release,{once:true});
