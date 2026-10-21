@@ -1,0 +1,16 @@
+{
+  "baseline": "114f5316b95a79d2154c8ddbc1840bfe3b1708f4",
+  "build": "PASS; inherited large shared-chunk advisory",
+  "scopeAndProvenance": "PASS",
+  "QuranEightExcerpts": "PASS",
+  "fullSceneBrowser": true,
+  "pageOrShaderErrors": [],
+  "warnings": [],
+  "checks": "Actual WebGL full scene; mirrored kaf scale/selection; two phases; pause/resume background; exact Explore/Return endpoints; safe Harf link; shared geometry.",
+  "matchedCameraImageDimensionsAndResourceCounts": "PASS; comparison.json",
+  "gpuAllocationChange": "None; existing pigment reused for emissive map",
+  "shaderCostChange": "One additional material texture lookup for emission; no new custom shader or render pass",
+  "starfieldSceneLightsGeometryAndHarf": "Source-identical to baseline",
+  "visualAssessment": "Both kaf silhouettes and gold bases clearer at wide distance; still need owner review. Engraving too small to assess in wide shot.",
+  "physicalQuest": "PENDING; no hardware performance claim"
+}

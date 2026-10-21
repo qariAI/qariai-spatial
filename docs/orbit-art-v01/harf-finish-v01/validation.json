@@ -1,0 +1,19 @@
+{
+  "base": "c967786d590b4c0fdf4cab0378b1ae3f0c582932",
+  "build": "passed; inherited shared chunk advisory",
+  "content": "eight exact Quran.com excerpt matches",
+  "checks": {
+    "check-harf-finish": "passed; default/opt-in/invalid SVG body-dot/reset/hide and identical ink paths; matched desktop captures",
+    "check-harf-desktop": "passed; SVG and spatial pointer body-dot/retry, denied-session fallback, narrow layout, cleanup",
+    "check-orbit-art": "passed",
+    "check-harf-xr": "passed; logic simulation",
+    "check-harf-ink": "passed",
+    "check-integration": "passed",
+    "check-spatial-menu": "passed; logic simulation",
+    "check-quest-readiness": "passed; logic simulation",
+    "check-orbit-art-xr": "passed; component callback simulation"
+  },
+  "geometryAndImagesAdded": 0,
+  "limits": "Static 2D satin shading only. No physical extrusion or view-dependent reflection. Physical Quest testing pending.",
+  "captureNote": "Initial completion screenshot timed out during concurrent build; one bounded sequential rerun passed."
+}

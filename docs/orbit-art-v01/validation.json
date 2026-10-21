@@ -1,0 +1,24 @@
+{
+  "build": "PASS; inherited >500kB shared chunk advisory",
+  "typeScript": "PASS",
+  "QuranEightSourceExcerpts": "PASS",
+  "nativeMasksAt55_100_190px": "PASS",
+  "originalStudyHelperAndContourCopies": "PASS exact source comparisons",
+  "fullSceneBrowser": true,
+  "captures": [
+    "wide",
+    "selected-kaf",
+    "explore"
+  ],
+  "browserPageAndShaderErrors": [],
+  "interactionChecks": "Actual WebGL full scene; mirrored kaf scale/selection; two phases; pause/resume background; exact Explore/Return endpoints; safe Harf link; shared geometry.",
+  "tracingBodyDotSessionSimulations": "PASS",
+  "desktopSvgAndSpatialTracingBodyDotRetry": "PASS; harf/desktop-checks.json",
+  "menuAndRecoveryLogic": "PASS existing focused suites",
+  "allThreeBuiltPagesAndAmiriHttp": "PASS HTTP 200",
+  "starWorldScaleViewportPauseAndReentry": "PASS actual component callbacks; not headset validation",
+  "baselineMatchedResourceCapture": "INCOMPLETE: one 60-second readiness timeout; baseline/browser.json retained, no repeated captures",
+  "legacyPR32_PR33ScopeGuards": "NOT APPLICABLE to approved integration scope: their whole-App byte-identity assertions reject intentional new imports/components. Original test files not weakened; new pinned integration-scope guard passes. These legacy scripts did not pass.",
+  "physicalQuestFullStereoAndComfort": "PENDING",
+  "HarfArtReuse": "NOT IMPLEMENTED: tracing remains unchanged; only navigation preserves preview mode"
+}
