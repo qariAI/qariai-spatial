@@ -1,16 +1,24 @@
-import outline from '../orbit-art/generated/kaf-outline.json';
-import {experienceHref,preserveExperienceLinks} from '../integration/routes';
+import kaf from '../orbit-art/generated/kaf-outline.json';
+import outlines from '../orbit-art/generated/letter-outlines.json';
+import {PRACTICES} from '../integration/practice';
+import {experienceHref,preserveExperienceLinks,requestedPractice} from '../integration/routes';
 import {installSapphireGuide} from './desktop-finish';
 
-// The exact reviewed Amiri contour, including the detached component. No
-// centreline, score, stroke order or completion rule is inferred from its shape.
-if(outline.letter!=='ك'||outline.contourCount!==2||outline.pathSha256!=='2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4')throw Error('Kāf source mismatch');
+// Reuse the exact reviewed paths, including all source contours and holes.
+// No centreline, score, stroke order or completion rule is inferred.
+const mode=requestedPractice(location.search);
+if(!mode)throw Error('Invalid practice selection');
+const practice=PRACTICES[mode];
+const sources={kaf,lam:outlines['ل'],fa:outlines['ف'],ya:outlines['ي']};
+const hashes={kaf:'2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4',lam:'53c482d183e898a58f8cf983f20aeafb0db830b34600f7f14e04b8fc312c9a65',fa:'a2b5545bbb9b7e2b61b924179f83e89258393d11a0529826890e1a399994ff92',ya:'2605a72025fc298bb0081a93b8dd17d29ab5f46bf85e6b2a0411b23c590ee722'};
+const outline=sources[mode];
+if(outline.letter!==practice.letter||outline.fontSha256!==kaf.fontSha256||outline.pathSha256!==hashes[mode])throw Error('Practice source mismatch');
 preserveExperienceLinks(document,location.search);
 const ns='http://www.w3.org/2000/svg';
 const board=document.querySelector<SVGSVGElement>('#board')!;
 const ink=document.createElementNS(ns,'g'),shape=document.createElementNS(ns,'path'),form=document.createElementNS(ns,'g');
 const defs=document.createElementNS(ns,'defs');
-shape.id='kafGuide';shape.setAttribute('d',outline.path);shape.setAttribute('stroke','none');
+shape.id=mode+'Guide';shape.dataset.practiceOutline='true';shape.setAttribute('d',outline.path);shape.setAttribute('stroke','none');
 const [xmin,ymin,xmax,ymax]=outline.bounds,scale=Math.min(660/(xmax-xmin),370/(ymax-ymin));
 form.setAttribute('transform',`translate(${450-(xmin+xmax)*scale/2} ${265+(ymin+ymax)*scale/2}) scale(${scale} ${-scale})`);
 form.append(shape);ink.id='freeInk';
@@ -21,15 +29,15 @@ installSapphireGuide(board,shape);
 const gradient=defs.querySelector('linearGradient')!;
 gradient.setAttribute('y1',String(ymax));gradient.setAttribute('y2',String(ymin));
 shape.setAttribute('stroke','none');
-board.dataset.letter='ك';board.dataset.practice='kaf';board.dataset.graded='false';
-board.setAttribute('aria-label','Free practice of kāf, including its detached component. Not graded.');
+board.dataset.letter=practice.letter;board.dataset.practice=mode;board.dataset.graded='false';
+board.setAttribute('aria-label',`Free practice of ${practice.label}, ${practice.description}. Not graded.`);
 board.style.userSelect='none';
-document.title='Harf Studio — Kāf free practice';
-document.querySelector('.hero h1')!.textContent='Continue with kāf.';
+document.title=`Harf Studio — ${practice.name} free practice`;
+document.querySelector('.hero h1')!.textContent=`Continue with ${practice.label}.`;
 document.querySelector('.hero p')!.textContent='The same Amiri form you selected in Living Orbit. Free practice only; stroke order and guidance await qualified calligrapher review.';
-document.querySelector('.panelTitle > span')!.textContent='Free practice · ك (Kāf)';
+document.querySelector('.panelTitle > span')!.textContent=`Free practice · ${practice.letter} (${practice.name})`;
 document.querySelector('#phaseLabel')!.textContent='Free practice · ungraded';
-document.querySelector('.legend > span')!.textContent='Explore the body and detached component. No stroke order is prescribed.';
+document.querySelector('.legend > span')!.textContent=`Explore ${practice.features}. No stroke order is prescribed.`;
 document.querySelector('#counter')!.textContent='No score';
 document.querySelector<HTMLElement>('.progress')!.hidden=true;
 document.querySelector<HTMLButtonElement>('#demo')!.hidden=true;
@@ -37,7 +45,7 @@ const feedback=document.querySelector('#feedback')!;
 feedback.textContent='Draw freely over the source form. This practice does not grade accuracy, order or completion.';
 const side=document.querySelector('.side')!;
 side.replaceChildren();
-for(const [tag,text] of [['div','ك'],['h2','Kāf · free practice'],['p','Original Amiri Bold contours, including the detached inner component. The silhouette is shared with Living Orbit.'],['p','No accuracy score, prescribed stroke direction or completion badge. Qualified calligrapher review is required before graded guidance.']] as const){const e=document.createElement(tag);e.textContent=text;if(tag==='div'){e.className='letter';e.lang='ar';e.dir='rtl'}side.append(e)}
+for(const [tag,text] of [['div',practice.letter],['h2',`${practice.name} · free practice`],['p',`Original Amiri Bold contours, ${practice.description}. The silhouette is shared with Living Orbit.`],['p','No accuracy score, prescribed stroke direction or completion badge. Qualified calligrapher review is required before graded guidance.']] as const){const e=document.createElement(tag);e.textContent=text;if(tag==='div'){e.className='letter';e.lang='ar';e.dir='rtl'}side.append(e)}
 const baLink=document.createElement('a'),query=new URLSearchParams(location.search);query.delete('practice');
 baLink.href=experienceHref('/harf-studio.html','?'+query.toString());baLink.textContent='Open Bāʾ guided practice →';baLink.style.color='#91d9c7';side.append(baLink);
 
