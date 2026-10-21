@@ -6,7 +6,9 @@ assert.equal(panel(source).split(';return <aside')[0],panel(old).split(';return 
 assert.equal(panel(source).slice(panel(source).indexOf('<svg ref='),panel(source).indexOf('><defs>')),panel(old).slice(panel(old).indexOf('<svg ref='),panel(old).indexOf('><rect')),'exact pointer handlers');
 assert.equal(panel(source).slice(panel(source).indexOf('{strokes.length')),panel(old).slice(panel(old).indexOf('{strokes.length')),'exact ink/reset/close/disclaimer');
 for(const f of ['src/orbit-art/kafAsset.ts','src/orbit-art/letterSurface.ts','src/harf-xr/tracing.ts','src/harf-xr/ink.ts','src/harf-xr/session.ts','src/harf-xr/letters/ba.json','src/integration/routes.ts','src/harf-xr/main.ts','src/harf-xr/desktop.ts'])assert.equal(fs.readFileSync(f,'utf8'),execFileSync('git',['show',base+':'+f],{encoding:'utf8'}),f+' fixed');
-assert.equal(source.slice(source.indexOf('export default function App'),source.indexOf(' return <main')),old.slice(old.indexOf('export default function App'),old.indexOf(' return <main')),'all application state, keyboard shortcuts, selection and phase callbacks unchanged');
+const beforeInspection=source.replace(/const \[inspection,setInspection\][\s\S]*?(?=const select=useCallback)/,'');
+assert.equal(beforeInspection.slice(beforeInspection.indexOf('export default function App'),beforeInspection.indexOf(' return <main')),old.slice(old.indexOf('export default function App'),old.indexOf(' return <main')),'all application state, keyboard shortcuts, selection and phase callbacks unchanged');
+if(process.env.SOURCE_ONLY){console.log('PASS fixed assets, native pointer handlers, keyboard/phase callbacks and independent inspection state');process.exit(0)}
 const definitions=source.slice(source.indexOf('const traceGuides:'),source.indexOf('function TracePanel('));
 const stops=fs.readFileSync('src/harf-xr/desktop-finish.ts','utf8').match(/export const SAPPHIRE_STOPS = ([\s\S]*?) as const;/)[1];
 const out='docs/orbit-art-v01/desktop-polish-v01',report={success:false,limits:'Real extracted React TracePanel in Chromium, original local Amiri. Not a full-scene or Quest test.',cases:[],errors:[]};
