@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="720" viewBox="0 0 600 720" role="img" aria-labelledby="title desc">
+<title id="title">kaf: draft practice annotations</title>
+<desc id="desc">Original outline in sapphire; candidate paths in gold; corridors in translucent gold; endpoint regions in turquoise; dot regions in purple; protected regions in red. Draft only. No stroke order prescribed.</desc>
+<rect width="600" height="720" fill="#07111c"/>
+<text x="24" y="34" fill="#f5dca5" font-size="20" font-family="sans-serif">KAF · DRAFT ANNOTATIONS</text>
+<text x="24" y="60" fill="#b6c8d3" font-size="13" font-family="sans-serif">Review geometry; no stroke order or direction prescribed.</text>
+<g transform="translate(100.82729780714666 586.0940640663563) scale(0.6142024781823271 -0.6142024781823271)">
+<path id="source" d="M470 804Q484 833 504 791Q514 771 526.0 754.0Q538 737 554 724Q575 707 558 685L534 653Q567 477 583.5 357.5Q600 238 599 175Q599 109 569 43Q550 1 430 -10Q393 -13 346.5 -14.0Q300 -15 244 -14Q188 -13 144.5 -10.5Q101 -8 70 -3Q52 0 52 12Q51 38 50.0 64.0Q49 90 50 115Q50 134 67 129Q101 120 135.5 115.0Q170 110 206 109Q482 105 552 141Q554 161 464 648Q463 660 444 708Q434 732 445 754ZM289 580Q298 581 302 574Q307 566 304 560L283 507Q276 492 267 489Q242 483 232 471Q247 461 278 456Q309 451 318 445Q355 418 295 334Q271 302 249 296Q229 290 176 295Q151 297 130.5 301.5Q110 306 94 312Q79 318 79 328Q79 339 83 343Q88 348 104 349Q112 350 130.5 350.0Q149 350 177 351Q232 352 253 360L225 366Q212 369 201.5 375.5Q191 382 183 390Q167 408 171 428Q202 556 289 580Z" fill="#284f70"/>
+<polygon data-layer="protected" points="365,270 425,270 425,600 365,600" fill="#f16c7740" stroke="#f16c77" stroke-width="1.5"/>
+<polygon data-layer="protected" points="70,200 430,200 430,245 70,245" fill="#f16c7740" stroke="#f16c77" stroke-width="1.5"/>
+<polyline data-layer="corridor" points="480,775 480,735 500,710 510,680 516,640 530,565 544,485 555,410 565,335 575,255 575,190 570,140 556,90 530,60 480,50 420,45 350,45 280,45 210,45 140,50 80,58" fill="none" stroke="#f5c46b28" stroke-width="49.786" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline data-layer="path" points="480,775 480,735 500,710 510,680 516,640 530,565 544,485 555,410 565,335 575,255 575,190 570,140 556,90 530,60 480,50 420,45 350,45 280,45 210,45 140,50 80,58" fill="none" stroke="#f5c46b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle data-layer="endpoint" cx="480" cy="775" r="17.425" fill="#82dfc22e" stroke="#82dfc2" stroke-width="2"/>
+<circle data-layer="endpoint" cx="80" cy="58" r="17.425" fill="#82dfc22e" stroke="#82dfc2" stroke-width="2"/>
+<polyline data-layer="corridor" points="280,550 253,520 230,490 208,450 203,425 222,410 253,404 281,400 293,390 287,370 272,350 249,329 215,323 177,323 139,325 105,329" fill="none" stroke="#f5c46b28" stroke-width="49.786" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline data-layer="path" points="280,550 253,520 230,490 208,450 203,425 222,410 253,404 281,400 293,390 287,370 272,350 249,329 215,323 177,323 139,325 105,329" fill="none" stroke="#f5c46b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle data-layer="endpoint" cx="280" cy="550" r="17.425" fill="#82dfc22e" stroke="#82dfc2" stroke-width="2"/>
+<circle data-layer="endpoint" cx="105" cy="329" r="17.425" fill="#82dfc22e" stroke="#82dfc2" stroke-width="2"/>
+</g>
+<g font-family="sans-serif" font-size="13"><text x="24" y="646" fill="#f5c46b">Gold: path + tolerance corridor</text><text x="24" y="667" fill="#82dfc2">Turquoise: endpoints · Purple: separate dots</text><text x="24" y="688" fill="#f16c77">Red: proposed protected regions</text></g>
+</svg>
