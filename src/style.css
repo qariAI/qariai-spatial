@@ -91,3 +91,9 @@
 
 /* Optional page navigation; does not alter choreography or existing controls. */
 .orbit-links{display:flex;flex-direction:column;align-items:flex-end;gap:8px}.practice-link{pointer-events:auto;color:#e8d2aa;background:#061321d9;border:1px solid #e5c18c40;border-radius:14px;padding:10px 14px;text-decoration:none;font-size:12px}.practice-link:focus-visible{outline:2px solid #8edac7;outline-offset:3px}.practice-link[aria-disabled=true]{opacity:.6}@media(max-width:600px){.practice-link{max-width:145px;padding:8px;font-size:11px}}
+
+/* Opt-in desktop orientation; no extra controls or camera behavior. */
+.desktop-help{font-size:12px;color:#b6c8d3;line-height:1.5;margin:-3px 0 14px;letter-spacing:.015em}
+
+/* Drawing over a native glyph must not select its text. */
+.trace-panel svg{user-select:none;-webkit-user-select:none}

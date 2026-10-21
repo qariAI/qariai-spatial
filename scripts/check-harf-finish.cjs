@@ -1,8 +1,9 @@
 const fs=require('node:fs'),assert=require('node:assert/strict'),{execFileSync,spawn}=require('node:child_process');
 const {chromium}=require('playwright');
 const base='c967786d590b4c0fdf4cab0378b1ae3f0c582932';
+// Orbit's presentation and unchanged state/handlers are now checked by check-desktop-polish.cjs.
 const original=f=>execFileSync('git',['show',base+':'+f],{encoding:'utf8'});
-for(const f of ['src/harf-xr/tracing.ts','src/harf-xr/ink.ts','src/harf-xr/progress.ts','src/harf-xr/session.ts','src/harf-xr/letters/ba.json','src/harf-xr/letters/definition.ts','src/App.tsx','src/integration/routes.ts'])assert.equal(fs.readFileSync(f,'utf8'),original(f),f+' preserved');
+for(const f of ['src/harf-xr/tracing.ts','src/harf-xr/ink.ts','src/harf-xr/progress.ts','src/harf-xr/session.ts','src/harf-xr/letters/ba.json','src/harf-xr/letters/definition.ts','src/integration/routes.ts'])assert.equal(fs.readFileSync(f,'utf8'),original(f),f+' preserved');
 let desktop=fs.readFileSync('src/harf-xr/desktop.ts','utf8').replace("import { orbitArtEnabled } from '../orbit-art/mode';\n",'').replace("import { installSapphireGuide } from './desktop-finish';\n",'').replace('if (orbitArtEnabled(location.search)) installSapphireGuide(board, body);\n','');
 assert.equal(desktop,original('src/harf-xr/desktop.ts'),'SVG behavior exactly preserved');
 let main=fs.readFileSync('src/harf-xr/main.ts','utf8').replace("import { orbitArtEnabled } from '../orbit-art/mode';\n",'').replace("import { satinSapphire } from './desktop-finish';\n",'').replace('const sapphire = orbitArtEnabled(location.search) ? satinSapphire(ctx) : null;\n','').replace("    const desktopFinish = sapphire !== null && !renderer.xr.isPresenting;\n    ctx.fillStyle=desktopFinish?sapphire!:trace.phase==='body'?'#355565':'#665b40';ctx.fill(bodyOutline);\n    ctx.strokeStyle=desktopFinish?'#7c9aad':'#91a9aa';ctx.lineWidth=1;ctx.stroke(bodyOutline);", "    ctx.fillStyle=trace.phase==='body'?'#355565':'#665b40';ctx.fill(bodyOutline);\n    ctx.strokeStyle='#91a9aa';ctx.lineWidth=1;ctx.stroke(bodyOutline);");

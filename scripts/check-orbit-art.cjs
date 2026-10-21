@@ -1,7 +1,7 @@
 const fs=require('fs'),assert=require('assert/strict'),{execFileSync}=require('child_process'),{buildSync}=require('esbuild');
 const base='7980a3e1cd2e3de4f2af073ae9a1000b4d14e454';
 const names=execFileSync('git',['diff',base,'--name-only','-z'],{encoding:'utf8'}).split('\0').filter(Boolean);
-const allowed=n=>n.startsWith('src/orbit-art/')||n.startsWith('docs/orbit-art-v01/')||['src/App.tsx','src/integration/routes.ts','src/harf-xr/desktop.ts','src/harf-xr/main.ts','src/harf-xr/desktop-finish.ts','scripts/check-harf-finish.cjs','scripts/check-orbit-art.cjs','scripts/check-orbit-art-browser.cjs','scripts/check-orbit-art-xr.cjs','scripts/extract-orbit-letters.py'].includes(n);
+const allowed=n=>n.startsWith('src/orbit-art/')||n.startsWith('docs/orbit-art-v01/')||['src/App.tsx','src/style.css','scripts/check-desktop-polish.cjs','src/integration/routes.ts','src/harf-xr/desktop.ts','src/harf-xr/main.ts','src/harf-xr/desktop-finish.ts','scripts/check-harf-finish.cjs','scripts/check-orbit-art.cjs','scripts/check-orbit-art-browser.cjs','scripts/check-orbit-art-xr.cjs','scripts/extract-orbit-letters.py'].includes(n);
 assert(names.every(allowed),'Unexpected changes outside integration scope');
 for(const f of ['proof-surface-design','engraving-design','crowned-cap']){
  const original=fs.readFileSync('public/spark-letter/'+f+'.js','utf8').replace("from './engraving-design.js'","from './engraving-design'");

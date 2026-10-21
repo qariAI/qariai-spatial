@@ -1,0 +1,41 @@
+// Bounded real DOM component checks; no scene, glyph or validator substitution.
+const fs=require('fs'),assert=require('assert/strict'),{execFileSync}=require('child_process'),{buildSync}=require('esbuild'),{chromium}=require('playwright');
+const base='00dc02f3db814b06ee6b2daa00566b7fd0783356',source=fs.readFileSync('src/App.tsx','utf8'),old=execFileSync('git',['show',base+':src/App.tsx'],{encoding:'utf8'});
+const panel=s=>s.slice(s.indexOf('function TracePanel('),s.indexOf('\nexport default function App'));
+assert.equal(panel(source).split(';return <aside')[0],panel(old).split(';return <aside')[0],'exact hooks, pointer coordinates and move handling');
+assert.equal(panel(source).slice(panel(source).indexOf('<svg ref='),panel(source).indexOf('><defs>')),panel(old).slice(panel(old).indexOf('<svg ref='),panel(old).indexOf('><rect')),'exact pointer handlers');
+assert.equal(panel(source).slice(panel(source).indexOf('{strokes.length')),panel(old).slice(panel(old).indexOf('{strokes.length')),'exact ink/reset/close/disclaimer');
+for(const f of ['src/orbit-art/kafAsset.ts','src/orbit-art/letterSurface.ts','src/harf-xr/tracing.ts','src/harf-xr/ink.ts','src/harf-xr/session.ts','src/harf-xr/letters/ba.json','src/integration/routes.ts','src/harf-xr/main.ts','src/harf-xr/desktop.ts'])assert.equal(fs.readFileSync(f,'utf8'),execFileSync('git',['show',base+':'+f],{encoding:'utf8'}),f+' fixed');
+assert.equal(source.slice(source.indexOf('export default function App'),source.indexOf(' return <main')),old.slice(old.indexOf('export default function App'),old.indexOf(' return <main')),'all application state, keyboard shortcuts, selection and phase callbacks unchanged');
+const definitions=source.slice(source.indexOf('const traceGuides:'),source.indexOf('function TracePanel('));
+const stops=fs.readFileSync('src/harf-xr/desktop-finish.ts','utf8').match(/export const SAPPHIRE_STOPS = ([\s\S]*?) as const;/)[1];
+const out='docs/orbit-art-v01/desktop-polish-v01',report={success:false,limits:'Real extracted React TracePanel in Chromium, original local Amiri. Not a full-scene or Quest test.',cases:[],errors:[]};
+(async()=>{let browser;const hard=setTimeout(()=>process.exit(2),120000);try{
+ browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});const page=await browser.newPage({viewport:{width:1100,height:900}});page.setDefaultTimeout(12000);page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text())});
+ const css=fs.readFileSync('src/style.css','utf8').replace(/@import[^;]*;/g,''),font=fs.readFileSync('public/fonts/Amiri-Bold.ttf').toString('base64');
+ const inks={};
+ for(const enabled of [false,true])for(const letter of ['ك','ل','ف','ي']){
+  const entry=`import React,{useRef,useState} from 'react';import{createRoot}from'react-dom/client';type Letter='ك'|'ل'|'ف'|'ي';const ORBIT_ART=${enabled};const SAPPHIRE_STOPS=${stops};${definitions}${panel(source)};createRoot(document.getElementById('root')!).render(<TracePanel letter=${JSON.stringify(letter)} onClose={()=>document.body.dataset.closed='true'}/>);`;
+  const js=buildSync({stdin:{contents:entry,loader:'tsx',resolveDir:process.cwd()},bundle:true,write:false,jsx:'automatic',format:'iife'}).outputFiles[0].text;
+  await page.route('http://panel.test/**',route=>route.fulfill({contentType:'text/html',body:`<!doctype html><style>${css}@font-face{font-family:Amiri;src:url(data:font/ttf;base64,${font});font-weight:700}</style><div id="root"></div><script>${js}</script>`}));
+  await page.goto('http://panel.test/',{waitUntil:'load'});await page.waitForSelector('.trace-panel svg text');await page.evaluate(()=>document.fonts.ready);
+  const native=await page.locator('.trace-panel svg text').evaluate(e=>({text:e.textContent,x:e.getAttribute('x'),y:e.getAttribute('y'),font:e.getAttribute('font-family'),size:e.getAttribute('font-size'),weight:e.getAttribute('font-weight'),bounds:[e.getBBox().x,e.getBBox().y,e.getBBox().width,e.getBBox().height]}));
+  if(!enabled)inks[letter]={native};else assert.deepEqual(native,inks[letter].native,'same native letter and mark placement');
+  const r=await page.locator('.trace-panel svg').boundingBox();await page.mouse.move(r.x+r.width*.4,r.y+r.height*.6);await page.mouse.down();await page.mouse.move(r.x+r.width*.6,r.y+r.height*.65,{steps:5});await page.mouse.up();
+  const trail=await page.locator('polyline').getAttribute('points');assert(trail&&!trail.includes('NaN'));assert.equal(await page.locator('polyline').getAttribute('stroke'),'#ffd183');if(!enabled)inks[letter].trail=trail;else assert.equal(trail,inks[letter].trail);
+  if(enabled&&(letter==='ك'||letter==='ي'))await page.screenshot({path:out+'/inline-'+(letter==='ك'?'kaf':'ya')+'.png',timeout:20000});
+  await page.getByRole('button',{name:'Try again'}).click();assert.equal(await page.locator('polyline').count(),0);
+  await page.getByRole('button',{name:'Return to orbit'}).click();assert.equal(await page.locator('body').getAttribute('data-closed'),'true');
+  report.cases.push({enabled,letter,nativeAndMarks:'identical',goldTrail:'identical',resetAndReturn:'passed'});await page.unrouteAll();
+ }
+ // Compile and draw the exact source star material in isolation, without atlas startup.
+ let stars=fs.readFileSync('src/orbit-art/AnimatedStarfield.tsx','utf8').replace("import {useEffect,useMemo,useRef} from 'react';",'const useEffect=()=>{},useMemo=f=>f(),useRef=v=>({current:v});').replace("import {useFrame,useThree} from '@react-three/fiber';",'const frames=[];const useFrame=f=>frames.push(f),useThree=()=>({gl:renderer});');
+ stars=stars.replace(/return <points[^\n]+\/>;/,'const points=new THREE.Points(geometry,material);ref.current=points;return points;');
+ const starEntry=stars+`;const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setSize(1100,900);document.body.append(renderer.domElement);const scene=new THREE.Scene();scene.background=new THREE.Color('#010611');scene.fog=new THREE.Fog('#010611',180,650);const camera=new THREE.PerspectiveCamera(43,1100/900,.1,1000);camera.position.set(0,98,169);camera.lookAt(0,6,0);for(const spec of [{count:5200,radius:620,opacity:.83,size:.8,seed:184},{count:1400,radius:290,opacity:.45,size:.55,seed:603}])scene.add(AnimatedStars({...spec,paused:false}));window.drawStars=()=>{for(let i=0;i<160;i++)frames.forEach(f=>f({},.05));renderer.render(scene,camera);renderer.getContext().finish();window.starTest={glError:renderer.getContext().getError(),runnable:renderer.info.programs.every(p=>p.diagnostics?.runnable!==false),render:{...renderer.info.render},memory:{...renderer.info.memory},uniforms:scene.children.map(p=>({time:p.material.uniforms.uTime.value,desktop:p.material.uniforms.uDesktopDetail.value})),geometryBytes:scene.children.reduce((n,p)=>n+Object.values(p.geometry.attributes).reduce((a,b)=>a+b.array.byteLength,0),0)}};drawStars();`;
+ const starJS=buildSync({stdin:{contents:starEntry,loader:'tsx',resolveDir:process.cwd()},bundle:true,write:false,format:'iife'}).outputFiles[0].text;
+ await page.route('http://stars.test/**',route=>route.fulfill({contentType:'text/html',body:`<!doctype html><body><style>body{margin:0;background:#010611}canvas{display:block}</style><script>${starJS}</script></body>`}));
+ await page.goto('http://stars.test/',{waitUntil:'load'});await page.waitForFunction(()=>window.starTest);report.stars=await page.evaluate(()=>window.starTest);assert.equal(report.stars.glError,0);assert(report.stars.runnable);assert.equal(report.stars.render.calls,2);assert.equal(report.stars.render.points,6600);assert.equal(report.stars.render.triangles,0);assert.equal(report.stars.memory.textures,0);assert.equal(report.stars.geometryBytes,105600);assert(report.stars.uniforms.every(u=>u.desktop===1&&u.time>7));
+ await page.screenshot({path:out+'/starfield-isolated.png',timeout:20000});
+ assert.deepEqual(report.errors,[]);report.success=true;console.log('PASS real isolated star shader/counts/resources and all four inline glyphs: native metrics/mark placement, gold trail, reset/return in default and sapphire modes');
+ }finally{clearTimeout(hard);fs.writeFileSync(out+'/panels.json',JSON.stringify(report,null,2));await browser?.close()}
+})().catch(e=>{console.error(e);process.exitCode=1});
