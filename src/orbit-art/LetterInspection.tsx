@@ -5,6 +5,14 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
 type SceneControls={enabled:boolean;target?:THREE.Vector3};
 
+// Assets are installed by a provider effect after the initial scene commit.
+// The named letter can therefore exist while its sculpture is still absent.
+export function findInspectionSculpture(scene:THREE.Scene,index:number){
+ let sculpture:THREE.Object3D|undefined;
+ scene.getObjectByName('qari-letter-'+index)?.traverse(o=>{if(o.userData.orbitArt)sculpture=o});
+ return sculpture;
+}
+
 // A second camera, not a second scene, renderer, asset bake or WebGL context.
 export class LetterInspectionView {
  readonly camera:THREE.PerspectiveCamera;
@@ -14,9 +22,7 @@ export class LetterInspectionView {
  private target?:THREE.Vector3;
  private enabled?:boolean;
  constructor(readonly scene:THREE.Scene,readonly original:THREE.Camera,private originalControls:SceneControls|undefined,surface:HTMLElement,index:number,aspect:number){
-  const letter=scene.getObjectByName('qari-letter-'+index);
-  let sculpture:THREE.Object3D|undefined;
-  letter?.traverse(o=>{if(o.userData.orbitArt)sculpture=o});
+  const sculpture=findInspectionSculpture(scene,index);
   if(!sculpture)throw Error('This sculptural letter is still loading. Return to Orbit and try again.');
   scene.updateMatrixWorld(true);
   const bounds=new THREE.Box3().setFromObject(sculpture),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());
@@ -47,17 +53,29 @@ export class LetterInspectionView {
 }
 
 export function LetterInspection({index,surface,onClose,onReady}:{index:number;surface:RefObject<HTMLDivElement>;onClose:()=>void;onReady:(reset:(()=>void)|null,error?:string)=>void}){
- const {scene,camera,gl,controls,size}=useThree();const view=useRef<LetterInspectionView|null>(null);
+ const {scene,camera,gl,controls}=useThree();const view=useRef<LetterInspectionView|null>(null);
+ const pending=useRef(false),started=useRef(0),slowNotice=useRef(false);
  useEffect(()=>{
   if(gl.xr.isPresenting){onClose();return}
-  if(!surface.current)return;
-  try{view.current=new LetterInspectionView(scene,camera,(controls??undefined) as unknown as SceneControls|undefined,surface.current,index,size.width/size.height);onReady(()=>view.current?.reset());}
-  catch(error){onReady(null,error instanceof Error?error.message:String(error))}
+  pending.current=true;started.current=performance.now();slowNotice.current=false;
+  onReady(null,'Loading the sculptural letter. Inspection will open automatically.');
   gl.xr.addEventListener('sessionstart',onClose);
-  return()=>{gl.xr.removeEventListener('sessionstart',onClose);view.current?.dispose();view.current=null;};
+  return()=>{pending.current=false;gl.xr.removeEventListener('sessionstart',onClose);view.current?.dispose();view.current=null;};
  },[scene,camera,gl,controls,index,surface,onClose,onReady]);
- // Mounted only while inspecting. Normal rendering resumes on unmount.
- useFrame(state=>{if(gl.xr.isPresenting||!view.current)gl.render(scene,camera);else view.current.render(gl,state.size.width/state.size.height)},1);
+ // Bind after the asset provider's later React commit, with the original scene
+ // transforms updated by their normal frame callbacks. No asset copies/rebakes.
+ useFrame(state=>{
+  if(!gl.xr.isPresenting&&pending.current){
+   if(surface.current&&findInspectionSculpture(scene,index)){
+    pending.current=false;
+    try{view.current=new LetterInspectionView(scene,camera,(controls??undefined) as unknown as SceneControls|undefined,surface.current,index,state.size.width/state.size.height);onReady(()=>view.current?.reset());}
+    catch(error){onReady(null,error instanceof Error?error.message:String(error))}
+   }else if(!slowNotice.current&&performance.now()-started.current>30000){
+    slowNotice.current=true;onReady(null,'This letter is taking longer to load. It will open automatically when ready. You can return to Orbit at any time.');
+   }
+  }
+  if(gl.xr.isPresenting||!view.current)gl.render(scene,camera);else view.current.render(gl,state.size.width/state.size.height);
+ },1);
  return null;
 }
 
