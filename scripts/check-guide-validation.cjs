@@ -32,7 +32,8 @@ for(const [mode,extra] of Object.entries({lam:[],kaf:[{kind:'path',id:'detached'
   state(compileGuide(scaled,'synthetic'),ink.map(s=>stroke(s.points.map(p))),'complete');
  }
  state(compileGuide(rules,'different-source'),ink,'unavailable');
- assert.equal(REVIEWED_GUIDES[mode],null,'no invented reviewed annotations');
+ assert(REVIEWED_GUIDES[mode]?.review.annotationsApproved,'owner-attested review is registered');
+ assert.equal(compileGuide(REVIEWED_GUIDES[mode],REVIEWED_GUIDES[mode].sourceHash)([]).state,'incomplete','registered guide rejects blank ink');
  state(compileGuide(REVIEWED_GUIDES[mode],'synthetic'),ink,'unavailable');
  const query='?calligraphyRelief=texture&orbitArt=study&practice='+mode;
  assert.equal(routes.initialInspectionSelection(query,'#inspect-practice'),{kaf:0,lam:1,fa:2,ya:3}[mode]);
@@ -64,6 +65,6 @@ for(const search of ['?practice=kaf','?orbitArt=study&practice=__proto__','?orbi
  assert.equal(routes.initialInspectionSelection(search,'#inspect-practice'),null);assert.equal(routes.inspectionHref(search),null);checks++;
 }
 assert.equal(routes.initialInspectionSelection('?orbitArt=study&practice=kaf','#inspect-practice/evil'),null);
-const report={success:true,checks,scope:'Synthetic engine geometry and strict inspection intent only; not calibrated Arabic acceptance fixtures. All four live review records remain null.'};
+const report={success:true,checks,scope:'Synthetic engine geometry and strict inspection intent only; not calibrated Arabic acceptance fixtures. Owner-attested guide records are registered; mismatched source identities remain unavailable.'};
 if(process.env.GUIDE_VALIDATION_REPORT)fs.writeFileSync(process.env.GUIDE_VALIDATION_REPORT,JSON.stringify(report,null,2));
 console.log('PASS '+checks+' guide validation cases; source/review gates, coverage, endpoints, separate dots, protected crossings, sampling/scale invariance, input bounds and inspection intent');

@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "errors": [],
+  "cases": [
+    {
+      "mode": "kaf",
+      "exactSource": true,
+      "visibleGuide": "passed",
+      "allPartsRequired": "passed",
+      "completion": "passed",
+      "undoRedo": "passed",
+      "extraInk": "passed",
+      "cancellation": "passed",
+      "guideToggle": "passed",
+      "inspectionNavigation": "passed",
+      "resetReload": "passed",
+      "narrowLayout": "passed",
+      "nonOptInUngraded": "passed",
+      "sourceMismatchUngraded": "passed"
+    },
+    {
+      "mode": "lam",
+      "exactSource": true,
+      "visibleGuide": "passed",
+      "allPartsRequired": "passed",
+      "completion": "passed",
+      "undoRedo": "passed",
+      "extraInk": "passed",
+      "cancellation": "passed",
+      "guideToggle": "passed",
+      "inspectionNavigation": "passed",
+      "resetReload": "passed",
+      "narrowLayout": "passed",
+      "nonOptInUngraded": "passed",
+      "sourceMismatchUngraded": "passed"
+    },
+    {
+      "mode": "fa",
+      "exactSource": true,
+      "visibleGuide": "passed",
+      "allPartsRequired": "passed",
+      "completion": "passed",
+      "undoRedo": "passed",
+      "extraInk": "passed",
+      "cancellation": "passed",
+      "guideToggle": "passed",
+      "inspectionNavigation": "passed",
+      "resetReload": "passed",
+      "narrowLayout": "passed",
+      "nonOptInUngraded": "passed",
+      "sourceMismatchUngraded": "passed"
+    },
+    {
+      "mode": "ya",
+      "exactSource": true,
+      "visibleGuide": "passed",
+      "allPartsRequired": "passed",
+      "completion": "passed",
+      "undoRedo": "passed",
+      "extraInk": "passed",
+      "cancellation": "passed",
+      "guideToggle": "passed",
+      "inspectionNavigation": "passed",
+      "resetReload": "passed",
+      "narrowLayout": "passed",
+      "nonOptInUngraded": "passed",
+      "sourceMismatchUngraded": "passed"
+    }
+  ],
+  "scope": "Actual Harf using owner-attested guide data; automated pointer inputs and navigation-target interception, not independently captured handwriting or full-scene 3D rendering.",
+  "phase": "ya: complete"
+}

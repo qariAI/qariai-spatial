@@ -1,0 +1,7 @@
+{
+  "success": false,
+  "limitMs": 150000,
+  "exitCode": 2,
+  "observed": "The original harness reached the fa-completed.png capture before its global deadline. Per-case progress was not persisted, so the exact final stage is unknown.",
+  "resolutionAttempt": "Batch SVG coordinate conversion per stroke, reduce duplicate pointer interpolation, persist progress; same assertions and 150-second bound. This is a Harf SVG test, not a full-scene rendering retry."
+}

@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "errors": [],
+  "cases": [
+    {
+      "mode": "kaf",
+      "exactSource": true,
+      "sourceCoordinateExport": "passed",
+      "manualLabelRequired": "passed",
+      "canceledFlag": "passed",
+      "perLetterRetention": "passed",
+      "guideToggle": "passed",
+      "undoClear": "passed"
+    },
+    {
+      "mode": "lam",
+      "exactSource": true,
+      "sourceCoordinateExport": "passed",
+      "manualLabelRequired": "passed",
+      "canceledFlag": "passed",
+      "perLetterRetention": "passed",
+      "guideToggle": "passed",
+      "undoClear": "passed"
+    },
+    {
+      "mode": "fa",
+      "exactSource": true,
+      "sourceCoordinateExport": "passed",
+      "manualLabelRequired": "passed",
+      "canceledFlag": "passed",
+      "perLetterRetention": "passed",
+      "guideToggle": "passed",
+      "undoClear": "passed"
+    },
+    {
+      "mode": "ya",
+      "exactSource": true,
+      "sourceCoordinateExport": "passed",
+      "manualLabelRequired": "passed",
+      "canceledFlag": "passed",
+      "perLetterRetention": "passed",
+      "guideToggle": "passed",
+      "undoClear": "passed"
+    }
+  ],
+  "scope": "Standalone offline recorder, synthetic browser pointer input; no grading, activation or independent review claim."
+}

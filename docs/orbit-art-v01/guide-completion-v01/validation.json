@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "base": "ddaf0e5e3ad1de1553b3db499bbd7737f08f5b01",
+  "review": "Explicit owner attestation of qualified review and real-handwriting tests; no independent review identity, raw traces or calibration metrics supplied.",
+  "build": "passed: tsc and Vite",
+  "engineCases": 83,
+  "registeredGeometricFixtures": 47,
+  "actualHarfBrowser": "all four registered guides passed; inspection destination document intercepted for navigation check",
+  "historyBrowser": "all four passed, exact original nodes/paths and completion reset",
+  "recorderBrowser": "passed: standalone artifact only",
+  "protectedSourceFiles": 41,
+  "lockedArabicContent": "passed: eight excerpts",
+  "harfInk": "passed",
+  "navigation": "passed",
+  "limits": [
+    "Automated browser input is synthetic; it is not the owner-attested handwriting evidence.",
+    "No new full-scene inspector render or Quest claim; earlier full-scene startup timeout unresolved.",
+    "First 150-second Harf harness deadline retained; subsequent batched harness passed same assertions and bound.",
+    "Existing shared-chunk advisory remains.",
+    "No merge or production deployment."
+  ],
+  "freePracticeChunkKB": {
+    "minified": 18.25,
+    "gzip": 6.7
+  }
+}

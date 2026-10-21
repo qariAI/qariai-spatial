@@ -23,9 +23,11 @@ const out=process.env.GUIDE_BROWSER_ARTIFACTS||'/tmp/guide-completion-browser';f
   await draw([point(350,250),point(500,250)]);assert(await action.isHidden(),'extra ink revokes eligibility');await p.locator('#undoStroke').click();assert(await action.isVisible());
   await p.locator('#reset').click();assert(await action.isHidden());assert.equal(await p.locator('#freeInk path').count(),0);
   await p.unroute('**/src/harf-xr/guide-validation/reviews.ts*');
+  await p.route('**/src/harf-xr/guide-validation/reviews.ts*',route=>route.fulfill({contentType:'text/javascript',body:'export const REVIEWED_GUIDES={kaf:null,lam:null,fa:null,ya:null}'}));
   await p.reload({waitUntil:'domcontentloaded'});await p.waitForSelector('#undoStroke');assert.equal(await p.locator('#board').getAttribute('data-graded'),'false');assert.equal(await action.count(),0,'no completion control without reviewed annotations');assert.equal(await p.locator('#counter').innerText(),'No score');
-  report.cases.push({mode,syntheticCompletion:'passed',cancel:'passed',undoRedoRevocation:'passed',extraInkRevocation:'passed',reset:'passed',guideIndependent:'passed',realRegistryUngraded:'passed'});
+  await p.unroute('**/src/harf-xr/guide-validation/reviews.ts*');
+  report.cases.push({mode,syntheticCompletion:'passed',cancel:'passed',undoRedoRevocation:'passed',extraInkRevocation:'passed',reset:'passed',guideIndependent:'passed',missingRegistryUngraded:'passed'});
  }
- await p.goto('http://127.0.0.1:5329/harf-studio.html',{waitUntil:'domcontentloaded'});await p.waitForFunction(()=>document.querySelector('#board').dataset.letter==='ب');assert.equal(await p.locator('#inspectCompleted').count(),0);assert.equal(await p.locator('#undoStroke').count(),0);assert.deepEqual(report.errors,[]);report.success=true;console.log('PASS actual Harf completion controls with synthetic rules, four ungraded production fallbacks and Bāʾ isolation');
+ await p.goto('http://127.0.0.1:5329/harf-studio.html',{waitUntil:'domcontentloaded'});await p.waitForFunction(()=>document.querySelector('#board').dataset.letter==='ب');assert.equal(await p.locator('#inspectCompleted').count(),0);assert.equal(await p.locator('#undoStroke').count(),0);assert.deepEqual(report.errors,[]);report.success=true;console.log('PASS actual Harf completion controls with synthetic rules, four missing-data fallbacks and Bāʾ isolation');
  }finally{clearTimeout(hard);fs.writeFileSync(out+'/browser.json',JSON.stringify(report,null,2));await browser?.close();server.kill()}
 })().catch(e=>{console.error(e);process.exitCode=1});
