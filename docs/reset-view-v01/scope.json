@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "baseline": "454c2f0e552583458ca02f23915a74987537a915",
+  "unchangedBaselineFiles": 604,
+  "app": "Exact equality after removing only reset propagation/effect delta",
+  "preserved": "All other baseline files including artwork, Qur’anic content/masks/bakers, sculpture assets, Harf/validators/routes, XR lighting/gestures/menu/session code, CSS, dependencies/config and favicon"
+}
