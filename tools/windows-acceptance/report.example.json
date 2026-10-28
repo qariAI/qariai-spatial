@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "ILLUSTRATIVE_FORMAT_ONLY_NOT_A_RUN",
+  "baseline": "876486dac91db528a5b438609a48f2c77c3eb3a4",
+  "startedAt": null,
+  "environment": {
+    "platform": null,
+    "windows": null,
+    "chrome": null,
+    "gpu": null,
+    "hardwareAcceleration": "unconfirmed"
+  },
+  "startup": {
+    "navigation": [],
+    "resources": [],
+    "amiriReadyMs": null,
+    "completeSceneSubmittedMs": null,
+    "scriptDurationMs": null,
+    "definition": "Document-relative observations; complete scene submission is not visual certification or display scanout."
+  },
+  "firstUsableInteraction": null,
+  "steps": {
+    "orbit-startup": { "status": "BLOCKED", "reason": "Example only; no Windows execution" },
+    "seven-letters": { "status": "BLOCKED" },
+    "both-phases": { "status": "BLOCKED" },
+    "reset-view": {
+      "status": "BLOCKED",
+      "evidence": {
+        "wallMsToReady": null,
+        "sceneRemounted": null,
+        "atlasTexturesReconstructed": null,
+        "sculptureGeometryReconstructed": null
+      }
+    },
+    "kaf:complete-guide": { "status": "BLOCKED" },
+    "kaf:native-inspection": { "status": "BLOCKED" },
+    "preparation-diagnostics": {
+      "status": "BLOCKED",
+      "evidence": {
+        "build": "Separate timing-only production build",
+        "spans": [
+          { "stage": "atlas", "start": null, "end": null, "durationMs": null },
+          { "stage": "sculpture", "letter": "ك", "start": null, "end": null, "durationMs": null }
+        ]
+      }
+    }
+  },
+  "browserErrors": [],
+  "consoleErrors": [],
+  "requestFailures": [],
+  "httpErrors": [],
+  "screenshots": [],
+  "summary": {
+    "automation": "BLOCKED",
+    "ownerVisual": "BLOCKED",
+    "hardwareAcceleration": "BLOCKED",
+    "windowsExecution": "BLOCKED",
+    "overall": "BLOCKED",
+    "decision": "NO-GO for Windows acceptance sign-off",
+    "nativeXRSessionCleanup": "BLOCKED: not exercised by this desktop runner"
+  },
+  "notes": [
+    "The actual runner expands every setup stage and all five steps for each of kaf, lam, fa and ya.",
+    "Synthetic pointer guide input passes through the unchanged production validator.",
+    "No screenshot, timing, environment detail or passing result is fabricated in this example."
+  ]
+}
