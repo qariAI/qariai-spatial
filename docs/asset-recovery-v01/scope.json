@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "baseline": "bfcad0fa452f43bef85c7b0be9e76bdc501d6dbc",
+  "unchangedBaselineFiles": 619,
+  "checks": [
+    "All non-allowlisted baseline files byte-identical, including Quran, masks, artwork, geometry/material builders, XR, Harf, dependencies and favicon",
+    "Original letter textures; orbital scene except provider boundary; all XR/SceneRig/Reset camera/TracePanel code unchanged",
+    "Native inspector camera/control class and original CSS unchanged"
+  ]
+}

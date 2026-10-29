@@ -112,3 +112,5 @@
 @media(max-width:600px){.letter-inspection h2 span{display:block;line-height:1.7}.inspection-tools{align-items:flex-end}.inspection-tools p{max-width:62%;font-size:11px}.letter-inspection button{font-size:11px;padding:11px}}
 
 .inspection-drag{position:absolute;inset:0;touch-action:none}
+
+.asset-notice{position:absolute;z-index:9;top:25%;left:50%;transform:translateX(-50%);width:min(520px,85vw);padding:20px;border:1px solid #eacb8b80;border-radius:16px;background:#071522;color:#f5e9ce;text-align:center}.asset-notice p{line-height:1.5}
