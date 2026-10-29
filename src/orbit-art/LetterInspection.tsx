@@ -3,6 +3,8 @@ import {useFrame,useThree} from '@react-three/fiber';
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
+import type {LoadingState} from '../desktop/useLoadedArabicFont';
+
 type SceneControls={enabled:boolean;target?:THREE.Vector3};
 
 // Assets are installed by a provider effect after the initial scene commit.
@@ -52,16 +54,16 @@ export class LetterInspectionView {
  dispose(){this.controls.dispose();this.restoreOriginal();if(this.originalControls&&this.enabled!==undefined)this.originalControls.enabled=this.enabled;}
 }
 
-export function LetterInspection({index,surface,onClose,onReady}:{index:number;surface:RefObject<HTMLDivElement>;onClose:()=>void;onReady:(reset:(()=>void)|null,error?:string)=>void}){
+export function LetterInspection({index,surface,onClose,onReady,sculptureState='loading'}:{sculptureState?:LoadingState;index:number;surface:RefObject<HTMLDivElement>;onClose:()=>void;onReady:(reset:(()=>void)|null,error?:string)=>void}){
  const {scene,camera,gl,controls}=useThree();const view=useRef<LetterInspectionView|null>(null);
  const pending=useRef(false),started=useRef(0),slowNotice=useRef(false);
  useEffect(()=>{
   if(gl.xr.isPresenting){onClose();return}
-  pending.current=true;started.current=performance.now();slowNotice.current=false;
-  onReady(null,'Loading the sculptural letter. Inspection will open automatically.');
+  pending.current=sculptureState!=='failed';started.current=performance.now();slowNotice.current=false;
+  onReady(null,sculptureState==='failed'?'The sculptural letter could not be constructed. Retry or return to Orbit.':'Loading the sculptural letter. Inspection will open automatically.');
   gl.xr.addEventListener('sessionstart',onClose);
   return()=>{pending.current=false;gl.xr.removeEventListener('sessionstart',onClose);view.current?.dispose();view.current=null;};
- },[scene,camera,gl,controls,index,surface,onClose,onReady]);
+ },[scene,camera,gl,controls,index,surface,onClose,onReady,sculptureState]);
  // Bind after the asset provider's later React commit, with the original scene
  // transforms updated by their normal frame callbacks. No asset copies/rebakes.
  useFrame(state=>{
@@ -79,7 +81,7 @@ export function LetterInspection({index,surface,onClose,onReady}:{index:number;s
  return null;
 }
 
-export function LetterInspectionOverlay({letter,surface,onClose,onReset,error}:{letter:string;surface:RefObject<HTMLDivElement>;onClose:()=>void;onReset:()=>void;error:string}){
+export function LetterInspectionOverlay({letter,surface,onClose,onReset,error,onRetry}:{onRetry?:()=>void;letter:string;surface:RefObject<HTMLDivElement>;onClose:()=>void;onReset:()=>void;error:string}){
  const close=useRef<HTMLButtonElement>(null);
  useEffect(()=>{const previous=document.activeElement as HTMLElement|null;close.current?.focus();return()=>previous?.focus()},[]);
  return <div className="letter-inspection" role="dialog" aria-modal="true" aria-labelledby="inspection-title" onKeyDown={event=>{
@@ -90,5 +92,5 @@ export function LetterInspectionOverlay({letter,surface,onClose,onReset,error}:{
    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
   }
- }}><div ref={surface} className="inspection-drag" aria-hidden="true"/><header><div><small>LETTER INSPECTION</small><h2 id="inspection-title">{letter} <span>· Original Amiri sculpture</span></h2></div><button ref={close} onClick={onClose}>Return to Orbit</button></header><div className="inspection-tools"><p role="status">{error||'Drag to orbit the letter · Scroll to zoom · Escape to return'}</p><button disabled={!!error} onClick={onReset}>Reset inspection</button></div></div>;
+ }}><div ref={surface} className="inspection-drag" aria-hidden="true"/><header><div><small>LETTER INSPECTION</small><h2 id="inspection-title">{letter} <span>· Original Amiri sculpture</span></h2></div><button ref={close} onClick={onClose}>Return to Orbit</button></header><div className="inspection-tools"><p role={onRetry?'alert':'status'}>{error||'Drag to orbit the letter · Scroll to zoom · Escape to return'}</p>{onRetry&&<button onClick={onRetry}>Retry loading</button>}<button disabled={!!error} onClick={onReset}>Reset inspection</button></div></div>;
 }

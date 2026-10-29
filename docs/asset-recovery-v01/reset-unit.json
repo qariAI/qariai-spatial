@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "checks": [
+    "25 real OrbitControls resets with pending damping and post-reset stability",
+    "authored camera position/orientation/zoom/target",
+    "control and listener identity retained",
+    "disabled inspector controls preserved",
+    "damping restored on failure",
+    "real camera hook cancels Explore tween",
+    "20 hook resets without listener accumulation",
+    "XR guard leaves camera and target untouched and does not defer reset",
+    "unmount cleanup"
+  ],
+  "limits": "Real Three controls plus deterministic production-hook logic; not Windows or physical XR execution"
+}
