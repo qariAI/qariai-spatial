@@ -1,0 +1,24 @@
+{
+  "build": "passed: TypeScript and Vite production build",
+  "engine": "83 synthetic cases passed",
+  "completionBrowser": "all four letters passed with test-only synthetic annotations; production registry ungraded",
+  "historyBrowser": "all four unchanged history flows passed",
+  "sourceAudit": "40 protected files byte-identical to 1758fb42180ce94d327c797d07f6a4b3e146ba1c",
+  "content": "eight locked Arabic excerpts passed",
+  "harfInk": "passed",
+  "harfSessionTracing": "passed",
+  "navigation": "passed",
+  "integrationScope": "passed",
+  "freePracticeChunk": {
+    "minifiedKB": 12.71,
+    "gzipKB": 5.18,
+    "previousMinifiedKB": 5.51,
+    "previousGzipKB": 2.46
+  },
+  "limits": [
+    "No reviewed per-letter geometric annotations or Arabic acceptance fixtures were supplied. All four live rules remain null.",
+    "Completion infrastructure is not live correctness grading or an enabled completion reveal.",
+    "Inherited shared-chunk advisory remains.",
+    "No new full-scene automation or Quest testing. No merge or production deployment."
+  ]
+}

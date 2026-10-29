@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "errors": [],
+  "cases": [
+    {
+      "id": "kaf",
+      "letter": "ك",
+      "returnIndex": 0,
+      "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+      "sourceContours": 2,
+      "exactPath": true,
+      "fill": {
+        "matches": 480,
+        "solid": 161,
+        "inBoard": true
+      },
+      "counter": null,
+      "drawingCancellationResetGuide": "passed",
+      "ungraded": true
+    },
+    {
+      "id": "lam",
+      "letter": "ل",
+      "returnIndex": 1,
+      "pathHash": "53c482d183e898a58f8cf983f20aeafb0db830b34600f7f14e04b8fc312c9a65",
+      "sourceContours": 1,
+      "exactPath": true,
+      "fill": {
+        "matches": 480,
+        "solid": 133,
+        "inBoard": true
+      },
+      "counter": null,
+      "drawingCancellationResetGuide": "passed",
+      "ungraded": true
+    },
+    {
+      "id": "fa",
+      "letter": "ف",
+      "returnIndex": 2,
+      "pathHash": "a2b5545bbb9b7e2b61b924179f83e89258393d11a0529826890e1a399994ff92",
+      "sourceContours": 3,
+      "exactPath": true,
+      "fill": {
+        "matches": 480,
+        "solid": 123,
+        "inBoard": true
+      },
+      "counter": {
+        "open": true,
+        "x": 746.2270584106445,
+        "y": 375.59276580810547
+      },
+      "drawingCancellationResetGuide": "passed",
+      "ungraded": true
+    },
+    {
+      "id": "ya",
+      "letter": "ي",
+      "returnIndex": 3,
+      "pathHash": "2605a72025fc298bb0081a93b8dd17d29ab5f46bf85e6b2a0411b23c590ee722",
+      "sourceContours": 2,
+      "exactPath": true,
+      "fill": {
+        "matches": 480,
+        "solid": 154,
+        "inBoard": true
+      },
+      "counter": null,
+      "drawingCancellationResetGuide": "passed",
+      "ungraded": true
+    }
+  ],
+  "routeChecks": "four fixed logical selections; all duplicate combinations rejected; malformed/prototype/external values excluded; treatment flags retained; Bāʾ XR default unchanged",
+  "limits": "Actual desktop Harf pages and routing. No Quest or full-scene Orbit performance claim."
+}

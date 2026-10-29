@@ -1,0 +1,15 @@
+{
+  "baseline": "114f5316b95a79d2154c8ddbc1840bfe3b1708f4",
+  "unchangedHashes": {
+    "src/App.tsx": "5d2c2f3ab6245ce7f47a7e68b090a1ee925c199b78cd8dded61233383ab4dbf8",
+    "src/orbit-art/AnimatedStarfield.tsx": "8df2c7412a9d7bca8efa2163a8278c8ab5d5ecec12b45b6abb4be8e9f70fd605",
+    "src/orbit-art/generated/proof-surface-design.ts": "c41ef609288c74ef481c7f54e1ddb65ba6b5b21295a4ac45a9ff62d1b1865974",
+    "src/orbit-art/generated/kaf-outline.json": "7a58cc1ad838bd9f8d5417e727a8c100009785a250d680f1d122ddd4f437a99a",
+    "src/orbit-art/generated/crowned-cap.ts": "3089b08daef4621eb62cf511ee9fc1337edd48579727ded3d4c4ae59928e85c0",
+    "src/integration/routes.ts": "8e850b3308dd72611242c6fc0437661c7f876f215566bcce3f0994242ecd2d8b",
+    "src/CalligraphyDepthArt.tsx": "59624b9ce15dffb22f2b4d0947f1bfa22eae259d34a62c57fbec868808795938"
+  },
+  "geometryUvConstructionAndReflectionAtlasBytesSourceIdentical": true,
+  "onlyRuntimeChanges": "kaf material coefficients and emissive feedback; reuses existing pigment texture",
+  "sceneLightingStarfieldCameraChoreographyTextUnchanged": true
+}

@@ -1,0 +1,137 @@
+{
+  "success": true,
+  "errors": [],
+  "checks": [
+    "Closing pending inspection cancels attachment; later asset arrival does not hijack the camera.",
+    "Slow-loading notice is informational: a controlled clock offset exercises it, and later asset arrival still attaches automatically.",
+    "Initial inspection automatically fits the delayed native fa without Return/reopen or a stale loading error.",
+    "Drag and Reset operate after automatic attachment; geometry/material identities and GPU resource counts remain stable.",
+    "Cold-entry Escape restores exact camera/control state and releases the dialog focus.",
+    "Existing XR session-start event closes inspection and restores controls (event simulation only)."
+  ],
+  "limits": "Production React inspector mounted before a delayed real native fa asset in a small actual R3F scene. Not full Living Orbit or headset rendering.",
+  "before": {
+    "original": [
+      0,
+      98,
+      169
+    ],
+    "quaternion": [
+      -0.25973484830079313,
+      0,
+      0,
+      0.9656799721326751
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ],
+    "enabled": true,
+    "lastIsOriginal": true,
+    "lastId": "e0c6f415-1692-4132-8b1f-058ceccc8476",
+    "inspectionPosition": [
+      0,
+      98,
+      169
+    ],
+    "memory": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "calls": 2,
+    "attached": false
+  },
+  "fitted": {
+    "original": [
+      0,
+      98,
+      169
+    ],
+    "quaternion": [
+      -0.25973484830079313,
+      0,
+      0,
+      0.9656799721326751
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ],
+    "enabled": false,
+    "lastIsOriginal": false,
+    "lastId": "f93b54ea-516f-444f-8668-a5683b8abe7d",
+    "inspectionPosition": [
+      7.046846445106365,
+      19.22341237951353,
+      20.131100324401192
+    ],
+    "geometry": [
+      "38811568-0b14-4518-87f8-85c4871aa3f5",
+      "8c2a868b-478e-408c-acc6-12d560d39f6c"
+    ],
+    "materials": [
+      [
+        "1a71d78d-91f0-4065-8591-31854c6880e8",
+        "27c320a3-2c89-4411-84b0-c0dacb0f751f"
+      ],
+      [
+        "1a71d78d-91f0-4065-8591-31854c6880e8",
+        "27c320a3-2c89-4411-84b0-c0dacb0f751f"
+      ]
+    ],
+    "memory": {
+      "geometries": 2,
+      "textures": 3
+    },
+    "calls": 4,
+    "attached": true
+  },
+  "restored": {
+    "original": [
+      0,
+      98,
+      169
+    ],
+    "quaternion": [
+      -0.25973484830079313,
+      0,
+      0,
+      0.9656799721326751
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ],
+    "enabled": true,
+    "lastIsOriginal": true,
+    "lastId": "e0c6f415-1692-4132-8b1f-058ceccc8476",
+    "inspectionPosition": [
+      0,
+      98,
+      169
+    ],
+    "geometry": [
+      "38811568-0b14-4518-87f8-85c4871aa3f5",
+      "8c2a868b-478e-408c-acc6-12d560d39f6c"
+    ],
+    "materials": [
+      [
+        "1a71d78d-91f0-4065-8591-31854c6880e8",
+        "27c320a3-2c89-4411-84b0-c0dacb0f751f"
+      ],
+      [
+        "1a71d78d-91f0-4065-8591-31854c6880e8",
+        "27c320a3-2c89-4411-84b0-c0dacb0f751f"
+      ]
+    ],
+    "memory": {
+      "geometries": 2,
+      "textures": 3
+    },
+    "calls": 4,
+    "attached": true
+  }
+}

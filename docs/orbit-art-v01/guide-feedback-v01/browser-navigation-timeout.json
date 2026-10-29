@@ -1,0 +1,49 @@
+{
+  "success": false,
+  "errors": [],
+  "cases": [
+    {
+      "mode": "kaf",
+      "exactSource": true,
+      "visibleGuide": "passed",
+      "allPartsRequired": "passed",
+      "completion": "passed",
+      "undoRedo": "passed",
+      "extraInk": "passed",
+      "cancellation": "passed",
+      "guideToggle": "passed",
+      "inspectionNavigation": "passed",
+      "resetReload": "passed",
+      "narrowLayout": "passed",
+      "nonOptInUngraded": "passed",
+      "sourceMismatchUngraded": "passed",
+      "specificPartFeedback": "passed",
+      "textAndOverlayStates": "passed",
+      "extraInkGuidance": "passed",
+      "protectedRegionUncertainty": "passed"
+    },
+    {
+      "mode": "lam",
+      "exactSource": true,
+      "visibleGuide": "passed",
+      "allPartsRequired": "passed",
+      "completion": "passed",
+      "undoRedo": "passed",
+      "extraInk": "passed",
+      "cancellation": "passed",
+      "guideToggle": "passed",
+      "inspectionNavigation": "passed",
+      "resetReload": "passed",
+      "narrowLayout": "passed",
+      "nonOptInUngraded": "passed",
+      "sourceMismatchUngraded": "passed",
+      "specificPartFeedback": "passed",
+      "textAndOverlayStates": "passed",
+      "extraInkGuidance": "passed",
+      "protectedRegionUncertainty": "not applicable"
+    }
+  ],
+  "scope": "Actual Harf using owner-attested guide data; automated pointer inputs and navigation-target interception, not independently captured handwriting or full-scene 3D rendering.",
+  "phase": "fa: starting",
+  "failure": "10-second navigation timeout returning from intercepted inspection target to the fa Harf document, before domcontentloaded. No page errors recorded; exact blocking request/cause not established."
+}

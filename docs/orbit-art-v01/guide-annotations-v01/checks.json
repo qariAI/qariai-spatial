@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "scope": "Candidate geometry only; no app activation or human correctness certification.",
+  "cases": [
+    {
+      "mode": "kaf",
+      "exactOriginalPath": true,
+      "sourceFillSamples": 472,
+      "outside": 0,
+      "fixtureCases": 12,
+      "productionReview": "pending"
+    },
+    {
+      "mode": "lam",
+      "exactOriginalPath": true,
+      "sourceFillSamples": 364,
+      "outside": 0,
+      "fixtureCases": 9,
+      "productionReview": "pending"
+    },
+    {
+      "mode": "fa",
+      "exactOriginalPath": true,
+      "sourceFillSamples": 432,
+      "outside": 0,
+      "fixtureCases": 12,
+      "productionReview": "pending"
+    },
+    {
+      "mode": "ya",
+      "exactOriginalPath": true,
+      "sourceFillSamples": 416,
+      "outside": 0,
+      "fixtureCases": 14,
+      "productionReview": "pending"
+    }
+  ]
+}

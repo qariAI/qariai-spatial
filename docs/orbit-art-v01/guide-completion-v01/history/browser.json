@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "errors": [],
+  "cases": [
+    {
+      "mode": "kaf",
+      "orderAndExactInk": "passed",
+      "branchInvalidation": "passed",
+      "activeStrokeSafety": "passed",
+      "cancelUndoRedo": "passed",
+      "clearBothStacks": "passed",
+      "guideAndCompletionReset": "passed",
+      "mobileLayout": "passed"
+    },
+    {
+      "mode": "lam",
+      "orderAndExactInk": "passed",
+      "branchInvalidation": "passed",
+      "activeStrokeSafety": "passed",
+      "cancelUndoRedo": "passed",
+      "clearBothStacks": "passed",
+      "guideAndCompletionReset": "passed",
+      "mobileLayout": "passed"
+    },
+    {
+      "mode": "fa",
+      "orderAndExactInk": "passed",
+      "branchInvalidation": "passed",
+      "activeStrokeSafety": "passed",
+      "cancelUndoRedo": "passed",
+      "clearBothStacks": "passed",
+      "guideAndCompletionReset": "passed",
+      "mobileLayout": "passed"
+    },
+    {
+      "mode": "ya",
+      "orderAndExactInk": "passed",
+      "branchInvalidation": "passed",
+      "activeStrokeSafety": "passed",
+      "cancelUndoRedo": "passed",
+      "clearBothStacks": "passed",
+      "guideAndCompletionReset": "passed",
+      "mobileLayout": "passed"
+    }
+  ],
+  "limits": "Desktop practice history only. No grading, Quest or full-scene rendering claim."
+}

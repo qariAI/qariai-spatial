@@ -1,0 +1,16 @@
+{
+  "base": "c7ea4589954f5a7c3e8cfa1e21541bef6a23531c",
+  "build": "passed; inherited chunk advisory",
+  "newBrowserHistory": "passed all four modes: order, exact ink/node identity, branch invalidation, active-stroke guard, cancel, clear, guide independence, mobile layout and B\u0101\u02be isolation",
+  "source": "exact guide/presentation prefix and original assets retained",
+  "lockedContent": "eight exact excerpts passed",
+  "regressions": {
+    "scope": "passed",
+    "fixed-source-pointer-phase": "passed",
+    "harf-ink": "passed",
+    "harf-tracing-session": "passed (simulation)",
+    "integration": "passed"
+  },
+  "threeDReveal": "Deferred by owner until reviewed correctness validation; no grading or finish action implemented.",
+  "limits": "No new full-scene or hardware evidence."
+}

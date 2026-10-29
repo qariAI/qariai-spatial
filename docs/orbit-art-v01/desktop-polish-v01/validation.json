@@ -1,0 +1,58 @@
+{
+  "base": "00dc02f3db814b06ee6b2daa00566b7fd0783356",
+  "build": "passed; inherited shared chunk-size advisory",
+  "content": "passed: eight exact excerpts",
+  "scopeAndSource": "passed: original sculpture assets, Harf definitions/validator/ink/session and safe routes unchanged; inline native letter metrics and pointer handlers fixed",
+  "regressions": {
+    "orbit-art-scope": "passed",
+    "star-world-scale-viewport-pause-reentry": "passed, including desktop/XR detail uniform gate",
+    "harf-tracing-and-session": "passed, deterministic simulation",
+    "harf-ink": "passed",
+    "integration-navigation": "passed",
+    "spatial-menu": "passed, deterministic simulation",
+    "quest-recovery": "passed, deterministic simulation"
+  },
+  "fullScene": {
+    "result": "INCOMPLETE",
+    "reason": "Single bounded current automated initialization timed out before first capture, without console errors. Exact blocking stage/root cause not established. No repeated full-scene attempt."
+  },
+  "resources": {
+    "starFootprintAndCounts": "original seeded position hashes, point counts, size formula and hard bound retained",
+    "addedGeometryTexturesOrDrawSubmissions": 0,
+    "desktopFragmentChange": "one additional sine calculation in the desktop branch",
+    "fullSceneFrameCost": "not established; no FPS or harmless-emulator claim"
+  },
+  "review": "desktop preview visual review; physical Quest work deferred at owner request",
+  "componentAndShader": {
+    "result": "passed",
+    "cases": 8,
+    "errors": [],
+    "measuredIsolatedStars": {
+      "glError": 0,
+      "runnable": true,
+      "render": {
+        "frame": 1,
+        "calls": 2,
+        "triangles": 0,
+        "points": 6600,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 2,
+        "textures": 0
+      },
+      "uniforms": [
+        {
+          "time": 7.99999999999998,
+          "desktop": 1
+        },
+        {
+          "time": 7.99999999999998,
+          "desktop": 1
+        }
+      ],
+      "geometryBytes": 105600
+    }
+  },
+  "harnessNote": "First isolated star harness omitted an HTML body and failed before drawing. That harness error is retained; the corrected run passes. No application fix was needed."
+}

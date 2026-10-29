@@ -1,0 +1,17 @@
+{
+  "base": "e46013ee024c41c9a475c73568e4239e0780b9f1",
+  "build": "passed; inherited chunk advisory",
+  "nativeFontContours": "exact Amiri lam/fa/ya extraction and hashes passed",
+  "lockedContent": "eight exact excerpts passed",
+  "newBrowser": "all four exact paths and 480 fill comparisons per letter, f\u0101\u02be counter, no clipping, ungraded drawing/cancel/clear/guide, mobile layout, all return selections and invalid mode fallback passed",
+  "existingRegressions": {
+    "scope": "passed",
+    "selection-phase-inspection": "passed source assertions",
+    "kaf-live-link-and-browser": "passed",
+    "ba-desktop-and-spatial": "passed",
+    "harf-ink-session": "passed",
+    "integration": "passed",
+    "menu-recovery": "passed (logic simulation)"
+  },
+  "limits": "No graded teaching, new artwork, physical Quest result or new full-scene automation claim."
+}

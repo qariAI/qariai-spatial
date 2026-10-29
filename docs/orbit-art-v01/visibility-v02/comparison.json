@@ -1,0 +1,69 @@
+{
+  "baseline": "114f5316b95a79d2154c8ddbc1840bfe3b1708f4",
+  "matchedViews": [
+    {
+      "view": "wide",
+      "camera": [
+        0,
+        98,
+        169
+      ],
+      "sameDrawCallsTrianglesPointsAndLines": true,
+      "sameGeometryBytes": 2554532,
+      "sameTextureBytesEstimate": 56965802.66666667,
+      "memory": {
+        "geometries": 40,
+        "textures": 14
+      },
+      "render": {
+        "calls": 59,
+        "triangles": 47566,
+        "points": 8472,
+        "lines": 2184
+      }
+    },
+    {
+      "view": "selected-kaf",
+      "camera": [
+        0,
+        98,
+        169
+      ],
+      "sameDrawCallsTrianglesPointsAndLines": true,
+      "sameGeometryBytes": 2554532,
+      "sameTextureBytesEstimate": 56965802.66666667,
+      "memory": {
+        "geometries": 40,
+        "textures": 14
+      },
+      "render": {
+        "calls": 59,
+        "triangles": 47566,
+        "points": 8472,
+        "lines": 2184
+      }
+    },
+    {
+      "view": "explore",
+      "camera": [
+        -3.999999999999961,
+        30.000000000000004,
+        84
+      ],
+      "sameDrawCallsTrianglesPointsAndLines": true,
+      "sameGeometryBytes": 2554532,
+      "sameTextureBytesEstimate": 56965802.66666667,
+      "memory": {
+        "geometries": 40,
+        "textures": 14
+      },
+      "render": {
+        "calls": 22,
+        "triangles": 18458,
+        "points": 8472,
+        "lines": 2184
+      }
+    }
+  ],
+  "notes": "Actual canvas captures at identical camera endpoints; not Quest performance. Material change introduces an emissive-map texture sample using the existing GPU texture; no new GPU allocation or draw."
+}
