@@ -1,0 +1,45 @@
+{
+  "injectedStorageDelayMs": 4000,
+  "before": {
+    "runs": [
+      {
+        "delayed": false,
+        "ms": 13625
+      },
+      {
+        "delayed": true,
+        "ms": 14167
+      }
+    ],
+    "events": [
+      "LONG_TASK:{\"start\":3696.4000000003725,\"duration\":9748}",
+      "LONG_TASK:{\"start\":3169.0999999996275,\"duration\":10733}"
+    ]
+  },
+  "after": {
+    "runs": [
+      {
+        "delayed": false,
+        "ms": 13319
+      },
+      {
+        "delayed": true,
+        "ms": 6072
+      }
+    ],
+    "events": [
+      "ATLAS_EVENT:{\"state\":\"lookup-start\",\"ms\":1678.5}",
+      "ATLAS_EVENT:{\"state\":\"lookup-miss\",\"ms\":3405.39999999851}",
+      "ATLAS_EVENT:{\"state\":\"bake-start\",\"ms\":3406.39999999851}",
+      "ATLAS_EVENT:{\"state\":\"bake-complete\",\"ms\":13058.5,\"duration\":9652.10000000149}",
+      "ATLAS_EVENT:{\"state\":\"store-start\",\"ms\":13059.299999998882}",
+      "LONG_TASK:{\"start\":3405.699999999255,\"duration\":9739}",
+      "ATLAS_EVENT:{\"state\":\"store-complete\",\"ms\":13376.099999999627,\"bytes\":33554706}",
+      "ATLAS_EVENT:{\"state\":\"lookup-start\",\"ms\":1254.0999999996275}",
+      "ATLAS_EVENT:{\"state\":\"lookup-hit\",\"ms\":5360.9000000003725,\"bytes\":33554706}",
+      "ATLAS_EVENT:{\"state\":\"restore-start\",\"ms\":5373.300000000745}",
+      "ATLAS_EVENT:{\"state\":\"restore-complete\",\"ms\":5391.0999999996275,\"duration\":17.799999998882413}"
+    ]
+  },
+  "limits": "Linux Chromium/SwiftShader controlled delayed-storage reproduction; not a claim about the Windows cause."
+}

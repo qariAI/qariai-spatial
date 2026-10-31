@@ -13,3 +13,13 @@ Inspection now waits for the background atlas and two completed native draws bef
 Validation: TypeScript and production build; production browser cache hits for the four entries, corrupt-record fallback, and Reset resource retention; full native colour/relief hashes match the frozen baseline. Representative fresh cached entries took 3.86–5.19s locally versus 14.27s uncached. The same-document Kāf timing in the first microbenchmark is excluded from this comparison. Genuine mouse tracing, Undo/Redo, completion links, visible 3D inspector and Return passed for all four guides in one production-browser run; see guide-check.json. No Windows or Quest validation of this fix is claimed.
 
 Run `scripts/check-inspector-cold-start.cjs` after building, using PLAYWRIGHT_MODULE and CHROMIUM_PATH for local Chrome. The test compares cached pixels against its own first native bake, rather than assuming identical font rasterization across operating systems. HEADFUL=1 enables visible Chrome. No footage is edited.
+
+## Delayed storage follow-up
+
+The first Windows fix-check report still measured 18.94s for readiness plus screenshot. It did not separate cache state or capture time, so it cannot identify the remaining cause.
+
+A controlled 4s CacheStorage delay reproduced a separate flaw: the initial 2s deadline discarded a valid cache and rebaked for ~14.17s total. With a 10s bound the same delayed lookup hit the cache, restoring the exact atlas in ~18ms and reaching readiness in ~6.07s total. See delayed-cache-check.json. Storage remains optional; the deadline still bounds a genuinely stalled API. This reproduces the race but does not claim it is the confirmed Windows cause.
+
+Local-only diagnostic events now distinguish lookup hit/miss/timeout, original bake, byte restoration and storage completion/failure. Nothing is uploaded by the app. The unattended owner diagnostic measures DOM readiness separately from screenshot capture and records those events without OBS.
+
+Follow-up production regression passes: fresh cached entry for each of the four letters, full native pixel equality, a delayed-but-valid cache hit without a rebake, corrupt-cache fallback, and resource-retaining Reset. See browser-check-followup.json. The original four-guide trace report predates this storage-only follow-up; no guide/history/route code changed.

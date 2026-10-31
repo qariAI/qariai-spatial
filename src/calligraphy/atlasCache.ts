@@ -8,17 +8,22 @@ type Profile = Atlas['textureProfile'];
 export type CachedAtlas = { width: number; height: number; face: Uint8ClampedArray; bump: Uint8Array; profile: Profile };
 export type AtlasLookup = { key: string; record: CachedAtlas | null };
 const CACHE = 'qari-native-atlas-v1';
+// Local diagnostic events carry timings/outcomes only; nothing is uploaded.
+export function atlasCacheEvent(state: string, detail: Record<string, string | number> = {}) {
+  window.dispatchEvent(new CustomEvent('qari-atlas-cache', { detail: { state, ms: performance.now(), ...detail } }));
+}
 const digest = async (bytes: Uint8Array) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes as BufferSource)), v => v.toString(16).padStart(2, '0')).join('');
 
 // The built module URL carries Vite's content hash. Browser/raster settings and
 // texture capabilities also participate: a different rendering input is a miss.
 export async function lookupAtlas(anisotropy: number, maxTextureSize: number): Promise<AtlasLookup> {
-  if (import.meta.env.DEV || !('caches' in window)) return { key: '', record: null };
+  atlasCacheEvent('lookup-start');
+  if (import.meta.env.DEV || !('caches' in window)) { atlasCacheEvent('lookup-disabled'); return { key: '', record: null }; }
   const fingerprint = [import.meta.url, fontOutline.fontSha256, navigator.userAgent, devicePixelRatio, anisotropy, maxTextureSize].join('|');
   const key = new URL('/__qari_native_atlas__/' + await digest(new TextEncoder().encode(fingerprint)), location.origin).href;
   try {
     const cache = await caches.open(CACHE), response = await cache.match(key);
-    if (!response) return { key, record: null };
+    if (!response) { atlasCacheEvent('lookup-miss'); return { key, record: null }; }
     const bytes = new Uint8Array(await response.arrayBuffer());
     if (bytes.length > 34 * 1024 * 1024 || await digest(bytes) !== response.headers.get('X-Qari-SHA256')) throw Error('Invalid atlas record');
     const headerLength = new DataView(bytes.buffer).getUint32(0);
@@ -27,10 +32,12 @@ export async function lookupAtlas(anisotropy: number, maxTextureSize: number): P
     const length = 4096 * 1024 * 4;
     if (header.version !== 1 || header.width !== 4096 || header.height !== 1024 || bytes.length !== 4 + headerLength + length * 2 || !header.profile) throw Error('Invalid atlas dimensions');
     const start = 4 + headerLength;
+    atlasCacheEvent('lookup-hit', { bytes: bytes.length });
     return { key, record: { width: header.width, height: header.height,
       face: new Uint8ClampedArray(bytes.slice(start, start + length).buffer),
       bump: bytes.slice(start + length), profile: header.profile } };
   } catch {
+    atlasCacheEvent('lookup-fallback');
     // Storage is an optional optimization. Corrupt/unsupported records never
     // become artwork; the unchanged native baker remains the fallback.
     return { key, record: null };
@@ -38,7 +45,8 @@ export async function lookupAtlas(anisotropy: number, maxTextureSize: number): P
 }
 
 export async function storeAtlas(key: string, atlas: Atlas): Promise<void> {
-  if (!key || !atlas.textureProfile || !(atlas.bump instanceof THREE.DataTexture)) return;
+  if (!key || !atlas.textureProfile || !(atlas.bump instanceof THREE.DataTexture)) { atlasCacheEvent('store-skipped'); return; }
+  atlasCacheEvent('store-start');
   try {
     const face = atlas.map.image as HTMLCanvasElement;
     const image = atlas.bump.image;
@@ -50,9 +58,10 @@ export async function storeAtlas(key: string, atlas: Atlas): Promise<void> {
     bytes.set(header, 4); bytes.set(pixels, 4 + header.length); bytes.set(image.data, 4 + header.length + pixels.length);
     const hash = await digest(bytes), cache = await caches.open(CACHE);
     await cache.put(key, new Response(bytes, { headers: { 'Content-Type': 'application/octet-stream', 'X-Qari-SHA256': hash } }));
+    atlasCacheEvent('store-complete', { bytes: bytes.length });
     // Bound storage to one atlas. No shared GPU object survives a document.
     for (const request of await cache.keys()) if (request.url !== key) await cache.delete(request);
-  } catch { /* Quota/private-mode failures simply retain the original bake. */ }
+  } catch { atlasCacheEvent('store-fallback'); /* Quota/private-mode failures retain the original bake. */ }
 }
 
 export function restoreAtlas(record: CachedAtlas, anisotropy: number): Atlas {

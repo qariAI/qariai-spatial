@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
-import { lookupAtlas, restoreAtlas, storeAtlas, type AtlasLookup } from './calligraphy/atlasCache';
+import { lookupAtlas, restoreAtlas, storeAtlas, atlasCacheEvent, type AtlasLookup } from './calligraphy/atlasCache';
 import { bakeTextureRelief } from './calligraphy/textureRelief';
 import { buildRaisedRelief } from './calligraphy/raisedRelief';
 import { EXCERPTS } from './calligraphy/content';
@@ -301,10 +301,11 @@ export function CalligraphyDepthArt(props: { paused?: boolean; speed?: number })
   useEffect(() => {
     let active = true;
     if (!textureOnly) { setLookup({ key: '', record: null }); return; }
-    // Storage must never hold the scene indefinitely when a browser disables it.
-    const timer = setTimeout(() => { if (active) setLookup({ key: '', record: null }); active = false; }, 2000);
+    // Allow concurrent cold WebGL/font setup to occupy the main thread without
+    // discarding a usable cache. Still bound browsers with stalled storage.
+    const timer = setTimeout(() => { if (active) { atlasCacheEvent('lookup-timeout'); setLookup({ key: '', record: null }); } active = false; }, 10000);
     lookupAtlas(Math.min(8, gl.capabilities.getMaxAnisotropy()), gl.capabilities.maxTextureSize).then(value => {
-      clearTimeout(timer); if (active) setLookup(value);
+      clearTimeout(timer); if (active) setLookup(value); else atlasCacheEvent('lookup-ignored-late');
     }).catch(() => { clearTimeout(timer); if (active) setLookup({ key: '', record: null }); });
     return () => { active = false; clearTimeout(timer); };
   }, [gl, textureOnly]);
@@ -320,7 +321,10 @@ function CalligraphyDepthArtScene({ paused = false, speed = 1, lookup }: { pause
   const raisedEnabled = !textureOnly && params.get('raisedCalligraphy') === '1';
   const maps = useMemo(() => {
     const anisotropy = Math.min(8, gl.capabilities.getMaxAnisotropy());
+    const started = performance.now();
+    atlasCacheEvent(lookup.record ? 'restore-start' : 'bake-start');
     const result = lookup.record ? restoreAtlas(lookup.record, anisotropy) : engravedAtlas(anisotropy, gl.capabilities.maxTextureSize, textureOnly ? 'texture' : raisedEnabled);
+    atlasCacheEvent(lookup.record ? 'restore-complete' : 'bake-complete', { duration: performance.now() - started });
     if (textureOnly && !lookup.record) void storeAtlas(lookup.key, result);
     // The proof API retains its native coverage canvas and rectangle ledger;
     // the live component needs only the completed buffers and packed atlas.
