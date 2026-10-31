@@ -114,3 +114,6 @@
 .inspection-drag{position:absolute;inset:0;touch-action:none}
 
 .asset-notice{position:absolute;z-index:9;top:25%;left:50%;transform:translateX(-50%);width:min(520px,85vw);padding:20px;border:1px solid #eacb8b80;border-radius:16px;background:#071522;color:#f5e9ce;text-align:center}.asset-notice p{line-height:1.5}
+
+/* Keep cold inspection visibly loading until completed native draws. */
+.letter-inspection[data-loading=true] .inspection-tools p{position:fixed;left:50%;top:45%;bottom:auto;transform:translate(-50%,-50%);width:min(440px,80vw);max-width:80vw;box-sizing:border-box;padding:24px;text-align:center;background:#061321f5;border-color:#dfbc7780}
