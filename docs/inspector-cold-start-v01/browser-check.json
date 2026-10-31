@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "runs": [
+    {
+      "name": "cache-miss",
+      "ms": 14267,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "cache-hit-kaf",
+      "ms": 23,
+      "initialLoading": "false",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      },
+      "sameDocumentNavigation": true,
+      "timingExcluded": true
+    },
+    {
+      "name": "cache-hit-lam",
+      "ms": 4066,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "cache-hit-fa",
+      "ms": 3864,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "cache-hit-ya",
+      "ms": 5185,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "corrupt-fallback",
+      "ms": 13198,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    }
+  ],
+  "errors": [],
+  "resetRetainedResources": true
+}
