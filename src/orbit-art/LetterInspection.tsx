@@ -56,10 +56,10 @@ export class LetterInspectionView {
 
 export function LetterInspection({index,surface,onClose,onReady,sculptureState='loading'}:{sculptureState?:LoadingState;index:number;surface:RefObject<HTMLDivElement>;onClose:()=>void;onReady:(reset:(()=>void)|null,error?:string)=>void}){
  const {scene,camera,gl,controls}=useThree();const view=useRef<LetterInspectionView|null>(null);
- const pending=useRef(false),started=useRef(0),slowNotice=useRef(false);
+ const pending=useRef(false),started=useRef(0),slowNotice=useRef(false),renderedFrames=useRef(0);
  useEffect(()=>{
   if(gl.xr.isPresenting){onClose();return}
-  pending.current=sculptureState!=='failed';started.current=performance.now();slowNotice.current=false;
+  pending.current=sculptureState!=='failed';started.current=performance.now();slowNotice.current=false;renderedFrames.current=0;
   onReady(null,sculptureState==='failed'?'The sculptural letter could not be constructed. Retry or return to Orbit.':'Loading the sculptural letter. Inspection will open automatically.');
   gl.xr.addEventListener('sessionstart',onClose);
   return()=>{pending.current=false;gl.xr.removeEventListener('sessionstart',onClose);view.current?.dispose();view.current=null;};
@@ -68,15 +68,20 @@ export function LetterInspection({index,surface,onClose,onReady,sculptureState='
  // transforms updated by their normal frame callbacks. No asset copies/rebakes.
  useFrame(state=>{
   if(!gl.xr.isPresenting&&pending.current){
-   if(surface.current&&findInspectionSculpture(scene,index)){
+   if(surface.current&&scene.getObjectByName('calligraphy-depth-art')&&findInspectionSculpture(scene,index)){
     pending.current=false;
-    try{view.current=new LetterInspectionView(scene,camera,(controls??undefined) as unknown as SceneControls|undefined,surface.current,index,state.size.width/state.size.height);onReady(()=>view.current?.reset());}
+    try{view.current=new LetterInspectionView(scene,camera,(controls??undefined) as unknown as SceneControls|undefined,surface.current,index,state.size.width/state.size.height);}
     catch(error){onReady(null,error instanceof Error?error.message:String(error))}
    }else if(!slowNotice.current&&performance.now()-started.current>30000){
     slowNotice.current=true;onReady(null,'This letter is taking longer to load. It will open automatically when ready. You can return to Orbit at any time.');
    }
   }
-  if(gl.xr.isPresenting||!view.current)gl.render(scene,camera);else view.current.render(gl,state.size.width/state.size.height);
+  if(gl.xr.isPresenting||!view.current)gl.render(scene,camera);else{
+   view.current.render(gl,state.size.width/state.size.height);
+   // Controls existing is not proof that the cold scene has been drawn.
+   // Keep loading through two completed native draws before enabling Reset.
+   if(++renderedFrames.current===2)onReady(()=>view.current?.reset());
+  }
  },1);
  return null;
 }
@@ -84,7 +89,7 @@ export function LetterInspection({index,surface,onClose,onReady,sculptureState='
 export function LetterInspectionOverlay({letter,surface,onClose,onReset,error,onRetry}:{onRetry?:()=>void;letter:string;surface:RefObject<HTMLDivElement>;onClose:()=>void;onReset:()=>void;error:string}){
  const close=useRef<HTMLButtonElement>(null);
  useEffect(()=>{const previous=document.activeElement as HTMLElement|null;close.current?.focus();return()=>previous?.focus()},[]);
- return <div className="letter-inspection" role="dialog" aria-modal="true" aria-labelledby="inspection-title" onKeyDown={event=>{
+ return <div className="letter-inspection" data-loading={/^(Loading|This letter is taking longer)/.test(error)} role="dialog" aria-modal="true" aria-labelledby="inspection-title" onKeyDown={event=>{
   event.stopPropagation();
   if(event.key==='Escape'){event.preventDefault();onClose()}
   if(event.key==='Tab'){

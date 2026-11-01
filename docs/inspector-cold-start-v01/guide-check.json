@@ -1,0 +1,78 @@
+{
+  "platform": "linux",
+  "success": true,
+  "stages": [
+    {
+      "name": "visible-scene-preflight",
+      "sample": {
+        "colored": 47480,
+        "pixels": 570240,
+        "fraction": 0.0832631874298541
+      }
+    },
+    {
+      "name": "READY - choose QariAI FULL DEMO in OBS; start recording.",
+      "time": "2026-10-31T11:20:54.145Z"
+    },
+    {
+      "name": "Harf guide kaf",
+      "time": "2026-10-31T11:20:54.148Z"
+    },
+    {
+      "name": "visible-scene-harf-return-kaf",
+      "sample": {
+        "colored": 47462,
+        "pixels": 570240,
+        "fraction": 0.08323162177328844
+      }
+    },
+    {
+      "name": "Harf guide lam",
+      "time": "2026-10-31T11:21:50.956Z"
+    },
+    {
+      "name": "visible-scene-harf-return-lam",
+      "sample": {
+        "colored": 22764,
+        "pixels": 570240,
+        "fraction": 0.03992003367003367
+      }
+    },
+    {
+      "name": "Harf guide fa",
+      "time": "2026-10-31T11:22:27.067Z"
+    },
+    {
+      "name": "visible-scene-harf-return-fa",
+      "sample": {
+        "colored": 22676,
+        "pixels": 570240,
+        "fraction": 0.03976571268237935
+      }
+    },
+    {
+      "name": "Harf guide ya",
+      "time": "2026-10-31T11:23:08.884Z"
+    },
+    {
+      "name": "visible-scene-harf-return-ya",
+      "sample": {
+        "colored": 25365,
+        "pixels": 570240,
+        "fraction": 0.044481271043771045
+      }
+    },
+    {
+      "name": "Closing Orbit",
+      "time": "2026-10-31T11:24:06.892Z"
+    },
+    {
+      "name": "SEQUENCE COMPLETE - STOP OBS RECORDING.",
+      "time": "2026-10-31T11:24:10.958Z"
+    }
+  ],
+  "errors": [],
+  "limits": "Automated desktop mouse and keyboard. Hand Mode is mouse simulation. No headset hand tracking or pinch claim; screenshot checks detect an empty scene, not correctness of artwork or OBS pixels.",
+  "baseCandidate": "495353693de9b1677818738a5bf141f6f119666a",
+  "testedRoot": "isolated fix/inspector-cold-start-v0.1 production build"
+}

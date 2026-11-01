@@ -1,0 +1,246 @@
+{
+  "success": true,
+  "runs": [
+    {
+      "name": "cache-miss",
+      "ms": 13657,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "cache-hit-kaf",
+      "ms": 3909,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "cache-hit-lam",
+      "ms": 3521,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "cache-hit-fa",
+      "ms": 4351,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "cache-hit-ya",
+      "ms": 5109,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "delayed-valid-cache",
+      "ms": 8468,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    },
+    {
+      "name": "corrupt-fallback",
+      "ms": 14724,
+      "initialLoading": "true",
+      "hash": {
+        "face": "49e38921fb341ea4b8179fd7898239a19e5d600460ccd604ee720fafc45ca881",
+        "bump": "30a74033765971ed06829f2ff500754777c511c31dc51591704973c41de58ab3"
+      }
+    }
+  ],
+  "errors": [],
+  "cacheEvents": [
+    {
+      "run": "cache-miss",
+      "state": "lookup-start",
+      "ms": 1814.5
+    },
+    {
+      "run": "cache-miss",
+      "state": "lookup-miss",
+      "ms": 3553.5
+    },
+    {
+      "run": "cache-miss",
+      "state": "bake-start",
+      "ms": 3554.400000002235
+    },
+    {
+      "run": "cache-miss",
+      "state": "bake-complete",
+      "ms": 13397.800000000745,
+      "duration": 9843.39999999851
+    },
+    {
+      "run": "cache-miss",
+      "state": "store-start",
+      "ms": 13398.300000000745
+    },
+    {
+      "run": "cache-miss",
+      "state": "store-complete",
+      "ms": 13733.900000002235,
+      "bytes": 33554706
+    },
+    {
+      "run": "cache-hit-kaf",
+      "state": "lookup-start",
+      "ms": 1139.5999999977648
+    },
+    {
+      "run": "cache-hit-kaf",
+      "state": "lookup-hit",
+      "ms": 2660.39999999851,
+      "bytes": 33554706
+    },
+    {
+      "run": "cache-hit-kaf",
+      "state": "restore-start",
+      "ms": 2677.2999999970198
+    },
+    {
+      "run": "cache-hit-kaf",
+      "state": "restore-complete",
+      "ms": 2694,
+      "duration": 16.700000002980232
+    },
+    {
+      "run": "cache-hit-lam",
+      "state": "lookup-start",
+      "ms": 879.3999999985099
+    },
+    {
+      "run": "cache-hit-lam",
+      "state": "lookup-hit",
+      "ms": 2402.39999999851,
+      "bytes": 33554706
+    },
+    {
+      "run": "cache-hit-lam",
+      "state": "restore-start",
+      "ms": 2413.699999999255
+    },
+    {
+      "run": "cache-hit-lam",
+      "state": "restore-complete",
+      "ms": 2438,
+      "duration": 24.300000000745058
+    },
+    {
+      "run": "cache-hit-fa",
+      "state": "lookup-start",
+      "ms": 1303.5
+    },
+    {
+      "run": "cache-hit-fa",
+      "state": "lookup-hit",
+      "ms": 3381.400000002235,
+      "bytes": 33554706
+    },
+    {
+      "run": "cache-hit-fa",
+      "state": "restore-start",
+      "ms": 3399.7000000029802
+    },
+    {
+      "run": "cache-hit-fa",
+      "state": "restore-complete",
+      "ms": 3433.400000002235,
+      "duration": 33.599999997764826
+    },
+    {
+      "run": "cache-hit-ya",
+      "state": "lookup-start",
+      "ms": 2309.5
+    },
+    {
+      "run": "cache-hit-ya",
+      "state": "lookup-hit",
+      "ms": 3898.5,
+      "bytes": 33554706
+    },
+    {
+      "run": "cache-hit-ya",
+      "state": "restore-start",
+      "ms": 3908.89999999851
+    },
+    {
+      "run": "cache-hit-ya",
+      "state": "restore-complete",
+      "ms": 3925.5,
+      "duration": 16.600000001490116
+    },
+    {
+      "run": "delayed-valid-cache",
+      "state": "lookup-start",
+      "ms": 3275.10000000149
+    },
+    {
+      "run": "delayed-valid-cache",
+      "state": "lookup-hit",
+      "ms": 7389.89999999851,
+      "bytes": 33554706
+    },
+    {
+      "run": "delayed-valid-cache",
+      "state": "restore-start",
+      "ms": 7405.300000000745
+    },
+    {
+      "run": "delayed-valid-cache",
+      "state": "restore-complete",
+      "ms": 7449.89999999851,
+      "duration": 44.5
+    },
+    {
+      "run": "corrupt-fallback",
+      "state": "lookup-start",
+      "ms": 2735.60000000149
+    },
+    {
+      "run": "corrupt-fallback",
+      "state": "lookup-fallback",
+      "ms": 4351
+    },
+    {
+      "run": "corrupt-fallback",
+      "state": "bake-start",
+      "ms": 4351.5
+    },
+    {
+      "run": "corrupt-fallback",
+      "state": "bake-complete",
+      "ms": 14425,
+      "duration": 10073.5
+    },
+    {
+      "run": "corrupt-fallback",
+      "state": "store-start",
+      "ms": 14425.20000000298
+    },
+    {
+      "run": "corrupt-fallback",
+      "state": "store-complete",
+      "ms": 14806.300000000745,
+      "bytes": 33554693
+    }
+  ],
+  "resetRetainedResources": true
+}
