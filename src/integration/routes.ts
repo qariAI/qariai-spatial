@@ -24,7 +24,7 @@ export function experienceHref(path: ExperiencePath, search: string): string {
   const query=new URLSearchParams();
   if(values.length===1&&values[0]==='texture')query.set('calligraphyRelief','texture');
   if(orbitArtEnabled(search))query.set('orbitArt','study');
-  if(path!=='/harf-studio-xr.html'&&requestedPractice(search))query.set('practice',requestedPractice(search)!);
+  if(requestedPractice(search))query.set('practice',requestedPractice(search)!);
   return path+(query.size?'?'+query.toString():'');
 }
 

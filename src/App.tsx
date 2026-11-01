@@ -1,7 +1,7 @@
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
 import { Billboard, OrbitControls } from '@react-three/drei';
-import { XRHandModelFactory } from 'three/examples/jsm/webxr/XRHandModelFactory.js';
+import {JointHandVisual} from './xr/JointHandVisual';
 import * as THREE from 'three';
 import { SpatialMenu, SpatialMenuHandle } from './xr/SpatialMenu';
 import { OrbitLighting } from './xr/OrbitLighting';
@@ -106,10 +106,11 @@ function SpatialActions({phase,onAdvance,onBack}:{phase:Phase;onAdvance:()=>void
    </mesh>
  </group>;
 }
-function HandTracking({menu,onHover,onPinch,onAction,onDiagnostics}:{menu?:SpatialMenuHandle;onHover:(i:number|null)=>void;onPinch:(i:number)=>void;onAction:()=>void;onDiagnostics:(state:string)=>void}){
+function HandTracking({menu,onHover,onPinch,onAction,onDiagnostics,selected}:{menu?:SpatialMenuHandle;onHover:(i:number|null)=>void;onPinch:(i:number)=>void;onAction:()=>void;onDiagnostics:(state:string)=>void;selected?:Selection}){
  const {gl,scene}=useThree();
  const hands=useRef<THREE.Group[]>([]);
  const markers=useRef<THREE.Mesh[]>([]);
+ const visual=useMemo(()=>new JointHandVisual(),[]);
  const pinchGates=useMemo(()=>[new OrbitPinch(),new OrbitPinch()],[]);
  const lastHover=useRef<number|null>(null);
  const lastReport=useRef('');
@@ -118,10 +119,10 @@ function HandTracking({menu,onHover,onPinch,onAction,onDiagnostics}:{menu?:Spati
  const lastActionLabel=useRef('');
  useEffect(()=>{
   gl.xr.enabled=true;
-  const factory=new XRHandModelFactory();
+  scene.add(visual.root);
   const groups=[gl.xr.getHand(0),gl.xr.getHand(1)];
   const mesh=groups.map(hand=>{
-   hand.add(factory.createHandModel(hand,'mesh'));scene.add(hand);
+   scene.add(hand);
    const m=new THREE.Mesh(new THREE.RingGeometry(.018,.028,32),new THREE.MeshBasicMaterial({color:'#ffcf79',side:THREE.DoubleSide,transparent:true,opacity:.95,depthTest:false}));
    m.visible=false;scene.add(m);return m;
   });
@@ -160,10 +161,13 @@ function HandTracking({menu,onHover,onPinch,onAction,onDiagnostics}:{menu?:Spati
     h.removeEventListener('disconnected',handChanged[i]);
     scene.remove(h);
    });
+   visual.root.visible=false;scene.remove(visual.root);
    mesh.forEach(m=>{scene.remove(m);m.geometry.dispose();(m.material as THREE.Material).dispose()});
   };
- },[gl,scene,pinchGates,onHover,menu]);
- useFrame((state)=>{
+ },[gl,scene,pinchGates,onHover,menu,visual]);
+ useEffect(()=>()=>visual.dispose(),[visual]);
+ useFrame((state,_,frame)=>{
+  visual.update(frame,gl.xr.getReferenceSpace(),gl.xr.isPresenting&&gl.xr.getSession()?.visibilityState==='visible'?Array.from(gl.xr.getSession()?.inputSources??[]):[]);
   if(!gl.xr.isPresenting||gl.xr.getSession()?.visibilityState!=='visible'){
    pinchGates.forEach(g=>g.loseTracking());
    markers.current.forEach(m=>m.visible=false);
@@ -193,7 +197,7 @@ function HandTracking({menu,onHover,onPinch,onAction,onDiagnostics}:{menu?:Spati
    if(menu&&(menuHit||menu.state.blocksScene)){
     if(menuHit)menuHover=menuHit;
     if(pressed&&now>cooldown.current[side]&&menuHit){
-     if(menuHit==='harf')void menu.state.navigate(gl.xr.getSession(),location.search,path=>location.assign(path),now);
+     if(menuHit==='harf'){const search=new URLSearchParams(location.search);if(ORBIT_ART)search.set('practice',practiceForLetter(selected===null||selected===undefined?'ك':LETTERS[selected])!.id);void menu.state.navigate(gl.xr.getSession(),'?'+search,path=>location.assign(path),now);}
      else menu.state.dispatch(menuHit,now);
      cooldown.current[side]=now+.35;
     }
@@ -232,8 +236,8 @@ function HandTracking({menu,onHover,onPinch,onAction,onDiagnostics}:{menu?:Spati
  });
  return null;
 }
-function ImmersiveButton(){const {gl}=useThree();const [available,setAvailable]=useState(false);const [inSession,setInSession]=useState(false);useEffect(()=>{let on=true;const xr=(navigator as Navigator & {xr?:{isSessionSupported:(mode:string)=>Promise<boolean>;requestSession:(mode:string,options:object)=>Promise<any>}}).xr;if(!xr)return;xr.isSessionSupported('immersive-vr').then(v=>{if(on)setAvailable(v)}).catch(()=>{});const onStart=()=>setInSession(true),onEnd=()=>setInSession(false);gl.xr.addEventListener('sessionstart',onStart);gl.xr.addEventListener('sessionend',onEnd);return()=>{on=false;gl.xr.removeEventListener('sessionstart',onStart);gl.xr.removeEventListener('sessionend',onEnd)}},[gl]);useEffect(()=>{const btn=document.getElementById('enter-xr') as HTMLButtonElement|null;if(!btn)return;btn.hidden=!available;btn.textContent=inSession?'Exit VR':'Enter Quest VR';btn.onclick=async()=>{if(btn.dataset.xrStarting==='true')return;try{if(gl.xr.isPresenting){await gl.xr.getSession()?.end();return}btn.dataset.xrStarting='true';const session=await (navigator as Navigator & {xr:{requestSession:(mode:string,options:object)=>Promise<any>}}).xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});gl.xr.setFramebufferScaleFactor(0.85);await gl.xr.setSession(session)}catch(e){console.error('WebXR session failed',e);window.alert('Unable to enter VR. Use HTTPS in a supported Quest browser and enable hand tracking.')}finally{delete btn.dataset.xrStarting}};return()=>{btn.onclick=null}},[gl,available,inSession]);return null}
-function WorldAnchor({children,menu}:{children:React.ReactNode;menu?:SpatialMenuHandle}){const {gl}=useThree();const group=useRef<THREE.Group>(null);const lighting=useMemo(()=>new OrbitLighting(),[]);useFrame(()=>{if(!group.current)return;if(gl.xr.isPresenting){group.current.position.set(0,1.45,-2.4).add(menu?.offset??new THREE.Vector3());group.current.scale.setScalar(.014)}else{group.current.position.set(0,15,0);group.current.scale.setScalar(1)}lighting.update(group.current,gl.xr.isPresenting)});return <group ref={group} name="qari-world-anchor">{children}</group>}
+function ImmersiveButton(){const {gl}=useThree();const [available,setAvailable]=useState(false);const [inSession,setInSession]=useState(false);useEffect(()=>{let on=true;const xr=(navigator as Navigator & {xr?:{isSessionSupported:(mode:string)=>Promise<boolean>;requestSession:(mode:string,options:object)=>Promise<any>}}).xr;if(!xr)return;xr.isSessionSupported('immersive-vr').then(v=>{if(on)setAvailable(v)}).catch(()=>{});const onStart=()=>{setInSession(true);document.documentElement.dataset.xrPresenting='true'},onEnd=()=>{setInSession(false);delete document.documentElement.dataset.xrPresenting};gl.xr.addEventListener('sessionstart',onStart);gl.xr.addEventListener('sessionend',onEnd);return()=>{on=false;gl.xr.removeEventListener('sessionstart',onStart);gl.xr.removeEventListener('sessionend',onEnd)}},[gl]);useEffect(()=>{const btn=document.getElementById('enter-xr') as HTMLButtonElement|null;if(!btn)return;btn.hidden=!available;btn.textContent=inSession?'Exit VR':'Enter Quest VR';btn.onclick=async()=>{if(btn.dataset.xrStarting==='true')return;try{if(gl.xr.isPresenting){await gl.xr.getSession()?.end();return}btn.dataset.xrStarting='true';const session=await (navigator as Navigator & {xr:{requestSession:(mode:string,options:object)=>Promise<any>}}).xr.requestSession('immersive-vr',{requiredFeatures:['local-floor','hand-tracking'],optionalFeatures:['bounded-floor']});gl.xr.setFramebufferScaleFactor(0.85);await gl.xr.setSession(session)}catch(e){console.error('WebXR session failed',e);window.alert('Unable to enter VR. Use HTTPS in a supported Quest browser and enable hand tracking.')}finally{delete btn.dataset.xrStarting}};return()=>{btn.onclick=null}},[gl,available,inSession]);return null}
+function WorldAnchor({children,menu}:{children:React.ReactNode;menu?:SpatialMenuHandle}){const {gl}=useThree();const group=useRef<THREE.Group>(null);const lighting=useMemo(()=>new OrbitLighting(),[]);useFrame(()=>{if(!group.current)return;if(gl.xr.isPresenting){group.current.position.set(0,1.65,-1.9).add(menu?.offset??new THREE.Vector3());group.current.scale.setScalar(.018);group.current.rotation.x=.3}else{group.current.position.set(0,15,0);group.current.scale.setScalar(1);group.current.rotation.x=0}lighting.update(group.current,gl.xr.isPresenting)});return <group ref={group} name="qari-world-anchor">{children}</group>}
 function CameraExploreRig({active,resetRevision}:{active:boolean;resetRevision:number}){
  const {camera,gl,controls}=useThree();
  const home=useMemo(()=>new THREE.Vector3(0,98,169),[]);
@@ -275,7 +279,7 @@ function CameraExploreRig({active,resetRevision}:{active:boolean;resetRevision:n
 function SceneRig({phase,speed,paused,onPaused,selected,onSelect,handTarget,onHover,onAdvance,onBack,onDiagnostics,exploringPlanet,onExplorePlanet,exploreCalligraphy,resetRevision}:{phase:Phase;speed:number;paused:boolean;onPaused:(v:boolean)=>void;selected:Selection;onSelect:(i:number)=>void;handTarget:number|null;onHover:(i:number|null)=>void;onAdvance:()=>void;onBack:()=>void;onDiagnostics:(s:string)=>void;exploringPlanet:PlanetName|null;onExplorePlanet:(p:PlanetName)=>void;exploreCalligraphy:boolean;resetRevision:number}){
  const pauseRef=useRef(paused);pauseRef.current=paused;
  const menu=useMemo(()=>new SpatialMenuHandle(()=>pauseRef.current,onPaused),[onPaused]);
- return <><SpatialMenu menu={menu}/><WorldAnchor menu={menu}><OrbitalScene exploringPlanet={exploringPlanet} onExplorePlanet={onExplorePlanet} phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/><SpatialActions phase={phase} onAdvance={onAdvance} onBack={onBack}/></WorldAnchor><HandTracking menu={menu} onHover={onHover} onPinch={onSelect} onAction={phase===0?onAdvance:onBack} onDiagnostics={onDiagnostics}/><ImmersiveButton/><OrbitPracticeLink/><CameraExploreRig active={exploreCalligraphy} resetRevision={resetRevision}/><OrbitControls makeDefault enableDamping dampingFactor={.06} minDistance={18} maxDistance={255} maxPolarAngle={1.45} minPolarAngle={.4} enablePan={false}/></>}
+ return <><SpatialMenu menu={menu}/><WorldAnchor menu={menu}><OrbitalScene exploringPlanet={exploringPlanet} onExplorePlanet={onExplorePlanet} phase={phase} speed={speed} paused={paused} selected={selected} onSelect={onSelect} handTarget={handTarget}/><SpatialActions phase={phase} onAdvance={onAdvance} onBack={onBack}/></WorldAnchor><HandTracking selected={selected} menu={menu} onHover={onHover} onPinch={onSelect} onAction={phase===0?onAdvance:onBack} onDiagnostics={onDiagnostics}/><ImmersiveButton/><OrbitPracticeLink/><CameraExploreRig active={exploreCalligraphy} resetRevision={resetRevision}/><OrbitControls makeDefault enableDamping dampingFactor={.06} minDistance={18} maxDistance={255} maxPolarAngle={1.45} minPolarAngle={.4} enablePan={false}/></>}
 
 const traceGuides:Record<Letter,{name:string;instruction:string}>= {
  'ك':{name:'Kāf',instruction:'Illustrative study guide. Verify the source stroke order before educational use.'},
