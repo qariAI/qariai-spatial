@@ -1,0 +1,21 @@
+{
+  "base": "e46013ee024c41c9a475c73568e4239e0780b9f1",
+  "unchangedSHA256": {
+    "src/orbit-art/generated/kaf-outline.json": "7a58cc1ad838bd9f8d5417e727a8c100009785a250d680f1d122ddd4f437a99a",
+    "src/orbit-art/generated/letter-outlines.json": "f33e8a857c96f85d1294135720b55e1f95cf3a23d404207c38569c47085c0b7c",
+    "src/orbit-art/kafAsset.ts": "0f5d6e9cf6607e5cbc099cee3ee1a001601462a4ee7f02e3a3c99597f468aead",
+    "src/orbit-art/LetterInspection.tsx": "ad4b41c8cb9f60a47ee973d838ea4ed6c45e4f36967c768f32b1f260735b6ba2",
+    "src/orbit-art/AnimatedStarfield.tsx": "d8113aa3e2188306d7e027b55cb2e82c3e5ccec87be8f41eba4da7446a1a89bc",
+    "src/orbit-art/letterSurface.ts": "238d289b5a7c3d6eb9eb1cd77bba4fe61a6093b132069f5a00dc0217dab91ea7",
+    "src/CalligraphyDepthArt.tsx": "59624b9ce15dffb22f2b4d0947f1bfa22eae259d34a62c57fbec868808795938",
+    "src/harf-xr/desktop.ts": "6e5c8348d82d1b316dacf173fbd257fa278becf471ffcadd4738dadb034dfe34",
+    "src/harf-xr/main.ts": "136ebe1a2dabd8dd7eb221c09fe9de832f2a4e9e1d2c350a54e144f201ac0496",
+    "src/harf-xr/tracing.ts": "cb09cdf5ef2fc491fa8fe0c475415c51138da76c53a89909815d7b841c619b56",
+    "src/harf-xr/ink.ts": "81b331f23a6b25fab3527acb446c4d889ea7aa2099466f6af5a970e43558ba6a",
+    "src/harf-xr/session.ts": "c8f2fedd8334dffa0788ebb50e20788a96d82177b21745d20eb8e3e95a746f0b",
+    "src/harf-xr/letters/ba.json": "8024c81d021abf626405abf549d1d05f6b2d48e3eee5ca68216a6999558bb059",
+    "src/integration/OrbitPracticeLink.tsx": "d54a175ae70e8d83faa14477f0ebf7022bb503e65e29f29eb6f724888a959f82",
+    "src/integration/navigation.ts": "939b5f1f3d19744a28919e4d78fbfc33f540a52146bf72fc8819094ff8537327",
+    "public/fonts/Amiri-Bold.ttf": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b"
+  }
+}

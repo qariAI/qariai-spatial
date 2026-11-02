@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
+import { lookupAtlas, restoreAtlas, storeAtlas, atlasCacheEvent, type AtlasLookup } from './calligraphy/atlasCache';
 import { bakeTextureRelief } from './calligraphy/textureRelief';
 import { buildRaisedRelief } from './calligraphy/raisedRelief';
 import { EXCERPTS } from './calligraphy/content';
@@ -293,7 +294,25 @@ function lightClusters() {
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)); return geometry;
 }
 
-export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: boolean; speed?: number }) {
+export function CalligraphyDepthArt(props: { paused?: boolean; speed?: number }) {
+  const { gl } = useThree();
+  const textureOnly = new URLSearchParams(location.search).get('calligraphyRelief') === 'texture';
+  const [lookup, setLookup] = useState<AtlasLookup | null>(null);
+  useEffect(() => {
+    let active = true;
+    if (!textureOnly) { setLookup({ key: '', record: null }); return; }
+    // Allow concurrent cold WebGL/font setup to occupy the main thread without
+    // discarding a usable cache. Still bound browsers with stalled storage.
+    const timer = setTimeout(() => { if (active) { atlasCacheEvent('lookup-timeout'); setLookup({ key: '', record: null }); } active = false; }, 10000);
+    lookupAtlas(Math.min(8, gl.capabilities.getMaxAnisotropy()), gl.capabilities.maxTextureSize).then(value => {
+      clearTimeout(timer); if (active) setLookup(value); else atlasCacheEvent('lookup-ignored-late');
+    }).catch(() => { clearTimeout(timer); if (active) setLookup({ key: '', record: null }); });
+    return () => { active = false; clearTimeout(timer); };
+  }, [gl, textureOnly]);
+  return lookup ? <CalligraphyDepthArtScene {...props} lookup={lookup}/> : null;
+}
+
+function CalligraphyDepthArtScene({ paused = false, speed = 1, lookup }: { paused?: boolean; speed?: number; lookup: AtlasLookup }) {
   const { gl } = useThree();
   const root = useRef<THREE.Group>(null);
   const worldScale = useMemo(() => new THREE.Vector3(), []);
@@ -301,13 +320,18 @@ export function CalligraphyDepthArt({ paused = false, speed = 1 }: { paused?: bo
   const textureOnly = params.get('calligraphyRelief') === 'texture';
   const raisedEnabled = !textureOnly && params.get('raisedCalligraphy') === '1';
   const maps = useMemo(() => {
-    const result = engravedAtlas(Math.min(8, gl.capabilities.getMaxAnisotropy()), gl.capabilities.maxTextureSize, textureOnly ? 'texture' : raisedEnabled);
+    const anisotropy = Math.min(8, gl.capabilities.getMaxAnisotropy());
+    const started = performance.now();
+    atlasCacheEvent(lookup.record ? 'restore-start' : 'bake-start');
+    const result = lookup.record ? restoreAtlas(lookup.record, anisotropy) : engravedAtlas(anisotropy, gl.capabilities.maxTextureSize, textureOnly ? 'texture' : raisedEnabled);
+    atlasCacheEvent(lookup.record ? 'restore-complete' : 'bake-complete', { duration: performance.now() - started });
+    if (textureOnly && !lookup.record) void storeAtlas(lookup.key, result);
     // The proof API retains its native coverage canvas and rectangle ledger;
     // the live component needs only the completed buffers and packed atlas.
     if (result.heroMask) { result.heroMask.width = 1; result.heroMask.height = 1; }
     if (result.raised) result.raised.rectangles.length = 0;
     return result;
-  }, [gl, raisedEnabled, textureOnly]);
+  }, [gl, raisedEnabled, textureOnly, lookup]);
   const faces = useMemo(() => BANDS.map(faceGeometry), []);
   const backing = useMemo(bronzeArchitecture, []);
   const lights = useMemo(lightClusters, []);

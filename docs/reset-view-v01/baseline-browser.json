@@ -1,0 +1,896 @@
+{
+  "baseline": "454c2f0e552583458ca02f23915a74987537a915",
+  "platform": "linux",
+  "errors": [],
+  "limits": "Production full scenes; one browser; native RAF and normal draws. UI Pause is clicked at first DOM commit for matched stationary captures. Linux uses CPU Canvas/SwiftShader; timings are not Windows or Quest measurements. No image editing or pixel-equivalence claim unless measured.",
+  "chrome": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/154.0.8037.57",
+    "revision": "@73c14f6228d7cd537c855007e8f88678969cc0eb",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+    "jsVersion": "15.4.80.11"
+  },
+  "gpu": {
+    "gpu": {
+      "devices": [
+        {
+          "vendorId": 65535,
+          "deviceId": 65535,
+          "vendorString": "Google Inc. (Google)",
+          "deviceString": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+          "driverVendor": "SwANGLE",
+          "driverVersion": "5.0.0"
+        }
+      ],
+      "auxAttributes": {
+        "amdSwitchable": false,
+        "canSupportThreadedTextureMailbox": false,
+        "directRenderingVersion": "",
+        "displayType": "ANGLE_SWIFTSHADER",
+        "glExtensions": "GL_AMD_performance_monitor GL_ANGLE_base_vertex_base_instance_shader_builtin GL_ANGLE_blob_cache GL_ANGLE_client_arrays GL_ANGLE_clip_cull_distance GL_ANGLE_compressed_texture_etc GL_ANGLE_copy_texture_3d GL_ANGLE_depth_texture GL_ANGLE_framebuffer_blit GL_ANGLE_framebuffer_multisample GL_ANGLE_get_image GL_ANGLE_get_serialized_context_string GL_ANGLE_get_tex_level_parameter GL_ANGLE_instanced_arrays GL_ANGLE_memory_object_flags GL_ANGLE_memory_size GL_ANGLE_multi_draw GL_ANGLE_pack_reverse_row_order GL_ANGLE_polygon_mode GL_ANGLE_program_binary_readiness_query GL_ANGLE_program_cache_control GL_ANGLE_read_only_depth_stencil_feedback_loops GL_ANGLE_relaxed_vertex_attribute_type GL_ANGLE_renderability_validation GL_ANGLE_request_extension GL_ANGLE_rgbx_internal_format GL_ANGLE_robust_client_memory GL_ANGLE_robust_fragment_shader_output GL_ANGLE_robust_resource_initialization GL_ANGLE_shader_pixel_local_storage GL_ANGLE_shader_pixel_local_storage_coherent GL_ANGLE_stencil_texturing GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5 GL_ANGLE_texture_multisample GL_ANGLE_texture_usage GL_ANGLE_translated_shader_source GL_ANGLE_vulkan_image GL_ANGLE_yuv_internal_format GL_APPLE_clip_distance GL_ARM_rgba8 GL_ARM_shader_framebuffer_fetch GL_CHROMIUM_bind_generates_resource GL_CHROMIUM_bind_uniform_location GL_CHROMIUM_copy_compressed_texture GL_CHROMIUM_copy_texture GL_CHROMIUM_lose_context GL_EXT_EGL_image_array GL_EXT_EGL_image_external_wrap_modes GL_EXT_EGL_image_storage GL_EXT_base_instance GL_EXT_blend_minmax GL_EXT_buffer_storage GL_EXT_clear_texture GL_EXT_clip_control GL_EXT_clip_cull_distance GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_copy_image GL_EXT_debug_label GL_EXT_debug_marker GL_EXT_depth_clamp GL_EXT_discard_framebuffer GL_EXT_disjoint_timer_query GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_frag_depth GL_EXT_instanced_arrays GL_EXT_map_buffer_range GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_read_format_bgra GL_EXT_robustness GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_separate_shader_objects GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_non_constant_global_initializers GL_EXT_shader_texture_lod GL_EXT_shadow_samplers GL_EXT_texture_border_clamp GL_EXT_texture_compression_bptc GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc_srgb GL_EXT_texture_filter_anisotropic GL_EXT_texture_format_BGRA8888 GL_EXT_texture_lod_bias GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_storage GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_KHR_blend_equation_advanced GL_KHR_debug GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_NV_fence GL_NV_framebuffer_blit GL_NV_pack_subimage GL_NV_pixel_buffer_object GL_NV_polygon_mode GL_NV_read_depth GL_NV_read_depth_stencil GL_NV_read_stencil GL_NV_shader_noperspective_interpolation GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_compressed_paletted_texture GL_OES_copy_image GL_OES_depth24 GL_OES_depth32 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fbo_render_mipmap GL_OES_get_program_binary GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_shading GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_texture_3D GL_OES_texture_border_clamp GL_OES_texture_float GL_OES_texture_float_linear GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OES_vertex_half_float GL_OES_vertex_type_10_10_10_2 GL_OVR_multiview GL_OVR_multiview2 GL_QCOM_texture_lod_bias ",
+        "glImplementationParts": "(gl=egl-angle,angle=swiftshader)",
+        "glRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+        "glResetNotificationStrategy": 33362,
+        "glVendor": "Google Inc. (Google)",
+        "glVersion": "OpenGL ES 3.0 (ANGLE 2.1 git hash: unknown hash)",
+        "glWsExtensions": "EGL_EXT_create_context_robustness EGL_ANGLE_surface_orientation EGL_KHR_create_context EGL_KHR_image EGL_KHR_image_base EGL_EXT_image_gl_colorspace EGL_KHR_gl_colorspace EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_gl_renderbuffer_image EGL_KHR_get_all_proc_addresses EGL_KHR_fence_sync EGL_KHR_wait_sync EGL_ANGLE_create_context_webgl_compatibility EGL_CHROMIUM_create_context_bind_generates_resource EGL_KHR_swap_buffers_with_damage EGL_EXT_pixel_format_float EGL_KHR_surfaceless_context EGL_ANGLE_display_texture_share_group EGL_ANGLE_display_semaphore_share_group EGL_ANGLE_create_context_client_arrays EGL_ANGLE_program_cache_control EGL_ANGLE_robust_resource_initialization EGL_ANGLE_create_context_extensions_enabled EGL_ANDROID_blob_cache EGL_ANDROID_recordable EGL_ANGLE_create_context_backwards_compatible EGL_KHR_no_config_context EGL_IMG_context_priority EGL_KHR_create_context_no_error EGL_KHR_reusable_sync EGL_EXT_buffer_age EGL_ANGLE_create_surface_swap_interval EGL_ANGLE_vulkan_image EGL_KHR_partial_update EGL_ANGLE_global_fence_sync EGL_ANGLE_memory_usage_report ",
+        "glWsVendor": "Google Inc. (Google)",
+        "glWsVersion": "1.5 (ANGLE 2.1 git hash: unknown hash)",
+        "hardwareSupportsVulkan": false,
+        "inProcessGpu": false,
+        "initializationTime": 0.016818,
+        "isAsan": false,
+        "isClangCoverage": false,
+        "jpegDecodeAcceleratorSupported": false,
+        "maxMsaaSamples": "4",
+        "optimus": false,
+        "passthroughCmdDecoder": true,
+        "pixelShaderVersion": "3.00",
+        "processCrashCount": 0,
+        "sandboxed": false,
+        "skiaBackendType": "GaneshGL",
+        "subpixelFontRendering": true,
+        "targetCpuBits": 64,
+        "vertexShaderVersion": "3.00",
+        "visibilityCallbackCallCount": 0
+      },
+      "featureStatus": {
+        "2d_canvas": "disabled_software",
+        "direct_rendering_display_compositor": "disabled_off_ok",
+        "gpu_compositing": "enabled",
+        "multiple_raster_threads": "disabled_off",
+        "opengl": "enabled_on",
+        "rasterization": "enabled_force",
+        "raw_draw": "disabled_off_ok",
+        "skia_graphite": "disabled_off",
+        "trees_in_viz": "disabled_off",
+        "video_decode": "enabled",
+        "video_encode": "disabled_software",
+        "vulkan": "disabled_off",
+        "webgl": "enabled",
+        "webgpu": "unavailable_software",
+        "webgpu_on_vk_via_gl_interop": "disabled_off",
+        "webnn": "disabled_off"
+      },
+      "driverBugWorkarounds": [
+        "enable_webgl_timer_query_extensions",
+        "exit_on_context_lost",
+        "disabled_extension_GL_KHR_blend_equation_advanced",
+        "disabled_extension_GL_KHR_blend_equation_advanced_coherent"
+      ],
+      "videoDecoding": [],
+      "videoEncoding": []
+    },
+    "modelName": "",
+    "modelVersion": "",
+    "commandLine": "/usr/lib/chromium/chromium --show-component-extension-options --enable-gpu-rasterization --no-default-browser-check --disable-pings --media-router=0 --enable-remote-extensions --load-extension --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --no-sandbox --use-angle=swiftshader --enable-unsafe-swiftshader --disable-accelerated-2d-canvas --user-data-dir=/tmp/playwright_chromiumdev_profile-vC5T4L --remote-debugging-pipe --no-startup-window --noerrdialogs --ozone-platform=headless --ozone-override-screen-size=800,600 --flag-switches-begin --flag-switches-end --enable-unsafe-swiftshader"
+  },
+  "success": true,
+  "runs": [
+    {
+      "label": "baseline",
+      "root": "/workspace/work/reset-view/base",
+      "checks": [
+        "original home framing restored after Explore; genuine matched-pose screenshots"
+      ],
+      "resets": [
+        {
+          "name": "from-explore",
+          "ms": 13028,
+          "before": {
+            "ready": true,
+            "frame": 86,
+            "scene": "5be63705-6453-44d9-b417-3b2215fc2a9a",
+            "art": "496a94f5-6cbb-45ff-abc4-0fe461cacdb5",
+            "resources": {
+              "atlas": [
+                "47e5f53d-9e64-4b8f-ba62-deaea192a3ed",
+                "e2d3da60-3fd5-4d48-a51f-5bd5928961ad",
+                "ec20f521-de7a-49c2-b379-c32dc8f9e0da"
+              ],
+              "geometries": [
+                "0d98dee4-5415-4992-ad0a-fab4172405cc",
+                "0de80522-a8df-464b-85d3-3b22627a93eb",
+                "111cc90f-7826-4949-be59-2a23f7d76b1f",
+                "142ea3ea-ce53-4fb1-b8b3-a411153ce746",
+                "1ea34814-2dd0-4fd2-b5d0-244d49a5a081",
+                "219f222f-9a27-4f2e-922e-4b50f75b9054",
+                "27bcfb99-dffe-4c3b-a063-a295e59b55ca",
+                "29869e36-7164-4059-b322-911fc0c77dcd",
+                "2d052945-9146-4742-9caa-d6e4bd0858da",
+                "2ff0135d-df60-4763-a199-c4eeabfe273b",
+                "374ce5d0-98d4-4e31-bcba-5ba4b3c9fabe",
+                "39c348ab-abba-42f8-9629-5dee87135d63",
+                "3ef82a29-63f5-4de5-82a7-3559295108a5",
+                "406e5516-a181-411e-bede-9fa95273935d",
+                "48ca3bdc-e753-4d76-a0ca-b3814d509717",
+                "4c143c19-2299-44d3-ac8e-17541bc00296",
+                "53df76b6-9b79-4a62-ba36-348648157c51",
+                "5f4b8408-23c9-461f-ad39-48a6bf4a7c11",
+                "5ff3caa1-6701-4ecd-9caf-89fb9836e6e2",
+                "606ec8bc-8579-43ab-ae33-84d6d230e96e",
+                "70cbf8db-a997-4593-a93c-6df861aa7b3f",
+                "74baca7b-7c4f-4d3b-a70c-8408394adfff",
+                "786d20a3-e52c-4d33-9b54-e3531283a995",
+                "80260ee9-c6a9-4aeb-ba24-7bc32528b4db",
+                "8565642d-8574-4560-bcaa-d76f283872cc",
+                "897b4c05-ee62-4a76-912f-90ad1ec0f65e",
+                "8a1e08c2-2b63-4b78-84a4-2b7569643a92",
+                "8e9b91b4-2f03-4d06-8626-1b991709753a",
+                "8f18e8ea-8c70-4ee8-b7e4-4356e0e382b4",
+                "92f961b3-c51b-43eb-b66f-bd86c70a28be",
+                "97a3b627-ee3c-4db7-ba75-aed35d2689d4",
+                "9e03a8c5-d981-4794-ae6f-e9fd657b3a7b",
+                "a69c86d4-8168-4035-a87d-65f5b2f88880",
+                "a9dc7f0c-a215-4120-b51c-4dc106fd4751",
+                "ae69b03f-7a70-49d8-81c3-14108d2aecf9",
+                "afe4ec9e-16b7-47b8-8c4a-6bb401fae0d2",
+                "b2f523b2-8867-4292-b0ca-0dca86a8b7e3",
+                "b71d18c2-a215-4060-b990-f04af7eba9b8",
+                "b97a4d95-09b7-4bf6-b38a-0af79761697d",
+                "be60dcfc-81bf-431d-b686-0d7edc10959f",
+                "c772ca09-90fc-4a37-a309-979a72dc342a",
+                "caceeaaa-51ba-4ebd-866b-5cf90b77c666",
+                "d183d5a4-4cbc-4f74-aab9-18d56e89ab7e",
+                "e9287353-a06f-4dff-b8c1-eb376df155e7",
+                "ff99e7b0-4141-4a63-bd26-07b323e24af0"
+              ],
+              "materials": [
+                "077ec1a6-e262-4bb6-8b09-9e0b9462c506",
+                "11622d53-9f77-4976-8de7-902a5ed00284",
+                "1817ba82-cfef-4526-af1d-c0575457b8d9",
+                "1c6f0065-26eb-4a14-bb35-413f311d1196",
+                "244a7087-e739-4ad8-bc8c-2c5fa34cc452",
+                "24dea94f-0132-4a27-83e6-33034ccbd0e0",
+                "2590cce3-f8c7-4606-b659-c917908c480d",
+                "2fd96eaa-868d-486e-aee8-a62b821d3dd1",
+                "344c7b98-87ac-40ad-b245-bfb92645a04f",
+                "3ab55849-9156-4203-860f-6f1b7da26246",
+                "474fd511-c77b-4b1b-88d2-0dae2d632a2e",
+                "4b1a20de-42f4-4fa0-8097-fbdb3fa67ada",
+                "4ffa4694-227e-438b-83e6-2d986f8a213b",
+                "54249959-8a80-457d-ac0e-4af5d0698a33",
+                "560f2742-3b7c-47d1-a6b5-ad63a49028b1",
+                "59634069-ef13-4055-a30e-dc7edfcb3f31",
+                "5f2751a6-4be2-46b5-962b-263fd65e9ce3",
+                "60f0e80a-f250-4fb2-8bc1-a4576faa535b",
+                "6246a034-204a-4e24-b823-b73856b11b04",
+                "6284fdc3-1cb5-4ca5-9f4b-ed30553fe61a",
+                "64f03e88-2f1a-4ce4-acdd-2671b0036575",
+                "67d2a1d2-f267-4dc2-911b-dabbdc8694f7",
+                "697f56e2-8599-4e74-b1f4-7804fa1e82d3",
+                "6d30c5fb-9401-45d8-84c2-9623e98e76af",
+                "7a062b66-d7ab-47e8-afe0-c63f05c89169",
+                "8504f848-e50f-4db8-9dec-98ac9c76dde7",
+                "862f496b-f318-41f0-b435-5842069eff0b",
+                "8c847574-4faf-4ca5-82a3-08778731b619",
+                "9617b6bc-780e-4a1b-80d1-0d0cb119892c",
+                "99d8f266-a0c1-439d-a767-d4f16f8eefa2",
+                "9e62f356-e3bb-4505-8cb7-765f274b772b",
+                "a8dd18e3-bf8e-484a-90ed-7a92000a39e8",
+                "b4b1bd23-77dc-4950-8e90-1e52dfe9553a",
+                "b8529c79-1efe-42d1-931a-057beafd2ab8",
+                "bb110d07-ce3a-43fe-bbc8-4516fbd1b27f",
+                "c6f69477-d1ee-49c8-a9df-b16c1c38d57c",
+                "cc3f6861-cc39-4a92-97c1-e31bae74c561",
+                "ce331bc1-d6aa-4b99-a783-9bc0b20e73ba",
+                "cfe87bb0-7f54-44fc-af98-24b47286def6",
+                "d0f3c59f-e661-4fc8-b230-c22f8c371b73",
+                "d272c981-3ae1-4d19-a850-84fe707c6649",
+                "d7b7e52f-4368-4463-9b87-70806b714ffb",
+                "db4482aa-b840-4e31-af47-29fdb978bd66",
+                "dcc575e5-ddd2-431f-ae08-e1466f6bc4b6",
+                "e2621967-26e8-4961-a268-e1c7b2e1e252",
+                "e572bde9-ffb9-450a-8ccd-c195faf7d58a",
+                "e71be952-b840-4b66-b521-ca3e95957676",
+                "e742b888-7fd7-4405-b067-db00c0bc123b",
+                "eb51de20-63df-41f9-b26a-7ef604c2a26e",
+                "ec896a85-20f0-4803-ab52-e987c0c98f53",
+                "ec9a6d99-2484-49af-a571-5280cd4622bf",
+                "ee836250-8c4f-4266-9860-a924f16e8e7f",
+                "f26949fa-e4cf-42f5-b5be-420e33ea0a03"
+              ],
+              "textures": [
+                "05b92b6e-0f92-4190-85a7-7b9fe9c01307",
+                "0d6a3157-216f-40d9-a9fe-7568b23aab1d",
+                "0e87b83b-4722-4d56-8c36-cb951ab97b5b",
+                "11252c64-7477-41dc-badf-56ef7446b579",
+                "47e5f53d-9e64-4b8f-ba62-deaea192a3ed",
+                "5c4f7bb4-d05e-41bd-bcc4-0bb663e39270",
+                "6877d171-1fae-4bf4-a17c-63b7646797d2",
+                "76b338ec-10f3-4d25-abe9-e7ecf645b4df",
+                "80a0b46c-283c-4441-87d3-f61431da29e9",
+                "8aaae9a3-6e2d-43b8-8665-215a584c0056",
+                "bb0dba30-a5d9-4fcf-a404-f53bb1ca7e41",
+                "c98571bb-8b9b-4f60-aa31-c0ffbda200da",
+                "ca1d9362-0991-4dd9-95c1-1e5e4c3ae1fa",
+                "d0812e8b-bdcc-4cc5-a920-371e80aa1939",
+                "db030573-3410-4ed9-96ad-a4543c5cb985",
+                "e2d3da60-3fd5-4d48-a51f-5bd5928961ad",
+                "ec20f521-de7a-49c2-b379-c32dc8f9e0da",
+                "f01f5206-c577-4ff4-94ab-b6e66e17924d"
+              ]
+            },
+            "letters": [
+              {
+                "index": 0,
+                "letter": "ك",
+                "scale": 1,
+                "geometry": [
+                  "406e5516-a181-411e-bede-9fa95273935d",
+                  "0de80522-a8df-464b-85d3-3b22627a93eb",
+                  "8e9b91b4-2f03-4d06-8626-1b991709753a"
+                ]
+              },
+              {
+                "index": 1,
+                "letter": "ل",
+                "scale": 1,
+                "geometry": [
+                  "374ce5d0-98d4-4e31-bcba-5ba4b3c9fabe",
+                  "70cbf8db-a997-4593-a93c-6df861aa7b3f"
+                ]
+              },
+              {
+                "index": 2,
+                "letter": "ف",
+                "scale": 1,
+                "geometry": [
+                  "8a1e08c2-2b63-4b78-84a4-2b7569643a92",
+                  "b2f523b2-8867-4292-b0ca-0dca86a8b7e3",
+                  "be60dcfc-81bf-431d-b686-0d7edc10959f"
+                ]
+              },
+              {
+                "index": 3,
+                "letter": "ي",
+                "scale": 1,
+                "geometry": [
+                  "8f18e8ea-8c70-4ee8-b7e4-4356e0e382b4",
+                  "786d20a3-e52c-4d33-9b54-e3531283a995",
+                  "afe4ec9e-16b7-47b8-8c4a-6bb401fae0d2"
+                ]
+              },
+              {
+                "index": 4,
+                "letter": "ف",
+                "scale": 1,
+                "geometry": [
+                  "8a1e08c2-2b63-4b78-84a4-2b7569643a92",
+                  "b2f523b2-8867-4292-b0ca-0dca86a8b7e3",
+                  "897b4c05-ee62-4a76-912f-90ad1ec0f65e"
+                ]
+              },
+              {
+                "index": 5,
+                "letter": "ل",
+                "scale": 1,
+                "geometry": [
+                  "374ce5d0-98d4-4e31-bcba-5ba4b3c9fabe",
+                  "53df76b6-9b79-4a62-ba36-348648157c51"
+                ]
+              },
+              {
+                "index": 6,
+                "letter": "ك",
+                "scale": 1,
+                "geometry": [
+                  "406e5516-a181-411e-bede-9fa95273935d",
+                  "0de80522-a8df-464b-85d3-3b22627a93eb",
+                  "27bcfb99-dffe-4c3b-a063-a295e59b55ca"
+                ]
+              }
+            ],
+            "actionTexture": "d0812e8b-bdcc-4cc5-a920-371e80aa1939",
+            "controls": 1,
+            "controlListeners": {
+              "change": 1,
+              "end": 1,
+              "start": 2
+            },
+            "xrListeners": {
+              "sessionend": 4,
+              "sessionstart": 4
+            },
+            "subscribers": 30,
+            "memory": {
+              "geometries": 38,
+              "textures": 22
+            },
+            "camera": {
+              "position": [
+                -3.9999999999999987,
+                30.000000000000004,
+                84
+              ],
+              "quaternion": [
+                -0.3344306137977055,
+                -0.046938094094727725,
+                -0.01667993458500113,
+                0.9411029484917602
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "zoom": 1,
+              "target": [
+                0,
+                -2.7,
+                44
+              ]
+            },
+            "enabled": true,
+            "xr": false,
+            "phase": "✧ MIRRORED LETTERS   01 / 02",
+            "paused": true,
+            "speed": "1× Speed"
+          },
+          "after": {
+            "ready": true,
+            "frame": 107,
+            "scene": "5be63705-6453-44d9-b417-3b2215fc2a9a",
+            "art": "a42c20d3-5a37-43d7-8b98-10b125af5046",
+            "resources": {
+              "atlas": [
+                "2c7640cf-4249-4bac-875d-f9e40b186158",
+                "5217c6cd-1b1a-4881-9168-9f0d39bce489",
+                "ad6e7f27-c1f3-4009-8946-20c91703c6b0"
+              ],
+              "geometries": [
+                "044e30f8-743a-46e9-a462-f8eb30feeacf",
+                "05842f8a-1cdf-48b4-865b-9035ffdd8c0f",
+                "0630fd1f-1a83-4ce0-a25a-25bdfa0b5e4d",
+                "086c0784-b282-41bf-b7e1-ea366f3d80cf",
+                "0ce0d1eb-1d9d-42f2-b892-d20da21ff4ab",
+                "123a631a-65f4-42af-8e08-49ae609ecc2f",
+                "133d67b6-36d6-41ba-a0d4-437eaa42ada8",
+                "18a0d2c5-fdfc-4034-aae4-ce79c6ba2bc3",
+                "1b1ff4ad-8dae-4c9c-beb8-4560cae2e6fc",
+                "1f598108-8800-4f16-8c72-8c9e8f5404c4",
+                "26b4cdb7-4670-40ca-80ed-8f2704d2c078",
+                "309c30e4-6c7b-4ee5-ad45-c21878e5bf81",
+                "31a63c71-fcb8-42e7-ba81-128b22964323",
+                "3262d11a-9fc1-4dc7-9dfb-838216491e0b",
+                "365c96b2-d468-471e-a37b-710fe4763087",
+                "448836e9-e33e-450b-b24d-3f08dbf8ec99",
+                "44d387c0-6555-4764-b1e5-2c016bba1ee8",
+                "464d85b5-8e58-4b79-ad5b-2a20a9673bdf",
+                "4b491085-ce9b-479a-9b0b-c2eb136e6b44",
+                "4bcc8165-7250-46dc-8473-01195e80d974",
+                "6703c168-605e-4450-89ba-4a13231177f3",
+                "6c90484f-6c09-47ae-8d13-360682287ed0",
+                "6cbda063-6bbd-43a6-a09c-0af8d7fc018c",
+                "785b7ee5-dc21-4d40-8749-cb1f8ffc6aad",
+                "786d32cc-23e1-4299-8b04-531e7486b936",
+                "8e5d8440-600f-42f7-8e58-f5fd0b4b0d5a",
+                "986a3402-d108-46a5-b57e-0def682ab5a1",
+                "99387e99-1c35-4922-8b11-adb7045ba126",
+                "a01e51ac-1d51-445b-ae8d-2bbfe7422ed2",
+                "a55597a6-130a-49df-8ab9-6ee69c907e10",
+                "b2945b78-1b15-4525-a1fc-7146363ffbae",
+                "b5051afd-b0d7-473f-a064-ece7e399d4ff",
+                "c1394743-b668-4726-8294-99c498315c42",
+                "c772ca09-90fc-4a37-a309-979a72dc342a",
+                "d36c9ff1-0aa4-4bbc-8728-8e353a26f486",
+                "d479236a-270c-48d2-8a3a-50d1726196ca",
+                "defce831-beba-431c-bd87-3e345fed7430",
+                "e3451272-29c9-4164-af37-7308b5a4b41e",
+                "f0095b91-3f78-4699-a4b2-be006786a148",
+                "f1094ca9-ac26-45da-ae60-5a3edf05750a",
+                "f8ff96bf-3247-4ce5-a3aa-695805307cdc",
+                "fab5cd1b-fcd1-4356-8a0c-e02f192401db",
+                "fb6b1208-6d75-47ef-bf11-d6e9d4b14ab1",
+                "fca57036-55ee-49c5-84e8-179d8271fd81",
+                "fce2bb53-4f01-4b09-9691-3134701cec82"
+              ],
+              "materials": [
+                "10bd153f-9ddf-4421-8674-7b9a5f3d8487",
+                "160256c1-c0ff-4b1d-9fe5-9f48bc278b0a",
+                "183b91e3-30e6-4154-81f7-a50d06e14991",
+                "1b1c51d0-48a0-4fb3-b4bb-5ff5f1180be7",
+                "2599b763-f234-4529-a9ae-546095e611bd",
+                "2c043da2-ff2d-43cd-9097-cb8215bc8cb5",
+                "31dabff2-8fed-4fcf-877f-bfb5293f60be",
+                "3a0a8551-0278-4e5c-a1ae-1ba869f74e4d",
+                "3f1c7560-e464-489b-b540-6d1bcbff2e2e",
+                "431172fd-4574-4bd8-b065-81797714637c",
+                "4333f6c4-1096-4f63-a004-653c61e857e1",
+                "44718e37-dc94-4bf0-93d3-1c53570fee13",
+                "472b56bd-d534-442f-851c-324eccda9487",
+                "47b4cfe9-4991-4b55-a45e-2f8fdbe41694",
+                "4aa2bb4b-6e10-408a-844f-b87973f474a7",
+                "51ed994a-36e6-443f-a26a-974b3666db37",
+                "528b6fa5-7488-42bb-bd4f-ac6bd276c976",
+                "53d994f1-61b0-44a0-994d-d7c4384a7473",
+                "54b2e8b9-32f2-4bdd-a2a9-6c6e7ffc31ac",
+                "54b72381-25bd-4115-a793-4d427e63059a",
+                "5e84d09c-5928-4342-8fd7-ddf5f2198adf",
+                "62426463-7af6-4255-9a14-7223067ba389",
+                "638d8871-d353-4614-9e93-91109238b315",
+                "6afbdf0f-e909-4f6b-9701-8c0e74072acf",
+                "6b951963-43a9-4d28-8207-444fa8614cc4",
+                "792bec4e-9c67-496b-b58e-7761d1883d28",
+                "7958159a-8563-484c-9809-6df5f565016c",
+                "813d56de-7170-44bc-9489-349d6de237aa",
+                "884e7822-295f-40a6-8faa-13d0684021b5",
+                "91d248e6-dd09-4da5-8d76-0a0a97591c89",
+                "9e2ec4bc-b417-4c3f-81b8-2bb3d5c9780f",
+                "9e8a3522-4202-4c70-a22c-171e374787cf",
+                "b0e43a1d-beeb-426a-aeb5-42f0521a86a6",
+                "b45d8703-a522-4813-93d4-c81c3083357c",
+                "b54588ee-287b-40bf-89be-1d76ca6df450",
+                "b9265ff6-1454-474c-9be9-f5ff4cc30fa9",
+                "bd2c9dcb-037d-415d-aa82-f6f020518215",
+                "bd45ed79-668d-4845-900b-92e89feb7e5e",
+                "be84db24-5f08-44d6-b38e-8cd154f1b9ea",
+                "c65bbbde-0a07-4349-825f-4696712a7cc4",
+                "c7e3f2bc-3272-4fb5-abee-19950132c8f5",
+                "c824d775-d58c-432e-b387-aa1536a53350",
+                "ce5d195d-0f82-4dec-aeae-7b678ef22584",
+                "d1e4bdf6-ebd9-4afb-abae-529d876631a4",
+                "db94aa81-4d76-4c1f-a930-7ef0d28bf1a8",
+                "de92e230-e6a5-4aa5-aa90-86e5550b2733",
+                "de9cc706-f3cb-4df5-ac6b-8a7e57dd0f93",
+                "e17f3294-1b74-406c-af03-28cf8580eb70",
+                "e69e5ff1-b4fa-403c-9148-60bfb4e6782c",
+                "f5654f0f-7ed5-4b13-a508-0c1f17eab1ca",
+                "fc76cfcf-6156-4d3a-a3f4-6ee7d726897e",
+                "fd2a089b-518e-43f8-920b-41db0edc8309",
+                "ff40066e-f3ec-4b8a-ba4f-2a9cdb73ed97"
+              ],
+              "textures": [
+                "06d7b9cb-0b40-469f-9893-424fe86755a5",
+                "0b6710be-d8cb-4000-b922-7abc72aae3c7",
+                "205c914f-d951-4818-9fdc-73b9fe0bd9ad",
+                "22fcd448-69b2-4056-85a4-963a3cea1315",
+                "2bc02731-c90f-42da-a8cc-dd7e0cccc4be",
+                "2c7640cf-4249-4bac-875d-f9e40b186158",
+                "4290378c-cdc0-4e2d-92cb-fc431a36fcae",
+                "4d648172-17c4-4932-a3ef-6df76dfd07d8",
+                "5217c6cd-1b1a-4881-9168-9f0d39bce489",
+                "7e163c2e-4f71-4f68-b2bf-4b796e0fd4b8",
+                "ad6e7f27-c1f3-4009-8946-20c91703c6b0",
+                "af77530e-6d5b-4de8-b789-deb02f01796e",
+                "b0d7633f-9df8-4b1b-94fb-a0cabbcfddbd",
+                "b71b8302-06ab-4ead-932c-f7ae8df5057d",
+                "cb16f28c-c956-4c32-8af4-60def883b392",
+                "ccede6b9-ed60-4ebf-9aa4-731fa9817fa8",
+                "e14a131e-0d58-4c69-9e92-6cbcbf747144",
+                "e91d25c3-f952-433f-97f8-e287fcfb1cbc"
+              ]
+            },
+            "letters": [
+              {
+                "index": 0,
+                "letter": "ك",
+                "scale": 1,
+                "geometry": [
+                  "d479236a-270c-48d2-8a3a-50d1726196ca",
+                  "fb6b1208-6d75-47ef-bf11-d6e9d4b14ab1",
+                  "a55597a6-130a-49df-8ab9-6ee69c907e10"
+                ]
+              },
+              {
+                "index": 1,
+                "letter": "ل",
+                "scale": 1,
+                "geometry": [
+                  "365c96b2-d468-471e-a37b-710fe4763087",
+                  "a01e51ac-1d51-445b-ae8d-2bbfe7422ed2"
+                ]
+              },
+              {
+                "index": 2,
+                "letter": "ف",
+                "scale": 1,
+                "geometry": [
+                  "0ce0d1eb-1d9d-42f2-b892-d20da21ff4ab",
+                  "05842f8a-1cdf-48b4-865b-9035ffdd8c0f",
+                  "464d85b5-8e58-4b79-ad5b-2a20a9673bdf"
+                ]
+              },
+              {
+                "index": 3,
+                "letter": "ي",
+                "scale": 1,
+                "geometry": [
+                  "fab5cd1b-fcd1-4356-8a0c-e02f192401db",
+                  "8e5d8440-600f-42f7-8e58-f5fd0b4b0d5a",
+                  "26b4cdb7-4670-40ca-80ed-8f2704d2c078"
+                ]
+              },
+              {
+                "index": 4,
+                "letter": "ف",
+                "scale": 1,
+                "geometry": [
+                  "0ce0d1eb-1d9d-42f2-b892-d20da21ff4ab",
+                  "05842f8a-1cdf-48b4-865b-9035ffdd8c0f",
+                  "4b491085-ce9b-479a-9b0b-c2eb136e6b44"
+                ]
+              },
+              {
+                "index": 5,
+                "letter": "ل",
+                "scale": 1,
+                "geometry": [
+                  "365c96b2-d468-471e-a37b-710fe4763087",
+                  "6c90484f-6c09-47ae-8d13-360682287ed0"
+                ]
+              },
+              {
+                "index": 6,
+                "letter": "ك",
+                "scale": 1,
+                "geometry": [
+                  "d479236a-270c-48d2-8a3a-50d1726196ca",
+                  "fb6b1208-6d75-47ef-bf11-d6e9d4b14ab1",
+                  "309c30e4-6c7b-4ee5-ad45-c21878e5bf81"
+                ]
+              }
+            ],
+            "actionTexture": "e14a131e-0d58-4c69-9e92-6cbcbf747144",
+            "controls": 2,
+            "controlListeners": {
+              "change": 1,
+              "end": 1,
+              "start": 2
+            },
+            "xrListeners": {
+              "sessionend": 4,
+              "sessionstart": 4
+            },
+            "subscribers": 30,
+            "memory": {
+              "geometries": 38,
+              "textures": 22
+            },
+            "camera": {
+              "position": [
+                0,
+                98,
+                169
+              ],
+              "quaternion": [
+                -0.25973484830079313,
+                0,
+                0,
+                0.9656799721326751
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "zoom": 1,
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "enabled": true,
+            "xr": false,
+            "phase": "✧ MIRRORED LETTERS   01 / 02",
+            "paused": true,
+            "speed": "1× Speed"
+          },
+          "domListenersBefore": {
+            "document": [
+              "selectionchange:false"
+            ],
+            "document.querySelector(\"canvas\")": [
+              "webglcontextcreationerror:false",
+              "webglcontextlost:false",
+              "webglcontextrestored:false"
+            ]
+          },
+          "domListenersAfter": {
+            "document": [
+              "selectionchange:false"
+            ],
+            "document.querySelector(\"canvas\")": [
+              "webglcontextcreationerror:false",
+              "webglcontextlost:false",
+              "webglcontextrestored:false"
+            ]
+          },
+          "success": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "baseline-home.png",
+          "captureMs": 1979,
+          "genuine": true
+        },
+        {
+          "file": "baseline-after-reset.png",
+          "captureMs": 1422,
+          "genuine": true
+        }
+      ],
+      "errors": [],
+      "initial": {
+        "ready": true,
+        "frame": 21,
+        "scene": "5be63705-6453-44d9-b417-3b2215fc2a9a",
+        "art": "496a94f5-6cbb-45ff-abc4-0fe461cacdb5",
+        "resources": {
+          "atlas": [
+            "47e5f53d-9e64-4b8f-ba62-deaea192a3ed",
+            "e2d3da60-3fd5-4d48-a51f-5bd5928961ad",
+            "ec20f521-de7a-49c2-b379-c32dc8f9e0da"
+          ],
+          "geometries": [
+            "0d98dee4-5415-4992-ad0a-fab4172405cc",
+            "0de80522-a8df-464b-85d3-3b22627a93eb",
+            "111cc90f-7826-4949-be59-2a23f7d76b1f",
+            "142ea3ea-ce53-4fb1-b8b3-a411153ce746",
+            "1ea34814-2dd0-4fd2-b5d0-244d49a5a081",
+            "219f222f-9a27-4f2e-922e-4b50f75b9054",
+            "27bcfb99-dffe-4c3b-a063-a295e59b55ca",
+            "29869e36-7164-4059-b322-911fc0c77dcd",
+            "2d052945-9146-4742-9caa-d6e4bd0858da",
+            "2ff0135d-df60-4763-a199-c4eeabfe273b",
+            "374ce5d0-98d4-4e31-bcba-5ba4b3c9fabe",
+            "39c348ab-abba-42f8-9629-5dee87135d63",
+            "3ef82a29-63f5-4de5-82a7-3559295108a5",
+            "406e5516-a181-411e-bede-9fa95273935d",
+            "48ca3bdc-e753-4d76-a0ca-b3814d509717",
+            "4c143c19-2299-44d3-ac8e-17541bc00296",
+            "53df76b6-9b79-4a62-ba36-348648157c51",
+            "5f4b8408-23c9-461f-ad39-48a6bf4a7c11",
+            "5ff3caa1-6701-4ecd-9caf-89fb9836e6e2",
+            "606ec8bc-8579-43ab-ae33-84d6d230e96e",
+            "70cbf8db-a997-4593-a93c-6df861aa7b3f",
+            "74baca7b-7c4f-4d3b-a70c-8408394adfff",
+            "786d20a3-e52c-4d33-9b54-e3531283a995",
+            "80260ee9-c6a9-4aeb-ba24-7bc32528b4db",
+            "8565642d-8574-4560-bcaa-d76f283872cc",
+            "897b4c05-ee62-4a76-912f-90ad1ec0f65e",
+            "8a1e08c2-2b63-4b78-84a4-2b7569643a92",
+            "8e9b91b4-2f03-4d06-8626-1b991709753a",
+            "8f18e8ea-8c70-4ee8-b7e4-4356e0e382b4",
+            "92f961b3-c51b-43eb-b66f-bd86c70a28be",
+            "97a3b627-ee3c-4db7-ba75-aed35d2689d4",
+            "9e03a8c5-d981-4794-ae6f-e9fd657b3a7b",
+            "a69c86d4-8168-4035-a87d-65f5b2f88880",
+            "a9dc7f0c-a215-4120-b51c-4dc106fd4751",
+            "ae69b03f-7a70-49d8-81c3-14108d2aecf9",
+            "afe4ec9e-16b7-47b8-8c4a-6bb401fae0d2",
+            "b2f523b2-8867-4292-b0ca-0dca86a8b7e3",
+            "b71d18c2-a215-4060-b990-f04af7eba9b8",
+            "b97a4d95-09b7-4bf6-b38a-0af79761697d",
+            "be60dcfc-81bf-431d-b686-0d7edc10959f",
+            "c772ca09-90fc-4a37-a309-979a72dc342a",
+            "caceeaaa-51ba-4ebd-866b-5cf90b77c666",
+            "d183d5a4-4cbc-4f74-aab9-18d56e89ab7e",
+            "e9287353-a06f-4dff-b8c1-eb376df155e7",
+            "ff99e7b0-4141-4a63-bd26-07b323e24af0"
+          ],
+          "materials": [
+            "077ec1a6-e262-4bb6-8b09-9e0b9462c506",
+            "11622d53-9f77-4976-8de7-902a5ed00284",
+            "1817ba82-cfef-4526-af1d-c0575457b8d9",
+            "1c6f0065-26eb-4a14-bb35-413f311d1196",
+            "244a7087-e739-4ad8-bc8c-2c5fa34cc452",
+            "24dea94f-0132-4a27-83e6-33034ccbd0e0",
+            "2590cce3-f8c7-4606-b659-c917908c480d",
+            "2fd96eaa-868d-486e-aee8-a62b821d3dd1",
+            "344c7b98-87ac-40ad-b245-bfb92645a04f",
+            "3ab55849-9156-4203-860f-6f1b7da26246",
+            "474fd511-c77b-4b1b-88d2-0dae2d632a2e",
+            "4b1a20de-42f4-4fa0-8097-fbdb3fa67ada",
+            "4ffa4694-227e-438b-83e6-2d986f8a213b",
+            "54249959-8a80-457d-ac0e-4af5d0698a33",
+            "560f2742-3b7c-47d1-a6b5-ad63a49028b1",
+            "59634069-ef13-4055-a30e-dc7edfcb3f31",
+            "5f2751a6-4be2-46b5-962b-263fd65e9ce3",
+            "60f0e80a-f250-4fb2-8bc1-a4576faa535b",
+            "6246a034-204a-4e24-b823-b73856b11b04",
+            "6284fdc3-1cb5-4ca5-9f4b-ed30553fe61a",
+            "64f03e88-2f1a-4ce4-acdd-2671b0036575",
+            "67d2a1d2-f267-4dc2-911b-dabbdc8694f7",
+            "697f56e2-8599-4e74-b1f4-7804fa1e82d3",
+            "6d30c5fb-9401-45d8-84c2-9623e98e76af",
+            "7a062b66-d7ab-47e8-afe0-c63f05c89169",
+            "8504f848-e50f-4db8-9dec-98ac9c76dde7",
+            "862f496b-f318-41f0-b435-5842069eff0b",
+            "8c847574-4faf-4ca5-82a3-08778731b619",
+            "9617b6bc-780e-4a1b-80d1-0d0cb119892c",
+            "99d8f266-a0c1-439d-a767-d4f16f8eefa2",
+            "9e62f356-e3bb-4505-8cb7-765f274b772b",
+            "a8dd18e3-bf8e-484a-90ed-7a92000a39e8",
+            "b4b1bd23-77dc-4950-8e90-1e52dfe9553a",
+            "b8529c79-1efe-42d1-931a-057beafd2ab8",
+            "bb110d07-ce3a-43fe-bbc8-4516fbd1b27f",
+            "c6f69477-d1ee-49c8-a9df-b16c1c38d57c",
+            "cc3f6861-cc39-4a92-97c1-e31bae74c561",
+            "ce331bc1-d6aa-4b99-a783-9bc0b20e73ba",
+            "cfe87bb0-7f54-44fc-af98-24b47286def6",
+            "d0f3c59f-e661-4fc8-b230-c22f8c371b73",
+            "d272c981-3ae1-4d19-a850-84fe707c6649",
+            "d7b7e52f-4368-4463-9b87-70806b714ffb",
+            "db4482aa-b840-4e31-af47-29fdb978bd66",
+            "dcc575e5-ddd2-431f-ae08-e1466f6bc4b6",
+            "e2621967-26e8-4961-a268-e1c7b2e1e252",
+            "e572bde9-ffb9-450a-8ccd-c195faf7d58a",
+            "e71be952-b840-4b66-b521-ca3e95957676",
+            "e742b888-7fd7-4405-b067-db00c0bc123b",
+            "eb51de20-63df-41f9-b26a-7ef604c2a26e",
+            "ec896a85-20f0-4803-ab52-e987c0c98f53",
+            "ec9a6d99-2484-49af-a571-5280cd4622bf",
+            "ee836250-8c4f-4266-9860-a924f16e8e7f",
+            "f26949fa-e4cf-42f5-b5be-420e33ea0a03"
+          ],
+          "textures": [
+            "05b92b6e-0f92-4190-85a7-7b9fe9c01307",
+            "0d6a3157-216f-40d9-a9fe-7568b23aab1d",
+            "0e87b83b-4722-4d56-8c36-cb951ab97b5b",
+            "11252c64-7477-41dc-badf-56ef7446b579",
+            "47e5f53d-9e64-4b8f-ba62-deaea192a3ed",
+            "5c4f7bb4-d05e-41bd-bcc4-0bb663e39270",
+            "6877d171-1fae-4bf4-a17c-63b7646797d2",
+            "76b338ec-10f3-4d25-abe9-e7ecf645b4df",
+            "80a0b46c-283c-4441-87d3-f61431da29e9",
+            "8aaae9a3-6e2d-43b8-8665-215a584c0056",
+            "bb0dba30-a5d9-4fcf-a404-f53bb1ca7e41",
+            "c98571bb-8b9b-4f60-aa31-c0ffbda200da",
+            "ca1d9362-0991-4dd9-95c1-1e5e4c3ae1fa",
+            "d0812e8b-bdcc-4cc5-a920-371e80aa1939",
+            "db030573-3410-4ed9-96ad-a4543c5cb985",
+            "e2d3da60-3fd5-4d48-a51f-5bd5928961ad",
+            "ec20f521-de7a-49c2-b379-c32dc8f9e0da",
+            "f01f5206-c577-4ff4-94ab-b6e66e17924d"
+          ]
+        },
+        "letters": [
+          {
+            "index": 0,
+            "letter": "ك",
+            "scale": 1,
+            "geometry": [
+              "406e5516-a181-411e-bede-9fa95273935d",
+              "0de80522-a8df-464b-85d3-3b22627a93eb",
+              "8e9b91b4-2f03-4d06-8626-1b991709753a"
+            ]
+          },
+          {
+            "index": 1,
+            "letter": "ل",
+            "scale": 1,
+            "geometry": [
+              "374ce5d0-98d4-4e31-bcba-5ba4b3c9fabe",
+              "70cbf8db-a997-4593-a93c-6df861aa7b3f"
+            ]
+          },
+          {
+            "index": 2,
+            "letter": "ف",
+            "scale": 1,
+            "geometry": [
+              "8a1e08c2-2b63-4b78-84a4-2b7569643a92",
+              "b2f523b2-8867-4292-b0ca-0dca86a8b7e3",
+              "be60dcfc-81bf-431d-b686-0d7edc10959f"
+            ]
+          },
+          {
+            "index": 3,
+            "letter": "ي",
+            "scale": 1,
+            "geometry": [
+              "8f18e8ea-8c70-4ee8-b7e4-4356e0e382b4",
+              "786d20a3-e52c-4d33-9b54-e3531283a995",
+              "afe4ec9e-16b7-47b8-8c4a-6bb401fae0d2"
+            ]
+          },
+          {
+            "index": 4,
+            "letter": "ف",
+            "scale": 1,
+            "geometry": [
+              "8a1e08c2-2b63-4b78-84a4-2b7569643a92",
+              "b2f523b2-8867-4292-b0ca-0dca86a8b7e3",
+              "897b4c05-ee62-4a76-912f-90ad1ec0f65e"
+            ]
+          },
+          {
+            "index": 5,
+            "letter": "ل",
+            "scale": 1,
+            "geometry": [
+              "374ce5d0-98d4-4e31-bcba-5ba4b3c9fabe",
+              "53df76b6-9b79-4a62-ba36-348648157c51"
+            ]
+          },
+          {
+            "index": 6,
+            "letter": "ك",
+            "scale": 1,
+            "geometry": [
+              "406e5516-a181-411e-bede-9fa95273935d",
+              "0de80522-a8df-464b-85d3-3b22627a93eb",
+              "27bcfb99-dffe-4c3b-a063-a295e59b55ca"
+            ]
+          }
+        ],
+        "actionTexture": "d0812e8b-bdcc-4cc5-a920-371e80aa1939",
+        "controls": 1,
+        "controlListeners": {
+          "change": 1,
+          "end": 1,
+          "start": 2
+        },
+        "xrListeners": {
+          "sessionend": 4,
+          "sessionstart": 4
+        },
+        "subscribers": 30,
+        "memory": {
+          "geometries": 38,
+          "textures": 22
+        },
+        "camera": {
+          "position": [
+            0,
+            98,
+            169
+          ],
+          "quaternion": [
+            -0.25973484830079313,
+            0,
+            0,
+            0.9656799721326751
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "target": [
+            0,
+            0,
+            0
+          ]
+        },
+        "enabled": true,
+        "xr": false,
+        "phase": "✧ MIRRORED LETTERS   01 / 02",
+        "paused": true,
+        "speed": "1× Speed"
+      },
+      "startupMs": 14113,
+      "success": true
+    }
+  ],
+  "provenance": {
+    "extractedBaselineOnly": true,
+    "comparisonOverallSuccess": false,
+    "laterComparisonFailure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n",
+    "note": "Baseline completed successfully; the later corrected-branch inspector wait was fixed in the harness. No application change between these measurements and final pass."
+  }
+}

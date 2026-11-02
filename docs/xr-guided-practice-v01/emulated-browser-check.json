@@ -1,0 +1,127 @@
+{
+  "candidate": "feat/xr-guided-practice-v0.1 (working tree)",
+  "success": true,
+  "mode": "verification",
+  "platform": "linux",
+  "input": "IWER 2.1.0 WEBXR HAND EMULATION \u2014 NOT PHYSICAL QUEST",
+  "renderer": "actual full application WebGL",
+  "events": [
+    {
+      "input": "right",
+      "target": "qari-xr-menu-launcher",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.205
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.09
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": 0.205
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": -0.025
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": -0.2
+    },
+    {
+      "input": "right",
+      "target": "qari-letter-0",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-action-primary",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-action-primary",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-launcher",
+      "row": 0
+    },
+    {
+      "input": "right",
+      "target": "qari-xr-menu-panel",
+      "row": -0.025
+    },
+    {
+      "guide": "kaf",
+      "mode": "kaf",
+      "state": "complete",
+      "missing": [],
+      "feedback": "Practice guide completed",
+      "strokes": 2,
+      "active": false,
+      "inspecting": "false"
+    },
+    {
+      "guide": "lam",
+      "mode": "lam",
+      "state": "complete",
+      "missing": [],
+      "feedback": "Practice guide completed",
+      "strokes": 1,
+      "active": false,
+      "inspecting": "false"
+    },
+    {
+      "guide": "fa",
+      "mode": "fa",
+      "state": "complete",
+      "missing": [],
+      "feedback": "Practice guide completed",
+      "strokes": 2,
+      "active": false,
+      "inspecting": "false"
+    },
+    {
+      "guide": "ya",
+      "mode": "ya",
+      "state": "complete",
+      "missing": [],
+      "feedback": "Practice guide completed",
+      "strokes": 3,
+      "active": false,
+      "inspecting": "false"
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "01-launcher.png",
+    "02-hand-menu.png",
+    "03-paused.png",
+    "04-inspect-menu.png",
+    "05-nearer.png",
+    "06-return-orbit.png",
+    "07-letter-selected.png",
+    "08-living-orbit.png",
+    "guide-kaf-completed.png",
+    "guide-kaf-sculpture.png",
+    "guide-lam-completed.png",
+    "guide-lam-sculpture.png",
+    "guide-fa-completed.png",
+    "guide-fa-sculpture.png",
+    "guide-ya-completed.png",
+    "guide-ya-sculpture.png",
+    "10-orbit-return.png"
+  ],
+  "warnings": [],
+  "limits": "Actual full application driven through IWER 2.1.0 WebXR hand joints; four guides, Undo/Redo completion, same-session sculptures. Tracking recovery is exercised in verification mode; video mode omits negative tests. Browser entry buttons use automated clicks. Not physical Quest hardware, human handwriting, stereo comfort or performance certification"
+}

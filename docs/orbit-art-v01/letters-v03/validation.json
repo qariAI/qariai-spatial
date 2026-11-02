@@ -1,0 +1,22 @@
+{
+  "baseline": "8c64365d7437d0f8db311e41c7f78859d016d6f0",
+  "build": "PASS; inherited shared-chunk advisory",
+  "typeScript": "PASS",
+  "exactFontExtraction": "PASS all three glyphs; original font SHA and all curves/advances/bounds",
+  "nativeMaskAndDotCounterCores": "PASS zero lost/filled cores outside one-pixel AA neighborhood",
+  "projectedCapArea": "PASS maximum delta <2e-8",
+  "perLetterBudget": "PASS <=20,000 triangles /2 MiB",
+  "collectionBudget": "PASS 38,028 unique triangles /3,650,688 bytes",
+  "fullSceneBrowser": true,
+  "browserErrors": [],
+  "selectionStatesVerified": 7,
+  "checks": "Actual WebGL full scene; all seven letters and every mirrored/center selection; two phases; pause/resume background; exact Explore/Return endpoints; safe Harf link; shared geometry.",
+  "QuranEightExcerpts": "PASS",
+  "sourceScopeAndHelperCopies": "PASS",
+  "existingHarfBodyDotSessionInk": "PASS focused simulations",
+  "existingMenuRecoveryNavigation": "PASS focused simulations",
+  "starfieldXRScaleAndPause": "PASS unchanged actual component callbacks",
+  "HarfAndRingSources": "BYTE IDENTICAL to baseline",
+  "physicalQuest": "NOT TESTED; increased workload needs stereo/hardware evaluation",
+  "visualApproval": "PENDING"
+}

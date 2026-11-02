@@ -1,0 +1,16 @@
+{
+  "baseline": "7980a3e1cd2e3de4f2af073ae9a1000b4d14e454",
+  "untouchedSourceDirectories": [
+    "src/harf",
+    "src/harf-xr",
+    "src/xr",
+    "src/calligraphy"
+  ],
+  "sha256": {
+    "src/CalligraphyDepthArt.tsx": "59624b9ce15dffb22f2b4d0947f1bfa22eae259d34a62c57fbec868808795938",
+    "public/fonts/Amiri-Bold.ttf": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b"
+  },
+  "scopeGuard": "scripts/check-orbit-art.cjs",
+  "originalStudyUnchanged": true,
+  "navigationOnlyException": "src/integration/routes.ts preserves allowlisted orbitArt flag; tracing and session code unchanged"
+}

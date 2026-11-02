@@ -1,0 +1,251 @@
+{
+  "success": true,
+  "errors": [],
+  "warnings": [],
+  "captures": [
+    {
+      "view": "wide",
+      "camera": [
+        0,
+        98,
+        169
+      ],
+      "render": {
+        "frame": 18,
+        "calls": 59,
+        "triangles": 47566,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 14
+      },
+      "geometryBytes": 2554532,
+      "textureBytesEstimate": 56965802.66666667
+    },
+    {
+      "view": "selected-kaf",
+      "camera": [
+        0,
+        98,
+        169
+      ],
+      "render": {
+        "frame": 19,
+        "calls": 59,
+        "triangles": 47566,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 14
+      },
+      "geometryBytes": 2554532,
+      "textureBytesEstimate": 56965802.66666667
+    },
+    {
+      "view": "explore",
+      "camera": [
+        -3.999999999999961,
+        30.000000000000004,
+        84
+      ],
+      "render": {
+        "frame": 20,
+        "calls": 22,
+        "triangles": 18458,
+        "points": 8472,
+        "lines": 2184
+      },
+      "memory": {
+        "geometries": 40,
+        "textures": 14
+      },
+      "geometryBytes": 2554532,
+      "textureBytesEstimate": 56965802.66666667
+    }
+  ],
+  "limits": "Full desktop scene under Chromium/SwiftShader with harness-only deterministic stepping and dev StrictMode duplication removed. Not Quest/stereo FPS. No artwork or tracing substitution.",
+  "initial": {
+    "assets": [
+      {
+        "materialRevision": 2,
+        "visibility": {
+          "faceLinearGain": 1.6,
+          "faceReflection": 2.6,
+          "faceEmissionFloor": 0.45,
+          "selectedFaceEmission": 0.75,
+          "sideReflection": 1.6,
+          "sideEmissionFloor": 0.18,
+          "selectedSideEmission": 0.32,
+          "emissionUsesExistingPigment": true,
+          "noBloom": true
+        },
+        "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "components": 2,
+        "triangles": 11940,
+        "geometryBytes": 1146240,
+        "surface": {
+          "finishRevision": 12,
+          "materialResponse": "symmetric channel shoulders and deeper auxiliary valleys; distinct polished, satin and fine-engraved roughness, unchanged pigment treatment",
+          "proofBaseLinearReflectanceCalibration": 1.7,
+          "bakeMs": 565.4000000059605,
+          "width": 384,
+          "height": 576,
+          "rawBytes": 1769472,
+          "rgba8WithMipsEstimate": 2359296,
+          "engraving": {
+            "curves": 13,
+            "samples": 2283,
+            "primary": 3,
+            "branches": 10,
+            "omittedHairlines": 8,
+            "omittedBranches": 7,
+            "branchWidth": 1.6,
+            "proofSvgSha256": "3cda3686e96fe3ac51279900f7c80d0460d98c0b4531c659a3267a4ff3512500",
+            "method": "proof-09 exact ornament path centres; resolution-limited selection, panel-owned coverage"
+          },
+          "panels": {
+            "count": 3,
+            "finishes": [
+              "polished",
+              "satin",
+              "fine engraved"
+            ],
+            "samples": [
+              10483,
+              4443,
+              4072
+            ],
+            "method": "interior-gated auxiliary material/bump pockets; no physical cuts or new geometry"
+          },
+          "coverageSamples": 71539,
+          "perimeterSamples": 21465,
+          "channelSamples": 6931,
+          "opacity": "all surface texels opaque; no geometry discard or displacement",
+          "channels": "auxiliary bump/roughness shading, not physically cut grooves",
+          "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient"
+        },
+        "environment": {
+          "width": 336,
+          "height": 256,
+          "estimatedBytes": 688128
+        },
+        "bumpScale": 0.5,
+        "displayScale": 3.1818181818181817,
+        "bakeMs": 851.2000000029802,
+        "sharing": "one geometry/map set for both mirrored kafs",
+        "limits": "Font-derived study. Native Three 0.160 renderer; local reflection adaptation, not identical standalone studio lighting. Quest hardware unvalidated."
+      },
+      {
+        "materialRevision": 2,
+        "visibility": {
+          "faceLinearGain": 1.6,
+          "faceReflection": 2.6,
+          "faceEmissionFloor": 0.45,
+          "selectedFaceEmission": 0.75,
+          "sideReflection": 1.6,
+          "sideEmissionFloor": 0.18,
+          "selectedSideEmission": 0.32,
+          "emissionUsesExistingPigment": true,
+          "noBloom": true
+        },
+        "pathHash": "2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4",
+        "fontHash": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+        "components": 2,
+        "triangles": 11940,
+        "geometryBytes": 1146240,
+        "surface": {
+          "finishRevision": 12,
+          "materialResponse": "symmetric channel shoulders and deeper auxiliary valleys; distinct polished, satin and fine-engraved roughness, unchanged pigment treatment",
+          "proofBaseLinearReflectanceCalibration": 1.7,
+          "bakeMs": 565.4000000059605,
+          "width": 384,
+          "height": 576,
+          "rawBytes": 1769472,
+          "rgba8WithMipsEstimate": 2359296,
+          "engraving": {
+            "curves": 13,
+            "samples": 2283,
+            "primary": 3,
+            "branches": 10,
+            "omittedHairlines": 8,
+            "omittedBranches": 7,
+            "branchWidth": 1.6,
+            "proofSvgSha256": "3cda3686e96fe3ac51279900f7c80d0460d98c0b4531c659a3267a4ff3512500",
+            "method": "proof-09 exact ornament path centres; resolution-limited selection, panel-owned coverage"
+          },
+          "panels": {
+            "count": 3,
+            "finishes": [
+              "polished",
+              "satin",
+              "fine engraved"
+            ],
+            "samples": [
+              10483,
+              4443,
+              4072
+            ],
+            "method": "interior-gated auxiliary material/bump pockets; no physical cuts or new geometry"
+          },
+          "coverageSamples": 71539,
+          "perimeterSamples": 21465,
+          "channelSamples": 6931,
+          "opacity": "all surface texels opaque; no geometry discard or displacement",
+          "channels": "auxiliary bump/roughness shading, not physically cut grooves",
+          "palette": "sapphire field with three authored amber/turquoise/coral material regions and dark blue divisions; no full-face rainbow gradient"
+        },
+        "environment": {
+          "width": 336,
+          "height": 256,
+          "estimatedBytes": 688128
+        },
+        "bumpScale": 0.5,
+        "displayScale": 3.1818181818181817,
+        "bakeMs": 851.2000000029802,
+        "sharing": "one geometry/map set for both mirrored kafs",
+        "limits": "Font-derived study. Native Three 0.160 renderer; local reflection adaptation, not identical standalone studio lighting. Quest hardware unvalidated."
+      }
+    ],
+    "sharedGeometry": [
+      {
+        "geometry": "ac6fa342-1968-4635-a1e9-cd1889724b76",
+        "position": 18324
+      },
+      {
+        "geometry": "16d62664-7ca9-418e-a0ec-78fe1ad3dcae",
+        "position": 17496
+      },
+      {
+        "geometry": "ac6fa342-1968-4635-a1e9-cd1889724b76",
+        "position": 18324
+      },
+      {
+        "geometry": "16d62664-7ca9-418e-a0ec-78fe1ad3dcae",
+        "position": 17496
+      }
+    ],
+    "stars": [
+      {
+        "count": 5200,
+        "drawCount": 5200,
+        "geometryBytes": 83200,
+        "time": 0,
+        "rotation": 0
+      },
+      {
+        "count": 1400,
+        "drawCount": 1400,
+        "geometryBytes": 22400,
+        "time": 0,
+        "rotation": 0
+      }
+    ],
+    "phase": "✧ MIRRORED LETTERS   01 / 02"
+  },
+  "checks": "Actual WebGL full scene; mirrored kaf scale/selection; two phases; pause/resume background; exact Explore/Return endpoints; safe Harf link; shared geometry."
+}

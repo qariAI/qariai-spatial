@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "rows": [
+    {
+      "letter": "ل",
+      "baseline": 156.25,
+      "components": 1,
+      "holes": 0,
+      "triangles": 7212,
+      "bytes": 692352,
+      "maxProjectedCapAreaDelta": 9.31785304469912e-9,
+      "lostNativeCoreOutsideOnePixel": 0,
+      "filledNativeGapCoreOutsideOnePixel": 0,
+      "thresholdIoU": 0.9822485207100592,
+      "pathHash": "53c482d183e898a58f8cf983f20aeafb0db830b34600f7f14e04b8fc312c9a65"
+    },
+    {
+      "letter": "ف",
+      "baseline": 156.25,
+      "components": 2,
+      "holes": 1,
+      "triangles": 9144,
+      "bytes": 877824,
+      "maxProjectedCapAreaDelta": 1.9589199373726274e-8,
+      "lostNativeCoreOutsideOnePixel": 0,
+      "filledNativeGapCoreOutsideOnePixel": 0,
+      "thresholdIoU": 0.9726319875776398,
+      "pathHash": "a2b5545bbb9b7e2b61b924179f83e89258393d11a0529826890e1a399994ff92"
+    },
+    {
+      "letter": "ي",
+      "baseline": 156.25,
+      "components": 2,
+      "holes": 0,
+      "triangles": 9732,
+      "bytes": 934272,
+      "maxProjectedCapAreaDelta": 8.055881073332216e-9,
+      "lostNativeCoreOutsideOnePixel": 0,
+      "filledNativeGapCoreOutsideOnePixel": 0,
+      "thresholdIoU": 0.9734345351043643,
+      "pathHash": "2605a72025fc298bb0081a93b8dd17d29ab5f46bf85e6b2a0411b23c590ee722"
+    }
+  ],
+  "totalUniqueTriangles": 38028,
+  "totalGeometryBytes": 3650688,
+  "limits": "CPU/native canvas and actual Three tessellation. One-pixel AA neighborhood allowance; no source curve alteration. Not headset evidence."
+}

@@ -1,0 +1,8 @@
+{
+  "svgFallback": "passed",
+  "spatialPointerBodyDotRetry": "passed",
+  "handFeatureDenial": "passed",
+  "mobileLayout": "passed",
+  "pagehideCleanup": "no JS error",
+  "errors": []
+}

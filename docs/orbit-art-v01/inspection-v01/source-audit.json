@@ -1,0 +1,16 @@
+{
+  "base": "1cb99cb0ef6093523a832212b8423d3b63492fc5",
+  "unchangedSHA256": {
+    "src/orbit-art/kafAsset.ts": "0f5d6e9cf6607e5cbc099cee3ee1a001601462a4ee7f02e3a3c99597f468aead",
+    "src/orbit-art/SculptedKaf.tsx": "643a2e637e1489014a22a9ab864bb0d0d706e69c4db63104d2a4bccd0b0d1f09",
+    "src/orbit-art/letterSurface.ts": "238d289b5a7c3d6eb9eb1cd77bba4fe61a6093b132069f5a00dc0217dab91ea7",
+    "src/orbit-art/AnimatedStarfield.tsx": "d8113aa3e2188306d7e027b55cb2e82c3e5ccec87be8f41eba4da7446a1a89bc",
+    "src/CalligraphyDepthArt.tsx": "59624b9ce15dffb22f2b4d0947f1bfa22eae259d34a62c57fbec868808795938",
+    "src/harf-xr/main.ts": "136ebe1a2dabd8dd7eb221c09fe9de832f2a4e9e1d2c350a54e144f201ac0496",
+    "src/harf-xr/desktop.ts": "6e5c8348d82d1b316dacf173fbd257fa278becf471ffcadd4738dadb034dfe34",
+    "src/harf-xr/tracing.ts": "cb09cdf5ef2fc491fa8fe0c475415c51138da76c53a89909815d7b841c619b56",
+    "src/harf-xr/letters/ba.json": "8024c81d021abf626405abf549d1d05f6b2d48e3eee5ca68216a6999558bb059",
+    "src/integration/routes.ts": "8e850b3308dd72611242c6fc0437661c7f876f215566bcce3f0994242ecd2d8b",
+    "public/fonts/Amiri-Bold.ttf": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "beforeCommit": "8c64365d7437d0f8db311e41c7f78859d016d6f0",
+  "sameWideCamera": true,
+  "beforeWide": {
+    "view": "wide",
+    "camera": [
+      0,
+      98,
+      169
+    ],
+    "render": {
+      "frame": 18,
+      "calls": 59,
+      "triangles": 47566,
+      "points": 8472,
+      "lines": 2184
+    },
+    "memory": {
+      "geometries": 40,
+      "textures": 14
+    },
+    "geometryBytes": 2554532,
+    "textureBytesEstimate": 56965802.66666667
+  },
+  "afterWide": {
+    "view": "wide",
+    "camera": [
+      0,
+      98,
+      169
+    ],
+    "render": {
+      "frame": 18,
+      "calls": 60,
+      "triangles": 89980,
+      "points": 8472,
+      "lines": 2184
+    },
+    "memory": {
+      "geometries": 40,
+      "textures": 15
+    },
+    "geometryBytes": 5058280,
+    "textureBytesEstimate": 62296063.99999999
+  },
+  "uniqueAssets": [
+    {
+      "letter": "\u0643",
+      "components": 2,
+      "holes": 0,
+      "triangles": 11940,
+      "geometryBytes": 1146240,
+      "baseline": 156.25,
+      "environment": {
+        "width": 336,
+        "height": 256,
+        "estimatedBytes": 688128,
+        "shared": false
+      },
+      "bakeMs": 618.1999999955297
+    },
+    {
+      "letter": "\u0644",
+      "components": 1,
+      "holes": 0,
+      "triangles": 7212,
+      "geometryBytes": 692352,
+      "baseline": 156.25,
+      "environment": {
+        "width": 336,
+        "height": 256,
+        "estimatedBytes": 688128,
+        "shared": true
+      },
+      "bakeMs": 259.30000000447035
+    },
+    {
+      "letter": "\u0641",
+      "components": 2,
+      "holes": 1,
+      "triangles": 9144,
+      "geometryBytes": 877824,
+      "baseline": 156.25,
+      "environment": {
+        "width": 336,
+        "height": 256,
+        "estimatedBytes": 688128,
+        "shared": true
+      },
+      "bakeMs": 245.60000000149012
+    },
+    {
+      "letter": "\u064a",
+      "components": 2,
+      "holes": 0,
+      "triangles": 9732,
+      "geometryBytes": 934272,
+      "baseline": 156.25,
+      "environment": {
+        "width": 336,
+        "height": 256,
+        "estimatedBytes": 688128,
+        "shared": true
+      },
+      "bakeMs": 184.29999999701977
+    }
+  ],
+  "totalUniqueTriangles": 38028,
+  "totalUniqueGeometryBytes": 3650688,
+  "surfaceMapBytesWithMips": 9437184,
+  "sharedReflectionEstimateBytes": 688128,
+  "limits": "Native desktop software-rendered submission counts and buffer/map estimates, not measured driver VRAM, sustained FPS or physical Quest performance."
+}

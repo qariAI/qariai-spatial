@@ -1,0 +1,207 @@
+{
+  "success": true,
+  "errors": [],
+  "checks": [
+    {
+      "letter": "kaf",
+      "dragZoomResetEscapeFocus": "passed",
+      "originalViewAndControls": "exactly restored",
+      "sharedResources": "same geometry/material/scene references",
+      "before": {
+        "original": [
+          0,
+          98,
+          169
+        ],
+        "originalQuaternion": [
+          -0.25973484830079313,
+          0,
+          0,
+          0.9656799721326751
+        ],
+        "originalTarget": [
+          0,
+          0,
+          0
+        ],
+        "originalEnabled": true,
+        "calls": 4,
+        "triangles": 11940,
+        "memory": {
+          "geometries": 2,
+          "textures": 3
+        },
+        "sameGeometry": true,
+        "sameMaterials": true,
+        "sameScene": true
+      },
+      "inspecting": {
+        "original": [
+          0,
+          98,
+          169
+        ],
+        "originalQuaternion": [
+          -0.25973484830079313,
+          0,
+          0,
+          0.9656799721326751
+        ],
+        "originalTarget": [
+          0,
+          0,
+          0
+        ],
+        "originalEnabled": false,
+        "camera": [
+          6.118458783840487,
+          4.379254171627492,
+          17.602607646528096
+        ],
+        "target": [
+          -0.040226619351994,
+          2.2677048905329267,
+          0.006363637406717638
+        ],
+        "calls": 4,
+        "triangles": 11940,
+        "memory": {
+          "geometries": 2,
+          "textures": 3
+        },
+        "sameGeometry": true,
+        "sameMaterials": true,
+        "sameScene": true
+      },
+      "after": {
+        "original": [
+          0,
+          98,
+          169
+        ],
+        "originalQuaternion": [
+          -0.25973484830079313,
+          0,
+          0,
+          0.9656799721326751
+        ],
+        "originalTarget": [
+          0,
+          0,
+          0
+        ],
+        "originalEnabled": true,
+        "calls": 4,
+        "triangles": 11940,
+        "memory": {
+          "geometries": 2,
+          "textures": 3
+        },
+        "sameGeometry": true,
+        "sameMaterials": true,
+        "sameScene": true
+      }
+    },
+    {
+      "letter": "fa",
+      "dragZoomResetEscapeFocus": "passed",
+      "originalViewAndControls": "exactly restored",
+      "sharedResources": "same geometry/material/scene references",
+      "before": {
+        "original": [
+          0,
+          98,
+          169
+        ],
+        "originalQuaternion": [
+          -0.25973484830079313,
+          0,
+          0,
+          0.9656799721326751
+        ],
+        "originalTarget": [
+          0,
+          0,
+          0
+        ],
+        "originalEnabled": true,
+        "calls": 4,
+        "triangles": 9144,
+        "memory": {
+          "geometries": 4,
+          "textures": 5
+        },
+        "sameGeometry": true,
+        "sameMaterials": true,
+        "sameScene": true
+      },
+      "inspecting": {
+        "original": [
+          0,
+          98,
+          169
+        ],
+        "originalQuaternion": [
+          -0.25973484830079313,
+          0,
+          0,
+          0.9656799721326751
+        ],
+        "originalTarget": [
+          0,
+          0,
+          0
+        ],
+        "originalEnabled": false,
+        "camera": [
+          7.046846445106368,
+          4.223412379513528,
+          20.1311003244012
+        ],
+        "target": [
+          0.0031886046583000645,
+          1.8084439770741894,
+          0.006363637406717636
+        ],
+        "calls": 4,
+        "triangles": 9144,
+        "memory": {
+          "geometries": 4,
+          "textures": 5
+        },
+        "sameGeometry": true,
+        "sameMaterials": true,
+        "sameScene": true
+      },
+      "after": {
+        "original": [
+          0,
+          98,
+          169
+        ],
+        "originalQuaternion": [
+          -0.25973484830079313,
+          0,
+          0,
+          0.9656799721326751
+        ],
+        "originalTarget": [
+          0,
+          0,
+          0
+        ],
+        "originalEnabled": true,
+        "calls": 4,
+        "triangles": 9144,
+        "memory": {
+          "geometries": 4,
+          "textures": 5
+        },
+        "sameGeometry": true,
+        "sameMaterials": true,
+        "sameScene": true
+      }
+    }
+  ],
+  "limits": "Actual controller and overlay with approved native assets in a small isolated test scene. Not a full Living Orbit startup or Quest test."
+}

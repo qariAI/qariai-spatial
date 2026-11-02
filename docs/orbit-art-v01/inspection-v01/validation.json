@@ -1,0 +1,65 @@
+{
+  "base": "1cb99cb0ef6093523a832212b8423d3b63492fc5",
+  "build": "passed; inherited shared-chunk advisory",
+  "content": "eight exact excerpts passed",
+  "regressions": {
+    "native-scope": "passed",
+    "fixed-assets-pointer-shortcuts-phase-callbacks": "passed",
+    "harf-tracing-session": "passed",
+    "harf-ink": "passed",
+    "navigation": "passed",
+    "menu": "passed (logic simulation)",
+    "recovery": "passed (logic simulation)"
+  },
+  "nativeInspection": {
+    "success": true,
+    "errors": [],
+    "checks": [
+      {
+        "letter": "kaf",
+        "viewAndControls": "exactly restored",
+        "dragZoomResetEscapeFocus": "passed",
+        "beforeMemory": {
+          "geometries": 2,
+          "textures": 3
+        },
+        "inspectionMemory": {
+          "geometries": 2,
+          "textures": 3
+        },
+        "afterMemory": {
+          "geometries": 2,
+          "textures": 3
+        },
+        "beforeCalls": 4,
+        "inspectionCalls": 4,
+        "sameSceneGeometryMaterials": true
+      },
+      {
+        "letter": "fa",
+        "viewAndControls": "exactly restored",
+        "dragZoomResetEscapeFocus": "passed",
+        "beforeMemory": {
+          "geometries": 4,
+          "textures": 5
+        },
+        "inspectionMemory": {
+          "geometries": 4,
+          "textures": 5
+        },
+        "afterMemory": {
+          "geometries": 4,
+          "textures": 5
+        },
+        "beforeCalls": 4,
+        "inspectionCalls": 4,
+        "sameSceneGeometryMaterials": true
+      }
+    ]
+  },
+  "limits": {
+    "fullScene": "Earlier automation startup timeout remains unresolved; no full-scene attempt repeated in this pass. New interaction needs desktop preview review.",
+    "quest": "Deferred at owner request; no headset performance claim.",
+    "performance": "No new artwork geometry, maps, renderers or scenes. Larger viewport and close PBR surface may increase fragment cost; not measured as hardware FPS."
+  }
+}

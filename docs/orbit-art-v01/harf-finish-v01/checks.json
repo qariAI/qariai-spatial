@@ -1,0 +1,21 @@
+{
+  "sourceIntegrity": "passed",
+  "variants": [
+    {
+      "name": "original",
+      "bodyDotResetGuide": "passed",
+      "exactPaths": "passed"
+    },
+    {
+      "name": "sapphire",
+      "bodyDotResetGuide": "passed",
+      "exactPaths": "passed"
+    },
+    {
+      "name": "invalid",
+      "bodyDotResetGuide": "passed",
+      "exactPaths": "passed"
+    }
+  ],
+  "errors": []
+}

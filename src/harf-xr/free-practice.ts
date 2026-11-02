@@ -1,0 +1,92 @@
+import {installGuideCompletion} from './guide-validation/completion';
+import type {Point} from './guide-validation/engine';
+import kaf from '../orbit-art/generated/kaf-outline.json';
+import outlines from '../orbit-art/generated/letter-outlines.json';
+import {PRACTICES} from '../integration/practice';
+import {experienceHref,preserveExperienceLinks,requestedPractice} from '../integration/routes';
+import {installSapphireGuide} from './desktop-finish';
+
+// Reuse the exact reviewed paths, including all source contours and holes.
+// No centreline, score, stroke order or completion rule is inferred.
+const mode=requestedPractice(location.search);
+if(!mode)throw Error('Invalid practice selection');
+const practice=PRACTICES[mode];
+const sources={kaf,lam:outlines['ل'],fa:outlines['ف'],ya:outlines['ي']};
+const hashes={kaf:'2c381807e055fc8a08b6e03f4e4c605e4279af6cbc26334e272763b862b8d8c4',lam:'53c482d183e898a58f8cf983f20aeafb0db830b34600f7f14e04b8fc312c9a65',fa:'a2b5545bbb9b7e2b61b924179f83e89258393d11a0529826890e1a399994ff92',ya:'2605a72025fc298bb0081a93b8dd17d29ab5f46bf85e6b2a0411b23c590ee722'};
+const outline=sources[mode];
+if(outline.letter!==practice.letter||outline.fontSha256!==kaf.fontSha256||outline.pathSha256!==hashes[mode])throw Error('Practice source mismatch');
+preserveExperienceLinks(document,location.search);
+const ns='http://www.w3.org/2000/svg';
+const board=document.querySelector<SVGSVGElement>('#board')!;
+const ink=document.createElementNS(ns,'g'),shape=document.createElementNS(ns,'path'),form=document.createElementNS(ns,'g');
+const defs=document.createElementNS(ns,'defs');
+shape.id=mode+'Guide';shape.dataset.practiceOutline='true';shape.setAttribute('d',outline.path);shape.setAttribute('stroke','none');
+const [xmin,ymin,xmax,ymax]=outline.bounds,scale=Math.min(660/(xmax-xmin),370/(ymax-ymin));
+form.setAttribute('transform',`translate(${450-(xmin+xmax)*scale/2} ${265+(ymin+ymax)*scale/2}) scale(${scale} ${-scale})`);
+form.append(shape);ink.id='freeInk';
+board.replaceChildren(defs,form,ink);
+// The shared ramp is presentation only; its coordinates are expressed in the
+// source glyph's local frame, leaving every path byte intact.
+installSapphireGuide(board,shape);
+const gradient=defs.querySelector('linearGradient')!;
+gradient.setAttribute('y1',String(ymax));gradient.setAttribute('y2',String(ymin));
+shape.setAttribute('stroke','none');
+board.dataset.letter=practice.letter;board.dataset.practice=mode;board.dataset.graded='false';
+board.setAttribute('aria-label',`Free practice of ${practice.label}, ${practice.description}. Not graded.`);
+board.style.userSelect='none';
+document.title=`Harf Studio — ${practice.name} free practice`;
+document.querySelector('.hero h1')!.textContent=`Continue with ${practice.label}.`;
+document.querySelector('.hero p')!.textContent='The same Amiri form you selected in Living Orbit. Free practice only; stroke order and guidance await qualified calligrapher review.';
+document.querySelector('.panelTitle > span')!.textContent=`Free practice · ${practice.letter} (${practice.name})`;
+document.querySelector('#phaseLabel')!.textContent='Free practice · ungraded';
+document.querySelector('.legend > span')!.textContent=`Explore ${practice.features}. No stroke order is prescribed.`;
+document.querySelector('#counter')!.textContent='No score';
+document.querySelector<HTMLElement>('.progress')!.hidden=true;
+document.querySelector<HTMLButtonElement>('#demo')!.hidden=true;
+const feedback=document.querySelector('#feedback')!;
+feedback.textContent='Draw freely over the source form. This practice does not grade accuracy, order or completion.';
+const side=document.querySelector('.side')!;
+side.replaceChildren();
+for(const [tag,text] of [['div',practice.letter],['h2',`${practice.name} · free practice`],['p',`Original Amiri Bold contours, ${practice.description}. The silhouette is shared with Living Orbit.`],['p','No accuracy score, prescribed stroke direction or completion badge. Qualified calligrapher review is required before graded guidance.']] as const){const e=document.createElement(tag);e.textContent=text;if(tag==='div'){e.className='letter';e.lang='ar';e.dir='rtl'}side.append(e)}
+const baLink=document.createElement('a'),query=new URLSearchParams(location.search);query.delete('practice');
+baLink.href=experienceHref('/harf-studio.html','?'+query.toString());baLink.textContent='Open Bāʾ guided practice →';baLink.style.color='#91d9c7';side.append(baLink);
+
+const undo=document.createElement('button'),redo=document.createElement('button');
+undo.id='undoStroke';undo.textContent='Undo last stroke';
+redo.id='redoStroke';redo.textContent='Redo';
+document.querySelector('#reset')!.after(undo,redo);
+const updateCompletion=installGuideCompletion(mode,outline.pathSha256,board,feedback);
+type Stroke={path:SVGPathElement;samples:number;points:Point[];canceled:boolean};
+const history:Stroke[]=[],future:Stroke[]=[];
+let pointer:number|null=null,path:SVGPathElement|null=null,points:string[]=[],visible=true,total=0,active:Stroke|null=null;
+function historyButtons(){undo.disabled=pointer!==null||history.length===0;redo.disabled=pointer!==null||future.length===0;}
+function score(active=false,canceled=false){updateCompletion(history,active,canceled);}
+const sourcePoint=(p:Point):Point=>({x:(p.x-450)/scale+(xmin+xmax)/2,y:(265-p.y)/scale+(ymin+ymax)/2});
+historyButtons();
+function point(event:PointerEvent){const matrix=board.getScreenCTM();if(!matrix)return null;const p=board.createSVGPoint();p.x=event.clientX;p.y=event.clientY;const q=p.matrixTransform(matrix.inverse());return Number.isFinite(q.x)&&Number.isFinite(q.y)?q:null;}
+function release(){const prior=pointer;pointer=null;path=null;points=[];active=null;historyButtons();if(prior!==null&&board.hasPointerCapture(prior))board.releasePointerCapture(prior);}
+board.addEventListener('pointerdown',event=>{
+ if(pointer!==null||!event.isPrimary||event.button!==0)return;
+ event.preventDefault();if(total>=12000){feedback.textContent='Choose Try again to start a fresh practice sheet.';return}
+ const p=point(event);if(!p)return;
+ pointer=event.pointerId;board.setPointerCapture(pointer);path=document.createElementNS(ns,'path');path.setAttribute('fill','none');path.setAttribute('stroke','#ffd183');path.setAttribute('stroke-width','8');path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');points=[`M${p.x} ${p.y}`,`L${p.x+.001} ${p.y}`];path.setAttribute('d',points.join(' '));ink.append(path);active={path,samples:1,points:[sourcePoint(p)],canceled:false};history.push(active);future.length=0;total++;historyButtons();score(true);
+});
+board.addEventListener('pointermove',event=>{if(event.pointerId!==pointer||!path||total>=12000)return;event.preventDefault();const p=point(event);if(!p)return;points.push(`L${p.x} ${p.y}`);path.setAttribute('d',points.join(' '));total++;active!.samples++;active!.points.push(sourcePoint(p));});
+board.addEventListener('pointerup',event=>{if(event.pointerId!==pointer)return;release();score();});
+const cancel=(event:PointerEvent)=>{if(event.pointerId!==pointer)return;if(active)active.canceled=true;release();score(false,true);};
+board.addEventListener('pointercancel',cancel);board.addEventListener('lostpointercapture',cancel);
+document.querySelector<HTMLButtonElement>('#reset')!.onclick=()=>{release();ink.replaceChildren();history.length=0;future.length=0;total=0;historyButtons();feedback.textContent='Fresh sheet · Free practice, not graded.';score();};
+undo.onclick=()=>{
+ if(pointer!==null)return;
+ const stroke=history.pop();if(!stroke)return;
+ stroke.path.remove();future.push(stroke);total-=stroke.samples;historyButtons();
+ feedback.textContent='Last stroke undone · Free practice, not graded.';score();
+};
+redo.onclick=()=>{
+ if(pointer!==null)return;
+ const stroke=future.pop();if(!stroke)return;
+ ink.append(stroke.path);history.push(stroke);total+=stroke.samples;historyButtons();
+ feedback.textContent='Stroke restored · Free practice, not graded.';score();
+};
+document.querySelector<HTMLButtonElement>('#guideToggle')!.onclick=event=>{visible=!visible;form.setAttribute('visibility',visible?'visible':'hidden');const button=event.currentTarget as HTMLButtonElement;button.textContent=visible?'Hide guide':'Show guide';button.setAttribute('aria-pressed',String(visible));};
+window.addEventListener('pagehide',release,{once:true});

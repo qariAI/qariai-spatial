@@ -1,0 +1,223 @@
+{
+  "success": true,
+  "cases": [
+    {
+      "count": 5200,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": false,
+      "xr": false,
+      "scale": 1,
+      "uniformScale": 1,
+      "viewportHeight": 800
+    },
+    {
+      "count": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": false,
+      "xr": true,
+      "scale": 0.014,
+      "uniformScale": 0.014,
+      "viewportHeight": 480
+    },
+    {
+      "count": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": false,
+      "xr": true,
+      "scale": 0.007,
+      "uniformScale": 0.007,
+      "viewportHeight": 480
+    },
+    {
+      "count": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": false,
+      "xr": true,
+      "scale": 0.028,
+      "uniformScale": 0.028,
+      "viewportHeight": 480
+    },
+    {
+      "count": 5200,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": false,
+      "xr": false,
+      "scale": 1,
+      "uniformScale": 1,
+      "viewportHeight": 800
+    },
+    {
+      "count": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": false,
+      "xr": true,
+      "scale": 0.014,
+      "uniformScale": 0.014000000000000002,
+      "viewportHeight": 480
+    },
+    {
+      "count": 5200,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": true,
+      "xr": false,
+      "scale": 1,
+      "uniformScale": 1,
+      "viewportHeight": 800
+    },
+    {
+      "count": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": true,
+      "xr": true,
+      "scale": 0.014,
+      "uniformScale": 0.014,
+      "viewportHeight": 480
+    },
+    {
+      "count": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": true,
+      "xr": true,
+      "scale": 0.007,
+      "uniformScale": 0.007,
+      "viewportHeight": 480
+    },
+    {
+      "count": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": true,
+      "xr": true,
+      "scale": 0.028,
+      "uniformScale": 0.028,
+      "viewportHeight": 480
+    },
+    {
+      "count": 5200,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": true,
+      "xr": false,
+      "scale": 1,
+      "uniformScale": 1,
+      "viewportHeight": 800
+    },
+    {
+      "count": 2184,
+      "positionSHA256": "a1828256cf0ada5d6b72205d241f5832fe85a4cf30e45f4f19ffc53c6893c1e3",
+      "paused": true,
+      "xr": true,
+      "scale": 0.014,
+      "uniformScale": 0.014,
+      "viewportHeight": 480
+    },
+    {
+      "count": 1400,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": false,
+      "xr": false,
+      "scale": 1,
+      "uniformScale": 1,
+      "viewportHeight": 800
+    },
+    {
+      "count": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": false,
+      "xr": true,
+      "scale": 0.014,
+      "uniformScale": 0.014,
+      "viewportHeight": 480
+    },
+    {
+      "count": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": false,
+      "xr": true,
+      "scale": 0.007,
+      "uniformScale": 0.007,
+      "viewportHeight": 480
+    },
+    {
+      "count": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": false,
+      "xr": true,
+      "scale": 0.028,
+      "uniformScale": 0.028,
+      "viewportHeight": 480
+    },
+    {
+      "count": 1400,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": false,
+      "xr": false,
+      "scale": 1,
+      "uniformScale": 1,
+      "viewportHeight": 800
+    },
+    {
+      "count": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": false,
+      "xr": true,
+      "scale": 0.014,
+      "uniformScale": 0.014000000000000002,
+      "viewportHeight": 480
+    },
+    {
+      "count": 1400,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": true,
+      "xr": false,
+      "scale": 1,
+      "uniformScale": 1,
+      "viewportHeight": 800
+    },
+    {
+      "count": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": true,
+      "xr": true,
+      "scale": 0.014,
+      "uniformScale": 0.014,
+      "viewportHeight": 480
+    },
+    {
+      "count": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": true,
+      "xr": true,
+      "scale": 0.007,
+      "uniformScale": 0.007,
+      "viewportHeight": 480
+    },
+    {
+      "count": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": true,
+      "xr": true,
+      "scale": 0.028,
+      "uniformScale": 0.028,
+      "viewportHeight": 480
+    },
+    {
+      "count": 1400,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": true,
+      "xr": false,
+      "scale": 1,
+      "uniformScale": 1,
+      "viewportHeight": 800
+    },
+    {
+      "count": 588,
+      "positionSHA256": "861180bd20edba4dba522f221609fec8992b096dad1a31281da3ee78c9d1d67a",
+      "paused": true,
+      "xr": true,
+      "scale": 0.014,
+      "uniformScale": 0.014,
+      "viewportHeight": 480
+    }
+  ],
+  "checks": "Actual AnimatedStars callbacks: XR actual world scale, eye viewport, exit/reentry restoration, original counts, frozen positions, pause, no XR field rotation, hard point-size bound; real scene shader compiled in browser report",
+  "limits": "Logic/uniform tests and desktop SwiftShader evidence, not physical Quest or full-scene stereo validation"
+}

@@ -1,0 +1,19 @@
+{
+  "build": "passed: TypeScript and Vite",
+  "productionInspectorRegression": "passed: real R3F component with delayed native fa asset",
+  "cameraFitAndControllerMethods": "byte-identical",
+  "protectedSourceFiles": 49,
+  "orbitChunkKB": {
+    "minified": 457.43,
+    "gzip": 149.82,
+    "priorMinified": 456.96,
+    "priorGzip": 149.64
+  },
+  "limits": [
+    "Small native-asset scene only; not a new full Living Orbit render or Quest test.",
+    "Slow-loading branch uses a controlled clock offset.",
+    "Initial fixture focus assumption corrected and retained; application focus code unchanged.",
+    "Earlier full-scene automation timeout unresolved.",
+    "Shared-chunk build advisory inherited; no merge or production deployment."
+  ]
+}

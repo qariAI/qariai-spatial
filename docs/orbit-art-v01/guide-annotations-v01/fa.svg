@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="720" viewBox="0 0 600 720" role="img" aria-labelledby="title desc">
+<title id="title">fa: draft practice annotations</title>
+<desc id="desc">Original outline in sapphire; candidate paths in gold; corridors in translucent gold; endpoint regions in turquoise; dot regions in purple; protected regions in red. Draft only. No stroke order prescribed.</desc>
+<rect width="600" height="720" fill="#07111c"/>
+<text x="24" y="34" fill="#f5dca5" font-size="20" font-family="sans-serif">FA · DRAFT ANNOTATIONS</text>
+<text x="24" y="60" fill="#b6c8d3" font-size="13" font-family="sans-serif">Review geometry; no stroke order or direction prescribed.</text>
+<g transform="translate(41.87858884128519 524.9466831426473) scale(0.5248110923035805 -0.5248110923035805)">
+<path id="source" d="M869 480Q892 443 904.0 393.5Q916 344 920 282Q923 236 910 206Q882 140 788 87Q695 34 568 6Q438 -23 333 -23Q82 -24 64 148Q62 168 64.5 190.5Q67 213 74 238Q87 288 105 310Q123 332 133 325Q144 318 130 292Q80 200 141 156Q242 83 459 110Q653 134 823 225Q873 251 876 276Q876 288 857 310Q837 266 784 254Q692 237 688 330Q686 400 748 493Q777 538 807 537Q837 536 869 480ZM797 377Q808 386 796 396Q760 426 740 390Q736 381 741 376Q770 352 797 377ZM613 722Q619 730 630 727Q650 720 668.5 709.0Q687 698 703 684Q711 676 706 666L658 590Q651 580 640 588Q630 596 568 633Q557 640 564 650Z" fill="#284f70"/>
+<polygon data-layer="protected" points="752,383 763,394 781,392 788,384 775,377 760,377" fill="#f16c7740" stroke="#f16c77" stroke-width="1.5"/>
+<polygon data-layer="protected" points="540,550 930,550 930,570 540,570" fill="#f16c7740" stroke="#f16c77" stroke-width="1.5"/>
+<polyline data-layer="corridor" points="810,480 835,450 855,410 855,365 835,340 805,320 770,315 740,330 720,355 720,390 735,430 760,465 790,480 810,480 835,450 855,410 870,360 888,300 875,260 845,235 800,210 740,180 670,150 590,120 500,90 410,65 320,50 240,50 170,65 120,90 95,125 90,165 90,210 96,250 116,300" fill="none" stroke="#f5c46b28" stroke-width="56.986" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline data-layer="path" points="810,480 835,450 855,410 855,365 835,340 805,320 770,315 740,330 720,355 720,390 735,430 760,465 790,480 810,480 835,450 855,410 870,360 888,300 875,260 845,235 800,210 740,180 670,150 590,120 500,90 410,65 320,50 240,50 170,65 120,90 95,125 90,165 90,210 96,250 116,300" fill="none" stroke="#f5c46b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle data-layer="endpoint" cx="810" cy="480" r="19.945" fill="#82dfc22e" stroke="#82dfc2" stroke-width="2"/>
+<circle data-layer="endpoint" cx="116" cy="300" r="19.945" fill="#82dfc22e" stroke="#82dfc2" stroke-width="2"/>
+<circle data-layer="dot" cx="636" cy="658" r="22" fill="#d6a5ff40" stroke="#d6a5ff" stroke-width="2"/>
+</g>
+<g font-family="sans-serif" font-size="13"><text x="24" y="646" fill="#f5c46b">Gold: path + tolerance corridor</text><text x="24" y="667" fill="#82dfc2">Turquoise: endpoints · Purple: separate dots</text><text x="24" y="688" fill="#f16c77">Red: proposed protected regions</text></g>
+</svg>

@@ -1,0 +1,11 @@
+{
+  "success": false,
+  "errors": [],
+  "checks": [
+    "Closing pending inspection cancels attachment; later asset arrival does not hijack the camera.",
+    "Initial inspection automatically fits the delayed native fa without Return/reopen or a stale loading error.",
+    "Drag and Reset operate after automatic attachment; geometry/material identities and GPU resource counts remain stable."
+  ],
+  "limits": "Production React inspector mounted before a delayed real native fa asset in a small actual R3F scene. Not full Living Orbit or headset rendering.",
+  "fixtureIssue": "Cold deep-link entry has no prior Inspect trigger focus. The fixture incorrectly waited for :focus to be #open after Escape; camera/control restoration had already passed. Manual-entry focus is checked separately in the corrected fixture."
+}

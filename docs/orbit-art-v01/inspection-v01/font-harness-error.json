@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "errors": [
+    "A network error occurred."
+  ],
+  "checks": [],
+  "limits": "Actual controller and overlay with approved native assets in a small isolated test scene. Not a full Living Orbit startup or Quest test."
+}

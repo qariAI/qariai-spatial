@@ -32,9 +32,9 @@ export class SpatialMenuHandle {
   prepareInspection(view:THREE.Camera){
     view.getWorldPosition(this.eye);
     if(this.state.inspecting&&!this.lastInspection){
-      this.direction.copy(this.eye).sub(new THREE.Vector3(0,1.45,-2.4));this.direction.y=0;
+      this.direction.copy(this.eye).sub(new THREE.Vector3(0,1.65,-1.9));this.direction.y=0;
       const distance=this.direction.length();
-      this.direction.normalize();this.state.limit=Math.max(0,Math.min(.6,distance-1.8));
+      this.direction.normalize();this.state.limit=Math.max(0,Math.min(.6,distance-1.3));
     }
     this.lastInspection=this.state.inspecting;
   }

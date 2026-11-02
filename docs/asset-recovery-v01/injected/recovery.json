@@ -1,0 +1,739 @@
+{
+  "success": true,
+  "platform": "linux",
+  "injected": true,
+  "checks": [
+    {
+      "name": "Font network rejection blocks all scene/atlas/sculpture construction; repeated Retry makes new requests, then original asset recovers once",
+      "pass": true,
+      "requests": 3,
+      "resources": {
+        "atlas": [
+          "62339acd-2d78-40cd-bd2d-9fd193c502eb",
+          "e291cb05-9b0f-4743-9bdb-564c0cd7a792",
+          "e2e55a83-d354-4f80-af38-bd0b9308f6e1"
+        ],
+        "geometries": [
+          "09c84fc4-48b7-4606-8b96-1a486781641d",
+          "0c2e0105-1abf-4241-8a5b-1f336c852b84",
+          "0c6e0124-e1ce-4687-b557-6c5d60fc4426",
+          "0ed6533d-40b6-4ec4-a750-048bf6e4f0a7",
+          "15fe5d05-187d-4be3-8357-79dbe5897083",
+          "19822884-6376-4a43-8cfb-d152a245a3b7",
+          "200f6de8-16fd-4155-96dd-30527d60df90",
+          "223da938-1550-48e2-a791-aa54969cab3e",
+          "22a29956-6ae9-42c8-8370-a7604d39fee1",
+          "2b365539-0e5b-4bb8-a997-2d99182c1369",
+          "2ba99298-96bc-4642-9b1e-eeffeac2c071",
+          "2d46c829-0b64-4b42-a2f3-2eece493ffba",
+          "31bab025-5600-460a-83b4-e0bfe54e7b8a",
+          "341e3f66-b837-4e46-93cb-12ca83312028",
+          "372e4457-cd37-48db-9197-a17078179eab",
+          "38e9e227-ed1c-43a4-8ba6-32e91244b4fb",
+          "3d3a37dc-ae34-47e5-9d65-66f02403c493",
+          "42600481-2afd-4527-8d21-5fc5d07a121b",
+          "44dc16c2-bceb-49e1-abe2-5e4131da007e",
+          "463cf454-881d-4081-9185-fc0d0362b2cf",
+          "467e1b9d-e671-4b50-85d0-b9cfa0e2b772",
+          "4ac5e3f7-970d-4d31-84b4-358f315f0432",
+          "4ece35ad-f6f0-4732-a16a-41be33291e08",
+          "5652dff0-f9da-436e-9d34-0031f93cd243",
+          "6206bb57-03f9-484a-b47d-11c4c7f3d5f6",
+          "662f7859-ca7b-4657-9cbd-73f95129a386",
+          "74b2c1b8-35ab-4e86-9aa6-4fa85e0fcfd8",
+          "74c0c638-db71-4169-a9c4-b176b8aecbfa",
+          "752feb80-01b6-4462-a48a-889c8898e43a",
+          "763c40a0-c5e6-41fc-bae2-a698b5bc7a47",
+          "7693eddc-df4e-4e9d-a20e-d70446688cf7",
+          "91c83ca0-143a-4120-9c58-4fb927d671a1",
+          "98b297ac-4150-49b5-9b37-81438e8cd46c",
+          "9b3953df-b33e-4449-a6c4-e57ad44895cb",
+          "a3fcdcf3-586e-48ee-bfa4-074c72f53dd9",
+          "aba8aedc-9ad8-4d58-b045-cae3a8b5a0d5",
+          "acf3db84-74b9-4256-bc3e-13f8680e4c67",
+          "b19c5e7c-b7c3-4a12-b242-a62faf811b01",
+          "cb6a2ce9-b49d-4946-8bcf-108cc259207b",
+          "cd92bd40-e719-4bd2-b42e-71ee6ec04f10",
+          "da8c01a9-dc40-47b5-b2a1-dc9dc8ef0d3a",
+          "e1461ef6-3ac0-489d-bc57-26f6408acb3a",
+          "e2ac35df-3095-4c52-bae2-3be4be6a2ffa",
+          "f3cf7707-9e8a-494b-8ef5-ba39f0ace21c",
+          "f772f161-90b4-4aeb-a5dd-d015dc1d1bf2"
+        ],
+        "materials": [
+          "049e8af5-9a10-4770-823e-4a79bc9440c6",
+          "056ed5a3-481b-4cd1-9a42-173012ec76ba",
+          "09fde472-afe2-44a1-80fc-f3b25766d739",
+          "0e25791f-2a27-43e9-ac24-fa5027f838f6",
+          "0fe6c5d3-5acd-4db9-99f4-a0aee0e935b3",
+          "11ba26b2-f8d1-41b7-b4cf-870dadda4b52",
+          "2981ebd3-f627-4d01-9dea-50a46fd409ae",
+          "29b1f340-be02-4995-bbff-8bb9de8bba86",
+          "2b729951-1f10-4d4a-951e-5d037b56bcc8",
+          "2e196a10-d1a3-4734-bfc2-23f45d0ff9d6",
+          "30e77683-96b2-4704-a4e0-9ee92a4fa2d8",
+          "465c620c-29b2-4ba0-850c-80b1ed396d1a",
+          "46915268-c114-4111-8597-92c39f0ec752",
+          "486419c9-c633-459b-82c0-16f6b019c386",
+          "4fc519b6-223f-42f1-8c26-3973daa2b7cf",
+          "5259a634-c502-4e10-a967-f7f495794383",
+          "560303d0-2a87-4e0b-ba66-9df074616f3a",
+          "5c0b4da8-c24a-4101-b4ff-b0a80833ee14",
+          "6140f4e4-d934-481c-b2d0-aa48f71ba290",
+          "689d55c7-8727-431e-8a5d-2924cd0d0bb9",
+          "6941a6b8-aa61-4de7-8ceb-d2038a566f4a",
+          "745cf774-9582-4b46-b87e-f42b1d9ba452",
+          "75fe3a8a-4bfd-4a03-956f-aa464814d618",
+          "7ea13f95-6ec0-4636-b1c6-0154b0183e2e",
+          "87a71771-bdc6-4dd8-a8bc-9eb3355d1efa",
+          "894c4ad3-1cae-4d69-947a-c5dc7d1a80c2",
+          "8dcd7588-0d33-40c1-9fb0-f6f14bd840c9",
+          "8dd9fda9-88a8-4d97-a886-103494b5aef0",
+          "9678748b-dffb-4947-adcf-2fe2bdc6f0aa",
+          "980bdef3-c922-4e2f-b782-a0cff0c8511b",
+          "9b88f1e0-700f-443b-860e-db8c1e0aaa18",
+          "9f2100b6-7910-41cd-9e04-76e7e8dddecc",
+          "a20629f4-943a-4821-b235-329849e05f0b",
+          "a425b17c-db20-4109-baad-71bdb65522d2",
+          "a873b385-2e0f-4d6e-8449-cbf2c1d2a5cc",
+          "abbbfbfe-7e70-4ba9-bd1e-6880963b6b96",
+          "af85567d-44ce-47a3-9295-37dda1ba85d8",
+          "bbcfb448-c731-4327-bd01-77bc81127fb9",
+          "bdcc00ed-6cfe-4131-9cf2-61a7a11e9bb4",
+          "c0293d41-4c01-435e-8db5-84fd7e2d79f5",
+          "c04f5a0f-f3fe-4c1a-80f0-546bfb8b6ebe",
+          "c1bab056-bc21-410f-9b8f-183769ed8ac7",
+          "cbed61f4-b0a0-4ba5-a994-47988e87f289",
+          "d3a5ee55-0b17-49d8-bfd0-254b82e529f4",
+          "d4cae9be-92ec-476b-be57-153a0e4cbe1f",
+          "d76db0c4-bdae-4203-8953-716a271ca445",
+          "dedd2287-a9e7-4380-a7c7-37098efcefa5",
+          "e2f993a3-c63a-44e2-bb11-b949eaea6412",
+          "e9dfc558-26c2-4436-9284-f6847a45f742",
+          "f7622d54-1d1f-45d3-8e06-78fa5eb9e495",
+          "f7a6605e-0dd6-4643-823b-2061a0d5be14",
+          "f9300e8d-df93-428c-bd85-566a7c1503ce",
+          "ffe9bdd4-0d50-4e4f-b826-d97a54832331"
+        ],
+        "textures": [
+          "13aaa92c-96ee-4ae3-a35a-af5c6e11d0ee",
+          "375913d6-feab-4141-9fc6-92e7a6642ea5",
+          "405d14b9-7250-4c90-ab63-99f6038bb421",
+          "43d1dd2c-408a-40de-b57e-745361f99094",
+          "49c560d4-a6af-4c71-a9f5-8ef3155d56b6",
+          "54c00171-85e0-4306-8da2-277f3fceca35",
+          "5f1dd1b1-c439-401e-a247-b6fc2aa609fc",
+          "62339acd-2d78-40cd-bd2d-9fd193c502eb",
+          "69dda53d-4c11-4128-9873-09a9724e9d2b",
+          "6fc89aa9-ddc9-4b08-a564-9237b196c3d5",
+          "75e581f8-6220-4558-aa94-afd45d41ba71",
+          "a898a7d8-a16a-4d74-af3a-f92f752da84a",
+          "bd16641c-8372-4166-b378-889e0d535c76",
+          "cada7ca9-50b2-472a-b93f-706611ae8e64",
+          "d32dfc54-674f-4f7e-82a3-c443d25b4179",
+          "e11dffde-481a-437c-b720-7aacf78b22c3",
+          "e291cb05-9b0f-4743-9bdb-564c0cd7a792",
+          "e2e55a83-d354-4f80-af38-bd0b9308f6e1"
+        ]
+      }
+    },
+    {
+      "name": "Terminal sculpture failure preserves original art, repeated Retry/new attempts, Return during failure and pending retry, correct native fa inspector after recovery",
+      "pass": true,
+      "failed": {
+        "ready": false,
+        "frame": 4,
+        "scene": "680beedc-4dff-454a-bf7e-12b4fa460113",
+        "art": "7199f12b-d793-4e9d-8213-c0acc5575400",
+        "resources": {
+          "atlas": [
+            "49f37d32-ae0e-4383-84e1-20b4a78e4282",
+            "5a59fa81-35cf-4af7-89f8-8bc1e3673628",
+            "a5d81ac4-5469-48a1-8300-67883dd58b8d"
+          ],
+          "geometries": [
+            "020f156e-b024-4669-b824-fb781e161de9",
+            "09799f2f-b903-46d1-9406-4c26dec13633",
+            "1e2fcfd4-6456-4a40-99ed-affa5e3ca587",
+            "22328aec-23c7-4d9b-9d29-61df4fc10176",
+            "23083fe6-81c7-49c2-bc56-e2cea225faca",
+            "26d161c5-2940-4424-b817-77824a34384a",
+            "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba",
+            "2ec4b335-35e7-475c-ae46-d7e05170fda8",
+            "2f426120-ea37-4bd0-9519-6d987846cff0",
+            "31bb6d00-7031-464e-81d3-5ad77e10e6a0",
+            "3905eff2-3088-4ed7-92f5-8887e1aabca7",
+            "3b32db17-2778-41f9-8de2-cbc35de76d36",
+            "4ec45191-9874-444a-bdc6-fdf1f7fdde3a",
+            "51dd70f0-1320-4234-b043-c214ce7d0a12",
+            "57bf1666-4d0d-4f5a-9520-2d7829a29f67",
+            "59cf6893-d992-42f0-ae28-538ed197f70a",
+            "5c374e64-d366-4972-8b4a-49bcabfee8e7",
+            "6187bff9-2547-4a4a-88c8-d1077ba7b829",
+            "63dd8dfb-be2e-464a-be1a-5601ad4f2257",
+            "70964384-3d24-44e2-823d-c7629f40549f",
+            "72eb9d5c-70fe-4534-a9ee-d71d940837a1",
+            "73dabab3-e586-4733-9031-57c614305a21",
+            "743dd5a3-8260-485b-a77a-92f5d4643159",
+            "7e15bcef-1b73-4bd0-a769-f9a0eaadc481",
+            "93eafe99-6270-4279-808c-31a97be24ec1",
+            "99582f82-e79f-4434-a982-49fd9ada9dcc",
+            "a032e73e-8bed-4292-8826-b602399ac3b2",
+            "a0def613-bb88-4ca6-bdd7-9ec24e383c41",
+            "af8b56a1-a1ef-4697-b782-794015035858",
+            "b3b1eac3-d9e0-4998-9ff7-0cbbf4c8fd36",
+            "b9256c4c-0ed9-4339-b4ec-0992c09d6bd5",
+            "bd540ee6-b8dd-4558-a6c9-d6d3cf244057",
+            "c67aa863-4672-4e7d-ad8b-4ab97a36901b",
+            "c8375627-6f8f-4d9c-815e-895548e823f1",
+            "cb6135c3-ae03-464a-b960-ea2ce206449d",
+            "cd7332c6-3ee5-42df-aa62-1ff20877beae",
+            "e166a09c-6a80-4448-9d8e-cf1a5467ab0c",
+            "e2942fd8-10b9-44f8-8026-ca8d79ed4030",
+            "e77470c3-0b10-4e96-b887-b05718db0f4c",
+            "ec2662a5-6932-49ad-be83-a9ef619cdd6b",
+            "ec3b144f-d920-440b-894c-98ae4a6ac217",
+            "ee95de90-c678-446b-9631-2be4b6a1f6bc",
+            "f1bd3b0a-9cfa-45c1-bd54-deafa4b57540",
+            "f717792c-ad07-4892-b0d8-cf6b34d8dd47",
+            "fa371fba-1445-44ea-a86f-1546e236f0e4"
+          ],
+          "materials": [
+            "02b92ca5-7bb1-4b23-a256-56053b0a311f",
+            "03310bed-1ea6-479e-bbc8-2033f8052fa0",
+            "0ba2ea24-bbf5-4de9-bb30-ffca7adecd42",
+            "0fd1b218-da44-4e98-82a3-b3e813cb8702",
+            "11be10f5-6107-465f-bc1c-4ca24648ff92",
+            "13beea1f-ff29-40a0-9821-1577d6e7fad5",
+            "175982a1-2459-42e7-b05f-9cf906f0fba4",
+            "1f038d5c-5509-468e-bc31-b281ca176a48",
+            "201370bb-a9d7-4225-a985-e6d81f0b32f1",
+            "253d36af-6fd7-41cc-912e-a2b203667f8e",
+            "2b46b754-d03a-40fe-9910-d68f797e2b08",
+            "2b4ac009-5b06-4360-9eec-7b8004b038f3",
+            "32bff7af-059f-4b64-af51-c252f89b61c9",
+            "334f8cd6-8afb-4548-8834-b1970debf4f9",
+            "3bc03239-c562-4360-987d-c94987ac5d8c",
+            "40e64d40-6e4d-4a68-8a63-0b48284c29b8",
+            "41b2aca6-cd77-4045-8f51-f48069b5a952",
+            "455a9815-e600-4074-a745-5f432c00be62",
+            "46f9595a-dc6f-4ddb-88be-b9e65fb60a1d",
+            "4aec6293-6d47-42fc-81d8-303bad4a3d8a",
+            "5e02751c-a83c-4530-a8c1-9b040b764379",
+            "6b25130e-9010-4eac-99d3-4a652c371469",
+            "6ce294d5-6e2d-421e-9b8e-4d8dc1d58a36",
+            "6f8798b1-01e6-4d43-b852-7d6a13c60d26",
+            "7590d5fb-1b7e-4b23-a26b-b5f2cfb148e5",
+            "879166cc-953c-4487-85c7-f507ceb8a355",
+            "8cce557d-a820-4ca1-bbf6-bd601c148b2b",
+            "96bacb5b-3598-4f40-be3c-1b1a14a110c3",
+            "9894b694-5f02-40d5-866f-e0852eba0180",
+            "9a514cec-ad26-42cb-b4dd-9c90fa87df2b",
+            "9eedc1af-278d-4618-a8bc-b9179407246c",
+            "a9c3ab3c-ad15-4b4f-a0cd-ee9d8e76b837",
+            "addbdc82-5862-4a8d-8447-0d34f30e9a51",
+            "b240d93d-f8aa-4b08-b124-fc5fd64e86db",
+            "b8b0fe4b-618e-4992-9594-4df5e2d8818f",
+            "b8df523e-a973-4454-a62e-1cfa798ab6b8",
+            "bc48d7ed-9b46-49f7-93f1-01ab74abd604",
+            "c2dd971f-c818-4843-9969-ef3c17b8045f",
+            "c33e8e34-2c14-4b8b-8340-c40ca8f7d068",
+            "c44dffa6-552c-458f-9c12-6e062830345a",
+            "c876d901-2e6c-432e-b398-cb725dbcc12c",
+            "caa37556-99e0-4773-b75c-17413a064601",
+            "d34a0ca5-bf1b-4604-9fe3-ebcb6339c4a7",
+            "d7fb71c4-23e9-45a2-8798-7ea611a81c72",
+            "dedc4344-d9e2-4df9-ae53-d66127b7f5c2",
+            "e0234689-d2b5-4f3c-8735-41c8a2faf590",
+            "e3892aa7-ab5f-4cf9-b0bf-356490b8f23c",
+            "e3c861f8-df12-4c3d-b7ff-27dbdda6100d",
+            "e9201049-d5be-4e7e-8422-c5ba13c1f358",
+            "efc3da6e-a0c1-4ad7-8241-3340b10d1d17",
+            "f37f5fc4-bda2-4d3e-92a5-b50442e84621",
+            "f7e6d1e7-9a1b-42b0-af0d-ee441bbc6962",
+            "fa9e5ce1-b018-44e8-aafe-b2843faade73"
+          ],
+          "textures": [
+            "150234ab-fffb-4505-92b0-3f6d5f0e6167",
+            "23e6e0a7-eca5-4751-88c6-bfb604779164",
+            "49f37d32-ae0e-4383-84e1-20b4a78e4282",
+            "5a59fa81-35cf-4af7-89f8-8bc1e3673628",
+            "65ff080f-b956-45a3-b046-fe1617acce58",
+            "67d95fb0-fd36-4ba3-9e3f-94a755cb5f82",
+            "708c0f57-7c26-498f-a8ff-7afdf2aabe2c",
+            "7f6b5bea-fa32-4e74-a03f-fac9bceb49d4",
+            "99570028-2111-44f8-9fad-57f40bb4d26c",
+            "9c789644-7137-498a-a313-7a143187e2b0",
+            "9fc2a4d6-6f5a-4a3c-b109-ee159e03ac81",
+            "a4224b74-5b68-4d6d-9539-b39de6fe623e",
+            "a5d81ac4-5469-48a1-8300-67883dd58b8d",
+            "ec7ab6b9-3517-46ce-bb2c-a19f0e8d0f76",
+            "f43adfbe-4557-4528-bd22-73f19e506ee7",
+            "fae9bbb1-ad35-4272-8197-f3c60cfa017a"
+          ]
+        },
+        "letters": [
+          {
+            "index": 0,
+            "letter": null,
+            "scale": 1,
+            "geometry": [
+              "3b32db17-2778-41f9-8de2-cbc35de76d36",
+              "51dd70f0-1320-4234-b043-c214ce7d0a12",
+              "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba"
+            ]
+          },
+          {
+            "index": 1,
+            "letter": null,
+            "scale": 1,
+            "geometry": [
+              "93eafe99-6270-4279-808c-31a97be24ec1",
+              "bd540ee6-b8dd-4558-a6c9-d6d3cf244057",
+              "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba"
+            ]
+          },
+          {
+            "index": 2,
+            "letter": null,
+            "scale": 1.3199984733492636,
+            "geometry": [
+              "31bb6d00-7031-464e-81d3-5ad77e10e6a0",
+              "26d161c5-2940-4424-b817-77824a34384a",
+              "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba"
+            ]
+          },
+          {
+            "index": 3,
+            "letter": null,
+            "scale": 1,
+            "geometry": [
+              "7e15bcef-1b73-4bd0-a769-f9a0eaadc481",
+              "cd7332c6-3ee5-42df-aa62-1ff20877beae",
+              "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba"
+            ]
+          },
+          {
+            "index": 4,
+            "letter": null,
+            "scale": 1.3199984733492636,
+            "geometry": [
+              "b9256c4c-0ed9-4339-b4ec-0992c09d6bd5",
+              "e2942fd8-10b9-44f8-8026-ca8d79ed4030",
+              "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba"
+            ]
+          },
+          {
+            "index": 5,
+            "letter": null,
+            "scale": 1,
+            "geometry": [
+              "99582f82-e79f-4434-a982-49fd9ada9dcc",
+              "a0def613-bb88-4ca6-bdd7-9ec24e383c41",
+              "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba"
+            ]
+          },
+          {
+            "index": 6,
+            "letter": null,
+            "scale": 1,
+            "geometry": [
+              "c8375627-6f8f-4d9c-815e-895548e823f1",
+              "c67aa863-4672-4e7d-ad8b-4ab97a36901b",
+              "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba"
+            ]
+          }
+        ],
+        "actionTexture": "ec7ab6b9-3517-46ce-bb2c-a19f0e8d0f76",
+        "controls": 1,
+        "controlListeners": {
+          "change": 1,
+          "end": 1,
+          "start": 2
+        },
+        "xrListeners": {
+          "sessionend": 4,
+          "sessionstart": 5
+        },
+        "subscribers": 31,
+        "memory": {
+          "geometries": 39,
+          "textures": 13
+        },
+        "camera": {
+          "position": [
+            0,
+            98,
+            169
+          ],
+          "quaternion": [
+            -0.25973484830079313,
+            0,
+            0,
+            0.9656799721326751
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "target": [
+            0,
+            0,
+            0
+          ]
+        },
+        "enabled": true,
+        "xr": false,
+        "phase": "✧ MIRRORED LETTERS   01 / 02",
+        "paused": true,
+        "speed": "1× Speed",
+        "selected": "ف"
+      },
+      "recovered": {
+        "ready": true,
+        "frame": 50,
+        "scene": "680beedc-4dff-454a-bf7e-12b4fa460113",
+        "art": "7199f12b-d793-4e9d-8213-c0acc5575400",
+        "resources": {
+          "atlas": [
+            "49f37d32-ae0e-4383-84e1-20b4a78e4282",
+            "5a59fa81-35cf-4af7-89f8-8bc1e3673628",
+            "a5d81ac4-5469-48a1-8300-67883dd58b8d"
+          ],
+          "geometries": [
+            "020f156e-b024-4669-b824-fb781e161de9",
+            "0462cfd4-0f08-4410-b311-433db10039a2",
+            "076cb56c-b714-4aed-a87d-937cfbc14332",
+            "09799f2f-b903-46d1-9406-4c26dec13633",
+            "1e2fcfd4-6456-4a40-99ed-affa5e3ca587",
+            "22328aec-23c7-4d9b-9d29-61df4fc10176",
+            "23083fe6-81c7-49c2-bc56-e2cea225faca",
+            "26d161c5-2940-4424-b817-77824a34384a",
+            "2b0cf5ff-9ff6-486b-9f84-7975d4fe52ba",
+            "2ec4b335-35e7-475c-ae46-d7e05170fda8",
+            "2f426120-ea37-4bd0-9519-6d987846cff0",
+            "2fc53066-361e-47fa-9514-022c21d5ed4d",
+            "3905eff2-3088-4ed7-92f5-8887e1aabca7",
+            "4ec45191-9874-444a-bdc6-fdf1f7fdde3a",
+            "51dd70f0-1320-4234-b043-c214ce7d0a12",
+            "57bf1666-4d0d-4f5a-9520-2d7829a29f67",
+            "59cf6893-d992-42f0-ae28-538ed197f70a",
+            "5c374e64-d366-4972-8b4a-49bcabfee8e7",
+            "6187bff9-2547-4a4a-88c8-d1077ba7b829",
+            "63dd8dfb-be2e-464a-be1a-5601ad4f2257",
+            "70964384-3d24-44e2-823d-c7629f40549f",
+            "721040c4-692e-4a5c-9e3a-925eead5ebce",
+            "72eb9d5c-70fe-4534-a9ee-d71d940837a1",
+            "73dabab3-e586-4733-9031-57c614305a21",
+            "743dd5a3-8260-485b-a77a-92f5d4643159",
+            "8d6d1f49-3095-4b75-b9ed-926683e4185b",
+            "a032e73e-8bed-4292-8826-b602399ac3b2",
+            "a0def613-bb88-4ca6-bdd7-9ec24e383c41",
+            "a4b40d82-f6b2-46e7-873a-4eb475b97449",
+            "af8b56a1-a1ef-4697-b782-794015035858",
+            "b3b1eac3-d9e0-4998-9ff7-0cbbf4c8fd36",
+            "bd540ee6-b8dd-4558-a6c9-d6d3cf244057",
+            "c67aa863-4672-4e7d-ad8b-4ab97a36901b",
+            "cb6135c3-ae03-464a-b960-ea2ce206449d",
+            "cd7332c6-3ee5-42df-aa62-1ff20877beae",
+            "e166a09c-6a80-4448-9d8e-cf1a5467ab0c",
+            "e2942fd8-10b9-44f8-8026-ca8d79ed4030",
+            "e77470c3-0b10-4e96-b887-b05718db0f4c",
+            "ec2662a5-6932-49ad-be83-a9ef619cdd6b",
+            "ec3b144f-d920-440b-894c-98ae4a6ac217",
+            "ee95de90-c678-446b-9631-2be4b6a1f6bc",
+            "f1bd3b0a-9cfa-45c1-bd54-deafa4b57540",
+            "f717792c-ad07-4892-b0d8-cf6b34d8dd47",
+            "f78b048f-5231-4c79-b6b0-ede639a1af9d",
+            "fa371fba-1445-44ea-a86f-1546e236f0e4"
+          ],
+          "materials": [
+            "02b92ca5-7bb1-4b23-a256-56053b0a311f",
+            "03310bed-1ea6-479e-bbc8-2033f8052fa0",
+            "0ba2ea24-bbf5-4de9-bb30-ffca7adecd42",
+            "13beea1f-ff29-40a0-9821-1577d6e7fad5",
+            "175982a1-2459-42e7-b05f-9cf906f0fba4",
+            "201370bb-a9d7-4225-a985-e6d81f0b32f1",
+            "253d36af-6fd7-41cc-912e-a2b203667f8e",
+            "2b4ac009-5b06-4360-9eec-7b8004b038f3",
+            "32bff7af-059f-4b64-af51-c252f89b61c9",
+            "334f8cd6-8afb-4548-8834-b1970debf4f9",
+            "35c192f3-4885-4648-b951-fde8be72e0c9",
+            "3bc03239-c562-4360-987d-c94987ac5d8c",
+            "40e64d40-6e4d-4a68-8a63-0b48284c29b8",
+            "455a9815-e600-4074-a745-5f432c00be62",
+            "46c5e8f6-cb34-4c5f-945b-fb04a76ec837",
+            "4aec6293-6d47-42fc-81d8-303bad4a3d8a",
+            "53b050ab-32fd-408a-89bc-a4cab16791ba",
+            "6b25130e-9010-4eac-99d3-4a652c371469",
+            "6ce294d5-6e2d-421e-9b8e-4d8dc1d58a36",
+            "6f8798b1-01e6-4d43-b852-7d6a13c60d26",
+            "81d53543-aa12-4e69-9027-dc66ff4e1c9c",
+            "8cce557d-a820-4ca1-bbf6-bd601c148b2b",
+            "96bacb5b-3598-4f40-be3c-1b1a14a110c3",
+            "9894b694-5f02-40d5-866f-e0852eba0180",
+            "9a514cec-ad26-42cb-b4dd-9c90fa87df2b",
+            "9eedc1af-278d-4618-a8bc-b9179407246c",
+            "a9c3ab3c-ad15-4b4f-a0cd-ee9d8e76b837",
+            "addbdc82-5862-4a8d-8447-0d34f30e9a51",
+            "b240d93d-f8aa-4b08-b124-fc5fd64e86db",
+            "b65b9b23-134e-4fb6-8276-b6ab2749707b",
+            "b7d42426-14a2-4a59-a784-3a8fae54072b",
+            "b8b0fe4b-618e-4992-9594-4df5e2d8818f",
+            "b8df523e-a973-4454-a62e-1cfa798ab6b8",
+            "c2dd971f-c818-4843-9969-ef3c17b8045f",
+            "c3064d3f-568f-4e96-8fa4-49f93aaa4906",
+            "c33e8e34-2c14-4b8b-8340-c40ca8f7d068",
+            "c3591a3d-02ea-4ec1-ad14-639e62bc28db",
+            "c44dffa6-552c-458f-9c12-6e062830345a",
+            "c81e64e3-4c90-486d-aaa2-77fc7d319765",
+            "c910e2fb-a29c-49df-b462-273f6a0b6390",
+            "caa37556-99e0-4773-b75c-17413a064601",
+            "d34a0ca5-bf1b-4604-9fe3-ebcb6339c4a7",
+            "d44df4be-da54-4918-84ae-ba3d86b4c63b",
+            "d49f02c9-c13b-4a1f-a7e3-52712a0e5433",
+            "d7c45106-862f-43ea-83dc-97c0636f4592",
+            "d7fb71c4-23e9-45a2-8798-7ea611a81c72",
+            "dedc4344-d9e2-4df9-ae53-d66127b7f5c2",
+            "e3892aa7-ab5f-4cf9-b0bf-356490b8f23c",
+            "e9201049-d5be-4e7e-8422-c5ba13c1f358",
+            "f090c71c-1978-432b-9d24-0097326f536e",
+            "f37f5fc4-bda2-4d3e-92a5-b50442e84621",
+            "f7e6d1e7-9a1b-42b0-af0d-ee441bbc6962",
+            "fa9e5ce1-b018-44e8-aafe-b2843faade73"
+          ],
+          "textures": [
+            "15bab55f-7bef-44e6-95ba-b2ad4798760d",
+            "3d2b1271-d8ef-4fbd-92f5-e1aa87da3a99",
+            "49f37d32-ae0e-4383-84e1-20b4a78e4282",
+            "4a351ecd-cece-44bc-993e-beb85d571d85",
+            "5a59fa81-35cf-4af7-89f8-8bc1e3673628",
+            "5ccf9b3f-aa0a-4476-9381-6865b6005b64",
+            "708c0f57-7c26-498f-a8ff-7afdf2aabe2c",
+            "8cc21172-2048-4613-9095-3fc3c66dc3bf",
+            "9c789644-7137-498a-a313-7a143187e2b0",
+            "9fc2a4d6-6f5a-4a3c-b109-ee159e03ac81",
+            "a5d81ac4-5469-48a1-8300-67883dd58b8d",
+            "b5b8b0cf-d28d-4e88-8f24-504c2b3265bd",
+            "cf3cb8ee-b56e-40e6-a761-9e5fc52791dc",
+            "d6ec6a23-edbf-4967-ab71-89c93da2af56",
+            "ec7ab6b9-3517-46ce-bb2c-a19f0e8d0f76",
+            "f43adfbe-4557-4528-bd22-73f19e506ee7",
+            "f9a0d321-700e-4142-8355-f89ce6ad04a2",
+            "fae9bbb1-ad35-4272-8197-f3c60cfa017a"
+          ]
+        },
+        "letters": [
+          {
+            "index": 0,
+            "letter": "ك",
+            "scale": 1,
+            "geometry": [
+              "721040c4-692e-4a5c-9e3a-925eead5ebce",
+              "f78b048f-5231-4c79-b6b0-ede639a1af9d",
+              "51dd70f0-1320-4234-b043-c214ce7d0a12"
+            ]
+          },
+          {
+            "index": 1,
+            "letter": "ل",
+            "scale": 1,
+            "geometry": [
+              "8d6d1f49-3095-4b75-b9ed-926683e4185b",
+              "bd540ee6-b8dd-4558-a6c9-d6d3cf244057"
+            ]
+          },
+          {
+            "index": 2,
+            "letter": "ف",
+            "scale": 1.32,
+            "geometry": [
+              "0462cfd4-0f08-4410-b311-433db10039a2",
+              "2fc53066-361e-47fa-9514-022c21d5ed4d",
+              "26d161c5-2940-4424-b817-77824a34384a"
+            ]
+          },
+          {
+            "index": 3,
+            "letter": "ي",
+            "scale": 1,
+            "geometry": [
+              "076cb56c-b714-4aed-a87d-937cfbc14332",
+              "a4b40d82-f6b2-46e7-873a-4eb475b97449",
+              "cd7332c6-3ee5-42df-aa62-1ff20877beae"
+            ]
+          },
+          {
+            "index": 4,
+            "letter": "ف",
+            "scale": 1.32,
+            "geometry": [
+              "0462cfd4-0f08-4410-b311-433db10039a2",
+              "2fc53066-361e-47fa-9514-022c21d5ed4d",
+              "e2942fd8-10b9-44f8-8026-ca8d79ed4030"
+            ]
+          },
+          {
+            "index": 5,
+            "letter": "ل",
+            "scale": 1,
+            "geometry": [
+              "8d6d1f49-3095-4b75-b9ed-926683e4185b",
+              "a0def613-bb88-4ca6-bdd7-9ec24e383c41"
+            ]
+          },
+          {
+            "index": 6,
+            "letter": "ك",
+            "scale": 1,
+            "geometry": [
+              "721040c4-692e-4a5c-9e3a-925eead5ebce",
+              "f78b048f-5231-4c79-b6b0-ede639a1af9d",
+              "c67aa863-4672-4e7d-ad8b-4ab97a36901b"
+            ]
+          }
+        ],
+        "actionTexture": "ec7ab6b9-3517-46ce-bb2c-a19f0e8d0f76",
+        "controls": 1,
+        "controlListeners": {
+          "change": 1,
+          "end": 1,
+          "start": 2
+        },
+        "xrListeners": {
+          "sessionend": 4,
+          "sessionstart": 4
+        },
+        "subscribers": 30,
+        "memory": {
+          "geometries": 40,
+          "textures": 22
+        },
+        "camera": {
+          "position": [
+            0,
+            98,
+            169
+          ],
+          "quaternion": [
+            -0.25973484830079313,
+            0,
+            0,
+            0.9656799721326751
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "zoom": 1,
+          "target": [
+            0,
+            0,
+            0
+          ]
+        },
+        "enabled": true,
+        "xr": false,
+        "phase": "✧ MIRRORED LETTERS   01 / 02",
+        "paused": true,
+        "speed": "1× Speed",
+        "selected": "ف"
+      }
+    },
+    {
+      "name": "All four actual production Harf registered guides, Undo/Redo eligibility, real completion URLs and native ya completion/Return",
+      "pass": true,
+      "injected": false
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "injected-font-failed.png",
+      "genuine": true,
+      "injected": true
+    },
+    {
+      "file": "injected-font-retrying.png",
+      "genuine": true,
+      "injected": true
+    },
+    {
+      "file": "injected-font-recovered.png",
+      "genuine": true,
+      "injected": true
+    },
+    {
+      "file": "injected-sculpture-failed.png",
+      "genuine": true,
+      "injected": true
+    },
+    {
+      "file": "injected-sculpture-retrying.png",
+      "genuine": true,
+      "injected": true
+    },
+    {
+      "file": "injected-sculpture-recovered-inspector.png",
+      "genuine": true,
+      "injected": true
+    },
+    {
+      "file": "normal-ya-inspector.png",
+      "genuine": true,
+      "injected": false
+    }
+  ],
+  "observedErrors": [
+    {
+      "case": "font",
+      "type": "console",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "case": "font",
+      "type": "console",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "case": "sculpture",
+      "type": "console",
+      "text": "Sculptural letters unavailable; retaining originals Error: TEST ONLY injected sculpture construction failure\n    at R0 (http://127.0.0.1:36621/assets/orbit-hE2Fqql5.js:109:38567)\n    at p (http://127.0.0.1:36621/assets/orbit-hE2Fqql5.js:109:42871)"
+    },
+    {
+      "case": "sculpture",
+      "type": "console",
+      "text": "Sculptural letters unavailable; retaining originals Error: TEST ONLY injected sculpture construction failure\n    at R0 (http://127.0.0.1:36621/assets/orbit-hE2Fqql5.js:109:38567)\n    at p (http://127.0.0.1:36621/assets/orbit-hE2Fqql5.js:109:42871)"
+    }
+  ],
+  "limits": "Isolated injected-error production build. Real full-scene rendering and untouched browser screenshots. Linux SwiftShader results are not Windows/Quest acceptance.",
+  "chrome": "154.0.8037.57",
+  "guides": [
+    {
+      "mode": "kaf",
+      "registeredCompletion": true,
+      "undoRedoEligibility": true,
+      "realInspectorHref": true
+    },
+    {
+      "mode": "lam",
+      "registeredCompletion": true,
+      "undoRedoEligibility": true,
+      "realInspectorHref": true
+    },
+    {
+      "mode": "fa",
+      "registeredCompletion": true,
+      "undoRedoEligibility": true,
+      "realInspectorHref": true
+    },
+    {
+      "mode": "ya",
+      "registeredCompletion": true,
+      "undoRedoEligibility": true,
+      "realInspectorHref": true
+    }
+  ]
+}

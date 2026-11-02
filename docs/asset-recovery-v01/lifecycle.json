@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "checks": [
+    "Rejection cannot become ready; fresh original-asset Retry; duplicate pending clicks cause one attempt; repeated failure and recovery",
+    "Font timeout and unmount ignore late original-font success",
+    "Empty font match is failure; unmounted Retry aborts fetch and cannot install a late decoded face",
+    "Partial collection disposal; terminal state; canceled/replaced retries; one collection on success; no duplicate/disposal on rerender; unmount cleanup"
+  ],
+  "limits": "Actual production hook/provider code with deterministic React bookkeeping, fake font/construction dependencies and scheduling. Production browser tests reported separately."
+}

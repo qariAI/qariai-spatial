@@ -1,0 +1,68 @@
+{
+  "baseline": "454c2f0e552583458ca02f23915a74987537a915",
+  "platform": "linux",
+  "chrome": "Chrome/154.0.8037.57",
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+  "ownerReportedWindowsSeconds": {
+    "initial": 14.8,
+    "reset": 12.8,
+    "provenance": "Owner-supplied earlier Windows acceptance; not a new Windows measurement"
+  },
+  "pairedLocalResetObservations": [
+    {
+      "attempt": "browser-first",
+      "platform": "linux",
+      "sameBrowserProcess": true,
+      "baselineResetMs": 11771,
+      "correctedResetMs": 497,
+      "resetComparisonPassed": true,
+      "overallRunPassed": false,
+      "laterHarnessIssue": "DOM phase label advanced before native phase-button texture commit"
+    },
+    {
+      "attempt": "browser-final",
+      "platform": "linux",
+      "sameBrowserProcess": true,
+      "baselineResetMs": 13028,
+      "correctedResetMs": 766,
+      "resetComparisonPassed": true,
+      "overallRunPassed": false,
+      "laterHarnessIssue": "DOM inspector removal observed before native controls cleanup"
+    }
+  ],
+  "baselineLocal": {
+    "startupMs": 14113,
+    "resetFromExploreMs": 13028
+  },
+  "finalCorrectedLocal": {
+    "startupMs": 14246,
+    "resetFromExploreMs": 472,
+    "allResetMs": [
+      472,
+      305,
+      888,
+      1702,
+      975,
+      479,
+      204,
+      1682,
+      1188
+    ],
+    "allNineResetChecksPassed": true,
+    "browserErrors": [],
+    "checks": [
+      "original home framing restored after Explore; genuine matched-pose screenshots",
+      "all seven keyboard selections and mirror/centre scales",
+      "native same-document inspection/Return camera, controls, pause and speed",
+      "real Harf registered kaf guide and completion-to-full-scene inspection/Return; flags retained; reset works after navigation"
+    ]
+  },
+  "homeCameraDeltaToBaseline": {
+    "position": 0,
+    "quaternion": 0.0,
+    "target": 0,
+    "up": 0
+  },
+  "zoom": 1,
+  "definitions": "Native production frame/readiness timings include Playwright dispatch and software-renderer scheduling, exclude screenshot capture, and are not CPU-only reset-function time, sustained FPS or Windows/Quest performance. The final candidate run passed all checks; paired preliminary runs retained their later harness diagnostics."
+}

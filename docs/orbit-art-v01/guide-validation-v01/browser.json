@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "errors": [],
+  "cases": [
+    {
+      "mode": "kaf",
+      "syntheticCompletion": "passed",
+      "cancel": "passed",
+      "undoRedoRevocation": "passed",
+      "extraInkRevocation": "passed",
+      "reset": "passed",
+      "guideIndependent": "passed",
+      "realRegistryUngraded": "passed"
+    },
+    {
+      "mode": "lam",
+      "syntheticCompletion": "passed",
+      "cancel": "passed",
+      "undoRedoRevocation": "passed",
+      "extraInkRevocation": "passed",
+      "reset": "passed",
+      "guideIndependent": "passed",
+      "realRegistryUngraded": "passed"
+    },
+    {
+      "mode": "fa",
+      "syntheticCompletion": "passed",
+      "cancel": "passed",
+      "undoRedoRevocation": "passed",
+      "extraInkRevocation": "passed",
+      "reset": "passed",
+      "guideIndependent": "passed",
+      "realRegistryUngraded": "passed"
+    },
+    {
+      "mode": "ya",
+      "syntheticCompletion": "passed",
+      "cancel": "passed",
+      "undoRedoRevocation": "passed",
+      "extraInkRevocation": "passed",
+      "reset": "passed",
+      "guideIndependent": "passed",
+      "realRegistryUngraded": "passed"
+    }
+  ],
+  "scope": "Actual Harf UI with intercepted synthetic annotations only; no Arabic calibration or 3D rendering claim."
+}

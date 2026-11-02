@@ -1,0 +1,89 @@
+{
+  "success": true,
+  "limits": "Real extracted React TracePanel in Chromium, original local Amiri. Not a full-scene or Quest test.",
+  "cases": [
+    {
+      "enabled": false,
+      "letter": "ك",
+      "nativeAndMarks": "identical",
+      "goldTrail": "identical",
+      "resetAndReturn": "passed"
+    },
+    {
+      "enabled": false,
+      "letter": "ل",
+      "nativeAndMarks": "identical",
+      "goldTrail": "identical",
+      "resetAndReturn": "passed"
+    },
+    {
+      "enabled": false,
+      "letter": "ف",
+      "nativeAndMarks": "identical",
+      "goldTrail": "identical",
+      "resetAndReturn": "passed"
+    },
+    {
+      "enabled": false,
+      "letter": "ي",
+      "nativeAndMarks": "identical",
+      "goldTrail": "identical",
+      "resetAndReturn": "passed"
+    },
+    {
+      "enabled": true,
+      "letter": "ك",
+      "nativeAndMarks": "identical",
+      "goldTrail": "identical",
+      "resetAndReturn": "passed"
+    },
+    {
+      "enabled": true,
+      "letter": "ل",
+      "nativeAndMarks": "identical",
+      "goldTrail": "identical",
+      "resetAndReturn": "passed"
+    },
+    {
+      "enabled": true,
+      "letter": "ف",
+      "nativeAndMarks": "identical",
+      "goldTrail": "identical",
+      "resetAndReturn": "passed"
+    },
+    {
+      "enabled": true,
+      "letter": "ي",
+      "nativeAndMarks": "identical",
+      "goldTrail": "identical",
+      "resetAndReturn": "passed"
+    }
+  ],
+  "errors": [],
+  "stars": {
+    "glError": 0,
+    "runnable": true,
+    "render": {
+      "frame": 1,
+      "calls": 2,
+      "triangles": 0,
+      "points": 6600,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 2,
+      "textures": 0
+    },
+    "uniforms": [
+      {
+        "time": 7.99999999999998,
+        "desktop": 1
+      },
+      {
+        "time": 7.99999999999998,
+        "desktop": 1
+      }
+    ],
+    "geometryBytes": 105600
+  }
+}

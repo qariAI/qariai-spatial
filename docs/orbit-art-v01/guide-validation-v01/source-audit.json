@@ -1,0 +1,206 @@
+{
+  "base": "1758fb42180ce94d327c797d07f6a4b3e146ba1c",
+  "success": true,
+  "files": [
+    {
+      "path": "src/orbit-art/AnimatedStarfield.tsx",
+      "sha256": "d8113aa3e2188306d7e027b55cb2e82c3e5ccec87be8f41eba4da7446a1a89bc",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/LetterInspection.tsx",
+      "sha256": "ad4b41c8cb9f60a47ee973d838ea4ed6c45e4f36967c768f32b1f260735b6ba2",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/SculptedKaf.tsx",
+      "sha256": "643a2e637e1489014a22a9ab864bb0d0d706e69c4db63104d2a4bccd0b0d1f09",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/generated/crowned-cap.ts",
+      "sha256": "3089b08daef4621eb62cf511ee9fc1337edd48579727ded3d4c4ae59928e85c0",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/generated/engraving-design.ts",
+      "sha256": "e0336e49f8e87bb91fd9d60fc3dee9fd9f883e10e0405930f758f3184e449f05",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/generated/kaf-outline.json",
+      "sha256": "7a58cc1ad838bd9f8d5417e727a8c100009785a250d680f1d122ddd4f437a99a",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/generated/letter-outlines.json",
+      "sha256": "f33e8a857c96f85d1294135720b55e1f95cf3a23d404207c38569c47085c0b7c",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/generated/proof-surface-design.ts",
+      "sha256": "c41ef609288c74ef481c7f54e1ddb65ba6b5b21295a4ac45a9ff62d1b1865974",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/kafAsset.ts",
+      "sha256": "0f5d6e9cf6607e5cbc099cee3ee1a001601462a4ee7f02e3a3c99597f468aead",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/letterSurface.ts",
+      "sha256": "238d289b5a7c3d6eb9eb1cd77bba4fe61a6093b132069f5a00dc0217dab91ea7",
+      "unchanged": true
+    },
+    {
+      "path": "src/orbit-art/mode.ts",
+      "sha256": "30aa3afe9b52c1ab1ba604adf4181db3c8d02f66ad587e547146528439dcf1a8",
+      "unchanged": true
+    },
+    {
+      "path": "public/fonts/Amiri-Bold.ttf",
+      "sha256": "65e3e6fe6af66bb6d24959bd537a89ea35de14083f5a2e2290c246136c2b047b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fonts/OFL-Amiri.txt",
+      "sha256": "72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/crowned-cap.js",
+      "sha256": "432e9e6be663984aef39169fdbd80aa72691b0e20327352abc4404ccf7f85606",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/engraving-design.js",
+      "sha256": "7688847e6ddf5cd192a55c16a0bd7875f174f171e6e84b70cac8654d4194758a",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/index.html",
+      "sha256": "d72261bc80b891c9a23d3864d5e52b95d2dac383d35446a07acfd960d25ebe36",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/kaf-outline.json",
+      "sha256": "7a58cc1ad838bd9f8d5417e727a8c100009785a250d680f1d122ddd4f437a99a",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/orbit-inspection.js",
+      "sha256": "64d14742aca6a2f56f73c79adcec53898b22a998f789fc5d2021e48dcb8a6d3a",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/proof-surface-design.js",
+      "sha256": "28b184f40f93b9eff6f3c6e69e42b287b8ceb0bd3b701391274c93a747d747f7",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/sculpture.js",
+      "sha256": "50517de0e07a60f3f7a913e59657a7caba0ff7706db4588128a0bd75b2770da6",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/source-letter.js",
+      "sha256": "ce82f0dafcb1d15737d4048eab5b901f7ef99418416a6860ed931adbae97e184",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/study.css",
+      "sha256": "4867c04449059777a193b39fe8ad3e3ad55d3337910d67f7ebc40c54d3a08904",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/study.js",
+      "sha256": "edeee516cdbca47676243938d91d4f89f91b9e10ad2a9f897b05d49298fe8977",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/surface-design.js",
+      "sha256": "63e0c99fc6140e4621f64ea84cfdb83148016c7dc91af2d5b34788aa145ff857",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/vendor/LICENSE-spark.txt",
+      "sha256": "51829693e5dccd9ca1daa093991faac3aaa93238eb8fd5f5cb4130af85791d64",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/vendor/LICENSE-three.txt",
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/vendor/Pass.js",
+      "sha256": "444b409c235ead986893c472e720da1b779a56985c7d10b279c7944b52bd61c5",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/vendor/SVGLoader.js",
+      "sha256": "90aa8d9c60b4f93f2a482669f5761a530479049a5c42f4bcd32575a43d7a119e",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/vendor/provenance.json",
+      "sha256": "83e3e0383e257e84238f8fee5ade759d5eb319ad00dd6796b466cd91057b8ad1",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/vendor/spark.module.min.js",
+      "sha256": "2d65ef810f06be91a31a6b617d170ce0f46b54be6e973a36f5ae810fb952f2a6",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/vendor/three.core.js",
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+      "unchanged": true
+    },
+    {
+      "path": "public/spark-letter/vendor/three.module.js",
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/desktop.ts",
+      "sha256": "6e5c8348d82d1b316dacf173fbd257fa278becf471ffcadd4738dadb034dfe34",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/main.ts",
+      "sha256": "136ebe1a2dabd8dd7eb221c09fe9de832f2a4e9e1d2c350a54e144f201ac0496",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/ink.ts",
+      "sha256": "81b331f23a6b25fab3527acb446c4d889ea7aa2099466f6af5a970e43558ba6a",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/tracing.ts",
+      "sha256": "cb09cdf5ef2fc491fa8fe0c475415c51138da76c53a89909815d7b841c619b56",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/session.ts",
+      "sha256": "c8f2fedd8334dffa0788ebb50e20788a96d82177b21745d20eb8e3e95a746f0b",
+      "unchanged": true
+    },
+    {
+      "path": "src/harf-xr/progress.ts",
+      "sha256": "b8007c2015d25625af073d141aca40d8903c5ac8eadcc33632b3bf65f8ad319f",
+      "unchanged": true
+    },
+    {
+      "path": "harf-studio.html",
+      "sha256": "29529f5781039f10be14f9651eae862fb41fbc8fcf3e8570828c1291797cd47b",
+      "unchanged": true
+    },
+    {
+      "path": "src/integration/OrbitPracticeLink.tsx",
+      "sha256": "d54a175ae70e8d83faa14477f0ebf7022bb503e65e29f29eb6f724888a959f82",
+      "unchanged": true
+    }
+  ]
+}

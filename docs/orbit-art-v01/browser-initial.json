@@ -1,0 +1,10 @@
+{
+  "success": false,
+  "errors": [
+    "Failed to load resource: net::ERR_FAILED"
+  ],
+  "warnings": [],
+  "captures": [],
+  "limits": "Full desktop scene under Chromium/SwiftShader with harness-only deterministic stepping and dev StrictMode duplication removed. Not Quest/stereo FPS. No artwork or tracing substitution.",
+  "failure": "TimeoutError: page.waitForFunction: Timeout 60000ms exceeded."
+}

@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "errors": [],
+  "routes": "single allowlisted practice; live selection read at click; duplicates blocked through session-end; updated destination; internal paths; arbitrary params excluded",
+  "limits": "Desktop browser and routing checks, not Quest or full-scene Orbit rendering.",
+  "checks": "Exact original compound path; no grade/centreline/score; multiple free strokes; cancellation; reset/hide; mobile layout; flags/kaf return; explicit Bāʾ fallback; invalid duplicate mode rejected"
+}

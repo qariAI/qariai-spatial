@@ -1,0 +1,17 @@
+{
+  "build": "passed: TypeScript and Vite",
+  "acceptedEngineAndRuleData": "byte-identical to e1fd18fc9b660337c5f99f90b39eaf3dd0c0152f",
+  "protectedSourceFiles": 48,
+  "desktopBrowser": "all four completed cases across documented runs; no single-run pass claim",
+  "freePracticeChunkKB": {
+    "minified": 21.52,
+    "gzip": 7.82,
+    "priorMinified": 18.25,
+    "priorGzip": 6.7
+  },
+  "limits": [
+    "Initial fa navigation reload timeout retained; cause not established.",
+    "Shared-chunk build advisory is inherited.",
+    "No full-scene/Quest test, merge or production deployment."
+  ]
+}

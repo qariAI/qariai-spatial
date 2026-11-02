@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="720" viewBox="0 0 600 720" role="img" aria-labelledby="title desc">
+<title id="title">lam: draft practice annotations</title>
+<desc id="desc">Original outline in sapphire; candidate paths in gold; corridors in translucent gold; endpoint regions in turquoise; dot regions in purple; protected regions in red. Draft only. No stroke order prescribed.</desc>
+<rect width="600" height="720" fill="#07111c"/>
+<text x="24" y="34" fill="#f5dca5" font-size="20" font-family="sans-serif">LAM · DRAFT ANNOTATIONS</text>
+<text x="24" y="60" fill="#b6c8d3" font-size="13" font-family="sans-serif">Review geometry; no stroke order or direction prescribed.</text>
+<g transform="translate(115.93696213199757 547.2041156269527) scale(0.6042827042949993 -0.6042827042949993)">
+<path id="source" d="M440 599Q438 613 435.5 627.5Q433 642 430 658Q420 683 430 704L456 754Q469 781 484 741Q500 698 530 674Q551 657 534 635L509 603Q511 569 516.0 524.0Q521 479 528 421Q536 363 540.0 318.5Q544 274 546 242Q553 136 519 52Q495 -4 410 -42Q368 -61 330.0 -70.5Q292 -80 257 -79Q116 -77 76 26Q62 63 62 104Q62 218 133 307Q147 325 156 316Q165 308 154 288Q107 203 111 160Q122 50 289 56Q434 61 494 134Q481 226 472.5 294.0Q464 362 459 407Q455 452 450.0 500.0Q445 548 440 599Z" fill="#284f70"/>
+<polyline data-layer="corridor" points="463,725 477,690 480,650 484,600 490,550 495,490 500,430 506,365 512,300 518,235 519,175 507,140 478,108 440,80 390,55 335,30 275,5 220,0 170,10 115,45 95,85 95,130 92,180 104,225 132,280" fill="none" stroke="#f5c46b28" stroke-width="48.676" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline data-layer="path" points="463,725 477,690 480,650 484,600 490,550 495,490 500,430 506,365 512,300 518,235 519,175 507,140 478,108 440,80 390,55 335,30 275,5 220,0 170,10 115,45 95,85 95,130 92,180 104,225 132,280" fill="none" stroke="#f5c46b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle data-layer="endpoint" cx="463" cy="725" r="17.037" fill="#82dfc22e" stroke="#82dfc2" stroke-width="2"/>
+<circle data-layer="endpoint" cx="132" cy="280" r="17.037" fill="#82dfc22e" stroke="#82dfc2" stroke-width="2"/>
+</g>
+<g font-family="sans-serif" font-size="13"><text x="24" y="646" fill="#f5c46b">Gold: path + tolerance corridor</text><text x="24" y="667" fill="#82dfc2">Turquoise: endpoints · Purple: separate dots</text><text x="24" y="688" fill="#f16c77">Red: proposed protected regions</text></g>
+</svg>
