@@ -117,3 +117,5 @@
 
 /* Keep cold inspection visibly loading until completed native draws. */
 .letter-inspection[data-loading=true] .inspection-tools p{position:fixed;left:50%;top:45%;bottom:auto;transform:translate(-50%,-50%);width:min(440px,80vw);max-width:80vw;box-sizing:border-box;padding:24px;text-align:center;background:#061321f5;border-color:#dfbc7780}
+
+html[data-xr-presenting] .app > :not(.canvas){visibility:hidden}
